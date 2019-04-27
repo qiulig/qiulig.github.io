@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-27T01:56:08.577Z</updated>
+  <updated>2019-04-27T03:32:54.879Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode-15:三数之和</title>
+    <link href="http://yoursite.com/2019/04/27/leetcode-15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
+    <id>http://yoursite.com/2019/04/27/leetcode-15-三数之和/</id>
+    <published>2019-04-27T02:20:16.000Z</published>
+    <updated>2019-04-27T03:32:54.879Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-题目描述："><a href="#1-题目描述：" class="headerlink" title="1.题目描述："></a>1.题目描述：</h3><h5 id="给定一个包含-n-个整数的数组-nums，判断-nums-中是否存在三个元素-a，b，c-，使得-a-b-c-0-？找出所有满足条件且不重复的三元组。"><a href="#给定一个包含-n-个整数的数组-nums，判断-nums-中是否存在三个元素-a，b，c-，使得-a-b-c-0-？找出所有满足条件且不重复的三元组。" class="headerlink" title="给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。"></a>给定一个包含 <em>n</em> 个整数的数组 <code>nums</code>，判断 <code>nums</code> 中是否存在三个元素 <em>a，b，c ，</em>使得 <em>a + b + c =</em> 0 ？找出所有满足条件且不重复的三元组。</h5><p><strong>注意：</strong>答案中不可以包含重复的三元组。</p><blockquote><p>例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，</p></blockquote><blockquote><p>满足要求的三元组集合为：<br>[<br>  [-1, 0, 1],<br>  [-1, -1, 2]<br>]</p></blockquote><h3 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h3><ul><li>首先按升序排序；然后定义下标变量i,j,k，因为是三元组，所以要三个变量如果简单的遍历，那么跟是否有序没有关系，其时间复杂度将达到O(n^3)。仔细想想：如果当前选择了a、b、c三个数，如果其和小于目标target，那么需要将其中一个数用更大的数替换；反之亦然。但究竟替换三个数中的哪个数？无法确定就只能先固定两个变量，让其第三个变化（替换）。一种办法是：固定前两个数i,j，然后让k在一个范围中二分变化（二分查找思想）</li></ul><h3 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; threeSum(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        List&lt;Integer&gt; targets = <span class="keyword">new</span> ArrayList&lt;&gt;(); <span class="comment">// 用于去重</span></span><br><span class="line">        <span class="keyword">if</span>((nums.length&gt;<span class="number">0</span> &amp;&amp; nums.length&lt;<span class="number">3</span>) ||(nums.length&gt;<span class="number">0</span> &amp;&amp;nums[<span class="number">0</span>]&gt;<span class="number">0</span>))</span><br><span class="line">            <span class="keyword">return</span> list;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;=nums.length-<span class="number">3</span>;i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> target = <span class="number">0</span> - nums[i];</span><br><span class="line">            <span class="keyword">if</span> (!targets.contains(target)) &#123; <span class="comment">//用于去重</span></span><br><span class="line">                targets.add(target);</span><br><span class="line">                <span class="keyword">int</span> k = i + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">int</span> j = nums.length - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span> (k &lt; j) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (nums[k] + nums[j] == target) &#123;</span><br><span class="line">                        List&lt;Integer&gt; li = <span class="keyword">new</span> ArrayList();</span><br><span class="line">                        li.add(nums[i]);</span><br><span class="line">                        li.add(nums[k]);</span><br><span class="line">                        li.add(nums[j]);</span><br><span class="line">                        list.add(li);</span><br><span class="line">                        <span class="keyword">while</span> (k &lt; j &amp;&amp; nums[k] == nums[k + <span class="number">1</span>])</span><br><span class="line">                            ++k;</span><br><span class="line">                        <span class="keyword">while</span> (k &lt; j &amp;&amp; nums[j] == nums[j - <span class="number">1</span>])</span><br><span class="line">                            --j;</span><br><span class="line">                        k++;</span><br><span class="line">                        j--;</span><br><span class="line">                    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[k] + nums[j] &lt; target) &#123;</span><br><span class="line">                        k++;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        j--;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="4-我的提交记录"><a href="#4-我的提交记录" class="headerlink" title="4.我的提交记录"></a>4.我的提交记录</h3><p><img src="https://github.com/qiulig/IMG/raw/master/15.png" alt="leetcode提交结果"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;1-题目描述：&quot;&gt;&lt;a href=&quot;#1-题目描述：&quot; class=&quot;headerlink&quot; title=&quot;1.题目描述：&quot;&gt;&lt;/a&gt;1.题目描述：&lt;/h3&gt;&lt;h5 id=&quot;给定一个包含-n-个整数的数组-nums，判断-nums-中是否存在三个元素-a，b，c-
+      
+    
+    </summary>
+    
+      <category term="algorithm" scheme="http://yoursite.com/categories/algorithm/"/>
+    
+    
+      <category term="algorithm" scheme="http://yoursite.com/tags/algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>用github和hexo搭建个人网站</title>
+    <link href="http://yoursite.com/2019/04/25/%E7%94%A8github%E5%92%8Chexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99/"/>
+    <id>http://yoursite.com/2019/04/25/用github和hexo搭建个人网站/</id>
+    <published>2019-04-25T12:21:53.094Z</published>
+    <updated>2019-04-27T02:14:30.471Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1.基础知识"></a>1.基础知识</h3><ul><li><p>拥有github账号</p></li><li><p>安装node.js、npm,并了解相关基础知识</p></li><li><p>安装git客户端</p><p>本次搭建所使用的环境如下：</p><p><code>C:\User\qiuli&gt;node -v</code></p><p><code>v10.15.3</code></p><p><code>C:\User\qiuli&gt;git --version</code></p><p><code>git version 2.21.0.windows.1</code></p></li></ul><h3 id="2-搭建github博客"><a href="#2-搭建github博客" class="headerlink" title="2.搭建github博客"></a>2.搭建github博客</h3><p>   <strong>2.1  创建仓库</strong></p><ul><li><p>新建一个名为你的用户名.github.io的仓库，比如说，如果你的github用户名是test，那么你就新建test.github.io的仓库（必须是你的用户名，其它名称无效），将来你的网站访问地址就是 <a href="http://test.github.io" target="_blank" rel="noopener">http://test.github.io</a> 了。</p><p>由此可见，每一个github账户最多只能创建一个这样可以直接使用域名访问的仓库。    </p><p><strong>2.2 绑定域名</strong></p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;1-基础知识&quot;&gt;&lt;a href=&quot;#1-基础知识&quot; class=&quot;headerlink&quot; title=&quot;1.基础知识&quot;&gt;&lt;/a&gt;1.基础知识&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;拥有github账号&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;安装node.js、npm,并了解
+      
+    
+    </summary>
+    
+      <category term="hexo" scheme="http://yoursite.com/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello Qiulig</title>
