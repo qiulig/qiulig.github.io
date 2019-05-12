@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[争吵问题.md]]></title>
+    <url>%2F2019%2F05%2F09%2F%E4%BA%89%E5%90%B5%E9%97%AE%E9%A2%98-md%2F</url>
+    <content type="text"><![CDATA[1. 题目描述有一个队列，每个人要么朝左边（L表示）,要么朝右边(R表示)，因为每个人都讨厌其他任何人，只要两人面对面就会发生争吵。争吵结果是胜者留在队列中，败的人移除队中。 如果序列中有多对争吵，可以任选一对，胜者留在队中，败者出局，求最后队列最少人数是多少。 例子： LRRLRL 输出：2 Hint 一种可能的变化情况是：LRRLRL -&gt; LRLRL -&gt; LRRL -&gt; LRL -&gt; LR 2.解题思路由题意可知，如果真的吵架就只有RL（两人面对面）情况，像LL,RR,LR就不会争吵。 如果吵架前面是R，则吵架结果应该是L胜利. 如果吵架前面是L，则吵架结果为R胜利 3.代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354import java.util.ArrayList;import java.util.List;public class test &#123; public static void main(String[] args) &#123; String arr ="LRRLRL"; String res = solut(arr); System.out.println(res.length()); System.out.println(res); &#125; public static String solut(String arr) &#123; //获取第一次争吵得到的结果 String str = solution(arr); //如果还存在第二次争吵，则继续，否则得到结果 while (str.contains("RL"))&#123; str = solution(str); &#125; return str; &#125; public static String solution(String arr)&#123; List&lt;Character&gt; list = new ArrayList&lt;&gt;(); for(int i = 0;i&lt;arr.length()-1;i++)&#123; //争吵 if(arr.charAt(i)=='R'&amp;&amp;arr.charAt(i+1)=='L')&#123; if(i==0) &#123; list.add('R'); i++; &#125; else&#123; if(list.get(list.size()-1)=='L') &#123; &#123; list.add('R'); i++; &#125; &#125;else&#123; &#123; list.add('L'); i++; &#125; &#125; &#125; &#125;else &#123; //没有争吵，下一次争吵中还有该人 list.add(arr.charAt(i)); &#125; &#125; //将list转换成String String str = ""; for(int i = 0;i&lt;list.size();i++)&#123; str = str+list.get(i); &#125; return str; &#125;&#125;]]></content>
+      <categories>
+        <category>讯飞科技笔试</category>
+      </categories>
+      <tags>
+        <tag>讯飞科技笔试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode-15:三数之和]]></title>
     <url>%2F2019%2F04%2F27%2Fleetcode-15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C%2F</url>
     <content type="text"><![CDATA[1.题目描述：给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。注意：答案中不可以包含重复的三元组。 例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]， 满足要求的三元组集合为：[ [-1, 0, 1], [-1, -1, 2]] 2.解题思路 首先按升序排序；然后定义下标变量i,j,k，因为是三元组，所以要三个变量如果简单的遍历，那么跟是否有序没有关系，其时间复杂度将达到O(n^3)。仔细想想：如果当前选择了a、b、c三个数，如果其和小于目标target，那么需要将其中一个数用更大的数替换；反之亦然。但究竟替换三个数中的哪个数？无法确定就只能先固定两个变量，让其第三个变化（替换）。一种办法是：固定前两个数i,j，然后让k在一个范围中二分变化（二分查找思想） 3.代码12345678910111213141516171819202122232425262728293031323334353637class Solution &#123; public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) &#123; List&lt;List&lt;Integer&gt;&gt; list = new ArrayList(); Arrays.sort(nums); List&lt;Integer&gt; targets = new ArrayList&lt;&gt;(); // 用于去重 if((nums.length&gt;0 &amp;&amp; nums.length&lt;3) ||(nums.length&gt;0 &amp;&amp;nums[0]&gt;0)) return list; for(int i = 0;i&lt;=nums.length-3;i++) &#123; int target = 0 - nums[i]; if (!targets.contains(target)) &#123; //用于去重 targets.add(target); int k = i + 1; int j = nums.length - 1; while (k &lt; j) &#123; if (nums[k] + nums[j] == target) &#123; List&lt;Integer&gt; li = new ArrayList(); li.add(nums[i]); li.add(nums[k]); li.add(nums[j]); list.add(li); while (k &lt; j &amp;&amp; nums[k] == nums[k + 1]) ++k; while (k &lt; j &amp;&amp; nums[j] == nums[j - 1]) --j; k++; j--; &#125; else if (nums[k] + nums[j] &lt; target) &#123; k++; &#125; else &#123; j--; &#125; &#125; &#125; &#125; return list; &#125;&#125; 4.我的提交记录]]></content>
