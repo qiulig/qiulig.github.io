@@ -103,13 +103,18 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Long&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="通用缓存key的作用当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id,订单Id，用户id等,此时若是id出现重复，将给系统带来错误。方法：利用一个前缀来规定不同模块的缓存的key,这样不同模块之间就不会重复。 通用缓存key采用模板模式：接口-&amp;gt;抽象类-&amp;gt;实现类 1. 接口12345678public interface KeyPrefix &amp;#123;    //过">
+<meta name="keywords" content="秒杀">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通用缓存key">
+<meta property="og:url" content="http://yoursite.com/2019/05/15/通用缓存key/index.html">
 <meta property="og:site_name" content="Long&#39;s Blog">
+<meta property="og:description" content="通用缓存key的作用当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id,订单Id，用户id等,此时若是id出现重复，将给系统带来错误。方法：利用一个前缀来规定不同模块的缓存的key,这样不同模块之间就不会重复。 通用缓存key采用模板模式：接口-&amp;gt;抽象类-&amp;gt;实现类 1. 接口12345678public interface KeyPrefix &amp;#123;    //过">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-15T03:31:08.559Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Long&#39;s Blog">
+<meta name="twitter:title" content="通用缓存key">
+<meta name="twitter:description" content="通用缓存key的作用当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id,订单Id，用户id等,此时若是id出现重复，将给系统带来错误。方法：利用一个前缀来规定不同模块的缓存的key,这样不同模块之间就不会重复。 通用缓存key采用模板模式：接口-&amp;gt;抽象类-&amp;gt;实现类 1. 接口12345678public interface KeyPrefix &amp;#123;    //过">
 
 
 
@@ -117,7 +122,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/15/通用缓存key/">
 
 
 
@@ -127,7 +132,7 @@
   };
 </script>
 
-  <title>Long's Blog</title>
+  <title>通用缓存key | Long's Blog</title>
   
 
 
@@ -189,8 +194,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -232,7 +236,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -381,9 +385,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -415,10 +419,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/15/通用缓存key/" class="post-title-link" itemprop="url">通用缓存key</a>
+          <h1 class="post-title" itemprop="name headline">通用缓存key
+
               
             
           </h1>
@@ -533,24 +535,12 @@
       
 
       
-        
-          
-            <p>
-              通用缓存key的作用当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id,订单Id，用户id等,此时若是id出现重复，将给系统带来错误。方法：利用一个前缀来规定不同模块的缓存的key,这样不同模块之间就不会重复。
-通用缓存key采用模板模式：接口-&gt;抽象类-&gt;实现类
-1. 
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/15/通用缓存key/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
+        <h3 id="通用缓存key的作用"><a href="#通用缓存key的作用" class="headerlink" title="通用缓存key的作用"></a>通用缓存key的作用</h3><h5 id="当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id-订单Id，用户id等-此时若是id出现重复，将给系统带来错误。"><a href="#当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id-订单Id，用户id等-此时若是id出现重复，将给系统带来错误。" class="headerlink" title="当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id,订单Id，用户id等,此时若是id出现重复，将给系统带来错误。"></a>当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id,订单Id，用户id等,此时若是id出现重复，将给系统带来错误。</h5><p>方法：利用一个前缀来规定不同模块的缓存的key,这样不同模块之间就不会重复。</p>
+<p>通用缓存key采用模板模式：接口-&gt;抽象类-&gt;实现类</p>
+<h5 id="1-接口"><a href="#1-接口" class="headerlink" title="1. 接口"></a>1. 接口</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">KeyPrefix</span> </span>&#123;</span><br><span class="line">    <span class="comment">//过期时间</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">expireSeconds</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//前缀</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPrefix</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2-抽象类"><a href="#2-抽象类" class="headerlink" title="2. 抽象类"></a>2. 抽象类</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">BasePrefix</span> <span class="keyword">implements</span> <span class="title">KeyPrefix</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> expireSeconds;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String prefix;</span><br><span class="line">    <span class="comment">//无过期时间的构造函数</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BasePrefix</span><span class="params">(String prefix)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">           <span class="keyword">this</span>(<span class="number">0</span>, prefix);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//含有过期时间的构造函数</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BasePrefix</span><span class="params">( <span class="keyword">int</span> expireSeconds, String prefix)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.expireSeconds = expireSeconds;</span><br><span class="line">        <span class="keyword">this</span>.prefix = prefix;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">expireSeconds</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> expireSeconds;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//获取前缀，前缀为 className：prefix</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPrefix</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String className = getClass().getSimpleName();</span><br><span class="line">        <span class="keyword">return</span> className+<span class="string">":"</span> + prefix;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="3-实现类"><a href="#3-实现类" class="headerlink" title="3. 实现类"></a>3. 实现类</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MiaoshaKey</span> <span class="keyword">extends</span> <span class="title">BasePrefix</span></span>&#123;</span><br><span class="line">    <span class="comment">//继承父类的无过期时间的构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MiaoshaKey</span><span class="params">(String prefix)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(prefix);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//设置她这个类的前缀是className:go</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> MiaoshaKey isGoodsOver = <span class="keyword">new</span> MiaoshaKey(<span class="string">"go"</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -571,427 +561,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/15/Redis缓存java端实现/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="qiulig">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/15/Redis缓存java端实现/" class="post-title-link" itemprop="url">Redis缓存java端实现</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-15 10:33:48 / 修改时间：11:33:08" itemprop="dateCreated datePublished" datetime="2019-05-15T10:33:48+08:00">2019-05-15</time>
-            
-
-
-			
-			
-			
-			
-            
-              
-
-              
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/秒杀/" itemprop="url" rel="index"><span itemprop="name">秒杀</span></a></span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/秒杀/" rel="tag"># 秒杀</a>
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">8.9k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">8 分钟</span>
-              
-            </div>
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-            <p>
-              1. 引入redis依赖&lt;dependency&gt;        &lt;groupId&gt;redis.clients&lt;/groupId&gt;        &lt;artifactId&gt;jedis&lt;/artifactId&gt;    &lt;/dependenc
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/15/Redis缓存java端实现/#more" rel="contents">
-                阅读全文 &raquo;
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/15/Redis缓存java端实现/" rel="next" title="Redis缓存java端实现">
+                <i class="fa fa-chevron-left"></i> Redis缓存java端实现
               </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/争吵问题-md/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="qiulig">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/09/争吵问题-md/" class="post-title-link" itemprop="url">争吵问题.md</a>
-              
             
-          </h1>
-        
+          </div>
 
-        <div class="post-meta">
-          <span class="post-time">
+          <span class="post-nav-divider"></span>
 
+          <div class="post-nav-prev post-nav-item">
             
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-09 09:50:05 / 修改时间：11:19:46" itemprop="dateCreated datePublished" datetime="2019-05-09T09:50:05+08:00">2019-05-09</time>
-            
-
-
-			
-			
-			
-			
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/讯飞科技笔试/" itemprop="url" rel="index"><span itemprop="name">讯飞科技笔试</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">2k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">2 分钟</span>
-              
-            </div>
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>
-              1. 题目描述有一个队列，每个人要么朝左边（L表示）,要么朝右边(R表示)，因为每个人都讨厌其他任何人，只要两人面对面就会发生争吵。争吵结果是胜者留在队列中，败的人移除队中。
-如果序列中有多对争吵，可以任选一对，胜者留在队中，败者出局，求最后队列最少人数是多少。
-例子：
-LRRLRL
-输出：2
-Hi
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/09/争吵问题-md/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -1001,677 +600,20 @@ Hi
   </article>
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/27/leetcode-15-三数之和/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="qiulig">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/27/leetcode-15-三数之和/" class="post-title-link" itemprop="url">leetcode-15:三数之和</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-27 10:20:16" itemprop="dateCreated datePublished" datetime="2019-04-27T10:20:16+08:00">2019-04-27</time>
-            
-
-
-			
-			
-			
-			
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-09 11:15:57" itemprop="dateModified" datetime="2019-05-09T11:15:57+08:00">2019-05-09</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">2k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">2 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              1.题目描述：给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。注意：答案中不可以包含重复的三元组。
-
-例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，
-
-
-满
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/27/leetcode-15-三数之和/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/25/用github和hexo搭建个人网站/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="qiulig">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/25/用github和hexo搭建个人网站/" class="post-title-link" itemprop="url">用github和hexo搭建个人网站</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-25 20:21:53" itemprop="dateCreated datePublished" datetime="2019-04-25T20:21:53+08:00">2019-04-25</time>
-            
-
-
-			
-			
-			
-			
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-27 10:14:30" itemprop="dateModified" datetime="2019-04-27T10:14:30+08:00">2019-04-27</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">372</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">1 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              1.基础知识
-拥有github账号
-
-安装node.js、npm,并了解相关基础知识
-
-安装git客户端
-本次搭建所使用的环境如下：
-C:\User\qiuli&gt;node -v
-v10.15.3
-C:\User\qiuli&gt;git --version
-git version 2.21.0
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/25/用github和hexo搭建个人网站/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/25/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="qiulig">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/25/hello-world/" class="post-title-link" itemprop="url">Hello Qiulig</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-25 19:49:30" itemprop="dateCreated datePublished" datetime="2019-04-25T19:49:30+08:00">2019-04-25</time>
-            
-
-
-			
-			
-			
-			
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-27 09:56:08" itemprop="dateModified" datetime="2019-04-27T09:56:08+08:00">2019-04-27</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hello/" itemprop="url" rel="index"><span itemprop="name">Hello</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">430</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">1 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/25/hello-world/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzkzMi8yMDQ2OA=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -1691,8 +633,17 @@ git version 2.21.0
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1827,6 +778,23 @@ git version 2.21.0
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#通用缓存key的作用"><span class="nav-number">1.</span> <span class="nav-text">通用缓存key的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id-订单Id，用户id等-此时若是id出现重复，将给系统带来错误。"><span class="nav-number">1.0.1.</span> <span class="nav-text">当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id,订单Id，用户id等,此时若是id出现重复，将给系统带来错误。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-接口"><span class="nav-number">1.0.2.</span> <span class="nav-text">1. 接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-抽象类"><span class="nav-number">1.0.3.</span> <span class="nav-text">2. 抽象类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-实现类"><span class="nav-number">1.0.4.</span> <span class="nav-text">3. 实现类</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1980,6 +948,10 @@ git version 2.21.0
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
 
   
 
@@ -1995,6 +967,23 @@ git version 2.21.0
 
   
 
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/05/15/通用缓存key/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
 
 
   
