@@ -103,13 +103,18 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Long&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/categories/algorithm/index.html">
+  <meta name="description" content="开发web项目有时候我们需要对controller层传过来的参数进行一些基本的校验，比如非空，非null，整数值的范围，字符串的个数，日期，邮箱等等。最常见的就是我们直接写代码校验，这样以后比较繁琐，而且不够灵活。故引出使用JSR303来做参数校验。参数校验的实现:  手机号和密码字段自定义注解  为了让客户端显示更加友好   需要自定义异常拦截器    1. 添加依赖123456&amp;lt;!--">
+<meta name="keywords" content="秒杀">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSR303参数校验和全局异常处理">
+<meta property="og:url" content="http://yoursite.com/2019/05/15/JSR303参数校验/index.html">
 <meta property="og:site_name" content="Long&#39;s Blog">
+<meta property="og:description" content="开发web项目有时候我们需要对controller层传过来的参数进行一些基本的校验，比如非空，非null，整数值的范围，字符串的个数，日期，邮箱等等。最常见的就是我们直接写代码校验，这样以后比较繁琐，而且不够灵活。故引出使用JSR303来做参数校验。参数校验的实现:  手机号和密码字段自定义注解  为了让客户端显示更加友好   需要自定义异常拦截器    1. 添加依赖123456&amp;lt;!--">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-15T08:01:08.181Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Long&#39;s Blog">
+<meta name="twitter:title" content="JSR303参数校验和全局异常处理">
+<meta name="twitter:description" content="开发web项目有时候我们需要对controller层传过来的参数进行一些基本的校验，比如非空，非null，整数值的范围，字符串的个数，日期，邮箱等等。最常见的就是我们直接写代码校验，这样以后比较繁琐，而且不够灵活。故引出使用JSR303来做参数校验。参数校验的实现:  手机号和密码字段自定义注解  为了让客户端显示更加友好   需要自定义异常拦截器    1. 添加依赖123456&amp;lt;!--">
 
 
 
@@ -117,7 +122,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/categories/algorithm/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/15/JSR303参数校验/">
 
 
 
@@ -127,7 +132,7 @@
   };
 </script>
 
-  <title>分类: algorithm | Long's Blog</title>
+  <title>JSR303参数校验和全局异常处理 | Long's Blog</title>
   
 
 
@@ -189,7 +194,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -282,7 +287,7 @@
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
 
     
     
@@ -377,83 +382,253 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>algorithm<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/15/JSR303参数校验/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qiulig">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/2019/04/27/leetcode-15-三数之和/" itemprop="url">
-            
-              <span itemprop="name">leetcode-15:三数之和</span>
-            
-          </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">JSR303参数校验和全局异常处理
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-27T10:20:16+08:00" content="2019-04-27">
-          04-27
-        </time>
-      </div>
+              
+            
+          </h1>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-15 15:11:19 / 修改时间：16:01:08" itemprop="dateCreated datePublished" datetime="2019-05-15T15:11:19+08:00">2019-05-15</time>
+            
+
+
+			
+			
+			
+			
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/秒杀/" itemprop="url" rel="index"><span itemprop="name">秒杀</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">3.4k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">3 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>开发web项目有时候我们需要对controller层传过来的参数进行一些基本的校验，比如非空，非null，整数值的范围，字符串的个数，日期，邮箱等等。最常见的就是我们直接写代码校验，这样以后比较繁琐，而且不够灵活。故引出使用JSR303来做参数校验。参数校验的实现:</p>
+<ul>
+<li><p>手机号和密码字段自定义注解</p>
+</li>
+<li><p>为了让客户端显示更加友好 </p>
+</li>
+<li><p>需要自定义异常拦截器</p>
+</li>
+</ul>
+</blockquote>
+<h4 id="1-添加依赖"><a href="#1-添加依赖" class="headerlink" title="1. 添加依赖"></a>1. 添加依赖</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--JSR303参数检验+全局异常处理器--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">   &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt;</span><br><span class="line">   &lt;version&gt;2.0.6.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="2-在需要验证的类前加-Valid并在该类内需要参数检查的成员上加自定义注解"><a href="#2-在需要验证的类前加-Valid并在该类内需要参数检查的成员上加自定义注解" class="headerlink" title="2.在需要验证的类前加@Valid并在该类内需要参数检查的成员上加自定义注解"></a>2.在需要验证的类前加@Valid并在该类内需要参数检查的成员上加自定义注解</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/login"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/do_login"</span>)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> Result&lt;String&gt; <span class="title">doLogin</span><span class="params">(HttpServletResponse  response,                                             </span></span></span><br><span class="line"><span class="function"><span class="params">                               @Valid LoginVo loginVo)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        logger.info(loginVo.toString());</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginVo</span> </span>&#123;</span><br><span class="line">    <span class="meta">@NotNull</span></span><br><span class="line">    <span class="meta">@IsMobile</span></span><br><span class="line">    <span class="keyword">private</span>  String mobile;</span><br><span class="line">    <span class="meta">@NotNull</span></span><br><span class="line">    <span class="meta">@Length</span>(min = <span class="number">32</span>)</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-IsMobile注解的编写-可参考-NotNull"><a href="#3-IsMobile注解的编写-可参考-NotNull" class="headerlink" title="3. IsMobile注解的编写[可参考@NotNull]"></a>3. IsMobile注解的编写[可参考@NotNull]</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(&#123;</span><br><span class="line">            ElementType.METHOD,</span><br><span class="line">            ElementType.FIELD, </span><br><span class="line">            ElementType.ANNOTATION_TYPE, </span><br><span class="line">            ElementType.CONSTRUCTOR,</span><br><span class="line">            ElementType.PARAMETER, </span><br><span class="line">            ElementType.TYPE_USE</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"></span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Constraint</span>(</span><br><span class="line">        validatedBy = &#123;IsMobileValidator.class&#125;</span><br><span class="line">)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> IsMobile &#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">required</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</span><br><span class="line">    <span class="function">String <span class="title">message</span><span class="params">()</span> <span class="keyword">default</span> "电话号码格式错误"</span>;</span><br><span class="line"></span><br><span class="line">    Class&lt;?&gt;[] groups() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    Class&lt;? extends Payload&gt;[] payload() <span class="keyword">default</span> &#123;&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="4-指定校验器的实现-IsMobileValidator-class"><a href="#4-指定校验器的实现-IsMobileValidator-class" class="headerlink" title="4.指定校验器的实现[IsMobileValidator.class]"></a>4.指定校验器的实现[IsMobileValidator.class]</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IsMobileValidator</span> <span class="keyword">implements</span> <span class="title">ConstraintValidator</span>&lt;<span class="title">IsMobile</span>,<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> required = <span class="keyword">false</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="comment">//初始化方法拿到注解，可以定义一个字符为空</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">(IsMobile constraintAnnotation)</span> </span>&#123;</span><br><span class="line">        constraintAnnotation.required();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValid</span><span class="params">(String value, ConstraintValidatorContext context)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//值是必须的</span></span><br><span class="line">        <span class="keyword">if</span>(required)&#123;</span><br><span class="line">            <span class="keyword">return</span> ValidatorUtil.isMobile(value);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(StringUtils.isEmpty(value))&#123;</span><br><span class="line">                <span class="keyword">return</span>  <span class="keyword">true</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> ValidatorUtil.isMobile(value);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="5-自定义异常拦截器"><a href="#5-自定义异常拦截器" class="headerlink" title="5.自定义异常拦截器"></a>5.自定义异常拦截器</h4><blockquote>
+<p>当校验不通过时，会抛出异常。这时如果没有定义全局异常处理器进行处理（对异常进行封装和返回）。则会发生400错误（即只有请求的发起，却没有收到正常的响应（response），因为还没有来得及return就抛出了异常（这种异常没有被处理））。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> </span>&#123;</span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(value = Exception.class)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result&lt;String&gt; <span class="title">exceptionHandler</span><span class="params">(HttpServletRequest request,Exception e)</span></span>&#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        <span class="keyword">if</span>(e <span class="keyword">instanceof</span> GlobalException) &#123;</span><br><span class="line">            GlobalException ex = (GlobalException) e;</span><br><span class="line">            <span class="keyword">return</span> Result.Error(ex.getCm());</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(e <span class="keyword">instanceof</span> BindException)&#123;</span><br><span class="line">            BindException ex = (BindException) e;</span><br><span class="line">            List&lt;ObjectError&gt; errors = ex.getAllErrors();</span><br><span class="line">            <span class="comment">//为了方便起见，只取第一个错误</span></span><br><span class="line"></span><br><span class="line">            ObjectError error = errors.get(<span class="number">0</span>);</span><br><span class="line">            String msg = error.getDefaultMessage();</span><br><span class="line">            <span class="keyword">return</span> Result.Error(CodeMsg.BIND_ERROR.fillArgs(msg));</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> Result.Error(CodeMsg.SERVER_ERROR);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/秒杀/" rel="tag"># 秒杀</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/15/通用缓存key/" rel="next" title="通用缓存key">
+                <i class="fa fa-chevron-left"></i> 通用缓存key
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzkzMi8yMDQ2OA=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -473,8 +648,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -609,6 +793,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-添加依赖"><span class="nav-number">1.</span> <span class="nav-text">1. 添加依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-在需要验证的类前加-Valid并在该类内需要参数检查的成员上加自定义注解"><span class="nav-number">2.</span> <span class="nav-text">2.在需要验证的类前加@Valid并在该类内需要参数检查的成员上加自定义注解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-IsMobile注解的编写-可参考-NotNull"><span class="nav-number">3.</span> <span class="nav-text">3. IsMobile注解的编写[可参考@NotNull]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-指定校验器的实现-IsMobileValidator-class"><span class="nav-number">4.</span> <span class="nav-text">4.指定校验器的实现[IsMobileValidator.class]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-自定义异常拦截器"><span class="nav-number">5.</span> <span class="nav-text">5.自定义异常拦截器</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -762,6 +963,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
 
   
 
@@ -777,6 +982,23 @@
 
   
 
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/05/15/JSR303参数校验/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
 
 
   
