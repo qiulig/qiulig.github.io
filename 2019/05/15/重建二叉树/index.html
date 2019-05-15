@@ -103,18 +103,18 @@
 
 
 
-  <meta name="description" content="1. 题目描述有一个队列，每个人要么朝左边（L表示）,要么朝右边(R表示)，因为每个人都讨厌其他任何人，只要两人面对面就会发生争吵。争吵结果是胜者留在队列中，败的人移除队中。 如果序列中有多对争吵，可以任选一对，胜者留在队中，败者出局，求最后队列最少人数是多少。 例子： LRRLRL 输出：2 Hint 一种可能的变化情况是：LRRLRL -&amp;gt; LRLRL -&amp;gt; LRRL -&amp;gt;">
-<meta name="keywords" content="讯飞科技笔试">
+  <meta name="description" content="1. 题目描述 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。  2.解题思路 先序遍历为：根-&amp;gt;左子树-&amp;gt;右子树，中序遍历为左子树-&amp;gt;根-&amp;gt;右子树  先找到根结点，为先序遍历的第一个数">
+<meta name="keywords" content="链表题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="争吵问题.md">
-<meta property="og:url" content="http://yoursite.com/2019/05/09/争吵问题-md/index.html">
+<meta property="og:title" content="剑指offer_[4]重建二叉树">
+<meta property="og:url" content="http://yoursite.com/2019/05/15/重建二叉树/index.html">
 <meta property="og:site_name" content="Long&#39;s Blog">
-<meta property="og:description" content="1. 题目描述有一个队列，每个人要么朝左边（L表示）,要么朝右边(R表示)，因为每个人都讨厌其他任何人，只要两人面对面就会发生争吵。争吵结果是胜者留在队列中，败的人移除队中。 如果序列中有多对争吵，可以任选一对，胜者留在队中，败者出局，求最后队列最少人数是多少。 例子： LRRLRL 输出：2 Hint 一种可能的变化情况是：LRRLRL -&amp;gt; LRLRL -&amp;gt; LRRL -&amp;gt;">
+<meta property="og:description" content="1. 题目描述 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。  2.解题思路 先序遍历为：根-&amp;gt;左子树-&amp;gt;右子树，中序遍历为左子树-&amp;gt;根-&amp;gt;右子树  先找到根结点，为先序遍历的第一个数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-09T03:19:46.766Z">
+<meta property="og:updated_time" content="2019-05-15T12:43:07.942Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="争吵问题.md">
-<meta name="twitter:description" content="1. 题目描述有一个队列，每个人要么朝左边（L表示）,要么朝右边(R表示)，因为每个人都讨厌其他任何人，只要两人面对面就会发生争吵。争吵结果是胜者留在队列中，败的人移除队中。 如果序列中有多对争吵，可以任选一对，胜者留在队中，败者出局，求最后队列最少人数是多少。 例子： LRRLRL 输出：2 Hint 一种可能的变化情况是：LRRLRL -&amp;gt; LRLRL -&amp;gt; LRRL -&amp;gt;">
+<meta name="twitter:title" content="剑指offer_[4]重建二叉树">
+<meta name="twitter:description" content="1. 题目描述 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。  2.解题思路 先序遍历为：根-&amp;gt;左子树-&amp;gt;右子树，中序遍历为左子树-&amp;gt;根-&amp;gt;右子树  先找到根结点，为先序遍历的第一个数">
 
 
 
@@ -122,7 +122,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/05/09/争吵问题-md/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/15/重建二叉树/">
 
 
 
@@ -132,7 +132,7 @@
   };
 </script>
 
-  <title>争吵问题.md | Long's Blog</title>
+  <title>剑指offer_[4]重建二叉树 | Long's Blog</title>
   
 
 
@@ -402,7 +402,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/争吵问题-md/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/15/重建二叉树/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="qiulig">
@@ -419,7 +419,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">争吵问题.md
+          <h1 class="post-title" itemprop="name headline">剑指offer_[4]重建二叉树
 
               
             
@@ -445,7 +445,7 @@
                 
               
 
-              <time title="创建时间：2019-05-09 09:50:05 / 修改时间：11:19:46" itemprop="dateCreated datePublished" datetime="2019-05-09T09:50:05+08:00">2019-05-09</time>
+              <time title="创建时间：2019-05-15 20:12:34 / 修改时间：20:43:07" itemprop="dateCreated datePublished" datetime="2019-05-15T20:12:34+08:00">2019-05-15</time>
             
 
 
@@ -472,7 +472,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/讯飞科技笔试/" itemprop="url" rel="index"><span itemprop="name">讯飞科技笔试</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/剑指offer/" itemprop="url" rel="index"><span itemprop="name">剑指offer</span></a></span>
 
                 
                 
@@ -501,7 +501,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2k</span>
+                <span title="本文字数">1.4k</span>
               
 
               
@@ -515,7 +515,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">2 分钟</span>
+                <span title="阅读时长">1 分钟</span>
               
             </div>
           
@@ -535,21 +535,20 @@
       
 
       
-        <h5 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h5><p>有一个队列，每个人要么朝左边（L表示）,要么朝右边(R表示)，因为每个人都讨厌其他任何人，只要两人面对面就会发生争吵。争吵结果是胜者留在队列中，败的人移除队中。</p>
-<p>如果序列中有多对争吵，可以任选一对，胜者留在队中，败者出局，求最后队列最少人数是多少。</p>
-<p>例子：</p>
-<p>LRRLRL</p>
-<p>输出：2</p>
-<p><strong>Hint</strong></p>
-<p>一种可能的变化情况是：LRRLRL -&gt; LRLRL -&gt; LRRL -&gt; LRL -&gt; LR</p>
-<h5 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h5><p>由题意可知，如果真的吵架就只有RL（两人面对面）情况，像LL,RR,LR就不会争吵。</p>
-<ul>
-<li><p>如果吵架前面是R，则吵架结果应该是L胜利.</p>
+        <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h4><blockquote>
+<p>输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。</p>
+</blockquote>
+<h4 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h4><ol>
+<li><p>先序遍历为：根-&gt;左子树-&gt;右子树，中序遍历为左子树-&gt;根-&gt;右子树</p>
 </li>
-<li><p>如果吵架前面是L，则吵架结果为R胜利</p>
+<li><p>先找到根结点，为先序遍历的第一个数值</p>
 </li>
-</ul>
-<h5 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String arr =<span class="string">"LRRLRL"</span>;</span><br><span class="line">        String res = solut(arr);</span><br><span class="line">        System.out.println(res.length());</span><br><span class="line">        System.out.println(res);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span>  String  <span class="title">solut</span><span class="params">(String arr)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//获取第一次争吵得到的结果</span></span><br><span class="line">       String str = solution(arr);</span><br><span class="line">       <span class="comment">//如果还存在第二次争吵，则继续，否则得到结果</span></span><br><span class="line">        <span class="keyword">while</span> (str.contains(<span class="string">"RL"</span>))&#123;</span><br><span class="line">            str = solution(str);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> str;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">solution</span><span class="params">(String arr)</span></span>&#123;</span><br><span class="line">        List&lt;Character&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;arr.length()-<span class="number">1</span>;i++)&#123;</span><br><span class="line">            <span class="comment">//争吵</span></span><br><span class="line">            <span class="keyword">if</span>(arr.charAt(i)==<span class="string">'R'</span>&amp;&amp;arr.charAt(i+<span class="number">1</span>)==<span class="string">'L'</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(i==<span class="number">0</span>) &#123;</span><br><span class="line">                    list.add(<span class="string">'R'</span>);</span><br><span class="line">                    i++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(list.get(list.size()-<span class="number">1</span>)==<span class="string">'L'</span>) &#123;</span><br><span class="line">                    &#123;</span><br><span class="line">                        list.add(<span class="string">'R'</span>);</span><br><span class="line">                        i++;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    &#123;</span><br><span class="line">                        list.add(<span class="string">'L'</span>);</span><br><span class="line">                        i++;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//没有争吵，下一次争吵中还有该人</span></span><br><span class="line">                list.add(arr.charAt(i));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将list转换成String</span></span><br><span class="line">        String str = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;list.size();i++)&#123;</span><br><span class="line">            str = str+list.get(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> str;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>根据这个数值，可以划分中序中的左子树和右子树范围</p>
+</li>
+<li><p>递归构建左子树和右子树</p>
+</li>
+</ol>
+<h4 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="comment">//** * Definition for binary tree </span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123; </span><br><span class="line"></span><br><span class="line">     <span class="keyword">int</span> val; </span><br><span class="line"></span><br><span class="line">     TreeNode left; </span><br><span class="line"></span><br><span class="line">     TreeNode right; </span><br><span class="line"></span><br><span class="line">     TreeNode(<span class="keyword">int</span> x) &#123; val = x; &#125; </span><br><span class="line"></span><br><span class="line"> &#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">reConstructBinaryTree</span><span class="params">(<span class="keyword">int</span> [] pre,<span class="keyword">int</span> [] in)</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">if</span>(pre.length==<span class="number">0</span> || in.length==<span class="number">0</span>)	    	   </span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;	       </span><br><span class="line">        TreeNode node = <span class="keyword">new</span> TreeNode(pre[<span class="number">0</span>]);	<span class="comment">//根结点       </span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;pre.length;i++)&#123;	  </span><br><span class="line">        <span class="comment">//找到根节点在中序遍历的点，左边为根的左节点，右边为根的右节点  	   </span></span><br><span class="line">            <span class="keyword">if</span>(pre[<span class="number">0</span>] == in[i])&#123;	</span><br><span class="line">        <span class="comment">//递归构建左子树，此时前序的范围缩小为[1,i+1),中序缩小为[0,i)   		   </span></span><br><span class="line"></span><br><span class="line">             node.left =reConstructBinaryTree(Arrays.copyOfRange</span><br><span class="line">                         (pre,<span class="number">1</span>,i+<span class="number">1</span>),Arrays.copyOfRange(in,<span class="number">0</span>,i));</span><br><span class="line">        <span class="comment">//递归构建右子树,此时前序的范围缩小为[i+1,len),中序缩小为[i+1,len)	    		   </span></span><br><span class="line"></span><br><span class="line">             node.right = reConstructBinaryTree(Arrays.copyOfRange</span><br><span class="line">        (pre,i+<span class="number">1</span>,pre.length),Arrays.copyOfRange(in,i+<span class="number">1</span>,in.length));	    		   </span><br><span class="line"></span><br><span class="line">                <span class="keyword">break</span>;	    	   </span><br><span class="line">            &#125;	       </span><br><span class="line">        &#125;	       </span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -573,7 +572,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/讯飞科技笔试/" rel="tag"># 讯飞科技笔试</a>
+            <a href="/tags/链表题/" rel="tag"># 链表题</a>
           
         </div>
       
@@ -586,8 +585,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/27/leetcode-15-三数之和/" rel="next" title="leetcode-15:三数之和">
-                <i class="fa fa-chevron-left"></i> leetcode-15:三数之和
+              <a href="/2019/05/15/从头到尾打印链表/" rel="next" title="从头到尾打印链表">
+                <i class="fa fa-chevron-left"></i> 从头到尾打印链表
               </a>
             
           </div>
@@ -595,10 +594,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/15/Redis缓存java端实现/" rel="prev" title="Redis缓存java端实现">
-                Redis缓存java端实现 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -809,7 +804,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-题目描述"><span class="nav-number">1.</span> <span class="nav-text">1. 题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-解题思路"><span class="nav-number">2.</span> <span class="nav-text">2.解题思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-代码"><span class="nav-number">3.</span> <span class="nav-text">3.代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-题目描述"><span class="nav-number">1.</span> <span class="nav-text">1. 题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-解题思路"><span class="nav-number">2.</span> <span class="nav-text">2.解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-代码"><span class="nav-number">3.</span> <span class="nav-text">3.代码</span></a></li></ol></div>
             
 
           </div>
@@ -991,7 +986,7 @@
   
     <script>
   window.livereOptions = {
-    refer: '2019/05/09/争吵问题-md/'
+    refer: '2019/05/15/重建二叉树/'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];

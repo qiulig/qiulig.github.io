@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[剑指offer_[4]重建二叉树]]></title>
+    <url>%2F2019%2F05%2F15%2F%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[1. 题目描述 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。 2.解题思路 先序遍历为：根-&gt;左子树-&gt;右子树，中序遍历为左子树-&gt;根-&gt;右子树 先找到根结点，为先序遍历的第一个数值 根据这个数值，可以划分中序中的左子树和右子树范围 递归构建左子树和右子树 3.代码12345678910111213141516171819202122232425262728293031323334353637383940import java.util.Arrays;//** * Definition for binary tree public class TreeNode &#123; int val; TreeNode left; TreeNode right; TreeNode(int x) &#123; val = x; &#125; &#125; public class Solution &#123; public TreeNode reConstructBinaryTree(int [] pre,int [] in) &#123; if(pre.length==0 || in.length==0) return null; TreeNode node = new TreeNode(pre[0]); //根结点 for(int i=0;i&lt;pre.length;i++)&#123; //找到根节点在中序遍历的点，左边为根的左节点，右边为根的右节点 if(pre[0] == in[i])&#123; //递归构建左子树，此时前序的范围缩小为[1,i+1),中序缩小为[0,i) node.left =reConstructBinaryTree(Arrays.copyOfRange (pre,1,i+1),Arrays.copyOfRange(in,0,i)); //递归构建右子树,此时前序的范围缩小为[i+1,len),中序缩小为[i+1,len) node.right = reConstructBinaryTree(Arrays.copyOfRange (pre,i+1,pre.length),Arrays.copyOfRange(in,i+1,in.length)); break; &#125; &#125; return node; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>链表题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[从头到尾打印链表]]></title>
+    <url>%2F2019%2F05%2F15%2F%E4%BB%8E%E5%A4%B4%E5%88%B0%E5%B0%BE%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[1.题目描述 输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。 2.解题思路 先用一个栈stack存储从头到尾的链表数值 再依次弹出，因为栈是先进后出的，故弹出的结果为从尾到头 将弹出的结果放入list返回 3.代码123456789101112131415161718192021222324252627282930public class Main_3 &#123; public static class ListNode &#123; int val; ListNode next = null; ListNode(int val) &#123; this.val = val; &#125; &#125; public static class Solution &#123; ArrayList&lt;Integer&gt; arrayList = new ArrayList&lt;Integer&gt;(); public static ArrayList&lt;Integer&gt; printListFromTailToHead(ListNode listNode) &#123; Stack&lt;Integer&gt; stack = new Stack&lt;&gt;(); while (listNode != null) &#123; stack.push(listNode.val); listNode = listNode.next; &#125; ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;(); while (!stack.isEmpty()) &#123; list.add(stack.pop()); &#125; return list; &#125; &#125; &#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>链表题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_替换空格]]></title>
+    <url>%2F2019%2F05%2F15%2F%E5%89%91%E6%8C%87offer-%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC%2F</url>
+    <content type="text"><![CDATA[请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 2. 解题思路 方法1：利用函数replaceAll完成 方法2： 先计算需要多少的空间 从后向前依次插入 3. 代码方法1： 1234567 public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; return str.toString().replaceAll(" ", "%20"); &#125;&#125; 方法2： 1234567891011121314151617public class solution &#123; public String replaceSpace(StringBuffer str)&#123; int spacenum=0; //计算空格数 for(int i=0;i=0;i--)&#123; System.out.println(str.charAt(i)); if (str.charAt(i) == ' ')&#123; str.setCharAt(indexnew--, '0'); str.setCharAt(indexnew--, '2'); str.setCharAt(indexnew--, '%'); &#125; else&#123; str.setCharAt(indexnew--, str.charAt(i)); &#125; &#125; return str.toString(); &#125;&#125; 补充1：StringBuffer和String的转换String转换成StringBuffer 12String str = "abc";StringBuffer b=new StringBuffer(str); StringBuffer转换成String 12StringBuffer a=new StringBuffer();String b=a.toString(） 补充2：StringBuffer、StringBuilder、String的区别 运行速度StringBuilder&gt;StringBuffer&gt;String String是字符串常量，String对象一旦创建就不能更改。StringBuffer为 字符串变量，可更改 3） String适用于少量的字符串操作，StringBuffer适用于多线程下字符缓冲区进行大量操作的情况。 4） StringBuffer 与 StringBuilder 中的方法和功能完全是等价的， 5） 只是StringBuffer 中的方法大都采用了 synchronized 关键字进行修饰，因此是线程安全的，而 StringBuilder 没有这个修饰，可以被认为是线程不安全的。 6） 在单线程程序下，StringBuilder效率更快，因为它不需要加锁，不具备多线程安全，而StringBuffer则每次都需要判断锁，效率相对更低。]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[JSR303参数校验和全局异常处理]]></title>
     <url>%2F2019%2F05%2F15%2FJSR303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C%2F</url>
     <content type="text"><![CDATA[开发web项目有时候我们需要对controller层传过来的参数进行一些基本的校验，比如非空，非null，整数值的范围，字符串的个数，日期，邮箱等等。最常见的就是我们直接写代码校验，这样以后比较繁琐，而且不够灵活。故引出使用JSR303来做参数校验。参数校验的实现: 手机号和密码字段自定义注解 为了让客户端显示更加友好 需要自定义异常拦截器 1. 添加依赖123456&lt;!--JSR303参数检验+全局异常处理器--&gt;&lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt; &lt;version&gt;2.0.6.RELEASE&lt;/version&gt;&lt;/dependency&gt; 2.在需要验证的类前加@Valid并在该类内需要参数检查的成员上加自定义注解1234567891011@Controller@RequestMapping("/login")public class LoginController &#123; @RequestMapping("/do_login") @ResponseBody public Result&lt;String&gt; doLogin(HttpServletResponse response, @Valid LoginVo loginVo)&#123; logger.info(loginVo.toString()); &#125;&#125; 12345678910@Datapublic class LoginVo &#123; @NotNull @IsMobile private String mobile; @NotNull @Length(min = 32) private String password;&#125; 3. IsMobile注解的编写[可参考@NotNull]12345678910111213141516171819202122@Target(&#123; ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER, ElementType.TYPE_USE &#125;)@Retention(RetentionPolicy.RUNTIME)@Documented@Constraint( validatedBy = &#123;IsMobileValidator.class&#125;)public @interface IsMobile &#123; boolean required() default true; String message() default "电话号码格式错误"; Class&lt;?&gt;[] groups() default &#123;&#125;; Class&lt;? extends Payload&gt;[] payload() default &#123;&#125;; 4.指定校验器的实现[IsMobileValidator.class]1234567891011121314151617181920212223public class IsMobileValidator implements ConstraintValidator&lt;IsMobile,String&gt; &#123; private boolean required = false; @Override //初始化方法拿到注解，可以定义一个字符为空 public void initialize(IsMobile constraintAnnotation) &#123; constraintAnnotation.required(); &#125; @Override public boolean isValid(String value, ConstraintValidatorContext context) &#123; //值是必须的 if(required)&#123; return ValidatorUtil.isMobile(value); &#125;else&#123; if(StringUtils.isEmpty(value))&#123; return true; &#125;else&#123; return ValidatorUtil.isMobile(value); &#125; &#125; &#125;&#125; 5.自定义异常拦截器 当校验不通过时，会抛出异常。这时如果没有定义全局异常处理器进行处理（对异常进行封装和返回）。则会发生400错误（即只有请求的发起，却没有收到正常的响应（response），因为还没有来得及return就抛出了异常（这种异常没有被处理））。 1234567891011121314151617181920212223@ControllerAdvice@ResponseBodypublic class GlobalExceptionHandler &#123; @ExceptionHandler(value = Exception.class) public Result&lt;String&gt; exceptionHandler(HttpServletRequest request,Exception e)&#123; e.printStackTrace(); if(e instanceof GlobalException) &#123; GlobalException ex = (GlobalException) e; return Result.Error(ex.getCm()); &#125;else if(e instanceof BindException)&#123; BindException ex = (BindException) e; List&lt;ObjectError&gt; errors = ex.getAllErrors(); //为了方便起见，只取第一个错误 ObjectError error = errors.get(0); String msg = error.getDefaultMessage(); return Result.Error(CodeMsg.BIND_ERROR.fillArgs(msg)); &#125;else&#123; return Result.Error(CodeMsg.SERVER_ERROR); &#125; &#125;&#125;]]></content>
@@ -64,17 +91,6 @@
       </categories>
       <tags>
         <tag>algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[剑指offer_[2]替换空格]]></title>
-    <url>%2F2019%2F04%2F27%2F%E5%89%91%E6%8C%87offer-%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC%20%2F</url>
-    <content type="text"><![CDATA[1. 题目描述： 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 2. 解题思路 方法1：利用函数replaceAll完成 方法2： 先计算需要多少的空间 从后向前依次插入 3. 代码方法1： 1234567 public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; return str.toString().replaceAll(" ", "%20"); &#125;&#125; 方法2： 123456789101112131415161718192021222324252627282930public class solution &#123; public String replaceSpace(StringBuffer str)&#123; int spacenum=0; //计算空格数 for(int i=0;i&lt;str.length();i++)&#123; if (str.charAt(i)==' ') spacenum++; &#125; // 旧的字符串的最后一个字符的下标 int indexold=str.length()-1; //在原字符串中替换空格为%20后的字符串长度 int newlength=str.length()+spacenum*2; // 新的字符串的最后一个字符的下标 int indexnew = newlength-1; //使str的长度扩大到转换成%20之后的长度,防止下标越界 str.setLength(newlength); //从后往前遍历 for(int i=indexold;i&gt;=0;i--)&#123; System.out.println(str.charAt(i)); if (str.charAt(i) == ' ')&#123; str.setCharAt(indexnew--, '0'); str.setCharAt(indexnew--, '2'); str.setCharAt(indexnew--, '%'); &#125; else&#123; str.setCharAt(indexnew--, str.charAt(i)); &#125; &#125; return str.toString(); &#125;&#125; 补充1：StringBuffer和String的转换String转换成StringBuffer 12String str = "abc";StringBuffer b=new StringBuffer(str); StringBuffer转换成String 12StringBuffer a=new StringBuffer();String b=a.toString(） 补充2：StringBuffer、StringBuilder、String的区别 1) 运行速度StringBuilder&gt;StringBuffer&gt;String 2) String是字符串常量，String对象一旦创建就不能更改。StringBuffer为 字符串变量，可更改 3） String适用于少量的字符串操作，StringBuffer适用于多线程下字符缓冲区进行大量操作的情况。4） StringBuffer 与 StringBuilder 中的方法和功能完全是等价的， 5） 只是StringBuffer 中的方法大都采用了 synchronized 关键字进行修饰，因此是线程安全的，而 StringBuilder 没有这个修饰，可以被认为是线程不安全的。 6） 在单线程程序下，StringBuilder效率更快，因为它不需要加锁，不具备多线程安全，而StringBuffer则每次都需要判断锁，效率相对更低]]></content>
-      <categories>
-        <category>剑指offer</category>
-      </categories>
-      <tags>
-        <tag>字符串类型</tag>
       </tags>
   </entry>
   <entry>
