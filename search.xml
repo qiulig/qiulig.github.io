@@ -1,6 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[剑指offer_【17】树的子结构]]></title>
+    <url>%2F2019%2F05%2F16%2F17-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84%2F</url>
+    <content type="text"><![CDATA[1.题目描述输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构） 2.解题思路大体思路是首先判断B的根节点和A的根节点是否相同（这里的相同是指节点的值相同并且左右子节点相同），如果相同比较他们的左右子节点，这一步骤是相同的，可以用递归完成，直到B遍历到每个尾节点，如果这一过程比较的所有节点是相同的，则证明B是A的子结构。如果B的根节点和A的根节点不同，则A向他的左右子节点滑动，然后继续跟B的子节点比较，步骤同上。 (1) 如果root1.val==root2.val,那个就以这个为起点判断是否A包含B (2) 如果没找到，就以root1.left作为起点继续判断A是否包含B (3) 如果没找到，再以root1.right作为起点判断A是否包含B 3.代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647public class Solution &#123; public boolean HasSubtree(TreeNode root1, TreeNode root2) &#123; boolean result = false; //当Tree1和Tree2都不为零的时候，才进行比较。否则直接返回false if (root2 != null &amp;&amp; root1 != null) &#123; //如果找到了对应Tree2的根节点的点 if(root1.val == root2.val)&#123; //以这个根节点为为起点判断是否包含Tree2 result = doesTree1HaveTree(root1,root2); &#125; //如果找不到，那么就再去root的左儿子当作起点，去判断时候包含Tree2 if (!result) &#123; result = HasSubtree(root1.left,root2); &#125; //如果还找不到，那么就再去root的右儿子当作起点，去判断时候包含Tree2 if (!result) &#123; result = HasSubtree(root1.right,root2); &#125; &#125; //返回结果 return result; &#125;public boolean doesTree1HaveTree(TreeNode node1, TreeNode node2) &#123; //如果Tree2已经遍历完了都能对应的上，返回true if (node2 == null) &#123; return true; &#125; //如果Tree2还没有遍历完，Tree1却遍历完了。返回false if (node1 == null) &#123; return false; &#125; //如果其中有一个点没有对应上，返回false if (node1.val != node2.val) &#123; return false; &#125; //如果根节点对应的上，那么就分别去子节点里面匹配 return doesTree1HaveTree(node1.left,node2.left) &amp;&amp; doesTree1HaveTree(node1.right,node2.right); &#125; &#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>二叉树题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【16】合并两个排序的链表]]></title>
+    <url>%2F2019%2F05%2F16%2F16-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%8E%92%E5%BA%8F%E7%9A%84%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[1.题目描述 输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。 例： 链表1： 1 ----&gt; 3 ----&gt; 5 ----&gt; 8 链表2： 2 ----&gt; 4 ----&gt; 6 ----&gt; 7 合并结果： 1 ----&gt; 2 ----&gt; 3 ----&gt; 4 ----&gt; 5 ----&gt; 6 ----&gt; 7 ----&gt; 8 2.解题思路 判断有没有ListNode是空的，如果有则返回另一个 递归实现，如果List1.val&lt;list2.val,pMergeHead = list1,否则pMergeHead = list2，递归直到两个ListNode都为空 3.代码123456789101112131415161718192021222324252627/*public class ListNode &#123; int val; ListNode next = null; ListNode(int val) &#123; this.val = val; &#125;&#125;*/public class Solution &#123; public ListNode Merge(ListNode list1,ListNode list2) &#123; if(list1==null)&#123; return list2; &#125;else if(list2==null)&#123; return list1; &#125; ListNode pMergeHead = null; if(list1.val&lt;list2.val)&#123; pMergeHead = list1; pMergeHead.next = Merge(list1.next,list2); &#125;else&#123; pMergeHead = list2; pMergeHead.next = Merge(list1,list2.next); &#125; return pMergeHead; &#125;&#125;i]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>链表题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【15】反转链表]]></title>
+    <url>%2F2019%2F05%2F16%2F15-%E5%8F%8D%E6%AD%A3%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[1.题目描述 输入一个链表，反转链表后，输出新链表的表头。 2.解题思路 用一个栈stack依次存储ListNode里面的值，因为stack的特点是先进后出，故依次弹出即为反转链表 用一个链表temp依次存储弹出的值，依次next存入下一个链表值，链表res指向这个temp的头节点 反转链表的结果为res.next,因为我们之前设temp的头节点为-1（自己设的）。 3.代码123456789101112131415161718192021222324252627 /* public static class ListNode &#123; int val; ListNode next = null; ListNode(int val) &#123; this.val = val; &#125; &#125; */import java.util.*; public class Solution &#123; public ListNode ReverseList(ListNode head) &#123; Stack&lt;Integer&gt; stack = new Stack&lt;&gt;(); while (head!=null)&#123; stack.push(head.val); head = head.next; &#125; ListNode temp = new ListNode(-1); ListNode res = temp; while(stack.size()!=0)&#123; temp.next = new ListNode(stack.pop()); temp = temp.next; &#125; return res.next; &#125; &#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>链表题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【14】链表中倒数第K个结点]]></title>
+    <url>%2F2019%2F05%2F16%2F14-%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACK%E4%B8%AA%E7%BB%93%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[1.题目描述 输入一个链表，输出该链表中倒数第k个结点。 2.解题思路 先用一个count计算出链表的长度，如果count&lt;k，返回null 链表的倒数第K个即为链表的正数（count-k+1）个,一个for循环，将指针轮询倒那个点，然后再将起后面截断（head.next = null）即可。 3.代码1234567891011121314151617181920212223242526272829/*public class ListNode &#123; int val; ListNode next = null; ListNode(int val) &#123; this.val = val; &#125;*/public class Solution &#123; public ListNode FindKthToTail(ListNode head,int k) &#123; ListNode root = head; int count = 0; while(root!=null)&#123; count ++; root = root.next; &#125; if(count&lt;k)&#123; return null; &#125; //倒数第K个即正数第（count-k+1）个 for(int i = 1;i&lt;(count-k+1);i++)&#123; head = head.next; &#125; return head; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>链表题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【13】调整数值顺序使奇数位于偶数前面]]></title>
+    <url>%2F2019%2F05%2F16%2F13-%E8%B0%83%E6%95%B4%E6%95%B0%E5%80%BC%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2%2F</url>
+    <content type="text"><![CDATA[1.题目描述 输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。 2.解题思路依次遍历array数组，遇到奇数存到原来的array数组前面，遇到偶数放到res数组，然后将两个数组拼接即可。 3.代码1234567891011121314151617181920public class Solution &#123; public void reOrderArray(int [] array) &#123; int []res = new int[array.length]; int count = 0; int count2 = 0; for(int i = 0;i&lt;array.length;i++)&#123; //如果是奇数，则放在数组前面 if(array[i]%2 != 0)&#123; array[count++] = array[i]; &#125;else&#123; //偶数放在另一个数组里 res[count2++] = array[i]; &#125; &#125; int j = 0; for(int i = count;i&lt;array.length;i++)&#123; array[i] = res[j++]; &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>数组类型题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【12】数值的整数次方]]></title>
+    <url>%2F2019%2F05%2F16%2F12-%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9%2F</url>
+    <content type="text"><![CDATA[1.题目描述 给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方 2.解题思路 （1）exponent &gt; 0,如2^3,则可以直接运算得出结果 （2）exponent &lt; 0,如2^-3,则结果为（1/2）^3 （3）exponent = 0,如2^0,则结果为1 3.代码123456789101112131415161718192021public class Solution &#123; public double Power(double base, int exponent) &#123; if(exponent&lt;0)&#123; return powCal(1.0/base,-1*exponent); &#125;else if(exponent&gt;0)&#123; return powCal(base,exponent); &#125;else&#123; return 1; &#125; &#125; //计算base的exponent次方 public double powCal(double base, int exponent) &#123; double res = 1; for(int i = 0;i&lt;exponent;i++)&#123; res = res*base; &#125; return res; &#125; &#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>数组类型题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【11】二进制中1的个数]]></title>
+    <url>%2F2019%2F05%2F16%2F11-%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[1.题目描述输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。 2.解题思路 方法1：直接将其转成二进制数组 方法2：把一个整数减去1，再和原整数做与运算，会把该整数最右边一个1变成0。那么一个整数的二进制表示中有多少个1，就可以进行多少次这样的操作。 3.代码方法1： 1234567891011121314public class Solution &#123; public int NumberOf1(int n) &#123; int count=0; char []a=Integer.toBinaryString(n).toCharArray(); for(int i=0;i&lt;a.length;i++) &#123; if(a[i]=='1') &#123; count++; &#125; &#125; return count; &#125;&#125; 方法2： 123456789101112131415public class Solution &#123; public static int NumberOf(int n) &#123; int count = 0; while (n &gt; 0) &#123; count++; n = (n - 1) &amp; n; &#125; return count; &#125; &#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>数组类型题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[剑指offer_【10】矩形覆盖]]></title>
     <url>%2F2019%2F05%2F16%2F10-%E7%9F%A9%E5%BD%A2%E8%A6%86%E7%9B%96%2F</url>
     <content type="text"><![CDATA[1.题目描述 我们可以用2 * 1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2 * 1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？ 2.解题思路类似于青蛙跳台阶 当 n = 1时，只有一种横向排列的方式 当 n = 2时，有两种选择，横向或者竖向 当 n = 3时，如果选择竖向，则还剩下2*2的排列，如果选择横向，只有一种选择方案(剩下的一个横向一个竖向) 递推可得F(2 * n) = F(2 * (n-1))+F(2 * (n-2) ) , n&gt;=3 3.代码1234567891011public class Solution &#123; public int RectCover(inttarget) &#123; if(target &lt;=0)&#123; return0; &#125; elseif(target ==1|| target == 2)&#123; returntarget; &#125; return(RectCover(target-1)+RectCover(target-2)); &#125;&#125;]]></content>
