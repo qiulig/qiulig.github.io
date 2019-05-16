@@ -12,7 +12,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[剑指offer_[5]两个栈实现队列]]></title>
+    <title><![CDATA[剑指offer_【5】两个栈实现队列]]></title>
     <url>%2F2019%2F05%2F15%2F5.%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97%2F</url>
     <content type="text"><![CDATA[1. 题目描述 用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。 2. 解题思路 栈的规则是先进后出，队列的规则是先进先出 stack1一直维持着栈底–栈顶是队列的入队顺序 stack2一直维持着栈顶–栈尾为队列的入队顺序 当执行队列的入队（push）时，如果stack2为空，则直接插入到stack1,stack1从栈底到栈顶的顺序为入队顺序，如果stack2不为空，则将stack2的元素倒入（栈顶—栈尾）stack1,然后再插入数据 4- 当执行队列的出队(pop)操作时，应该出的是stack1的栈底元素，故将stack1依次倒入stack2,这时stack2的栈顶就是要出队的数值，此时stack1为空，stack2从（栈顶–栈尾）为入队顺序 3. 代码12345678910111213141516171819202122232425262728public class Solution &#123; Stack&lt;Integer&gt; stack1 = new Stack&lt;Integer&gt;(); Stack&lt;Integer&gt; stack2 = new Stack&lt;Integer&gt;(); //队列的入队 public void push(int node) &#123; //将stack2倒入stack1 while (!stack2.empty()) &#123; stack1.push(stack2.pop()); &#125; //将元素插入stack1 stack1.push(node); &#125; //队列的出队 public int pop() &#123; //将stack1倒入stack2 while (!stack1.empty()) &#123; stack2.push(stack1.pop()); &#125; //stack2的栈顶就是出队数值 return stack2.pop(); &#125;&#125;]]></content>
       <categories>
@@ -23,7 +23,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[剑指offer_[4]重建二叉树]]></title>
+    <title><![CDATA[剑指offer_【4】重建二叉树]]></title>
     <url>%2F2019%2F05%2F15%2F4.%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
     <content type="text"><![CDATA[1. 题目描述 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。 2.解题思路 先序遍历为：根-&gt;左子树-&gt;右子树，中序遍历为左子树-&gt;根-&gt;右子树 先找到根结点，为先序遍历的第一个数值 根据这个数值，可以划分中序中的左子树和右子树范围 递归构建左子树和右子树 3.代码12345678910111213141516171819202122232425262728293031323334353637383940import java.util.Arrays;//** * Definition for binary tree public class TreeNode &#123; int val; TreeNode left; TreeNode right; TreeNode(int x) &#123; val = x; &#125; &#125; public class Solution &#123; public TreeNode reConstructBinaryTree(int [] pre,int [] in) &#123; if(pre.length==0 || in.length==0) return null; TreeNode node = new TreeNode(pre[0]); //根结点 for(int i=0;i&lt;pre.length;i++)&#123; //找到根节点在中序遍历的点，左边为根的左节点，右边为根的右节点 if(pre[0] == in[i])&#123; //递归构建左子树，此时前序的范围缩小为[1,i+1),中序缩小为[0,i) node.left =reConstructBinaryTree(Arrays.copyOfRange (pre,1,i+1),Arrays.copyOfRange(in,0,i)); //递归构建右子树,此时前序的范围缩小为[i+1,len),中序缩小为[i+1,len) node.right = reConstructBinaryTree(Arrays.copyOfRange (pre,i+1,pre.length),Arrays.copyOfRange(in,i+1,in.length)); break; &#125; &#125; return node; &#125;&#125;]]></content>
       <categories>
@@ -34,7 +34,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[剑指offer_[3]从尾到头打印链表]]></title>
+    <title><![CDATA[剑指offer_【3】从尾到头打印链表]]></title>
     <url>%2F2019%2F05%2F15%2F3.%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8%2F</url>
     <content type="text"><![CDATA[1.题目描述 输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。 2.解题思路 先用一个栈stack存储从头到尾的链表数值 再依次弹出，因为栈是先进后出的，故弹出的结果为从尾到头 将弹出的结果放入list返回 3.代码123456789101112131415161718192021222324252627282930public class Main_3 &#123; public static class ListNode &#123; int val; ListNode next = null; ListNode(int val) &#123; this.val = val; &#125; &#125; public static class Solution &#123; ArrayList&lt;Integer&gt; arrayList = new ArrayList&lt;Integer&gt;(); public static ArrayList&lt;Integer&gt; printListFromTailToHead(ListNode listNode) &#123; Stack&lt;Integer&gt; stack = new Stack&lt;&gt;(); while (listNode != null) &#123; stack.push(listNode.val); listNode = listNode.next; &#125; ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;(); while (!stack.isEmpty()) &#123; list.add(stack.pop()); &#125; return list; &#125; &#125; &#125;]]></content>
       <categories>
@@ -122,7 +122,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[剑指offer_[1]二维数组的查找]]></title>
+    <title><![CDATA[剑指offer_【1】二维数组的查找]]></title>
     <url>%2F2019%2F04%2F27%2F1.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
     <content type="text"><![CDATA[1.题目描述： 在一个二维数组中（每个一维数组的长度相同），如数组 1 2 3 4 5 6 7 8 9 每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 2.解题思路 选择右上角的数字作为开始点 如果array[row][col]&gt;target,则向左查找，col–； 如果array[row][col]&lt;target,则向下查找，row++； 3.代码123456789101112131415161718public class Solution &#123; public boolean Find(int target, int [][] array) &#123; boolean res = false; int row = 0; int col = array[0].length-1; while(row&lt;=array.length-1&amp;&amp;col&gt;=0)&#123; if(array[row][col]&gt;target)&#123; col--; &#125;else if(array[row][col]&lt;target)&#123; row++; &#125;else&#123; res = true; break; &#125; &#125; return res; &#125;&#125;]]></content>
       <categories>
