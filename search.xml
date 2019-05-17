@@ -26,11 +26,6 @@
     <content type="text"></content>
   </entry>
   <entry>
-    <title><![CDATA[数组中的逆序对]]></title>
-    <url>%2F2019%2F05%2F16%2F35.%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
     <title><![CDATA[JSR303参数校验和全局异常处理]]></title>
     <url>%2F2019%2F05%2F15%2FJSR303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C%2F</url>
     <content type="text"><![CDATA[开发web项目有时候我们需要对controller层传过来的参数进行一些基本的校验，比如非空，非null，整数值的范围，字符串的个数，日期，邮箱等等。最常见的就是我们直接写代码校验，这样以后比较繁琐，而且不够灵活。故引出使用JSR303来做参数校验。参数校验的实现: 手机号和密码字段自定义注解 为了让客户端显示更加友好 需要自定义异常拦截器 1. 添加依赖123456&lt;!--JSR303参数检验+全局异常处理器--&gt;&lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt; &lt;version&gt;2.0.6.RELEASE&lt;/version&gt;&lt;/dependency&gt; 2.在需要验证的类前加@Valid并在该类内需要参数检查的成员上加自定义注解1234567891011@Controller@RequestMapping("/login")public class LoginController &#123; @RequestMapping("/do_login") @ResponseBody public Result&lt;String&gt; doLogin(HttpServletResponse response, @Valid LoginVo loginVo)&#123; logger.info(loginVo.toString()); &#125;&#125; 12345678910@Datapublic class LoginVo &#123; @NotNull @IsMobile private String mobile; @NotNull @Length(min = 32) private String password;&#125; 3. IsMobile注解的编写[可参考@NotNull]12345678910111213141516171819202122@Target(&#123; ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER, ElementType.TYPE_USE &#125;)@Retention(RetentionPolicy.RUNTIME)@Documented@Constraint( validatedBy = &#123;IsMobileValidator.class&#125;)public @interface IsMobile &#123; boolean required() default true; String message() default "电话号码格式错误"; Class&lt;?&gt;[] groups() default &#123;&#125;; Class&lt;? extends Payload&gt;[] payload() default &#123;&#125;; 4.指定校验器的实现[IsMobileValidator.class]1234567891011121314151617181920212223public class IsMobileValidator implements ConstraintValidator&lt;IsMobile,String&gt; &#123; private boolean required = false; @Override //初始化方法拿到注解，可以定义一个字符为空 public void initialize(IsMobile constraintAnnotation) &#123; constraintAnnotation.required(); &#125; @Override public boolean isValid(String value, ConstraintValidatorContext context) &#123; //值是必须的 if(required)&#123; return ValidatorUtil.isMobile(value); &#125;else&#123; if(StringUtils.isEmpty(value))&#123; return true; &#125;else&#123; return ValidatorUtil.isMobile(value); &#125; &#125; &#125;&#125; 5.自定义异常拦截器 当校验不通过时，会抛出异常。这时如果没有定义全局异常处理器进行处理（对异常进行封装和返回）。则会发生400错误（即只有请求的发起，却没有收到正常的响应（response），因为还没有来得及return就抛出了异常（这种异常没有被处理））。 1234567891011121314151617181920212223@ControllerAdvice@ResponseBodypublic class GlobalExceptionHandler &#123; @ExceptionHandler(value = Exception.class) public Result&lt;String&gt; exceptionHandler(HttpServletRequest request,Exception e)&#123; e.printStackTrace(); if(e instanceof GlobalException) &#123; GlobalException ex = (GlobalException) e; return Result.Error(ex.getCm()); &#125;else if(e instanceof BindException)&#123; BindException ex = (BindException) e; List&lt;ObjectError&gt; errors = ex.getAllErrors(); //为了方便起见，只取第一个错误 ObjectError error = errors.get(0); String msg = error.getDefaultMessage(); return Result.Error(CodeMsg.BIND_ERROR.fillArgs(msg)); &#125;else&#123; return Result.Error(CodeMsg.SERVER_ERROR); &#125; &#125;&#125;]]></content>
@@ -89,6 +84,17 @@
     <title><![CDATA[剑指offer_【34】第一个只出现一次的字符位置]]></title>
     <url>%2F2019%2F05%2F08%2F34-%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6%E4%BD%8D%E7%BD%AE%2F</url>
     <content type="text"><![CDATA[1.题目描述 在一个字符串(0&lt;=字符串长度&lt;=10000，全部由字母组成)中找到第一个只出现一次的字符,并返回它的位置, 如果没有则返回 -1（需要区分大小写）. 2.解题思路 1.用两个list,一个list用来存放只出现一次的字符，一个用来存放出现多次的字符 2.依次遍历str里面的字符，如果list1和list2里面都没有，则说明这个字符是第一次出现，将其添加到list1，否则说明之前出现过该字符，将其移除list1并添加到list2里面 3.最后判断list里面是否有值，有则返回list里面的第一个值在str出现的第一次的位置，即为第一次出现的字符位置。 3.代码1234567891011121314151617181920212223242526272829public static int FirstNotRepeatingChar(String str) &#123; if (str.length() == 0 || str == null) return -1; //list1存放str中出现1次的字符 ArrayList&lt;Character&gt; list1 = new ArrayList&lt;Character&gt;(); //list2用来存放多次出现的字符 ArrayList&lt;Character&gt; list2 = new ArrayList&lt;Character&gt;(); for (int i = 0; i &lt; str.length(); i++) &#123; char ch = str.charAt(i); //两个list里面都没有这个字符 if (!list1.contains(ch) &amp;&amp; !list2.contains(ch)) &#123; //将字符放到list1中 list1.add(Character.valueOf(ch)); &#125; else &#123; //将list1之前加入的删掉（此时出现了相同字符，删掉相同字符） list1.remove(Character.valueOf(ch)); //将str中含有的相同字符存入list2 list2.add(Character.valueOf(ch)); &#125; &#125; if (list1.size() &lt; 0) &#123; return -1; &#125; return str.indexOf(list1.get(0)); &#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>数组类型题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【35】数组中的逆序对]]></title>
+    <url>%2F2019%2F05%2F07%2F35.%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9%2F</url>
+    <content type="text"><![CDATA[1.题目描述在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组,求出这个数组中的逆序对的总数P。并将P对1000000007取模的结果输出。 即输出P%1000000007 输入描述:题目保证输入的数组中没有的相同的数字 数据范围： 对于%50的数据,size&lt;=10^4 对于%75的数据,size&lt;=10^5 对于%100的数据,size&lt;=2*10^5 例子数组{7,5,6,4}，逆序对总共有5对，{7,5}，{7,6}，{7,4}，{5,4}，{6,4}； 2.解题思路方法1：暴力破解:时间超时 考察每一位，判断从这一位往后有多少小于该位的，结果累加，得到最后结果。 方法2：归并算法 3.代码方法1(超时)： 1234567891011121314151617181920212223public class Solution &#123; public static void main(String[]args) &#123; int []array=&#123;7,5,6,4&#125;; int num=InversePairs(array); System.out.println(num); &#125; public static int InversePairs(int [] array) &#123; int count=0; for(int i=0;i&lt;array.length-1;i++) &#123; for(int j=i+1;j&lt;array.length;j++) &#123; if(array[i]&gt;array[j]) &#123; count++; continue; &#125; &#125; &#125; return count%1000000007; &#125;&#125; 方法2： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364import java.util.*;public class Solution &#123; public int InversePairs(int [] array) &#123; if(array==null||array.length==0) &#123; return 0; &#125; int[] copy = new int[array.length]; for(int i=0;i&lt;array.length;i++) &#123; copy[i] = array[i]; &#125; int count = InversePairsCore(array,copy,0,array.length-1);//数值过大求余 return count; &#125; private int InversePairsCore(int[] array,int[] copy,int low,int high) &#123; if(low==high) &#123; return 0; &#125; int mid = (low+high)&gt;&gt;1; int leftCount= InversePairsCore(array,copy,low,mid)%1000000007; int rightCount = InversePairsCore(array,copy,mid+1,high)%1000000007; int count = 0; int i=mid; int j=high; int locCopy = high; while(i&gt;=low&amp;&amp;j&gt;mid) &#123; if(array[i]&gt;array[j]) &#123; count += j-mid; copy[locCopy--] = array[i--]; if(count&gt;=1000000007)//数值过大求余 &#123; count%=1000000007; &#125; &#125; else &#123; copy[locCopy--] = array[j--]; &#125; &#125; for(;i&gt;=low;i--) &#123; copy[locCopy--]=array[i]; &#125; for(;j&gt;mid;j--) &#123; copy[locCopy--]=array[j]; &#125; for(int s=low;s&lt;=high;s++) &#123; array[s] = copy[s]; &#125; return (leftCount+rightCount+count)%1000000007; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
       </categories>
@@ -428,7 +434,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【7】斐波那契数组]]></title>
-    <url>%2F2019%2F04%2F28%2F7-%E5%A5%91%E6%B3%A2%E9%82%A3%E6%95%B0%E7%BB%84%2F</url>
+    <url>%2F2019%2F04%2F28%2F7-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E7%BB%84%2F</url>
     <content type="text"><![CDATA[1.题目描述大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。n&lt;=39 斐波那契数列：1 1 2 3 5 8 13 21 34 …. 2.解题思路 斐波那契数列：从第三项开始，每一项都等于前两项之和。通项公式为 F(n) = F(n-1)+F(n-2),n&gt;=3 方法1：通过递归实现，但是时间复杂度和空间复杂度都会很大 方法2：依次F(n-1)和F(n-2)值，求F(n)就很简单啦 3.代码方法一： 1234567891011public class Solution &#123; public int Fibonacci(int n) &#123; if(n==0) return 0; else if(n==1 || n==2) return 1; else return (Fibonacci(n-1)+Fibonacci(n-2)); &#125;&#125; 方法2： 1234567891011121314151617181920212223public class Solution &#123; public int Fibonacci(int n) &#123; if (n==0) return 0; if(n==1||n==2) return 1; int one_ = 1; //用于存储f(n-2) int two_ =1; //用于存储f(n-1) int fin = 0; for(int i = 3;i&lt;=n;i++)&#123; fin = one_+two_; //向前递推 one_ = two_; //下一次的f(n-2)为 上一次结果的f(n-1) two_ = fin; //下一次的f(n-1)为 上一次结果的fin &#125; return fin; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -449,17 +455,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[剑指offer_【1】二维数组的查找]]></title>
-    <url>%2F2019%2F04%2F27%2F1.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
-    <content type="text"><![CDATA[1.题目描述： 在一个二维数组中（每个一维数组的长度相同），如数组 1 2 3 4 5 6 7 8 9 每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 2.解题思路 选择右上角的数字作为开始点 如果array[row][col]&gt;target,则向左查找，col–； 如果array[row][col]&lt;target,则向下查找，row++； 3.代码123456789101112131415161718public class Solution &#123; public boolean Find(int target, int [][] array) &#123; boolean res = false; int row = 0; int col = array[0].length-1; while(row&lt;=array.length-1&amp;&amp;col&gt;=0)&#123; if(array[row][col]&gt;target)&#123; col--; &#125;else if(array[row][col]&lt;target)&#123; row++; &#125;else&#123; res = true; break; &#125; &#125; return res; &#125;&#125;]]></content>
-      <categories>
-        <category>剑指offer</category>
-      </categories>
-      <tags>
-        <tag>数组类型题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[剑指offer_【2】空格替换]]></title>
     <url>%2F2019%2F04%2F27%2F2.%E7%A9%BA%E6%A0%BC%E6%9B%BF%E6%8D%A2%2F</url>
     <content type="text"><![CDATA[1. 题目描述 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 2. 解题思路 方法1：利用函数replaceAll完成 方法2： **先计算需要多少的空间 **从后向前依次插入 3.代码方法1： 12345public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; return str.toString().replaceAll(" ", "%20"); &#125;&#125; 方法2： 12345678910111213141516171819202122232425262728public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; int spacenum = 0;//spacenum为计算空格数 for(int i=0;i&lt;str.length();i++)&#123; if(str.charAt(i)==' ') spacenum++; &#125; //indexold为为替换前的str下标 int indexold = str.length()-1; //计算空格转换成%20之后的str长度 int newlength = str.length() + spacenum*2; //indexold为为把空格替换为%20后的str下标 int indexnew = newlength-1; //使str的长度扩大到转换成%20之后的长度,防止下标越界 str.setLength(newlength); for(;indexold&gt;=0 &amp;&amp; indexold&lt;newlength;--indexold)&#123; if(str.charAt(indexold) == ' ')&#123; str.setCharAt(indexnew--, '0'); str.setCharAt(indexnew--, '2'); str.setCharAt(indexnew--, '%'); &#125;else&#123; str.setCharAt(indexnew--, str.charAt(indexold)); &#125; &#125; return str.toString(); &#125;&#125; 补充1：String和StringBuffer的转换String转换成StringBuffer 12String str = "abc";StringBuffer b=new StringBuffer(str); StringBuffer转换成String 12StringBuffer a=new StringBuffer();String b=a.toString(） 补充2：String、StringBuffer、StringBuilder 1）运行速度StringBuilder&gt;StringBuffer&gt;String 2）String是字符串常量，String对象一旦创建就不能更改。StringBuffer为 字符串变量，可更改 3） String适用于少量的字符串操作，StringBuffer适用于多线程下字符缓冲区进行大量操作的情况。 4） StringBuffer 与 StringBuilder 中的方法和功能完全是等价的， 5） 只是StringBuffer 中的方法大都采用了 synchronized 关键字进行修饰，因此是线程安全的，而 StringBuilder 没有这个修饰，可以被认为是线程不安全的。 6） 在单线程程序下，StringBuilder效率更快，因为它不需要加锁，不具备多线程安全，而StringBuffer则每次都需要判断锁，效率相对更低。]]></content>
@@ -468,6 +463,17 @@
       </categories>
       <tags>
         <tag>字符串题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【1】二维数组的查找]]></title>
+    <url>%2F2019%2F04%2F27%2F1.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
+    <content type="text"><![CDATA[1.题目描述： 在一个二维数组中（每个一维数组的长度相同），如数组 1 2 3 4 5 6 7 8 9 每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 2.解题思路 选择右上角的数字作为开始点 如果array[row][col]&gt;target,则向左查找，col–； 如果array[row][col]&lt;target,则向下查找，row++； 3.代码123456789101112131415161718public class Solution &#123; public boolean Find(int target, int [][] array) &#123; boolean res = false; int row = 0; int col = array[0].length-1; while(row&lt;=array.length-1&amp;&amp;col&gt;=0)&#123; if(array[row][col]&gt;target)&#123; col--; &#125;else if(array[row][col]&lt;target)&#123; row++; &#125;else&#123; res = true; break; &#125; &#125; return res; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>数组类型题</tag>
       </tags>
   </entry>
 </search>
