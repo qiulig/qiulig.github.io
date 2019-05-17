@@ -1,6 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[40.数组中只出现一次的数字]]></title>
+    <url>%2F2019%2F05%2F16%2F40-%E6%95%B0%E7%BB%84%E4%B8%AD%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[39.平衡二叉树]]></title>
+    <url>%2F2019%2F05%2F16%2F39-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[38.二叉树的深度]]></title>
+    <url>%2F2019%2F05%2F16%2F38-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[37.数字在排序数组中出现的次数]]></title>
+    <url>%2F2019%2F05%2F16%2F37-%E6%95%B0%E5%AD%97%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[36.两个链表的第一个公共结点]]></title>
+    <url>%2F2019%2F05%2F16%2F36-%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%AC%E5%85%B1%E7%BB%93%E7%82%B9%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[数组中的逆序对]]></title>
+    <url>%2F2019%2F05%2F16%2F35.%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[34.第一个只出现一次的字符位置]]></title>
+    <url>%2F2019%2F05%2F16%2F34-%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6%E4%BD%8D%E7%BD%AE%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[33.丑数]]></title>
+    <url>%2F2019%2F05%2F16%2F33-%E4%B8%91%E6%95%B0%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[32.把数组排成最小的数]]></title>
+    <url>%2F2019%2F05%2F16%2F32-%E6%8A%8A%E6%95%B0%E7%BB%84%E6%8E%92%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[31.整数中1出现的次数]]></title>
+    <url>%2F2019%2F05%2F16%2F31-%E6%95%B4%E6%95%B0%E4%B8%AD1%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[30.连续子数组的最大和]]></title>
+    <url>%2F2019%2F05%2F16%2F30-%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[29.最小的K个数]]></title>
+    <url>%2F2019%2F05%2F16%2F29-%E6%9C%80%E5%B0%8F%E7%9A%84K%E4%B8%AA%E6%95%B0%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[28.数组中出现次数超过一半的数字]]></title>
+    <url>%2F2019%2F05%2F16%2F28-%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【24】二叉树中和为某值的路径]]></title>
+    <url>%2F2019%2F05%2F16%2F24-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84%2F</url>
+    <content type="text"><![CDATA[1.题目描述 输入一颗二叉树的跟节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。(注意: 在返回值的list中，数组长度大的数组靠前) 2.解题思路整个过程可以采用先序遍历方式的DFS，即根节点—–&gt;左子树—–&gt;右子树。 随后考虑一次遍历完成后的处理， (1)当一次遍历完成后，如果输入整数值恰好等于节点值之和，则输出这条路径并且回退一个节点； (2)如果不等于则直接回退一个节点，即回退到当前节点的父节点，如果该父节点有右孩子，则继续遍历，否则继续回退。 (3)考虑回退到根节点，此时如果它有右孩子，则继续遍历，否则整个DFS结束。 3.代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455import java.util.ArrayList;/**public class TreeNode &#123; int val = 0; TreeNode left = null; TreeNode right = null; public TreeNode(int val) &#123; this.val = val; &#125; &#125;public class Solution &#123; //创建一个类型为ArrayList&lt;Integer&gt;的list ArrayList&lt;ArrayList&lt;Integer&gt;&gt; pathlist=new ArrayList&lt;ArrayList&lt;Integer&gt;&gt;(); //创建一个list,用于存放遍历的值 ArrayList&lt;Integer&gt; path=new ArrayList&lt;Integer&gt;(); public ArrayList&lt;ArrayList&lt;Integer&gt;&gt; FindPath (TreeNode root,int target) &#123; //如果树为空，则返回空的pathlist if(root==null) return pathlist; //将root值放入list path.add(root.val); //如果根的左子树、右子树、目标值=根值，则返回path if(root.left==null&amp;&amp;root.right==null&amp;&amp;target==root.val) &#123; pathlist.add(new ArrayList&lt;Integer&gt;(path)); &#125; //如果此时根值小于目标值并且含有左子树 if(root.val&lt;=target&amp;&amp;root.left!=null) &#123; //将遍历左子树，将根设为左子树并且此时的target=target-遍历过的root值 FindPath(root.left,target-root.val); &#125; //如果此时根值小于目标值并且含有右子树 if(root.val&lt;=target&amp;&amp;root.right!=null) &#123; //将遍历右子树，将根设为右子树并且此时的target=target-遍历过的root值 FindPath(root.right,target-root.val); &#125; //不论路径的值是否等于输入整数值，都要回退， //即使用remove函数移除路径上的最后一个节点。 path.remove(path.size()-1); return pathlist; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>二叉树题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JSR303参数校验和全局异常处理]]></title>
     <url>%2F2019%2F05%2F15%2FJSR303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C%2F</url>
     <content type="text"><![CDATA[开发web项目有时候我们需要对controller层传过来的参数进行一些基本的校验，比如非空，非null，整数值的范围，字符串的个数，日期，邮箱等等。最常见的就是我们直接写代码校验，这样以后比较繁琐，而且不够灵活。故引出使用JSR303来做参数校验。参数校验的实现: 手机号和密码字段自定义注解 为了让客户端显示更加友好 需要自定义异常拦截器 1. 添加依赖123456&lt;!--JSR303参数检验+全局异常处理器--&gt;&lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt; &lt;version&gt;2.0.6.RELEASE&lt;/version&gt;&lt;/dependency&gt; 2.在需要验证的类前加@Valid并在该类内需要参数检查的成员上加自定义注解1234567891011@Controller@RequestMapping("/login")public class LoginController &#123; @RequestMapping("/do_login") @ResponseBody public Result&lt;String&gt; doLogin(HttpServletResponse response, @Valid LoginVo loginVo)&#123; logger.info(loginVo.toString()); &#125;&#125; 12345678910@Datapublic class LoginVo &#123; @NotNull @IsMobile private String mobile; @NotNull @Length(min = 32) private String password;&#125; 3. IsMobile注解的编写[可参考@NotNull]12345678910111213141516171819202122@Target(&#123; ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER, ElementType.TYPE_USE &#125;)@Retention(RetentionPolicy.RUNTIME)@Documented@Constraint( validatedBy = &#123;IsMobileValidator.class&#125;)public @interface IsMobile &#123; boolean required() default true; String message() default "电话号码格式错误"; Class&lt;?&gt;[] groups() default &#123;&#125;; Class&lt;? extends Payload&gt;[] payload() default &#123;&#125;; 4.指定校验器的实现[IsMobileValidator.class]1234567891011121314151617181920212223public class IsMobileValidator implements ConstraintValidator&lt;IsMobile,String&gt; &#123; private boolean required = false; @Override //初始化方法拿到注解，可以定义一个字符为空 public void initialize(IsMobile constraintAnnotation) &#123; constraintAnnotation.required(); &#125; @Override public boolean isValid(String value, ConstraintValidatorContext context) &#123; //值是必须的 if(required)&#123; return ValidatorUtil.isMobile(value); &#125;else&#123; if(StringUtils.isEmpty(value))&#123; return true; &#125;else&#123; return ValidatorUtil.isMobile(value); &#125; &#125; &#125;&#125; 5.自定义异常拦截器 当校验不通过时，会抛出异常。这时如果没有定义全局异常处理器进行处理（对异常进行封装和返回）。则会发生400错误（即只有请求的发起，却没有收到正常的响应（response），因为还没有来得及return就抛出了异常（这种异常没有被处理））。 1234567891011121314151617181920212223@ControllerAdvice@ResponseBodypublic class GlobalExceptionHandler &#123; @ExceptionHandler(value = Exception.class) public Result&lt;String&gt; exceptionHandler(HttpServletRequest request,Exception e)&#123; e.printStackTrace(); if(e instanceof GlobalException) &#123; GlobalException ex = (GlobalException) e; return Result.Error(ex.getCm()); &#125;else if(e instanceof BindException)&#123; BindException ex = (BindException) e; List&lt;ObjectError&gt; errors = ex.getAllErrors(); //为了方便起见，只取第一个错误 ObjectError error = errors.get(0); String msg = error.getDefaultMessage(); return Result.Error(CodeMsg.BIND_ERROR.fillArgs(msg)); &#125;else&#123; return Result.Error(CodeMsg.SERVER_ERROR); &#125; &#125;&#125;]]></content>
@@ -56,9 +132,53 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[剑指offer_【27】字符串的排列]]></title>
+    <url>%2F2019%2F05%2F04%2F27-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97%2F</url>
+    <content type="text"><![CDATA[1.题目描述 输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。 2.解题思路 算法思路：（递归实现）(1)n个元素的全排列=（n-1个元素的全排列）+（另一个元素作为前缀）；(2)出口：如果只有一个元素的全排列，则说明已经排完，则输出数组； (3)不断将每个元素放作第一个元素，然后将这个元素作为前缀，并将其余元素继续全排列，等到出口，出口出去后还需要还原数组； 以字符串abc为例： a 作为开头 -&gt; 求 bc 全排列 -&gt; 得到 bc 和 cb -&gt; 与 a 合并 -&gt; 得到 abc 和 acb b 作为开头 -&gt; 求 ac 全排列 -&gt; 得到 ac 和 ca -&gt; 与 b 合并 -&gt; 得到 bac 和 bca c 作为开头 -&gt; 求 ab 全排列 -&gt; 得到 ab 和 ba -&gt; 与 c 合并 -&gt; 得到 cab 和 cba 3.代码 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667public class Solution &#123; public ArrayList&lt;String&gt; Permutation(String str) &#123; //用于排序输出 ArrayList&lt;String&gt; res = new ArrayList&lt;String&gt;(); if(str==null||str.length()==0)&#123; return res; &#125; //将字符串转化成字符数组 char[] chars = str.toCharArray(); //从第0个字符开始全排列 res=Permu(chars,0,res); return res ; &#125; public ArrayList&lt;String&gt; Permu(char[] str, int start, ArrayList&lt;String&gt; list) &#123; if (str == null) &#123; return null; &#125; //设置递归的出口,即当需要全排列的范围只有一个元素，则全排结束 if (start == str.length - 1) &#123; //去除重复的字符串 if (list.contains(String.valueOf(str))) &#123; return null; &#125; else&#123; list.add(String.valueOf(str)); &#125; &#125; else &#123; //for循环将start~len-1每一个数放到start位置中去，并实现全排列 //str[start]-----str[len-1]的全排列 for (int j = start; j &lt; str.length; j++) &#123; //取出第j个字符作为第一个字符 swap(str,j,start); //求出str[start+1]----str[len-1]的全排列 Permu(str, start+ 1, list); //恢复原数组 swap(str,j,start); &#125; &#125; //生成字典序 Collections.sort(list); return list; &#125; public void swap(char[] chars,int a,int b)&#123; if(a==b)&#123;//因为会出现原位置与原位置交换，直接空即可 &#125;else&#123; char temp = chars[a]; chars[a]=chars[b]; chars[b]=temp; &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>字符串题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【26】二叉搜索树与双向链表]]></title>
+    <url>%2F2019%2F05%2F04%2F26-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[1. 题目描述 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。 2.解题思路3. 代码]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>二叉树题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【25】复杂链表的复制]]></title>
+    <url>%2F2019%2F05%2F03%2F25-%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6%2F</url>
+    <content type="text"><![CDATA[1.题目描述 输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），返回结果为复制后复杂链表的head。（注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空） 2.解题思路3.代码123456789101112131415161718192021222324252627282930313233/*public class RandomListNode &#123; int label; RandomListNode next = null; RandomListNode random = null; RandomListNode(int label) &#123; this.label = label; &#125;&#125;*/public class Solution &#123; public RandomListNode Clone(RandomListNode pHead) &#123; if (pHead == null) return null; RandomListNode head = new RandomListNode(pHead.label); RandomListNode ans = head; if (pHead.random != null) &#123; head.random = new RandomListNode(pHead.random.label); &#125; while (pHead.next != null) &#123; pHead = pHead.next; head.next = new RandomListNode(pHead.label); if (pHead.random != null) &#123; head.next.random = new RandomListNode(pHead.random.label); &#125; head = head.next; &#125; return ans; &#125;&#125; 123456789101112131415161718192021222324252627282930313233343536public class Solution &#123; public RandomListNode Clone(RandomListNode pHead) &#123; if(pHead == null) &#123; return null; &#125; RandomListNode currentNode = pHead; //1、复制每个结点，如复制结点A得到A1，将结点A1插到结点A后面； while(currentNode != null)&#123; RandomListNode cloneNode = new RandomListNode(currentNode.label); RandomListNode nextNode = currentNode.next; currentNode.next = cloneNode; cloneNode.next = nextNode; currentNode = nextNode; &#125; currentNode = pHead; //2、重新遍历链表，复制老结点的随机指针给新结点，如A1.random = A.random.next; while(currentNode != null) &#123; currentNode.next.random = currentNode.random==null?null:currentNode.random.next; currentNode = currentNode.next.next; &#125; //3、拆分链表，将链表拆分为原链表和复制后的链表 currentNode = pHead; RandomListNode pCloneHead = pHead.next; while(currentNode != null) &#123; RandomListNode cloneNode = currentNode.next; currentNode.next = cloneNode.next; cloneNode.next = cloneNode.next==null?null:cloneNode.next.next; currentNode = currentNode.next; &#125; return pCloneHead; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>链表题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【23】二叉搜索树的后序遍历序列]]></title>
+    <url>%2F2019%2F05%2F03%2F23-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%2F</url>
+    <content type="text"><![CDATA[1.题目描述 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则输出Yes,否则输出No。假设输入的数组的任意两个数字都互不相同。 2.解题思路二叉搜索树后序遍历为：左子树—-&gt;右子树—-&gt;根，且左子树值&lt;根值&lt;右子树值 如二叉搜索树： 10 / \ 6 12 / \ / \ 3 7 11 20 后序遍历结果为：3 7 6 11 20 12 10 对于一个数组sequence，最后一个元素是sequence[len-1] （也就是根），如果去掉最后一个元素的序列为T，那么T满足：T可以分成两段，前一段（左子树）小于sequence[len-1] ，后一段（右子树）大于sequence[len-1] ，且这两段（子树）都是合法的后序序列 3.代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647import java.util.*;public class Solution &#123; public boolean VerifySquenceOfBST(int [] sequence) &#123; if(sequence==null||sequence.length&lt;=0) &#123; return false; &#125; int len=sequence.length; //数组长度 int root=sequence[len-1]; //数组的最后一个数为根 int i=0; for(;i&lt;len-1;i++) &#123; if(root&lt;=sequence[i]) //左子树的数值都小于根 break; &#125; //此时的j即为划分出来的左子树部分和右子树部分的分界 int j=i; for(;j&lt;=len-1;j++) &#123; //j到len-1都都为右子树，数值都大于root,如果root大于他们，则返回false if(root&gt;sequence[j]) &#123; return false; &#125; &#125; //递归判断左子树 boolean leftflag=true; if(i&gt;0) &#123; leftflag=VerifySquenceOfBST( Arrays.copyOfRange(sequence,0,i)); &#125; //递归判断右子树 boolean rightflag=true; if (i&lt;len-1) &#123; rightflag=VerifySquenceOfBST(Arrays.copyOfRange (sequence,i,sequence.length-1)); &#125; return leftflag &amp;&amp; rightflag; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>二叉树题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[剑指offer_【22】从上到下打印二叉树]]></title>
     <url>%2F2019%2F05%2F02%2F22-%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
-    <content type="text"><![CDATA[1.题目描述从上往下打印出二叉树的每个节点，同层节点从左至右打印。 2.解题思路使用两个队列一个存放节点treelist，一个存放值intlist。 先将根节点root加入到队列中，然后遍历队列中的元素，遍历过程中，访问该元素的左右节点，再将左右子节点加入到队列中来,并将root值存入intlist,遍历结束条件是i值到达treelist.size-1 3.代码12345678910111213141516171819202122232425262728293031323334353637383940414243import java.util.ArrayList;/**public class TreeNode &#123; int val = 0; TreeNode left = null; TreeNode right = null; public TreeNode(int val) &#123; this.val = val; &#125; &#125;*/public class Solution &#123; public ArrayList&lt;Integer&gt; PrintFromTopToBottom(TreeNode root) &#123; //创建一个列表用来存储节点 ArrayList&lt;TreeNode&gt; treelist=new ArrayList&lt;TreeNode&gt;(); ArrayList&lt;Integer&gt; intlist=new ArrayList&lt;Integer&gt;(); if(root==null) //没有节点 return intlist; //1.先存入根节点 treelist.add(root); //2.循环遍历列表，一开始列表里存了root for(int i=0;i&lt;treelist.size();i++) &#123; TreeNode node=treelist.get(i); //3.如果左子节点不为空，则将节点加入列表 if(node.left!=null) treelist.add(node.left); //3、如果右子节点不为空，则将右子节点加入到列表中，这时列表的size加1 if(node.right!=null) treelist.add(node.right); intlist.add(node.val); //4、因为执行上面操作后会增加列表的si //因此可以继续循环下一个节点，直到循环完所有节点 &#125; return intlist; &#125; &#125;]]></content>
+    <content type="text"><![CDATA[1.题目描述从上往下打印出二叉树的每个节点，同层节点从左至右打印。 2.解题思路使用两个队列一个存放节点treelist，一个存放值intlist。 先将根节点root加入到队列中，然后遍历队列中的元素，遍历过程中，访问该元素的左右节点，再将左右子节点加入到队列中来,并将root值存入intlist,遍历结束条件是i值到达treelist.size-1 3.代码12345678910111213141516171819202122232425262728293031323334353637383940414243import java.util.ArrayList;/**public class TreeNode &#123; int val = 0; TreeNode left = null; TreeNode right = null; public TreeNode(int val) &#123; this.val = val; &#125;&#125;*/public class Solution &#123; public ArrayList&lt;Integer&gt; PrintFromTopToBottom(TreeNode root) &#123; //创建一个列表用来存储节点 ArrayList&lt;TreeNode&gt; treelist=new ArrayList&lt;TreeNode&gt;(); ArrayList&lt;Integer&gt; intlist=new ArrayList&lt;Integer&gt;(); if(root==null) //没有节点 return intlist; //1.先存入根节点 treelist.add(root); //2.循环遍历列表，一开始列表里存了root for(int i=0;i&lt;treelist.size();i++) &#123; TreeNode node=treelist.get(i); //3.如果左子节点不为空，则将节点加入列表 if(node.left!=null) treelist.add(node.left); //3、如果右子节点不为空，则将右子节点加入到列表中，这时列表的size加1 if(node.right!=null) treelist.add(node.right); intlist.add(node.val); //4、因为执行上面操作后会增加列表的si //因此可以继续循环下一个节点，直到循环完所有节点 &#125; return intlist; &#125; &#125;]]></content>
       <categories>
         <category>剑指offer</category>
       </categories>
@@ -287,17 +407,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[剑指offer_【1】二维数组的查找]]></title>
-    <url>%2F2019%2F04%2F27%2F1.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
-    <content type="text"><![CDATA[1.题目描述： 在一个二维数组中（每个一维数组的长度相同），如数组 1 2 3 4 5 6 7 8 9 每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 2.解题思路 选择右上角的数字作为开始点 如果array[row][col]&gt;target,则向左查找，col–； 如果array[row][col]&lt;target,则向下查找，row++； 3.代码123456789101112131415161718public class Solution &#123; public boolean Find(int target, int [][] array) &#123; boolean res = false; int row = 0; int col = array[0].length-1; while(row&lt;=array.length-1&amp;&amp;col&gt;=0)&#123; if(array[row][col]&gt;target)&#123; col--; &#125;else if(array[row][col]&lt;target)&#123; row++; &#125;else&#123; res = true; break; &#125; &#125; return res; &#125;&#125;]]></content>
-      <categories>
-        <category>剑指offer</category>
-      </categories>
-      <tags>
-        <tag>数组类型题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[剑指offer_【2】空格替换]]></title>
     <url>%2F2019%2F04%2F27%2F2.%E7%A9%BA%E6%A0%BC%E6%9B%BF%E6%8D%A2%2F</url>
     <content type="text"><![CDATA[1. 题目描述 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 2. 解题思路 方法1：利用函数replaceAll完成 方法2： **先计算需要多少的空间 **从后向前依次插入 3.代码方法1： 12345public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; return str.toString().replaceAll(" ", "%20"); &#125;&#125; 方法2： 12345678910111213141516171819202122232425262728public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; int spacenum = 0;//spacenum为计算空格数 for(int i=0;i&lt;str.length();i++)&#123; if(str.charAt(i)==' ') spacenum++; &#125; //indexold为为替换前的str下标 int indexold = str.length()-1; //计算空格转换成%20之后的str长度 int newlength = str.length() + spacenum*2; //indexold为为把空格替换为%20后的str下标 int indexnew = newlength-1; //使str的长度扩大到转换成%20之后的长度,防止下标越界 str.setLength(newlength); for(;indexold&gt;=0 &amp;&amp; indexold&lt;newlength;--indexold)&#123; if(str.charAt(indexold) == ' ')&#123; str.setCharAt(indexnew--, '0'); str.setCharAt(indexnew--, '2'); str.setCharAt(indexnew--, '%'); &#125;else&#123; str.setCharAt(indexnew--, str.charAt(indexold)); &#125; &#125; return str.toString(); &#125;&#125; 补充1：String和StringBuffer的转换String转换成StringBuffer 12String str = "abc";StringBuffer b=new StringBuffer(str); StringBuffer转换成String 12StringBuffer a=new StringBuffer();String b=a.toString(） 补充2：String、StringBuffer、StringBuilder 1）运行速度StringBuilder&gt;StringBuffer&gt;String 2）String是字符串常量，String对象一旦创建就不能更改。StringBuffer为 字符串变量，可更改 3） String适用于少量的字符串操作，StringBuffer适用于多线程下字符缓冲区进行大量操作的情况。 4） StringBuffer 与 StringBuilder 中的方法和功能完全是等价的， 5） 只是StringBuffer 中的方法大都采用了 synchronized 关键字进行修饰，因此是线程安全的，而 StringBuilder 没有这个修饰，可以被认为是线程不安全的。 6） 在单线程程序下，StringBuilder效率更快，因为它不需要加锁，不具备多线程安全，而StringBuffer则每次都需要判断锁，效率相对更低。]]></content>
@@ -306,6 +415,17 @@
       </categories>
       <tags>
         <tag>字符串题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【1】二维数组的查找]]></title>
+    <url>%2F2019%2F04%2F27%2F1.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
+    <content type="text"><![CDATA[1.题目描述： 在一个二维数组中（每个一维数组的长度相同），如数组 1 2 3 4 5 6 7 8 9 每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 2.解题思路 选择右上角的数字作为开始点 如果array[row][col]&gt;target,则向左查找，col–； 如果array[row][col]&lt;target,则向下查找，row++； 3.代码123456789101112131415161718public class Solution &#123; public boolean Find(int target, int [][] array) &#123; boolean res = false; int row = 0; int col = array[0].length-1; while(row&lt;=array.length-1&amp;&amp;col&gt;=0)&#123; if(array[row][col]&gt;target)&#123; col--; &#125;else if(array[row][col]&lt;target)&#123; row++; &#125;else&#123; res = true; break; &#125; &#125; return res; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>数组类型题</tag>
       </tags>
   </entry>
 </search>
