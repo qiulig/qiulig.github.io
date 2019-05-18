@@ -11,21 +11,6 @@
     <content type="text"><![CDATA[]]></content>
   </entry>
   <entry>
-    <title><![CDATA[38.二叉树的深度]]></title>
-    <url>%2F2019%2F05%2F38-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6%2F</url>
-    <content type="text"><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[37.数字在排序数组中出现的次数]]></title>
-    <url>%2F2019%2F05%2F37-%E6%95%B0%E5%AD%97%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[36.两个链表的第一个公共结点]]></title>
-    <url>%2F2019%2F05%2F36-%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%AC%E5%85%B1%E7%BB%93%E7%82%B9%2F</url>
-    <content type="text"><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[JSR303参数校验和全局异常处理]]></title>
     <url>%2F2019%2F05%2FJSR303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C%2F</url>
     <content type="text"><![CDATA[开发web项目有时候我们需要对controller层传过来的参数进行一些基本的校验，比如非空，非null，整数值的范围，字符串的个数，日期，邮箱等等。最常见的就是我们直接写代码校验，这样以后比较繁琐，而且不够灵活。故引出使用JSR303来做参数校验。参数校验的实现: 手机号和密码字段自定义注解 为了让客户端显示更加友好 需要自定义异常拦截器 1. 添加依赖123456&lt;!--JSR303参数检验+全局异常处理器--&gt;&lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt; &lt;version&gt;2.0.6.RELEASE&lt;/version&gt;&lt;/dependency&gt; 2.在需要验证的类前加@Valid并在该类内需要参数检查的成员上加自定义注解1234567891011@Controller@RequestMapping("/login")public class LoginController &#123; @RequestMapping("/do_login") @ResponseBody public Result&lt;String&gt; doLogin(HttpServletResponse response, @Valid LoginVo loginVo)&#123; logger.info(loginVo.toString()); &#125;&#125; 12345678910@Datapublic class LoginVo &#123; @NotNull @IsMobile private String mobile; @NotNull @Length(min = 32) private String password;&#125; 3. IsMobile注解的编写[可参考@NotNull]12345678910111213141516171819202122@Target(&#123; ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER, ElementType.TYPE_USE &#125;)@Retention(RetentionPolicy.RUNTIME)@Documented@Constraint( validatedBy = &#123;IsMobileValidator.class&#125;)public @interface IsMobile &#123; boolean required() default true; String message() default "电话号码格式错误"; Class&lt;?&gt;[] groups() default &#123;&#125;; Class&lt;? extends Payload&gt;[] payload() default &#123;&#125;; 4.指定校验器的实现[IsMobileValidator.class]1234567891011121314151617181920212223public class IsMobileValidator implements ConstraintValidator&lt;IsMobile,String&gt; &#123; private boolean required = false; @Override //初始化方法拿到注解，可以定义一个字符为空 public void initialize(IsMobile constraintAnnotation) &#123; constraintAnnotation.required(); &#125; @Override public boolean isValid(String value, ConstraintValidatorContext context) &#123; //值是必须的 if(required)&#123; return ValidatorUtil.isMobile(value); &#125;else&#123; if(StringUtils.isEmpty(value))&#123; return true; &#125;else&#123; return ValidatorUtil.isMobile(value); &#125; &#125; &#125;&#125; 5.自定义异常拦截器 当校验不通过时，会抛出异常。这时如果没有定义全局异常处理器进行处理（对异常进行封装和返回）。则会发生400错误（即只有请求的发起，却没有收到正常的响应（response），因为还没有来得及return就抛出了异常（这种异常没有被处理））。 1234567891011121314151617181920212223@ControllerAdvice@ResponseBodypublic class GlobalExceptionHandler &#123; @ExceptionHandler(value = Exception.class) public Result&lt;String&gt; exceptionHandler(HttpServletRequest request,Exception e)&#123; e.printStackTrace(); if(e instanceof GlobalException) &#123; GlobalException ex = (GlobalException) e; return Result.Error(ex.getCm()); &#125;else if(e instanceof BindException)&#123; BindException ex = (BindException) e; List&lt;ObjectError&gt; errors = ex.getAllErrors(); //为了方便起见，只取第一个错误 ObjectError error = errors.get(0); String msg = error.getDefaultMessage(); return Result.Error(CodeMsg.BIND_ERROR.fillArgs(msg)); &#125;else&#123; return Result.Error(CodeMsg.SERVER_ERROR); &#125; &#125;&#125;]]></content>
@@ -67,6 +52,39 @@
       </categories>
       <tags>
         <tag>秒杀</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【38】二叉树的深度]]></title>
+    <url>%2F2019%2F05%2F38-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6%2F</url>
+    <content type="text"><![CDATA[1.题目描述 输入一棵二叉树，求该树的深度。从根结点到叶结点依次经过的结点（含根、叶结点）形成树的一条路径，最长路径的长度为树的深度。 2.解题思路 ①如果一棵树只有一个结点，它的深度为1。 ②如果根结点只有左子树而没有右子树，那么树的深度应该是其左子树的深度加1；同样如果根结点只有右子树而没有左子树，那么树的深度应该是其右子树的深度加1。 ③如果既有右子树又有左子树，那该树的深度就是其左、右子树深度的较大值再加1。 3.代码12345678910111213141516171819202122232425/**public class TreeNode &#123; int val = 0; TreeNode left = null; TreeNode right = null; public TreeNode(int val) &#123; this.val = val; &#125; &#125;*/public class Solution &#123; public int TreeDepth(TreeNode root) &#123; //----递归求二叉树深度---- if(root == null)&#123; return 0; &#125; int left = TreeDepth(root.left); int right = TreeDepth(root.right); return (left&gt;right)?(left+1):(right+1); &#125; &#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>二叉树题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【37】数字在排序数组中出现的次数]]></title>
+    <url>%2F2019%2F05%2F37-%E6%95%B0%E5%AD%97%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[1.题目描述统计一个数字在排序数组中出现的次数。 2.解题思路排序数组嘛，找到数组里面第一个等于k的，一直res++直到数组值不等于k。 3.代码123456789101112131415public class Solution &#123; public int GetNumberOfK(int [] array , int k) &#123; int res = 0; if (array == null || array.length == 0) return res; for(int i = 0;i&lt;array.length;i++)&#123; if(array[i] == k)&#123; res++; &#125; &#125; return res; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>数组类型题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【36】两个链表的第一个公共结点]]></title>
+    <url>%2F2019%2F05%2F36-%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%AC%E5%85%B1%E7%BB%93%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[1.题目描述输入两个链表，找出它们的第一个公共结点。 2.解题思路两个链表有公共点，考虑Y型的两链表相连，先计算出两个链表的长度，然后长的链表先走差值步，之后同步走，当遇到cur1==cur2时说明两链表相遇。直接返回即可。 3.代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546/*public class ListNode &#123; int val; ListNode next = null; ListNode(int val) &#123; this.val = val; &#125;&#125;*/public class Solution &#123; public ListNode FindFirstCommonNode(ListNode head1, ListNode head2) &#123; if (head1 == null || head2 == null) &#123; return null; &#125; ListNode cur1 = head1; ListNode cur2 = head2; int n = 0; //得到差值步（head1.length-head2.length） while (cur1.next != null) &#123; n++; cur1 = cur1.next; &#125; while (cur2.next != null) &#123; n--; cur2 = cur2.next; &#125; //相交为Y型则最后一个结点应该相同 if (cur1 != cur2) &#123; return null; &#125; cur1 = n &gt; 0 ? head1 : head2; cur2 = cur1 == head1 ? head2 : head1; n = Math.abs(n);//差值步 //走差值步 while (n != 0) &#123; n--; cur1 = cur1.next; &#125; //相等时则为相交点 while (cur1 != cur2) &#123; cur1 = cur1.next; cur2 = cur2.next; &#125; return cur1; &#125; &#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>链表题</tag>
       </tags>
   </entry>
   <entry>
@@ -418,7 +436,7 @@
         <category>剑指offer</category>
       </categories>
       <tags>
-        <tag>链表题</tag>
+        <tag>栈</tag>
       </tags>
   </entry>
   <entry>
@@ -455,17 +473,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[剑指offer_【1】二维数组的查找]]></title>
-    <url>%2F2019%2F04%2F1.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
-    <content type="text"><![CDATA[1.题目描述： 在一个二维数组中（每个一维数组的长度相同），如数组 1 2 3 4 5 6 7 8 9 每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 2.解题思路 选择右上角的数字作为开始点 如果array[row][col]&gt;target,则向左查找，col–； 如果array[row][col]&lt;target,则向下查找，row++； 3.代码123456789101112131415161718public class Solution &#123; public boolean Find(int target, int [][] array) &#123; boolean res = false; int row = 0; int col = array[0].length-1; while(row&lt;=array.length-1&amp;&amp;col&gt;=0)&#123; if(array[row][col]&gt;target)&#123; col--; &#125;else if(array[row][col]&lt;target)&#123; row++; &#125;else&#123; res = true; break; &#125; &#125; return res; &#125;&#125;]]></content>
-      <categories>
-        <category>剑指offer</category>
-      </categories>
-      <tags>
-        <tag>数组类型题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[剑指offer_【2】空格替换]]></title>
     <url>%2F2019%2F04%2F2.%E7%A9%BA%E6%A0%BC%E6%9B%BF%E6%8D%A2%2F</url>
     <content type="text"><![CDATA[1. 题目描述 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 2. 解题思路 方法1：利用函数replaceAll完成 方法2： **先计算需要多少的空间 **从后向前依次插入 3.代码方法1： 12345public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; return str.toString().replaceAll(" ", "%20"); &#125;&#125; 方法2： 12345678910111213141516171819202122232425262728public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; int spacenum = 0;//spacenum为计算空格数 for(int i=0;i&lt;str.length();i++)&#123; if(str.charAt(i)==' ') spacenum++; &#125; //indexold为为替换前的str下标 int indexold = str.length()-1; //计算空格转换成%20之后的str长度 int newlength = str.length() + spacenum*2; //indexold为为把空格替换为%20后的str下标 int indexnew = newlength-1; //使str的长度扩大到转换成%20之后的长度,防止下标越界 str.setLength(newlength); for(;indexold&gt;=0 &amp;&amp; indexold&lt;newlength;--indexold)&#123; if(str.charAt(indexold) == ' ')&#123; str.setCharAt(indexnew--, '0'); str.setCharAt(indexnew--, '2'); str.setCharAt(indexnew--, '%'); &#125;else&#123; str.setCharAt(indexnew--, str.charAt(indexold)); &#125; &#125; return str.toString(); &#125;&#125; 补充1：String和StringBuffer的转换String转换成StringBuffer 12String str = "abc";StringBuffer b=new StringBuffer(str); StringBuffer转换成String 12StringBuffer a=new StringBuffer();String b=a.toString(） 补充2：String、StringBuffer、StringBuilder 1）运行速度StringBuilder&gt;StringBuffer&gt;String 2）String是字符串常量，String对象一旦创建就不能更改。StringBuffer为 字符串变量，可更改 3） String适用于少量的字符串操作，StringBuffer适用于多线程下字符缓冲区进行大量操作的情况。 4） StringBuffer 与 StringBuilder 中的方法和功能完全是等价的， 5） 只是StringBuffer 中的方法大都采用了 synchronized 关键字进行修饰，因此是线程安全的，而 StringBuilder 没有这个修饰，可以被认为是线程不安全的。 6） 在单线程程序下，StringBuilder效率更快，因为它不需要加锁，不具备多线程安全，而StringBuffer则每次都需要判断锁，效率相对更低。]]></content>
@@ -474,6 +481,17 @@
       </categories>
       <tags>
         <tag>字符串题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【1】二维数组的查找]]></title>
+    <url>%2F2019%2F04%2F1.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
+    <content type="text"><![CDATA[1.题目描述： 在一个二维数组中（每个一维数组的长度相同），如数组 1 2 3 4 5 6 7 8 9 每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 2.解题思路 选择右上角的数字作为开始点 如果array[row][col]&gt;target,则向左查找，col–； 如果array[row][col]&lt;target,则向下查找，row++； 3.代码123456789101112131415161718public class Solution &#123; public boolean Find(int target, int [][] array) &#123; boolean res = false; int row = 0; int col = array[0].length-1; while(row&lt;=array.length-1&amp;&amp;col&gt;=0)&#123; if(array[row][col]&gt;target)&#123; col--; &#125;else if(array[row][col]&lt;target)&#123; row++; &#125;else&#123; res = true; break; &#125; &#125; return res; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>数组类型题</tag>
       </tags>
   </entry>
 </search>
