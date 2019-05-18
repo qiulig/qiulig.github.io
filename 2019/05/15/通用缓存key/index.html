@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="通用缓存key的作用当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id,订单Id，用户id等,此时若是id出现重复，将给系统带来错误。方法：利用一个前缀来规定不同模块的缓存的key,这样不同模块之间就不会重复。 通用缓存key采用模板模式：接口-&amp;gt;抽象类-&amp;gt;实现类 1. 接口12345678public interface KeyPrefix &amp;#123;    //过">
+<meta name="description" content="通用缓存key的作用当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id,订单Id，用户id等,此时若是id出现重复，将给系统带来错误。">
 <meta name="keywords" content="秒杀">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通用缓存key">
 <meta property="og:url" content="http://yoursite.com/2019/05/15/通用缓存key/index.html">
 <meta property="og:site_name" content="Long&#39;s Blog">
-<meta property="og:description" content="通用缓存key的作用当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id,订单Id，用户id等,此时若是id出现重复，将给系统带来错误。方法：利用一个前缀来规定不同模块的缓存的key,这样不同模块之间就不会重复。 通用缓存key采用模板模式：接口-&amp;gt;抽象类-&amp;gt;实现类 1. 接口12345678public interface KeyPrefix &amp;#123;    //过">
+<meta property="og:description" content="通用缓存key的作用当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id,订单Id，用户id等,此时若是id出现重复，将给系统带来错误。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-15T06:58:46.982Z">
+<meta property="og:updated_time" content="2019-05-17T18:00:46.068Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通用缓存key">
-<meta name="twitter:description" content="通用缓存key的作用当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id,订单Id，用户id等,此时若是id出现重复，将给系统带来错误。方法：利用一个前缀来规定不同模块的缓存的key,这样不同模块之间就不会重复。 通用缓存key采用模板模式：接口-&amp;gt;抽象类-&amp;gt;实现类 1. 接口12345678public interface KeyPrefix &amp;#123;    //过">
+<meta name="twitter:description" content="通用缓存key的作用当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id,订单Id，用户id等,此时若是id出现重复，将给系统带来错误。">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -115,7 +115,7 @@
         </hgroup>
 
         
-        <p class="header-subtitle">菜鸟要更加努力才能追上别人的步伐~</p>
+        <p class="header-subtitle">菜鸟要更加努力才能追上别人的步伐</p>
         
 
         
@@ -246,7 +246,7 @@
               <h1 class="header-author"><a href="/" title="回到主页">qiulig</a></h1>
             </hgroup>
             
-            <p class="header-subtitle">菜鸟要更加努力才能追上别人的步伐~</p>
+            <p class="header-subtitle">菜鸟要更加努力才能追上别人的步伐</p>
             
             <nav class="header-menu">
                 <ul>
@@ -289,6 +289,34 @@
     
       <input type="hidden" class="isFancy">
     
+	
+	
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://yoursite.com/2019/05/15/通用缓存key/';
+            this.page.identifier = '2019/05/15/通用缓存key/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
     
       <header class="article-header">
         
@@ -298,6 +326,7 @@
     </h1>
   
 
+		
       </header>
       
       <div class="article-info article-info-post">
@@ -319,7 +348,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="通用缓存key的作用"><a href="#通用缓存key的作用" class="headerlink" title="通用缓存key的作用"></a>通用缓存key的作用</h2><h5 id="当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id-订单Id，用户id等-此时若是id出现重复，将给系统带来错误。"><a href="#当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id-订单Id，用户id等-此时若是id出现重复，将给系统带来错误。" class="headerlink" title="当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id,订单Id，用户id等,此时若是id出现重复，将给系统带来错误。"></a>当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id,订单Id，用户id等,此时若是id出现重复，将给系统带来错误。</h5><p>方法：利用一个前缀来规定不同模块的缓存的key,这样不同模块之间就不会重复。</p>
+        <h2 id="通用缓存key的作用"><a href="#通用缓存key的作用" class="headerlink" title="通用缓存key的作用"></a>通用缓存key的作用</h2><h5 id="当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id-订单Id，用户id等-此时若是id出现重复，将给系统带来错误。"><a href="#当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id-订单Id，用户id等-此时若是id出现重复，将给系统带来错误。" class="headerlink" title="当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id,订单Id，用户id等,此时若是id出现重复，将给系统带来错误。"></a>当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id,订单Id，用户id等,此时若是id出现重复，将给系统带来错误。<a id="more"></a></h5><p>方法：利用一个前缀来规定不同模块的缓存的key,这样不同模块之间就不会重复。</p>
 <p>通用缓存key采用模板模式：接口-&gt;抽象类-&gt;实现类</p>
 <h5 id="1-接口"><a href="#1-接口" class="headerlink" title="1. 接口"></a>1. 接口</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">KeyPrefix</span> </span>&#123;</span><br><span class="line">    <span class="comment">//过期时间</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">expireSeconds</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//前缀</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPrefix</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="2-抽象类"><a href="#2-抽象类" class="headerlink" title="2. 抽象类"></a>2. 抽象类</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">BasePrefix</span> <span class="keyword">implements</span> <span class="title">KeyPrefix</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> expireSeconds;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String prefix;</span><br><span class="line">    <span class="comment">//无过期时间的构造函数</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BasePrefix</span><span class="params">(String prefix)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">           <span class="keyword">this</span>(<span class="number">0</span>, prefix);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//含有过期时间的构造函数</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BasePrefix</span><span class="params">( <span class="keyword">int</span> expireSeconds, String prefix)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.expireSeconds = expireSeconds;</span><br><span class="line">        <span class="keyword">this</span>.prefix = prefix;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">expireSeconds</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> expireSeconds;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//获取前缀，前缀为 className：prefix</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPrefix</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String className = getClass().getSimpleName();</span><br><span class="line">        <span class="keyword">return</span> className+<span class="string">":"</span> + prefix;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -335,7 +364,7 @@
         <p><span>本文标题:</span><a href="/2019/05/15/通用缓存key/">通用缓存key</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">qiulig</a></p>
         <p><span>发布时间:</span>2019-05-15, 14:56:45</p>
-        <p><span>最后更新:</span>2019-05-15, 14:58:46</p>
+        <p><span>最后更新:</span>2019-05-18, 02:00:46</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/05/15/通用缓存key/" title="通用缓存key">http://yoursite.com/2019/05/15/通用缓存key/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/05/15/通用缓存key/　　作者: qiulig" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -463,7 +492,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/05/16/40-数组中只出现一次的数字/">40.数组中只出现一次的数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/16/39-平衡二叉树/">39.平衡二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/16/38-二叉树的深度/">38.二叉树的深度</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/16/37-数字在排序数组中出现的次数/">37.数字在排序数组中出现的次数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/16/36-两个链表的第一个公共结点/">36.两个链表的第一个公共结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/15/JSR303参数校验/">JSR303参数校验和全局异常处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/15/通用缓存key/">通用缓存key</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/15/rabbitMQ消息队列/">rabbitMQ实现消息缓冲</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/15/Redis缓存java端实现/">Redis缓存java端实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/09/争吵问题-md/">争吵问题.md</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/08/34-第一个只出现一次的字符位置/">剑指offer_【34】第一个只出现一次的字符位置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/07/35.数组中的逆序对/">剑指offer_【35】数组中的逆序对</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/07/33-丑数/">剑指offer_【33】丑数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/07/32-把数组排成最小的数/">剑指offer_【32】把数组排成最小的数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/07/31-整数中1出现的次数/">剑指offer_【31】整数中1出现的次数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/06/30-连续子数组的最大和/">剑指offer_【30】连续子数组的最大和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/05/29-最小的K个数/">剑指offer_【29】最小的K个数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/04/28-数组中出现次数超过一半的数字/">剑指offer_【28】数组中出现次数超过一半的数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/04/27-字符串的排列/">剑指offer_【27】字符串的排列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/04/26-二叉搜索树与双向链表/">剑指offer_【26】二叉搜索树与双向链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/03/25-复杂链表的复制/">剑指offer_【25】复杂链表的复制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/03/24-二叉树中和为某值的路径/">剑指offer_【24】二叉树中和为某值的路径</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/03/23-二叉搜索树的后序遍历序列/">剑指offer_【23】二叉搜索树的后序遍历序列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/02/22-从上到下打印二叉树/">剑指offer_【22】从上到下打印二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/02/21-栈的压入、弹出/">剑指offer_【21】栈的压入、弹出</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/02/20-包含min函数的栈/">剑指offer_【20】包含min函数的栈</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/30/19-顺时针打印矩阵/">剑指offer_【19】顺时针打印矩阵</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/30/18-二叉树的镜像/">剑指offer_【18]二叉树的镜像</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/30/17-树的子结构/">剑指offer_【17】树的子结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/16-合并两个排序的链表/">剑指offer_【16】合并两个排序的链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/15-反转链表/">剑指offer_【15】反转链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/14-链表中倒数第K个结点/">剑指offer_【14】链表中倒数第K个结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/13-调整数值顺序使奇数位于偶数前面/">剑指offer_【13】调整数值顺序使奇数位于偶数前面</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/12-数值的整数次方/">剑指offer_【12】数值的整数次方</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/11-二进制中1的个数/">剑指offer_【11】二进制中1的个数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/10-矩形覆盖/">剑指offer_【10】矩形覆盖</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/9-变态跳台阶/">剑指offer_【9】变态跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/8-跳台阶/">剑指offer_【8】跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/28/6-旋转数组的最小数字/">剑指offer_【6】旋转数组的最小数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/28/5.两个栈实现队列/">剑指offer_【5】两个栈实现队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/28/4.重建二叉树/">剑指offer_【4】重建二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/28/3.从尾到头打印链表/">剑指offer_【3】从尾到头打印链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/28/7-斐波那契数组/">剑指offer_【7】斐波那契数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/27/leetcode-15-三数之和/">leetcode-15:三数之和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/27/2.空格替换/">剑指offer_【2】空格替换</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/27/1.二维数组的查找/">剑指offer_【1】二维数组的查找</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/05/16/40-数组中只出现一次的数字/">40.数组中只出现一次的数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/16/39-平衡二叉树/">39.平衡二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/16/38-二叉树的深度/">38.二叉树的深度</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/16/37-数字在排序数组中出现的次数/">37.数字在排序数组中出现的次数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/16/36-两个链表的第一个公共结点/">36.两个链表的第一个公共结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/15/JSR303参数校验/">JSR303参数校验和全局异常处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/15/通用缓存key/">通用缓存key</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/15/rabbitMQ消息队列/">rabbitMQ实现消息缓冲</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/15/Redis缓存java端实现/">Redis缓存java端实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/09/争吵问题-md/">争吵问题.md</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/08/34-第一个只出现一次的字符位置/">剑指offer_【34】第一个只出现一次的字符位置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/07/35.数组中的逆序对/">剑指offer_【35】数组中的逆序对</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/07/33-丑数/">剑指offer_【33】丑数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/07/32-把数组排成最小的数/">剑指offer_【32】把数组排成最小的数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/07/31-整数中1出现的次数/">剑指offer_【31】整数中1出现的次数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/06/30-连续子数组的最大和/">剑指offer_【30】连续子数组的最大和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/05/29-最小的K个数/">剑指offer_【29】最小的K个数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/04/28-数组中出现次数超过一半的数字/">剑指offer_【28】数组中出现次数超过一半的数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/04/27-字符串的排列/">剑指offer_【27】字符串的排列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/04/26-二叉搜索树与双向链表/">剑指offer_【26】二叉搜索树与双向链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/03/25-复杂链表的复制/">剑指offer_【25】复杂链表的复制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/03/24-二叉树中和为某值的路径/">剑指offer_【24】二叉树中和为某值的路径</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/03/23-二叉搜索树的后序遍历序列/">剑指offer_【23】二叉搜索树的后序遍历序列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/02/22-从上到下打印二叉树/">剑指offer_【22】从上到下打印二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/02/21-栈的压入、弹出/">剑指offer_【21】栈的压入、弹出</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/02/20-包含min函数的栈/">剑指offer_【20】包含min函数的栈</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/30/19-顺时针打印矩阵/">剑指offer_【19】顺时针打印矩阵</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/30/18-二叉树的镜像/">剑指offer_【18]二叉树的镜像</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/30/17-树的子结构/">剑指offer_【17】树的子结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/16-合并两个排序的链表/">剑指offer_【16】合并两个排序的链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/15-反转链表/">剑指offer_【15】反转链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/14-链表中倒数第K个结点/">剑指offer_【14】链表中倒数第K个结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/13-调整数值顺序使奇数位于偶数前面/">剑指offer_【13】调整数值顺序使奇数位于偶数前面</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/12-数值的整数次方/">剑指offer_【12】数值的整数次方</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/11-二进制中1的个数/">剑指offer_【11】二进制中1的个数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/10-矩形覆盖/">剑指offer_【10】矩形覆盖</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/9-变态跳台阶/">剑指offer_【9】变态跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/29/8-跳台阶/">剑指offer_【8】跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/28/7-斐波那契数组/">剑指offer_【7】斐波那契数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/28/6-旋转数组的最小数字/">剑指offer_【6】旋转数组的最小数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/28/5.两个栈实现队列/">剑指offer_【5】两个栈实现队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/28/4.重建二叉树/">剑指offer_【4】重建二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/28/3.从尾到头打印链表/">剑指offer_【3】从尾到头打印链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/27/leetcode-15-三数之和/">leetcode-15:三数之和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/27/2.空格替换/">剑指offer_【2】空格替换</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/27/1.二维数组的查找/">剑指offer_【1】二维数组的查找</a></li></ul>
 
 
 

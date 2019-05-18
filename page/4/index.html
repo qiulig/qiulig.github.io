@@ -115,7 +115,7 @@
         </hgroup>
 
         
-        <p class="header-subtitle">菜鸟要更加努力才能追上别人的步伐~</p>
+        <p class="header-subtitle">菜鸟要更加努力才能追上别人的步伐</p>
         
 
         
@@ -246,7 +246,7 @@
               <h1 class="header-author"><a href="/" title="回到主页">qiulig</a></h1>
             </hgroup>
             
-            <p class="header-subtitle">菜鸟要更加努力才能追上别人的步伐~</p>
+            <p class="header-subtitle">菜鸟要更加努力才能追上别人的步伐</p>
             
             <nav class="header-menu">
                 <ul>
@@ -300,6 +300,10 @@
     
       <input type="hidden" class="isFancy">
     
+	
+	
+
+
     
       <header class="article-header">
         
@@ -309,25 +313,16 @@
     </h1>
   
 
+		
       </header>
       
     
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><blockquote>
-<p>输入一个链表，反转链表后，输出新链表的表头。</p>
-</blockquote>
-<h4 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h4><ol>
-<li><p>用一个栈stack依次存储ListNode里面的值，因为stack的特点是先进后出，故依次弹出即为反转链表</p>
-</li>
-<li><p>用一个链表temp依次存储弹出的值，依次next存入下一个链表值，链表res指向这个temp的头节点</p>
-</li>
-<li><p>反转链表的结果为res.next,因为我们之前设temp的头节点为-1（自己设的）。</p>
-</li>
-</ol>
-<h4 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/* public static class ListNode &#123;</span></span><br><span class="line"><span class="comment">        int val;</span></span><br><span class="line"><span class="comment">        ListNode next = null;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        ListNode(int val) &#123;</span></span><br><span class="line"><span class="comment">            this.val = val;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span>  ListNode <span class="title">ReverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">            Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">            <span class="keyword">while</span> (head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                stack.push(head.val);</span><br><span class="line">                head = head.next;</span><br><span class="line">            &#125;</span><br><span class="line">            ListNode temp = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">            ListNode res = temp;</span><br><span class="line">            <span class="keyword">while</span>(stack.size()!=<span class="number">0</span>)&#123;</span><br><span class="line">                temp.next  = <span class="keyword">new</span> ListNode(stack.pop());</span><br><span class="line">                temp = temp.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> res.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
+              <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><blockquote>
+<p>输入一个链表，反转链表后，输出新链表的表头。</p></blockquote>
+          
       
     </div>
     
@@ -344,6 +339,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/链表题/">链表题</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/04/29/15-反转链表/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -384,6 +383,10 @@
     
       <input type="hidden" class="isFancy">
     
+	
+	
+
+
     
       <header class="article-header">
         
@@ -393,23 +396,16 @@
     </h1>
   
 
+		
       </header>
       
     
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><blockquote>
-<p>输入一个链表，输出该链表中倒数第k个结点。</p>
-</blockquote>
-<h4 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h4><ol>
-<li><p>先用一个count计算出链表的长度，如果count&lt;k，返回null</p>
-</li>
-<li><p>链表的倒数第K个即为链表的正数（count-k+1）个,一个for循环，将指针轮询倒那个点，然后再将起后面截断（head.next = null）即可。</p>
-</li>
-</ol>
-<h4 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">public class ListNode &#123;</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    ListNode next = null;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    ListNode(int val) &#123;</span></span><br><span class="line"><span class="comment">        this.val = val;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">FindKthToTail</span><span class="params">(ListNode head,<span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">            ListNode root = head;</span><br><span class="line">            <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span>(root!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                count ++;</span><br><span class="line">                root = root.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(count&lt;k)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//倒数第K个即正数第（count-k+1）个</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;(count-k+<span class="number">1</span>);i++)&#123;</span><br><span class="line">                head = head.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+              <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><blockquote>
+<p>输入一个链表，输出该链表中倒数第k个结点。</p></blockquote>
+          
       
     </div>
     
@@ -426,6 +422,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/链表题/">链表题</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/04/29/14-链表中倒数第K个结点/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -466,6 +466,10 @@
     
       <input type="hidden" class="isFancy">
     
+	
+	
+
+
     
       <header class="article-header">
         
@@ -475,18 +479,16 @@
     </h1>
   
 
+		
       </header>
       
     
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><blockquote>
-<p>输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。</p>
-</blockquote>
-<h4 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h4><p>依次遍历array数组，遇到奇数存到原来的array数组前面，遇到偶数放到res数组，然后将两个数组拼接即可。</p>
-<h4 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">reOrderArray</span><span class="params">(<span class="keyword">int</span> [] array)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">int</span> []res = <span class="keyword">new</span> <span class="keyword">int</span>[array.length];</span><br><span class="line">            <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> count2  = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;array.length;i++)&#123;</span><br><span class="line">                <span class="comment">//如果是奇数，则放在数组前面</span></span><br><span class="line">                <span class="keyword">if</span>(array[i]%<span class="number">2</span> != <span class="number">0</span>)&#123;</span><br><span class="line">                    array[count++] = array[i];</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="comment">//偶数放在另一个数组里</span></span><br><span class="line">                    res[count2++] = array[i];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = count;i&lt;array.length;i++)&#123;</span><br><span class="line">                array[i] = res[j++];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+              <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><blockquote>
+<p>输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。</p></blockquote>
+          
       
     </div>
     
@@ -503,6 +505,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数组类型题/">数组类型题</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/04/29/13-调整数值顺序使奇数位于偶数前面/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -543,6 +549,10 @@
     
       <input type="hidden" class="isFancy">
     
+	
+	
+
+
     
       <header class="article-header">
         
@@ -552,25 +562,16 @@
     </h1>
   
 
+		
       </header>
       
     
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><blockquote>
-<p>给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方</p>
-</blockquote>
-<h4 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h4><ul>
-<li><p>（1）exponent &gt; 0,如2^3,则可以直接运算得出结果</p>
-</li>
-<li><p>（2）exponent &lt; 0,如2^-3,则结果为（1/2）^3</p>
-</li>
-<li><p>（3）exponent = 0,如2^0,则结果为1</p>
-</li>
-</ul>
-<h4 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">Power</span><span class="params">(<span class="keyword">double</span> base, <span class="keyword">int</span> exponent)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">           <span class="keyword">if</span>(exponent&lt;<span class="number">0</span>)&#123;</span><br><span class="line">               <span class="keyword">return</span> powCal(<span class="number">1.0</span>/base,-<span class="number">1</span>*exponent);</span><br><span class="line">           &#125;<span class="keyword">else</span> <span class="keyword">if</span>(exponent&gt;<span class="number">0</span>)&#123;</span><br><span class="line">               <span class="keyword">return</span> powCal(base,exponent);</span><br><span class="line">           &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//计算base的exponent次方</span></span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">powCal</span><span class="params">(<span class="keyword">double</span> base, <span class="keyword">int</span> exponent)</span> </span>&#123;</span><br><span class="line">           <span class="keyword">double</span> res = <span class="number">1</span>;</span><br><span class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;exponent;i++)&#123;</span><br><span class="line">               res  = res*base;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">return</span> res;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
+              <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><blockquote>
+<p>给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方</p></blockquote>
+          
       
     </div>
     
@@ -587,6 +588,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数组类型题/">数组类型题</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/04/29/12-数值的整数次方/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -627,6 +632,10 @@
     
       <input type="hidden" class="isFancy">
     
+	
+	
+
+
     
       <header class="article-header">
         
@@ -636,24 +645,15 @@
     </h1>
   
 
+		
       </header>
       
     
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><p>输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。</p>
-<h4 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h4><ul>
-<li><p>方法1：直接将其转成二进制数组</p>
-</li>
-<li><p>方法2：把一个整数减去1，再和原整数做与运算，会把该整数最右边一个1变成0。那么一个整数的二进制表示中有多少个1，就可以进行多少次这样的操作。</p>
-</li>
-</ul>
-<h4 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h4><p>方法1：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">NumberOf1</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">char</span> []a=Integer.toBinaryString(n).toCharArray();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)</span><br><span class="line">            &#123;</span><br><span class="line">            <span class="keyword">if</span>(a[i]==<span class="string">'1'</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                 count++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>方法2：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">NumberOf</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (n &gt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            count++;</span><br><span class="line">            n = (n - <span class="number">1</span>) &amp; n;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
+              <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><p>输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。</p>
+          
       
     </div>
     
@@ -670,6 +670,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数组类型题/">数组类型题</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/04/29/11-二进制中1的个数/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -710,6 +714,10 @@
     
       <input type="hidden" class="isFancy">
     
+	
+	
+
+
     
       <header class="article-header">
         
@@ -719,28 +727,16 @@
     </h1>
   
 
+		
       </header>
       
     
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><blockquote>
-<p>我们可以用2 * 1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2 * 1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？</p>
-</blockquote>
-<h4 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h4><p>类似于青蛙跳台阶</p>
-<ul>
-<li><p>当 n = 1时，只有一种横向排列的方式</p>
-</li>
-<li><p>当 n = 2时，有两种选择，横向或者竖向</p>
-</li>
-<li><p>当 n = 3时，如果选择竖向，则还剩下2*2的排列，如果选择横向，只有一种选择方案(剩下的一个横向一个竖向)</p>
-</li>
-<li><p>递推可得F(2 * n) = F(2 * (n-1))+F(2 * (n-2) ) , n&gt;=3</p>
-</li>
-</ul>
-<h4 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">RectCover</span><span class="params">(inttarget)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target &lt;=<span class="number">0</span>)&#123;</span><br><span class="line">            return0;</span><br><span class="line">        &#125;</span><br><span class="line">         elseif(target ==<span class="number">1</span>|| target == <span class="number">2</span>)&#123;</span><br><span class="line">             returntarget;</span><br><span class="line">         &#125;</span><br><span class="line">        <span class="keyword">return</span>(RectCover(target-<span class="number">1</span>)+RectCover(target-<span class="number">2</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+              <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><blockquote>
+<p>我们可以用2 * 1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2 * 1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？</p></blockquote>
+          
       
     </div>
     
@@ -757,6 +753,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数组类型题/">数组类型题</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/04/29/10-矩形覆盖/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -797,6 +797,10 @@
     
       <input type="hidden" class="isFancy">
     
+	
+	
+
+
     
       <header class="article-header">
         
@@ -806,18 +810,16 @@
     </h1>
   
 
+		
       </header>
       
     
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><blockquote>
-<pre><code>一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
-</code></pre></blockquote>
-<h4 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//f(0) = 0</span></span><br><span class="line"><span class="comment">//f(1) = 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//f(2) = f(2-1) + f(2-2) //f(2-2) 表示2阶一次跳2阶的次数。</span></span><br><span class="line"><span class="comment">//f(3) = f(3-1) + f(3-2) + f(3-3) ...</span></span><br><span class="line"><span class="comment">//f(n) = f(n-1) + f(n-2) + f(n-3) + ... + f(n-(n-1)) + f(n-n)</span></span><br><span class="line"><span class="comment">/*说明：</span></span><br><span class="line"><span class="comment">1）这里的f(n) 代表的是n个台阶有一次1,2,...n阶的 跳法数。</span></span><br><span class="line"><span class="comment">2）n = 1时，只有1种跳法，f(1) = 1</span></span><br><span class="line"><span class="comment">3) n = 2时，会有两个跳得方式，一次1阶或者2阶，这回归到了问题（1） ，f(2) = f(2-1) + f(2-2)</span></span><br><span class="line"><span class="comment">4) n = 3时，会有三种跳得方式，1阶、2阶、3阶， 那么就是第一次跳出1阶后面剩下：f(3-1);第一次跳出2阶，剩下f(3-2)；第一次3阶，那么剩下f(3-3) 因此结论是f(3) = f(3-1)+f(3-2)+f(3-3)</span></span><br><span class="line"><span class="comment">5) n = n时，会有n中跳的方式，1阶、2阶...n阶，得出结论： f(n) = f(n-1)+f(n-2)+...+f(n-(n-1)) + f(n-n) =&gt; f(0) + f(1) + f(2) + f(3) + ... + f(n-1)</span></span><br><span class="line"><span class="comment">6) 由以上已经是一种结论，但是为了简单，我们可以继续简化：</span></span><br><span class="line"><span class="comment">    f(n-1) =f(0)+f(1)+f(2)+f(3)+...+f((n-1)-1)        </span></span><br><span class="line"><span class="comment">           =f(0)+f(1)+f(2)+f(3)+...+f(n-2) </span></span><br><span class="line"><span class="comment">      f(n) =f(0)+f(1)+f(2)+f(3)+...+f(n-2)+f(n-1)=f(n-1)+f(n-1)</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">可以得出：f(n) = 2*f(n-1)*/</span></span><br></pre></td></tr></table></figure>
-<h4 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">JumpFloorII</span><span class="params">(<span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(target==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span>*JumpFloorII(target-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
+              <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><blockquote>
+<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</p></blockquote>
+          
       
     </div>
     
@@ -834,6 +836,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数组类型题/">数组类型题</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/04/29/9-变态跳台阶/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -874,6 +880,10 @@
     
       <input type="hidden" class="isFancy">
     
+	
+	
+
+
     
       <header class="article-header">
         
@@ -883,26 +893,16 @@
     </h1>
   
 
+		
       </header>
       
     
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><blockquote>
-<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。</p>
-</blockquote>
-<h4 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h4><ol>
-<li><p>把n级台阶的跳的次数看成是n的函数,即为f(n),当n&gt;2时,第一次跳有两种跳法,</p>
-<p>第一次跳1级,则该次跳法数目为后面剩下的n-1级台阶的跳法数目f(n-1)。</p>
-<p>第一次跳2级,则该次跳法数目为后面剩下的n-2级台阶的跳法数目f(n-2)。</p>
-<p>所以f(n)=f(n-1)+f(n-2),即相当于斐波那契数列。`</p>
-</li>
-</ol>
-<p>即该题跟斐波那契数列是相似的，青蛙跳台阶的公式为</p>
-<pre><code>F(n) = F(n-1)+F(n-2),n&gt;=3
-</code></pre><h4 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">JumpFloor</span><span class="params">(<span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target&lt;=<span class="number">2</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> target;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> one_=<span class="number">1</span>; <span class="comment">//第一次跳台阶的方法数</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> two_=<span class="number">2</span>; <span class="comment">//第二次跳台阶的方法数</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> finN=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">3</span>;i&lt;=target;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            finN=one_+two_;</span><br><span class="line">            one_=two_;</span><br><span class="line">            two_=finN;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> finN;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+              <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><blockquote>
+<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。</p></blockquote>
+          
       
     </div>
     
@@ -919,6 +919,94 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数组类型题/">数组类型题</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/04/29/8-跳台阶/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-7-斐波那契数组" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/28/7-斐波那契数组/" class="article-date">
+      <time datetime="2019-04-28T15:17:55.000Z" itemprop="datePublished">2019-04-28</time>
+</a>
+
+ 
+    <a href="/2019/04/28/7-斐波那契数组/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+        
+            <span class="disqus-comment-count" data-disqus-identifier="2019/04/28/7-斐波那契数组/"></span>
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+	
+	
+
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/28/7-斐波那契数组/">剑指offer_【7】斐波那契数组</a>
+    </h1>
+  
+
+		
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><p>大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。n&lt;=39</p>
+<ul>
+<li><p>斐波那契数列：1     1     2     3     5     8     13     21     34  ….</p></li></ul>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/剑指offer/">剑指offer</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数组类型题/">数组类型题</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/04/28/7-斐波那契数组/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -959,6 +1047,10 @@
     
       <input type="hidden" class="isFancy">
     
+	
+	
+
+
     
       <header class="article-header">
         
@@ -968,37 +1060,16 @@
     </h1>
   
 
+		
       </header>
       
     
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h4><blockquote>
-<p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。</p>
-</blockquote>
-<h4 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h4><blockquote>
-<p>方法1：重头到尾遍历，找到数组的最小值，时间复杂度为O(N)</p>
-</blockquote>
-<blockquote>
-<p>方法2：二分遍历查找</p>
-</blockquote>
-<ul>
-<li><p>mid = low +(high-low)/2;</p>
-</li>
-<li><p>需要考虑三种情况：</p>
-<ul>
-<li><p>arr[mid] &gt; arr[high],如[3,4,5,1,2]说明最小数字在mid的右边，缩小范围，low = mid+1;</p>
-</li>
-<li><p>arr[mid]&lt;arr[high],如[1,2,3,4,5]说明最小数字在mid的左边，high = mid-1;</p>
-</li>
-<li><p>arr[mid] = arr[high],如[0,1,1,1,1]或者[1,1,1,0,1],一步步缩小范围，high = high-1;</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">minNumberInRotateArray</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> high = arr.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(low &lt; high)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = low + (high - low)/<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(arr[mid] &gt; arr[high])&#123;</span><br><span class="line"></span><br><span class="line">                low = mid + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arr[mid] == arr[high])&#123;</span><br><span class="line"></span><br><span class="line">                high = high - <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                high = mid;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> arr[low];</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+              <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h4><blockquote>
+<p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。</p></blockquote>
+          
       
     </div>
     
@@ -1016,93 +1087,9 @@
     </div>
 
       
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-5.两个栈实现队列" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/04/28/5.两个栈实现队列/" class="article-date">
-      <time datetime="2019-04-28T13:16:12.000Z" itemprop="datePublished">2019-04-28</time>
-</a>
-
- 
-    <a href="/2019/04/28/5.两个栈实现队列/#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
-        
-        
-            <span class="disqus-comment-count" data-disqus-identifier="2019/04/28/5.两个栈实现队列/"></span>
-        
-    </a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/28/5.两个栈实现队列/">剑指offer_【5】两个栈实现队列</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h4><blockquote>
-<p>用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。</p>
-</blockquote>
-<h4 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h4><ul>
-<li style="list-style: none"><input type="checkbox"> 栈的规则是先进后出，队列的规则是先进先出</li>
-</ul>
-<ol>
-<li><p>stack1一直维持着栈底–栈顶是队列的入队顺序</p>
-</li>
-<li><p>stack2一直维持着栈顶–栈尾为队列的入队顺序</p>
-</li>
-<li><p>当执行队列的入队（push）时，如果stack2为空，则直接插入到stack1,stack1从栈底到栈顶的顺序为入队顺序，如果stack2不为空，则将stack2的元素倒入（栈顶—栈尾）stack1,然后再插入数据</p>
-</li>
-</ol>
-<p>4- 当执行队列的出队(pop)操作时，应该出的是stack1的栈底元素，故将stack1依次倒入stack2,这时stack2的栈顶就是要出队的数值，此时stack1为空，stack2从（栈顶–栈尾）为入队顺序</p>
-<h4 id="3-代码"><a href="#3-代码" class="headerlink" title="3. 代码"></a>3. 代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    Stack&lt;Integer&gt; stack1 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">    Stack&lt;Integer&gt; stack2 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">    <span class="comment">//队列的入队</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> node)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//将stack2倒入stack1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!stack2.empty()) &#123;</span><br><span class="line">            stack1.push(stack2.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将元素插入stack1</span></span><br><span class="line"></span><br><span class="line">        stack1.push(node);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//队列的出队</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//将stack1倒入stack2</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!stack1.empty()) &#123;</span><br><span class="line">            stack2.push(stack1.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//stack2的栈顶就是出队数值</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> stack2.pop();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/剑指offer/">剑指offer</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/链表题/">链表题</a></li></ul>
-    </div>
-
+        <p class="article-more-link">
+          <a href="/2019/04/28/6-旋转数组的最小数字/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
