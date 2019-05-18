@@ -2,32 +2,32 @@
 <search>
   <entry>
     <title><![CDATA[40.数组中只出现一次的数字]]></title>
-    <url>%2F2019%2F05%2F16%2F40-%E6%95%B0%E7%BB%84%E4%B8%AD%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F40-%E6%95%B0%E7%BB%84%E4%B8%AD%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97%2F</url>
     <content type="text"></content>
   </entry>
   <entry>
     <title><![CDATA[39.平衡二叉树]]></title>
-    <url>%2F2019%2F05%2F16%2F39-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F39-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
     <content type="text"></content>
   </entry>
   <entry>
     <title><![CDATA[38.二叉树的深度]]></title>
-    <url>%2F2019%2F05%2F16%2F38-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F38-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6%2F</url>
     <content type="text"></content>
   </entry>
   <entry>
     <title><![CDATA[37.数字在排序数组中出现的次数]]></title>
-    <url>%2F2019%2F05%2F16%2F37-%E6%95%B0%E5%AD%97%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F37-%E6%95%B0%E5%AD%97%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%2F</url>
     <content type="text"></content>
   </entry>
   <entry>
     <title><![CDATA[36.两个链表的第一个公共结点]]></title>
-    <url>%2F2019%2F05%2F16%2F36-%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%AC%E5%85%B1%E7%BB%93%E7%82%B9%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F36-%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%AC%E5%85%B1%E7%BB%93%E7%82%B9%2F</url>
     <content type="text"></content>
   </entry>
   <entry>
     <title><![CDATA[JSR303参数校验和全局异常处理]]></title>
-    <url>%2F2019%2F05%2F15%2FJSR303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C%2F</url>
+    <url>%2Fblog%2F2019%2F05%2FJSR303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C%2F</url>
     <content type="text"><![CDATA[开发web项目有时候我们需要对controller层传过来的参数进行一些基本的校验，比如非空，非null，整数值的范围，字符串的个数，日期，邮箱等等。最常见的就是我们直接写代码校验，这样以后比较繁琐，而且不够灵活。故引出使用JSR303来做参数校验。参数校验的实现: 手机号和密码字段自定义注解 为了让客户端显示更加友好 需要自定义异常拦截器 1. 添加依赖123456&lt;!--JSR303参数检验+全局异常处理器--&gt;&lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt; &lt;version&gt;2.0.6.RELEASE&lt;/version&gt;&lt;/dependency&gt; 2.在需要验证的类前加@Valid并在该类内需要参数检查的成员上加自定义注解1234567891011@Controller@RequestMapping("/login")public class LoginController &#123; @RequestMapping("/do_login") @ResponseBody public Result&lt;String&gt; doLogin(HttpServletResponse response, @Valid LoginVo loginVo)&#123; logger.info(loginVo.toString()); &#125;&#125; 12345678910@Datapublic class LoginVo &#123; @NotNull @IsMobile private String mobile; @NotNull @Length(min = 32) private String password;&#125; 3. IsMobile注解的编写[可参考@NotNull]12345678910111213141516171819202122@Target(&#123; ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER, ElementType.TYPE_USE &#125;)@Retention(RetentionPolicy.RUNTIME)@Documented@Constraint( validatedBy = &#123;IsMobileValidator.class&#125;)public @interface IsMobile &#123; boolean required() default true; String message() default "电话号码格式错误"; Class&lt;?&gt;[] groups() default &#123;&#125;; Class&lt;? extends Payload&gt;[] payload() default &#123;&#125;; 4.指定校验器的实现[IsMobileValidator.class]1234567891011121314151617181920212223public class IsMobileValidator implements ConstraintValidator&lt;IsMobile,String&gt; &#123; private boolean required = false; @Override //初始化方法拿到注解，可以定义一个字符为空 public void initialize(IsMobile constraintAnnotation) &#123; constraintAnnotation.required(); &#125; @Override public boolean isValid(String value, ConstraintValidatorContext context) &#123; //值是必须的 if(required)&#123; return ValidatorUtil.isMobile(value); &#125;else&#123; if(StringUtils.isEmpty(value))&#123; return true; &#125;else&#123; return ValidatorUtil.isMobile(value); &#125; &#125; &#125;&#125; 5.自定义异常拦截器 当校验不通过时，会抛出异常。这时如果没有定义全局异常处理器进行处理（对异常进行封装和返回）。则会发生400错误（即只有请求的发起，却没有收到正常的响应（response），因为还没有来得及return就抛出了异常（这种异常没有被处理））。 1234567891011121314151617181920212223@ControllerAdvice@ResponseBodypublic class GlobalExceptionHandler &#123; @ExceptionHandler(value = Exception.class) public Result&lt;String&gt; exceptionHandler(HttpServletRequest request,Exception e)&#123; e.printStackTrace(); if(e instanceof GlobalException) &#123; GlobalException ex = (GlobalException) e; return Result.Error(ex.getCm()); &#125;else if(e instanceof BindException)&#123; BindException ex = (BindException) e; List&lt;ObjectError&gt; errors = ex.getAllErrors(); //为了方便起见，只取第一个错误 ObjectError error = errors.get(0); String msg = error.getDefaultMessage(); return Result.Error(CodeMsg.BIND_ERROR.fillArgs(msg)); &#125;else&#123; return Result.Error(CodeMsg.SERVER_ERROR); &#125; &#125;&#125;]]></content>
       <categories>
         <category>秒杀</category>
@@ -38,7 +38,7 @@
   </entry>
   <entry>
     <title><![CDATA[通用缓存key]]></title>
-    <url>%2F2019%2F05%2F15%2F%E9%80%9A%E7%94%A8%E7%BC%93%E5%AD%98key%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F%E9%80%9A%E7%94%A8%E7%BC%93%E5%AD%98key%2F</url>
     <content type="text"><![CDATA[通用缓存key的作用当项目中的模块越来越多的时候，需要存的缓存也越来越多，比如商品Id,订单Id，用户id等,此时若是id出现重复，将给系统带来错误。方法：利用一个前缀来规定不同模块的缓存的key,这样不同模块之间就不会重复。 通用缓存key采用模板模式：接口-&gt;抽象类-&gt;实现类 1. 接口12345678public interface KeyPrefix &#123; //过期时间 public int expireSeconds(); //前缀 public String getPrefix();&#125; 2. 抽象类1234567891011121314151617181920212223242526272829public abstract class BasePrefix implements KeyPrefix&#123; private int expireSeconds; private String prefix; //无过期时间的构造函数 public BasePrefix(String prefix) &#123; this(0, prefix); &#125; //含有过期时间的构造函数 public BasePrefix( int expireSeconds, String prefix) &#123; this.expireSeconds = expireSeconds; this.prefix = prefix; &#125; public int expireSeconds() &#123; return expireSeconds; &#125; //获取前缀，前缀为 className：prefix public String getPrefix() &#123; String className = getClass().getSimpleName(); return className+":" + prefix; &#125;&#125; 3. 实现类12345678910public class MiaoshaKey extends BasePrefix&#123; //继承父类的无过期时间的构造函数 public MiaoshaKey(String prefix) &#123; super(prefix); &#125; //设置她这个类的前缀是className:go public static MiaoshaKey isGoodsOver = new MiaoshaKey("go");&#125;]]></content>
       <categories>
         <category>秒杀</category>
@@ -49,7 +49,7 @@
   </entry>
   <entry>
     <title><![CDATA[rabbitMQ实现消息缓冲]]></title>
-    <url>%2F2019%2F05%2F15%2FrabbitMQ%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%2F</url>
+    <url>%2Fblog%2F2019%2F05%2FrabbitMQ%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%2F</url>
     <content type="text"><![CDATA[RabbitMQ主要是用来实现应用程序的异步和解耦，同时也能起到消息缓冲，消息分发的作用。RabbitMQ使用的是AMQP协议，它是一种二进制协议。默认启动端口5672` rabbitMQ的message model实际上消息不直接发送到queue中，中间有一个exchange是做消息分发，生产者producer甚至不知道消息发送到那个队列中去。因此，当exchange收到message时，必须准确知道该如何分发。 Direct：direct 类型的行为是”先匹配, 再投送”. 即在绑定时设定一个 routing_key, 根据key全文匹配去寻找队列 Topic：按规则转发消息（最灵活）转发消息主要是根据通配符 Headers：设置 header attribute 参数类型的交换机 Fanout：转发消息到所有绑定队列(广播方式) 下面介绍4种交换机与springboot的集成添加依赖包amqp,统一配置application.properties 123456&lt;!--rabbitMQ依赖--&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-amqp&lt;/artifactId&gt; &lt;version&gt;2.1.3.RELEASE&lt;/version&gt; &lt;/dependency&gt; 12345678910111213141516171819##rabbitMQspring.rabbitmq.host=127.0.0.1spring.rabbitmq.port=5672spring.rabbitmq.username=guestspring.rabbitmq.password=guestspring.rabbitmq.virtual-host=/#消费者数量spring.rabbitmq.listener.simple.concurrency= 10spring.rabbitmq.listener.simple.max-concurrency= 10#消费者每次从队列获取的消息数量spring.rabbitmq.listener.simple.prefetch= 1#消费者自动启动spring.rabbitmq.listener.simple.auto-startup=true#消费失败，自动重新入队spring.rabbitmq.listener.simple.default-requeue-rejected= true#启用发送重试spring.rabbitmq.template.retry.enabled=true spring.rabbitmq.template.retry.initial-interval=1000spring.rabbitmq.template.retry.max-attempts=3 1. Direct交换机制 一个队列会和一个交换机绑定，除此之外再绑定一个routing_key，当消息被发送的时候，需要指定一个binding_key，这个消息被送达交换机的时候，就会被这个交换机送到指定的队列里面去。同样的一个binding_key也是支持应用到多个队列中的。 这样当一个交换机绑定多个队列，就会被送到对应的队列去处理。 1.1 编写config12345678910@Configurationpublic class MQconfig &#123; public static final String QUEUE ="queue"; @Bean public Queue queue()&#123; return new Queue(QUEUE,true); &#125; &#125; 1.2 创建消息发送者1234567891011121314@Servicepublic class MQsender &#123; @Autowired AmqpTemplate amqpTemplate; @Autowired RedisService redisService; private static Logger log = LoggerFactory.getLogger(MQreceiver.class); public void send(Object message)&#123; String msg = redisService.beanToString(message); log.info("send message"+msg); amqpTemplate.convertAndSend(MQconfig.Queue,message); &#125;&#125; 1.3 创建消息接收者12345678910@Servicepublic class MQreceiver &#123; private static Logger log = LoggerFactory.getLogger(MQreceiver.class); //监听了queue的队列 @RabbitListener(queues = MQconfig.Queue) public void receive(String message)&#123; log.info("receive message"+message); &#125;&#125; 1.4 编写controller测试123456789101112@Controllerpublic class HelloController &#123; @Autowired MQsender sender; @RequestMapping("/mq") @ResponseBody public Result&lt;Boolean&gt; mq()&#123; sender.send("hello"); return Result.success(true); &#125; &#125; 2. Fanout交换机制 扇形交换机会把能接收到的消息全部发送给绑定在自己身上的队列。因为广播不需要“思考”，所以扇形交换机处理消息的速度也是所有的交换机类型里面最快的。 2.1 编写config1234567891011121314151617181920@Configuration public class MQconfig &#123; public static final String FANOUT_EXCHANGE ="fanoutxchage"; @Bean public FanoutExchange fanoutExchange()&#123; return new FanoutExchange(FANOUT_EXCHANGE); &#125; @Bean public Binding fanoutBinding()&#123; return BindingBuilder.bind(topticQueue2()).to(fanoutExchange()); &#125; 2.2 创建消息发送者12345678910111213@Service public class MQsender &#123; @Autowired AmqpTemplate amqpTemplate; @Autowired RedisService redisService; public void sendFanout(Object message)&#123; String msg = redisService.beanToString(message); log.info("send message"+msg); amqpTemplate.convertAndSend(MQconfig.FANOUT_EXCHANGE,"",msg); &#125;&#125; 2.3 创建消息接收者1234@Service public class MQreceiver &#123; //fanout 广播模式都接受故不需要listener &#125; 2.4 编写controller测试123456789@Controller public class HelloController &#123; @RequestMapping("/mq/fanout") @ResponseBody public Result&lt;String&gt; fanout()&#123; sender.sendFanout("hellommxx"); return Result.success("hello xuanzi");&#125; &#125; 3. topic交换机制 通配符交换机，exchange会把消息发送到一个或者多个满足通配符规则的routing-key的queue。其中表号匹配一个word，#匹配多个word和路径，路径之间通过.隔开。如满足a..c的routing-key有a.hello.c；满足#.hello的routing-key有a.b.c.helo。 1.1 编写config1234567891011121314151617181920212223242526272829@Configuration public class MQconfig &#123; public static final String TOPIC_QUEUE1 ="topic.queue1"; public static final String TOPIC_QUEUE2 ="topic.queue2"; public static final String TOPIC_EXCHANGE ="topicExchange" @Bean public Queue topticQueue1()&#123; return new Queue(TOPIC_QUEUE1,true); &#125; @Bean public Queue topicQueue2()&#123; return new Queue(TOPIC_QUEUE2,true); &#125; @Bean public TopicExchange topicExchange()&#123; return new TopicExchange(TOPIC_EXCHANGE); &#125; @Bean public Binding topicBinding1()&#123; return BindingBuilder.bind(topticQueue1()).to(topicExchange()).with("topic.key1"); &#125; @Bean public Binding topicBinding2()&#123; return BindingBuilder.bind(topticQueue2()).to(topicExchange()).with("topic.#"); &#125; &#125; 1.2 创建消息发送者12345678910111213@Service public class MQsender &#123; public void sendTopic(Object message)&#123; String msg = redisService.beanToString(message); log.info("send message"+msg); amqpTemplate.convertAndSend(MQconfig.TOPIC_EXCHANGE, "topic.key1",msg+"1"); amqpTemplate.convertAndSend(MQconfig.TOPIC_EXCHANGE, "topic.key2",msg+"2");&#125;&#125; 1.3 创建消息接收者12345678910111213@Service public class MQreceiver &#123; @RabbitListener(queues = MQconfig.TOPIC_QUEUE1) public void receiveTopic1(String message)&#123; log.info("receive topic queue1 message"+message); &#125; @RabbitListener(queues = MQconfig.TOPIC_QUEUE2) public void receiveTopic2(String message)&#123; log.info("receive topic queue2 message"+message); &#125; &#125; 1.4 编写controller测试12345678@Controller public class HelloController &#123; @RequestMapping("/mq/topic") @ResponseBody public Result&lt;String&gt; topic()&#123; sender.sendTopic("hellommxx"); return Result.success("hello xuanzi"); &#125; 4. header交换机制 header exchange(头交换机)和主题交换机有点相似，但是不同于主题交换机的路由是基于路由键，头交换机的路由值基于消息的header数据。主题交换机路由键只有是字符串,而头交换机可以是整型和哈希值 1.1 编写config123456789101112131415161718192021222324252627282930313233343536@Configuration public class MQconfig &#123; public static final String HEADER_QUEUE ="header.queue"; @Bean public HeadersExchange headersExchange()&#123; return new HeadersExchange(HEADERS_EXCHANGE); &#125; @Bean public Queue headerQueue()&#123; return new Queue(HEADER_QUEUE,true); &#125; @Bean public Binding headerBinding()&#123; Map&lt;String,Object&gt; map =new HashMap&lt;String,Object&gt;(); map.put("header1","value1"); map.put("header2","value2"); return BindingBuilder.bind(headerQueue()).to(headersExchange()) .whereAll(map).match(); &#125; &#125; 1.2 创建消息发送者12345678910111213@Service public class MQsender &#123; public void sendheader(Object message)&#123; String msg = redisService.beanToString(message); log.info("send message"+msg); MessageProperties properties = new MessageProperties(); properties.setHeader("header1","value1"); properties.setHeader("header2","value2"); Message obj = new Message(msg.getBytes(),properties); amqpTemplate.convertAndSend(MQconfig.HEADERS_EXCHANGE,"",obj); &#125;&#125; 1.3 创建消息接收者123456789@Service public class MQreceiver &#123; @RabbitListener(queues = MQconfig.HEADER_QUEUE) public void receiveHeader(byte[] message)&#123; log.info("receive header queue message"+message); &#125; &#125; 1.4 编写controller测试12345678910111213@Controller public class HelloController &#123; @RequestMapping("/mq/header") @ResponseBody public Result&lt;String&gt; header()&#123; sender.sendheader("hellommxx"); return Result.success("hello xuanzi"); &#125; &#125;]]></content>
       <categories>
         <category>秒杀</category>
@@ -60,7 +60,7 @@
   </entry>
   <entry>
     <title><![CDATA[Redis缓存java端实现]]></title>
-    <url>%2F2019%2F05%2F15%2FRedis%E7%BC%93%E5%AD%98java%E7%AB%AF%E5%AE%9E%E7%8E%B0%2F</url>
+    <url>%2Fblog%2F2019%2F05%2FRedis%E7%BC%93%E5%AD%98java%E7%AB%AF%E5%AE%9E%E7%8E%B0%2F</url>
     <content type="text"><![CDATA[redis是一个key-value存储系统。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set –有序集合)和hash（哈希类型）。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。 1. 引入redis依赖1234&lt;dependency&gt; &lt;groupId&gt;redis.clients&lt;/groupId&gt; &lt;artifactId&gt;jedis&lt;/artifactId&gt; &lt;/dependency&gt; 2.在application.properties添加redis配置文件12345678#redisredis.host=127.0.0.1redis.port=6379redis.timeout=3redis.password=2966redis.poolMaxTotal=10 //资源池中最大连接数redis.poolMaxIdle=10 //允许的最大空闲的连接数redis.poolMaxWait=3 3.定义redis的类，引入redis的配置12345678910111213@Component@ConfigurationProperties(prefix="redis")@Datapublic class RedisConfig &#123; private String host; private int port; private int timeout;//秒 private String password; private int poolMaxTotal; private int poolMaxIdle; private int poolMaxWait;//秒&#125; 4.RedisPoolFactory类，用于返回一个redis池12345678910111213141516171819202122232425262728@Servicepublic class RedisPoolFactory &#123; @Autowired RedisConfig redisConfig; @Bean public JedisPool JedisPoolFactory() &#123; JedisPoolConfig poolConfig = new JedisPoolConfig(); //允许最大空闲的连接数 poolConfig.setMaxIdle(redisConfig.getPoolMaxIdle()); //资源池中最大连接数 poolConfig.setMaxTotal(redisConfig.getPoolMaxTotal()); //最大等待毫秒数 poolConfig.setMaxWaitMillis(redisConfig.getPoolMaxWait() * 1000); JedisPool jp = new JedisPool(poolConfig, redisConfig.getHost(), redisConfig.getPort(), redisConfig.getTimeout()*1000, redisConfig.getPassword(), 0); return jp; &#125;&#125; 5.编写RedisService类12345678910111213141516@Servicepublic class RedisService &#123; @Autowired JedisPool jedisPool; //里面编写redis操作：增删改查 private void returnToPool(Jedis jedis) &#123; if(jedis != null) &#123; jedis.close(); &#125; &#125;&#125; 5.1 获取单个对象(get)1234567891011121314151617181920212223242526272829303132333435363738//相当于redis里面的get key public &lt;T&gt; T get(KeyPrefix prefix, String key, Class&lt;T&gt; clazz) &#123; Jedis jedis = null; try &#123; jedis = jedisPool.getResource(); //生成真正的key,之前设置通用缓存key时的key设为className:key String realKey = prefix.getPrefix() + key; //跟redis里面的获取一个key操作一致 String str = jedis.get(realKey); //将结果转换成一个java对象 T t = stringToBean(str, clazz); return t; &#125;finally &#123; //关闭池资源 returnToPool(jedis); &#125; &#125;//json转换为java对象public static &lt;T&gt; T stringToBean(String str, Class&lt;T&gt; clazz) &#123; if(str == null || str.length() &lt;= 0 || clazz == null) &#123; return null; &#125; //判断类型 if(clazz == int.class || clazz == Integer.class) &#123; return (T)Integer.valueOf(str); &#125;else if(clazz == String.class) &#123; return (T)str; &#125;else if(clazz == long.class || clazz == Long.class) &#123; return (T)Long.valueOf(str); &#125;else &#123; return JSON.toJavaObject(JSON.parseObject(str), clazz); &#125; &#125; 5.2 设置对象(set)123456789101112131415161718192021222324252627282930313233343536373839404142434445464748//相当于redis里面的set key valuepublic &lt;T&gt; boolean set(KeyPrefix prefix, String key, T value) &#123; Jedis jedis = null; try &#123; jedis = jedisPool.getResource(); //对象转换为json字符串 String str = beanToString(value); if(str == null || str.length() &lt;= 0) &#123; return false; &#125; //生成真正的key String realKey = prefix.getPrefix() + key; //获取过期时间 int seconds = prefix.expireSeconds(); if(seconds &lt;= 0) &#123; //永久有效，无过期时间 jedis.set(realKey, str); &#125;else &#123; //为指定的 key 设置值及其过期时间。 jedis.setex(realKey, seconds, str); &#125; return true; &#125;finally &#123; returnToPool(jedis); &#125; &#125; //将对象转化为Json字符串 public static &lt;T&gt; String beanToString(T value) &#123; if(value == null) &#123; return null; &#125; Class&lt;?&gt; clazz = value.getClass(); if(clazz == int.class || clazz == Integer.class) &#123; return ""+value; &#125;else if(clazz == String.class) &#123; return (String)value; &#125;else if(clazz == long.class || clazz == Long.class) &#123; return ""+value; &#125;else &#123; return JSON.toJSONString(value); &#125; &#125; 5.3 判断key是否存在(exists)123456789101112//想当于redis里面的 exists keypublic &lt;T&gt; boolean exists(KeyPrefix prefix, String key) &#123; Jedis jedis = null; try &#123; jedis = jedisPool.getResource(); //生成真正的key String realKey = prefix.getPrefix() + key; return jedis.exists(realKey); &#125;finally &#123; returnToPool(jedis); &#125;&#125; 5.4 增加值(incr)123456789101112//相当于redis里面的incr key_namepublic &lt;T&gt; Long incr(KeyPrefix prefix, String key) &#123; Jedis jedis = null; try &#123; jedis = jedisPool.getResource(); //生成真正的key String realKey = prefix.getPrefix() + key; return jedis.incr(realKey); &#125;finally &#123; returnToPool(jedis); &#125; &#125; 5.5 减少值(decr)123456789101112//相当于redis里面的decr key_namepublic &lt;T&gt; Long decr(KeyPrefix prefix, String key) &#123; Jedis jedis = null; try &#123; jedis = jedisPool.getResource(); //生成真正的key String realKey = prefix.getPrefix() + key; return jedis.decr(realKey); &#125;finally &#123; returnToPool(jedis); &#125; &#125; 5.6 删除(del)1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071//相当于redis里面的del key_name //已知key public boolean delete(KeyPrefix prefix, String key) &#123; Jedis jedis = null; try &#123; jedis = jedisPool.getResource(); //生成真正的key String realKey = prefix.getPrefix() + key; long ret = jedis.del(realKey); return ret &gt; 0; &#125;finally &#123; returnToPool(jedis); &#125; &#125; //通过正则匹配删除 某key public boolean delete(KeyPrefix prefix) &#123; if(prefix == null) &#123; return false; &#125; List&lt;String&gt; keys = scanKeys(prefix.getPrefix()); if(keys==null || keys.size() &lt;= 0) &#123; return true; &#125; Jedis jedis = null; try &#123; jedis = jedisPool.getResource(); jedis.del(keys.toArray(new String[0])); return true; &#125; catch (final Exception e) &#123; e.printStackTrace(); return false; &#125; finally &#123; if(jedis != null) &#123; jedis.close(); &#125; &#125; &#125; public List&lt;String&gt; scanKeys(String key) &#123; Jedis jedis = null; try &#123; jedis = jedisPool.getResource(); List&lt;String&gt; keys = new ArrayList&lt;String&gt;(); String cursor = "0"; //scan搜索 ScanParams sp = new ScanParams(); sp.match("*"+key+"*"); //设置scan的个数 sp.count(100); do&#123; ScanResult&lt;String&gt; ret = jedis.scan(cursor, sp); //返回结果 List&lt;String&gt; result = ret.getResult(); if(result!=null &amp;&amp; result.size() &gt; 0)&#123; //搜索的结果存入list keys.addAll(result); &#125; //再处理cursor，用于返回下次遍历的游标 cursor = ret.getStringCursor(); &#125;while(!cursor.equals("0")); return keys; &#125; finally &#123; if (jedis != null) &#123; jedis.close(); &#125; &#125; &#125; 6.controller层测试123456789101112131415161718@AutowiredRedisService redisService;@RequestMapping("/redis/get")@ResponseBodypublic Result&lt;User&gt; getRedis()&#123; User user = redisService.get(UserKey.getById,"key1",User.class); return Result.success(user);&#125;@RequestMapping("/redis/set")@ResponseBodypublic Result&lt;Boolean&gt; setRedis()&#123; User user = new User(); user.setId(1); user.setName("1111"); redisService.set(UserKey.getById,""+1,user); return Result.success(true);&#125;]]></content>
       <categories>
         <category>秒杀</category>
@@ -71,7 +71,7 @@
   </entry>
   <entry>
     <title><![CDATA[争吵问题.md]]></title>
-    <url>%2F2019%2F05%2F09%2F%E4%BA%89%E5%90%B5%E9%97%AE%E9%A2%98-md%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F%E4%BA%89%E5%90%B5%E9%97%AE%E9%A2%98-md%2F</url>
     <content type="text"><![CDATA[1. 题目描述有一个队列，每个人要么朝左边（L表示）,要么朝右边(R表示)，因为每个人都讨厌其他任何人，只要两人面对面就会发生争吵。争吵结果是胜者留在队列中，败的人移除队中。如果序列中有多对争吵，可以任选一对，胜者留在队中，败者出局，求最后队列最少人数是多少。 例子： LRRLRL 输出：2 Hint 一种可能的变化情况是：LRRLRL -&gt; LRLRL -&gt; LRRL -&gt; LRL -&gt; LR 2.解题思路由题意可知，如果真的吵架就只有RL（两人面对面）情况，像LL,RR,LR就不会争吵。 如果吵架前面是R，则吵架结果应该是L胜利. 如果吵架前面是L，则吵架结果为R胜利 3.代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354import java.util.ArrayList;import java.util.List;public class test &#123; public static void main(String[] args) &#123; String arr ="LRRLRL"; String res = solut(arr); System.out.println(res.length()); System.out.println(res); &#125; public static String solut(String arr) &#123; //获取第一次争吵得到的结果 String str = solution(arr); //如果还存在第二次争吵，则继续，否则得到结果 while (str.contains("RL"))&#123; str = solution(str); &#125; return str; &#125; public static String solution(String arr)&#123; List&lt;Character&gt; list = new ArrayList&lt;&gt;(); for(int i = 0;i&lt;arr.length()-1;i++)&#123; //争吵 if(arr.charAt(i)=='R'&amp;&amp;arr.charAt(i+1)=='L')&#123; if(i==0) &#123; list.add('R'); i++; &#125; else&#123; if(list.get(list.size()-1)=='L') &#123; &#123; list.add('R'); i++; &#125; &#125;else&#123; &#123; list.add('L'); i++; &#125; &#125; &#125; &#125;else &#123; //没有争吵，下一次争吵中还有该人 list.add(arr.charAt(i)); &#125; &#125; //将list转换成String String str = ""; for(int i = 0;i&lt;list.size();i++)&#123; str = str+list.get(i); &#125; return str; &#125;&#125;]]></content>
       <categories>
         <category>讯飞科技笔试</category>
@@ -82,7 +82,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【34】第一个只出现一次的字符位置]]></title>
-    <url>%2F2019%2F05%2F08%2F34-%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6%E4%BD%8D%E7%BD%AE%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F34-%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6%E4%BD%8D%E7%BD%AE%2F</url>
     <content type="text"><![CDATA[1.题目描述 在一个字符串(0&lt;=字符串长度&lt;=10000，全部由字母组成)中找到第一个只出现一次的字符,并返回它的位置, 如果没有则返回 -1（需要区分大小写）. 2.解题思路 1.用两个list,一个list用来存放只出现一次的字符，一个用来存放出现多次的字符 2.依次遍历str里面的字符，如果list1和list2里面都没有，则说明这个字符是第一次出现，将其添加到list1，否则说明之前出现过该字符，将其移除list1并添加到list2里面 3.最后判断list里面是否有值，有则返回list里面的第一个值在str出现的第一次的位置，即为第一次出现的字符位置。 3.代码1234567891011121314151617181920212223242526272829public static int FirstNotRepeatingChar(String str) &#123; if (str.length() == 0 || str == null) return -1; //list1存放str中出现1次的字符 ArrayList&lt;Character&gt; list1 = new ArrayList&lt;Character&gt;(); //list2用来存放多次出现的字符 ArrayList&lt;Character&gt; list2 = new ArrayList&lt;Character&gt;(); for (int i = 0; i &lt; str.length(); i++) &#123; char ch = str.charAt(i); //两个list里面都没有这个字符 if (!list1.contains(ch) &amp;&amp; !list2.contains(ch)) &#123; //将字符放到list1中 list1.add(Character.valueOf(ch)); &#125; else &#123; //将list1之前加入的删掉（此时出现了相同字符，删掉相同字符） list1.remove(Character.valueOf(ch)); //将str中含有的相同字符存入list2 list2.add(Character.valueOf(ch)); &#125; &#125; if (list1.size() &lt; 0) &#123; return -1; &#125; return str.indexOf(list1.get(0)); &#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -93,7 +93,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【35】数组中的逆序对]]></title>
-    <url>%2F2019%2F05%2F07%2F35.%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F35.%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9%2F</url>
     <content type="text"><![CDATA[1.题目描述在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组,求出这个数组中的逆序对的总数P。并将P对1000000007取模的结果输出。 即输出P%1000000007 题目保证输入的数组中没有的相同的数字 数据范围： 对于%50的数据,size&lt;=10^4 对于%75的数据,size&lt;=10^5 对于%100的数据,size&lt;=2*10^5 例子数组{7,5,6,4}，逆序对总共有5对，{7,5}，{7,6}，{7,4}，{5,4}，{6,4}； 2.解题思路方法1：暴力破解:时间超时 考察每一位，判断从这一位往后有多少小于该位的，结果累加，得到最后结果。 方法2：归并算法 3.代码方法1(超时)： 1234567891011121314151617181920212223public class Solution &#123; public static void main(String[]args) &#123; int []array=&#123;7,5,6,4&#125;; int num=InversePairs(array); System.out.println(num); &#125; public static int InversePairs(int [] array) &#123; int count=0; for(int i=0;i&lt;array.length-1;i++) &#123; for(int j=i+1;j&lt;array.length;j++) &#123; if(array[i]&gt;array[j]) &#123; count++; continue; &#125; &#125; &#125; return count%1000000007; &#125;&#125; 方法2： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364import java.util.*;public class Solution &#123; public int InversePairs(int [] array) &#123; if(array==null||array.length==0) &#123; return 0; &#125; int[] copy = new int[array.length]; for(int i=0;i&lt;array.length;i++) &#123; copy[i] = array[i]; &#125; int count = InversePairsCore(array,copy,0,array.length-1);//数值过大求余 return count; &#125; private int InversePairsCore(int[] array,int[] copy,int low,int high) &#123; if(low==high) &#123; return 0; &#125; int mid = (low+high)&gt;&gt;1; int leftCount= InversePairsCore(array,copy,low,mid)%1000000007; int rightCount = InversePairsCore(array,copy,mid+1,high)%1000000007; int count = 0; int i=mid; int j=high; int locCopy = high; while(i&gt;=low&amp;&amp;j&gt;mid) &#123; if(array[i]&gt;array[j]) &#123; count += j-mid; copy[locCopy--] = array[i--]; if(count&gt;=1000000007)//数值过大求余 &#123; count%=1000000007; &#125; &#125; else &#123; copy[locCopy--] = array[j--]; &#125; &#125; for(;i&gt;=low;i--) &#123; copy[locCopy--]=array[i]; &#125; for(;j&gt;mid;j--) &#123; copy[locCopy--]=array[j]; &#125; for(int s=low;s&lt;=high;s++) &#123; array[s] = copy[s]; &#125; return (leftCount+rightCount+count)%1000000007; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -104,7 +104,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【33】丑数]]></title>
-    <url>%2F2019%2F05%2F07%2F33-%E4%B8%91%E6%95%B0%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F33-%E4%B8%91%E6%95%B0%2F</url>
     <content type="text"><![CDATA[1.题目描述 把只包含质因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含质因子7。 习惯上我们把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。 2.解题思路 丑数的定义是1或者因子只有2 3 5,可推出丑数=丑数*丑数,假定丑数有序序列为:a1,a2,a3…….an 所以可以将以上序列(a1除外)可以分成3类,必定满足: 包含2的有序丑数序列:2a1, 2a2, 2*a3 ….. 包含3的有序丑数序列:3a1, 3a2, 3a3 ….. 包含5的有序丑数序列:5a1, 5a2, 5a3 ….. 以上3个序列的个数总数和为n个,而且已知a1 = 1了,将以上三个序列合并成一个有序序列即可 3.代码1234567891011121314151617181920212223242526272829import java.util.*;public class Solution &#123; public int GetUglyNumber_Solution(int index) &#123; int []arr=new int[index]; if(index==0) return 0; arr[0]=1; //第一个丑数为1，放入数组的第一个元素 int t2=0; int t3=0; int t5=0; for(int i=1;i&lt;index;i++) &#123; //寻找3个序列中最小的那个数 arr[i]=Math.min(arr[t2]*2,Math.min(arr[t3]*3,arr[t5]*5)); //最小的那个数的序列值加1 if(arr[t2]*2==arr[i]) t2++; if(arr[t3]*3==arr[i]) t3++; if(arr[t5]*5==arr[i]) t5++; &#125; return arr[index-1]; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -115,7 +115,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【32】把数组排成最小的数]]></title>
-    <url>%2F2019%2F05%2F07%2F32-%E6%8A%8A%E6%95%B0%E7%BB%84%E6%8E%92%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F32-%E6%8A%8A%E6%95%B0%E7%BB%84%E6%8E%92%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0%2F</url>
     <content type="text"><![CDATA[1.题目描述 输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。例如输入数组{3，32，321}，则打印出这三个数字能排成的最小数字为321323。 2.解题思路 方法1： (1) 求出数组里面最大的数的位数，然后其他的数位数不够的进行补位 (2) 补位原则：如数组{3,32,321},最大位数为3，所以3进行补位变成333，补的两位为str[i]数组里面的最后一个charAt[str[i].length()-1];所以32补位变成322 (3) 对数组{333，322，321}进行从小到大排序，然后根据索引把字符串拼接即可得到答案。即从小到大排序为{321，322，333}，这三个数对应原数组的{321，32，3}，最后答案即为321323. 3.代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667import java.util.*;public class Solution &#123; public String PrintMinNumber(int [] numbers) &#123; if(numbers.length&lt;=0||numbers == null) return ""; //排序，可得到最大的数为numbers[len-1] Arrays.sort(numbers); //求位数 int count = 0; int Max_ = numbers[numbers.length-1]; //得到最大的数的位数 while(Max_&gt;0) &#123; count++; Max_ = Max_/10; &#125; //将数组变成字符串数组 String str[] = new String[numbers.length]; for(int i = 0;i&lt;numbers.length;i++)&#123; str[i] = ""+numbers[i]; &#125; //补位 for(int i = 0;i&lt;numbers.length;i++)&#123; //得到补位要填充的数 String tmp ="" +str[i].charAt(str[i].length()-1); //原数组的位数 int len =str[i].length(); //补足到相同的位数 for(int j = 0;j&lt;count-len;j++) &#123; str[i] = str[i]+tmp; &#125; &#125; //排序 ArrayList&lt;Integer&gt; ss= new ArrayList&lt;&gt;(); //该数组的索引对应着numbers的索引 String strcopy[] = str.clone(); //将其进行从小到大的排序 Arrays.sort(str); //得到从小到大排序后原数组所在的索引 for(int i = 0;i&lt;numbers.length;i++)&#123; for(int j = 0;j&lt;numbers.length;j++)&#123; if(str[i].equals(strcopy[j]))&#123; ss.add(j); &#125; &#125; &#125; //将索引进行拼接得到结果 String res = ""; for(int i = 0;i&lt;numbers.length;i++)&#123; res = res +numbers[ss.get(i)]; &#125; return res; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -126,7 +126,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【31】整数中1出现的次数]]></title>
-    <url>%2F2019%2F05%2F07%2F31-%E6%95%B4%E6%95%B0%E4%B8%AD1%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F31-%E6%95%B4%E6%95%B0%E4%B8%AD1%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%2F</url>
     <content type="text"><![CDATA[1.题目描述 求出1~13的整数中1出现的次数,并算出100~1300的整数中1出现的次数？为此他特别数了一下1~13中包含1的数字有1、10、11、12、13因此共出现6次,但是对于后面问题他就没辙了。ACMer希望你们帮帮他,并把问题更加普遍化,可以很快的求出任意非负整数区间中1出现的次数（从1 到 n 中1出现的次数）。 2.解题思路 方法1： 将每个数变成string,然后将string里面的1替换成”“,长度的减少就是这个string里面1的个数，但是这个方法中String是不可变字符串，故占用内存过多。 方法2： 依次计算出每个数中包含1的个数 3.代码123456789101112public static int NumberOf1Between1AndN_Solution(int n) &#123; int count = 0; String s = ""; for(int i = 1;i&lt;=n;i++)&#123; s = i+""; count += s.length()-s.replaceAll("1", "").length(); &#125; return count; &#125; 方法2: 1234567891011121314151617181920212223242526272829public class Solution &#123; public int NumberOf1Between1AndN_Solution(int n) &#123; if(n&lt;1) return 0; else &#123; int sum=0; for(int i=1;i&lt;=n;i++) sum+=NumberOf1(i); return sum; &#125; &#125; public int NumberOf1(int n) &#123; int count=0; while(n!=0) &#123; if(n%10==1)//求余 &#123; count++; &#125; n=n/10; &#125; return count; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -137,7 +137,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【30】连续子数组的最大和]]></title>
-    <url>%2F2019%2F05%2F06%2F30-%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F30-%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C%2F</url>
     <content type="text"><![CDATA[1.题目描述 HZ偶尔会拿些专业问题来忽悠那些非计算机专业的同学。今天测试组开完会后,他又发话了:在古老的一维模式识别中,常常需要计算连续子向量的最大和,当向量全为正数的时候,问题很好解决。但是,如果向量中包含负数,是否应该包含某个负数,并期望旁边的正数会弥补它呢？例如:{6,-3,-2,7,-15,1,2,2},连续子向量的最大和为8(从第0个开始,到第3个为止)。给一个数组，返回它的最大连续子序列的和，你会不会被他忽悠住？(子向量的长度至少是1) 2.解题思路用变量记录cur记录每一步的累加和，遍历到正数cur增加，遍历到负数cur减少。 当cur&lt;0时，说明累加到当前数出现了小于0的结果，那么累加的这一部分肯定不能作为产生最大累加和的子数组的左边部分，此时令cur = 0.表示从下一个数开始累加。 当cur&gt;=0，每一次累加都可能是最大的累加和。用max跟踪记录cur出现的最大值。cur累加成为负数就清零重新累加，max记录cur的最大值即可。 3.代码123456789101112131415import java.util.*;public class Solution &#123; public int FindGreatestSumOfSubArray(int[] array) &#123; if(array == null || array.length == 0) return 0; int res = Integer.MIN_VALUE; int cur = 0; for(int i = 0;i&lt;array.length;i++)&#123; cur += array[i]; res = Math.max(res,cur); cur = cur &lt; 0 ? 0 : cur; &#125; return res; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -148,7 +148,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【29】最小的K个数]]></title>
-    <url>%2F2019%2F05%2F05%2F29-%E6%9C%80%E5%B0%8F%E7%9A%84K%E4%B8%AA%E6%95%B0%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F29-%E6%9C%80%E5%B0%8F%E7%9A%84K%E4%B8%AA%E6%95%B0%2F</url>
     <content type="text"><![CDATA[1.题目描述 输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。 2.解题思路 排序问题，本次使用快排，快排思想即： “挖坑填数+分治法”，首先令i =L; j = R; 将a[i]挖出形成第一个坑，称a[i]为基准数。然后j–由后向前找比基准数小的数，找到后挖出此数填入前一个坑a[i]中，再i++由前向后找比基准数大的数，找到后也挖出此数填到前一个坑a[j]中。重复进行这种“挖坑填数”直到i==j。再将基准数填入a[i]中，这样i之前的数都比基准数小，i之后的数都比基准数大。 3.代码123456789101112131415161718192021222324252627282930313233343536373839404142import java.util.*;public class Solution &#123; public ArrayList&lt;Integer&gt; GetLeastNumbers_Solution(int [] input, int k) &#123; ArrayList&lt;Integer&gt; res = new ArrayList&lt;&gt;(); if(input.length&lt;k) return res; quicksort(input, 0, input.length - 1); for (int i = 0; i &lt; k; i++) &#123; res.add(input[i]); &#125; return res; &#125; public void quicksort(int arr[], int low, int high) &#123; if(low &lt; high) &#123; int position = partition(arr, low, high); quicksort(arr, low, position - 1); quicksort(arr, position + 1, high); &#125; &#125; public int partition(int arr[], int low, int high) &#123; //设置基准值 int key = arr[low]; while(low &lt; high)&#123; //从右到左，直到找到一个小于key的值 while(low &lt; high &amp;&amp; arr[high] &gt;= key) --high; //将该值填入前的坑 arr[low] = arr[high]; //从左到右，直到找到一个大于key的值 while(low &lt; high &amp;&amp; arr[low] &lt;= key) ++low; //将该值填入前一个坑 arr[high] = arr[low]; &#125; //将基准值填入最后一个坑 arr[low] = key; //最后一个坑划分了左边小于该值，右边大于该值 return low; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -159,7 +159,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【28】数组中出现次数超过一半的数字]]></title>
-    <url>%2F2019%2F05%2F04%2F28-%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F28-%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97%2F</url>
     <content type="text"><![CDATA[1.题目描述 数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。 2.解题思路利用一个hashmap用来存储数组里面每个数出现的次数，然后遍历map，比较每个数的value是否超过数组的一半 3.代码12345678910111213141516171819import java.util.*;public class Solution &#123; public int MoreThanHalfNum_Solution(int [] array) &#123; HashMap&lt;Integer,Integer&gt; map = new HashMap&lt;&gt;(); int res = 0; for(int i = 0;i&lt;array.length;i++)&#123; if(map.containsKey(array[i]))&#123; map.put(array[i],map.get(array[i])+1); &#125;else&#123; map.put(array[i],1); &#125; &#125; for(Map.Entry&lt;Integer,Integer&gt; entry:map.entrySet())&#123; if(entry.getValue()&gt;array.length/2) res = entry.getKey(); &#125; return res; &#125; &#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -170,7 +170,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【27】字符串的排列]]></title>
-    <url>%2F2019%2F05%2F04%2F27-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F27-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97%2F</url>
     <content type="text"><![CDATA[1.题目描述 输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。 2.解题思路 算法思路：（递归实现）(1)n个元素的全排列=（n-1个元素的全排列）+（另一个元素作为前缀）；(2)出口：如果只有一个元素的全排列，则说明已经排完，则输出数组； (3)不断将每个元素放作第一个元素，然后将这个元素作为前缀，并将其余元素继续全排列，等到出口，出口出去后还需要还原数组； 以字符串abc为例： a 作为开头 -&gt; 求 bc 全排列 -&gt; 得到 bc 和 cb -&gt; 与 a 合并 -&gt; 得到 abc 和 acb b 作为开头 -&gt; 求 ac 全排列 -&gt; 得到 ac 和 ca -&gt; 与 b 合并 -&gt; 得到 bac 和 bca c 作为开头 -&gt; 求 ab 全排列 -&gt; 得到 ab 和 ba -&gt; 与 c 合并 -&gt; 得到 cab 和 cba 3.代码 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667public class Solution &#123; public ArrayList&lt;String&gt; Permutation(String str) &#123; //用于排序输出 ArrayList&lt;String&gt; res = new ArrayList&lt;String&gt;(); if(str==null||str.length()==0)&#123; return res; &#125; //将字符串转化成字符数组 char[] chars = str.toCharArray(); //从第0个字符开始全排列 res=Permu(chars,0,res); return res ; &#125; public ArrayList&lt;String&gt; Permu(char[] str, int start, ArrayList&lt;String&gt; list) &#123; if (str == null) &#123; return null; &#125; //设置递归的出口,即当需要全排列的范围只有一个元素，则全排结束 if (start == str.length - 1) &#123; //去除重复的字符串 if (list.contains(String.valueOf(str))) &#123; return null; &#125; else&#123; list.add(String.valueOf(str)); &#125; &#125; else &#123; //for循环将start~len-1每一个数放到start位置中去，并实现全排列 //str[start]-----str[len-1]的全排列 for (int j = start; j &lt; str.length; j++) &#123; //取出第j个字符作为第一个字符 swap(str,j,start); //求出str[start+1]----str[len-1]的全排列 Permu(str, start+ 1, list); //恢复原数组 swap(str,j,start); &#125; &#125; //生成字典序 Collections.sort(list); return list; &#125; public void swap(char[] chars,int a,int b)&#123; if(a==b)&#123;//因为会出现原位置与原位置交换，直接空即可 &#125;else&#123; char temp = chars[a]; chars[a]=chars[b]; chars[b]=temp; &#125; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -181,7 +181,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【26】二叉搜索树与双向链表]]></title>
-    <url>%2F2019%2F05%2F04%2F26-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F26-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8%2F</url>
     <content type="text"><![CDATA[1. 题目描述 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。 二叉树如 10 / \ 6 14 / \ / \ 4 8 12 16 转化成双向链表 4 6 8 10 12 1416 2.解题思路 (1)二叉搜索树中，每个结点都有两个分别指向其左、右子树的指针，左子树结点的值总是小于父结点的值，右子树结点的值总是大于父结点的值。 (2)双向链表中，每个结点也有两个指针，它们分别指向前一个结点和后一个结点。所以这两种数据结构的结点是一致 为了减少指针的变换次数，并让操作更加简单，在转换成排序双向链表时，原先指向左子结点的指针调整为链表中指向前一个结点的指针，原先指向右子结点的指针调整为链表中指向下一个结点的指针。 链表是有序的，可以借助二叉树中序遍历，因为中序遍历算法的特点就是从小到大访问结点。当遍历访问到根结点时，假设根结点的左侧已经处理好，只需将根结点与上次访问的最近结点（左子树中最大值结点）的指针连接好即可。进而更新当前链表的最后一个结点指针。同时中序遍历过程正好是转换成链表的过程，可采用递归方法处理 思想：把左子树、右子树都转换成排序的双向链表之后在和根结点链接起来，整个二叉树也变成了排序的双向链表。 3. 代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051/**public class TreeNode &#123; int val = 0; TreeNode left = null; TreeNode right = null; public TreeNode(int val) &#123; this.val = val; &#125;&#125;*/public class Solution &#123; public TreeNode Convert(TreeNode root) &#123; if(root==null)&#123;//假如根节点为空，返回空 return null; &#125; if(root.left==null&amp;&amp;root.right==null)&#123;//假如只有一个根节点，则返回根节点 return root; &#125; //1、将左子树构造成双链表，并返回该链表头结点left TreeNode left=Convert(root.left); //2、定位到左子树链表的最后一个节点（左子树最右边的节点） //创建一个临时节点P,用来遍历找到左链表的最后一个节点(左子树最右边的节点)，p初始化指向做左子树的根节点， TreeNode p=left; while(p!=null&amp;&amp;p.right!=null)&#123; //最终p为左子树最右边的节点 p=p.right; &#125; //3、如果左子树链表不为空，将当前root追加到左子树链表后 if(left!=null)&#123;//左子树链表不为空 //左子树链表的最后一个节点p（左子树最右边节点）的右指针指向当前root节点 p.right=root; //当前root节点的左指针指向左子树链表的最后一个节点p（左子树最右边节点） root.left=p; &#125; //4、将右子树构造成双链表，并返回该链表的头结点right TreeNode right=Convert(root.right); //5、如果右子树链表不为空，将右子树链表追加到当前root后 if(right!=null)&#123;//右子树链表不为空 right.left=root;//右子树链表的头结点right的左指针指向当前root root.right=right;//当前root的右指针指向右子树链表的头结点right &#125; return left!=null?left:root;//根据左子树链表是否为空返回整个双向链表的头指针。 &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -192,7 +192,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【25】复杂链表的复制]]></title>
-    <url>%2F2019%2F05%2F03%2F25-%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F25-%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6%2F</url>
     <content type="text"><![CDATA[1.题目描述 输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），返回结果为复制后复杂链表的head。（注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空） 2.解题思路3.代码123456789101112131415161718192021222324252627282930313233/*public class RandomListNode &#123; int label; RandomListNode next = null; RandomListNode random = null; RandomListNode(int label) &#123; this.label = label; &#125;&#125;*/public class Solution &#123; public RandomListNode Clone(RandomListNode pHead) &#123; if (pHead == null) return null; RandomListNode head = new RandomListNode(pHead.label); RandomListNode ans = head; if (pHead.random != null) &#123; head.random = new RandomListNode(pHead.random.label); &#125; while (pHead.next != null) &#123; pHead = pHead.next; head.next = new RandomListNode(pHead.label); if (pHead.random != null) &#123; head.next.random = new RandomListNode(pHead.random.label); &#125; head = head.next; &#125; return ans; &#125;&#125; 123456789101112131415161718192021222324252627282930313233343536public class Solution &#123; public RandomListNode Clone(RandomListNode pHead) &#123; if(pHead == null) &#123; return null; &#125; RandomListNode currentNode = pHead; //1、复制每个结点，如复制结点A得到A1，将结点A1插到结点A后面； while(currentNode != null)&#123; RandomListNode cloneNode = new RandomListNode(currentNode.label); RandomListNode nextNode = currentNode.next; currentNode.next = cloneNode; cloneNode.next = nextNode; currentNode = nextNode; &#125; currentNode = pHead; //2、重新遍历链表，复制老结点的随机指针给新结点，如A1.random = A.random.next; while(currentNode != null) &#123; currentNode.next.random = currentNode.random==null?null:currentNode.random.next; currentNode = currentNode.next.next; &#125; //3、拆分链表，将链表拆分为原链表和复制后的链表 currentNode = pHead; RandomListNode pCloneHead = pHead.next; while(currentNode != null) &#123; RandomListNode cloneNode = currentNode.next; currentNode.next = cloneNode.next; cloneNode.next = cloneNode.next==null?null:cloneNode.next.next; currentNode = currentNode.next; &#125; return pCloneHead; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -203,7 +203,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【24】二叉树中和为某值的路径]]></title>
-    <url>%2F2019%2F05%2F03%2F24-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F24-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84%2F</url>
     <content type="text"><![CDATA[1.题目描述 输入一颗二叉树的跟节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。(注意: 在返回值的list中，数组长度大的数组靠前) 2.解题思路整个过程可以采用先序遍历方式的DFS，即根节点—–&gt;左子树—–&gt;右子树。 随后考虑一次遍历完成后的处理， (1)当一次遍历完成后，如果输入整数值恰好等于节点值之和，则输出这条路径并且回退一个节点； (2)如果不等于则直接回退一个节点，即回退到当前节点的父节点，如果该父节点有右孩子，则继续遍历，否则继续回退。 (3)考虑回退到根节点，此时如果它有右孩子，则继续遍历，否则整个DFS结束。 3.代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455import java.util.ArrayList;/**public class TreeNode &#123; int val = 0; TreeNode left = null; TreeNode right = null; public TreeNode(int val) &#123; this.val = val; &#125;&#125;public class Solution &#123; //创建一个类型为ArrayList&lt;Integer&gt;的list ArrayList&lt;ArrayList&lt;Integer&gt;&gt; pathlist=new ArrayList&lt;ArrayList&lt;Integer&gt;&gt;(); //创建一个list,用于存放遍历的值 ArrayList&lt;Integer&gt; path=new ArrayList&lt;Integer&gt;(); public ArrayList&lt;ArrayList&lt;Integer&gt;&gt; FindPath (TreeNode root,int target) &#123; //如果树为空，则返回空的pathlist if(root==null) return pathlist; //将root值放入list path.add(root.val); //如果根的左子树、右子树、目标值=根值，则返回path if(root.left==null&amp;&amp;root.right==null&amp;&amp;target==root.val) &#123; pathlist.add(new ArrayList&lt;Integer&gt;(path)); &#125; //如果此时根值小于目标值并且含有左子树 if(root.val&lt;=target&amp;&amp;root.left!=null) &#123; //将遍历左子树，将根设为左子树并且此时的target=target-遍历过的root值 FindPath(root.left,target-root.val); &#125; //如果此时根值小于目标值并且含有右子树 if(root.val&lt;=target&amp;&amp;root.right!=null) &#123; //将遍历右子树，将根设为右子树并且此时的target=target-遍历过的root值 FindPath(root.right,target-root.val); &#125; //不论路径的值是否等于输入整数值，都要回退， //即使用remove函数移除路径上的最后一个节点。 path.remove(path.size()-1); return pathlist; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -214,7 +214,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【23】二叉搜索树的后序遍历序列]]></title>
-    <url>%2F2019%2F05%2F03%2F23-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F23-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%2F</url>
     <content type="text"><![CDATA[1.题目描述 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则输出Yes,否则输出No。假设输入的数组的任意两个数字都互不相同。 2.解题思路二叉搜索树后序遍历为：左子树—-&gt;右子树—-&gt;根，且左子树值&lt;根值&lt;右子树值 如二叉搜索树： 10 / \ 6 12 / \ / \ 3 7 11 20 后序遍历结果为：3 7 6 11 20 12 10 对于一个数组sequence，最后一个元素是sequence[len-1] （也就是根），如果去掉最后一个元素的序列为T，那么T满足：T可以分成两段，前一段（左子树）小于sequence[len-1] ，后一段（右子树）大于sequence[len-1] ，且这两段（子树）都是合法的后序序列 3.代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647import java.util.*;public class Solution &#123; public boolean VerifySquenceOfBST(int [] sequence) &#123; if(sequence==null||sequence.length&lt;=0) &#123; return false; &#125; int len=sequence.length; //数组长度 int root=sequence[len-1]; //数组的最后一个数为根 int i=0; for(;i&lt;len-1;i++) &#123; if(root&lt;=sequence[i]) //左子树的数值都小于根 break; &#125; //此时的j即为划分出来的左子树部分和右子树部分的分界 int j=i; for(;j&lt;=len-1;j++) &#123; //j到len-1都都为右子树，数值都大于root,如果root大于他们，则返回false if(root&gt;sequence[j]) &#123; return false; &#125; &#125; //递归判断左子树 boolean leftflag=true; if(i&gt;0) &#123; leftflag=VerifySquenceOfBST( Arrays.copyOfRange(sequence,0,i)); &#125; //递归判断右子树 boolean rightflag=true; if (i&lt;len-1) &#123; rightflag=VerifySquenceOfBST(Arrays.copyOfRange (sequence,i,sequence.length-1)); &#125; return leftflag &amp;&amp; rightflag; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -225,7 +225,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【22】从上到下打印二叉树]]></title>
-    <url>%2F2019%2F05%2F02%2F22-%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F22-%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
     <content type="text"><![CDATA[1.题目描述从上往下打印出二叉树的每个节点，同层节点从左至右打印。 2.解题思路使用两个队列一个存放节点treelist，一个存放值intlist。 先将根节点root加入到队列中，然后遍历队列中的元素，遍历过程中，访问该元素的左右节点，再将左右子节点加入到队列中来,并将root值存入intlist,遍历结束条件是i值到达treelist.size-1 3.代码12345678910111213141516171819202122232425262728293031323334353637383940414243import java.util.ArrayList;/**public class TreeNode &#123; int val = 0; TreeNode left = null; TreeNode right = null; public TreeNode(int val) &#123; this.val = val; &#125;&#125;*/public class Solution &#123; public ArrayList&lt;Integer&gt; PrintFromTopToBottom(TreeNode root) &#123; //创建一个列表用来存储节点 ArrayList&lt;TreeNode&gt; treelist=new ArrayList&lt;TreeNode&gt;(); ArrayList&lt;Integer&gt; intlist=new ArrayList&lt;Integer&gt;(); if(root==null) //没有节点 return intlist; //1.先存入根节点 treelist.add(root); //2.循环遍历列表，一开始列表里存了root for(int i=0;i&lt;treelist.size();i++) &#123; TreeNode node=treelist.get(i); //3.如果左子节点不为空，则将节点加入列表 if(node.left!=null) treelist.add(node.left); //3、如果右子节点不为空，则将右子节点加入到列表中，这时列表的size加1 if(node.right!=null) treelist.add(node.right); intlist.add(node.val); //4、因为执行上面操作后会增加列表的si //因此可以继续循环下一个节点，直到循环完所有节点 &#125; return intlist; &#125; &#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -236,7 +236,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【21】栈的压入、弹出]]></title>
-    <url>%2F2019%2F05%2F02%2F21-%E6%A0%88%E7%9A%84%E5%8E%8B%E5%85%A5%E3%80%81%E5%BC%B9%E5%87%BA%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F21-%E6%A0%88%E7%9A%84%E5%8E%8B%E5%85%A5%E3%80%81%E5%BC%B9%E5%87%BA%2F</url>
     <content type="text"><![CDATA[1.题目描述 输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的） 2.解题思路 依次入栈pushA数组中的数,直到pushA[i] =popA[index],此时将栈顶这个相等的值弹出。 判断栈中是否还有值，如果没有返回true,如果有并且index！=popA.length,依次弹出栈中数值，并与popA[index++]比较,两个不相等返回false,到栈为空时没执行false则返回true 3.代码12345678910111213141516171819202122232425public boolean IsPopOrder(int [] pushA,int [] popA) &#123; //用于pushA入栈 Stack&lt;Integer&gt; a = new Stack(); int index = 0; for(int i = 0;i&lt;pushA.length;i++)&#123; a.push(pushA[i]); //当遇到与popA[index]相等的数时，弹出该数 if(pushA[i] == popA[index])&#123; if(index++ == popA.length-1)&#123; return true; &#125; a.pop(); &#125; &#125; //栈中还有值，index还没到达popA尾部，依次弹出与popA比较 while (!a.isEmpty())&#123; if(a.pop()!=popA[index++])&#123; return false; &#125; &#125; return true; &#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -247,7 +247,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【20】包含min函数的栈]]></title>
-    <url>%2F2019%2F05%2F02%2F20-%E5%8C%85%E5%90%ABmin%E5%87%BD%E6%95%B0%E7%9A%84%E6%A0%88%2F</url>
+    <url>%2Fblog%2F2019%2F05%2F20-%E5%8C%85%E5%90%ABmin%E5%87%BD%E6%95%B0%E7%9A%84%E6%A0%88%2F</url>
     <content type="text"><![CDATA[1.题目描述定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））。 2.解题思路 解题思路：利用辅助栈来存储现有栈的最小值。在入栈和出栈的时候将现有栈和最小值栈进行比较。(1)入栈时，若新值比最小值栈的栈顶还小，则将该值同时push到最小值栈； (2)出栈时，若现有栈的栈顶和最小值栈栈顶一致，则同时出栈，(3)否则，仅仅现有栈pop；通过这一操作，最小值栈的栈顶将永远是现有栈元素中的最下值。 3.代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354public class Solution &#123; // 用于存储所有的数据，压入push,弹出pop Stack&lt;Integer&gt; data_stack =new Stack&lt;&gt;(); //用于存储栈最小的值 Stack&lt;Integer&gt; min_stack = new Stack&lt;&gt;(); public void push(int node) &#123; //如果最小值栈为空或者栈顶值比新入的node值大 if(min_stack.isEmpty()||min_stack.peek()&gt;=node)&#123; //压入node，保持栈顶为栈的最小值 min_stack.push(node); &#125;else &#123; //否则再次压入栈顶值 min_stack.push(min_stack.peek()); &#125; //数据都压入data_stack data_stack.push(node); &#125; //出栈 public void pop() &#123; if(data_stack.empty()||min_stack.empty()) &#123; return; &#125; //弹出数据 data_stack.pop(); //弹出min栈顶，此时min_stack的栈顶为弹出某数剩下数的最小值 min_stack.pop(); &#125; //查看栈的栈顶元素 public int top() &#123; if(!data_stack.isEmpty()) &#123; return data_stack.peek(); &#125; return 0; &#125; //查看最小的元素，即min_stack的栈顶 public int min() &#123; if(!min_stack.empty()) &#123; return min_stack.peek(); &#125; return 0; &#125; &#125; 补充stack.peek:获取栈顶元素，返回栈顶元素但是不移除它 stack.add:向栈中添加元素，成功返回true stack.push:向栈中添加元素，返回结果是当前添加的元素 stack.pop:移除并返回栈顶元素 stack.isEmpty:检查是否为空栈 stack.search(“value”):查看某元素再栈中的位置，计算从1开始]]></content>
       <categories>
         <category>剑指offer</category>
@@ -258,7 +258,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【19】顺时针打印矩阵]]></title>
-    <url>%2F2019%2F04%2F30%2F19-%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5%2F</url>
+    <url>%2Fblog%2F2019%2F04%2F19-%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5%2F</url>
     <content type="text"><![CDATA[1.题目描述 输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，例如，如果输入如下4 X 4矩阵： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 则依次打印出数字1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10. 2.解题思路 打印分为四步：循环的次数即打印的圈速，即 rows&gt;start*2&amp;&amp;column&gt;start*2 (1) 从左到右打印一行: 开始于[start,start]，结束于[start,col-start-1] (2) 从上到下打印一行, 开始于[start+1,col-start-1],结束于[col-start-1,col-start-1] (3) 从右到左打印一行 开始于[col-start-1,col-start-2],结束于[col-start-1,start] (4) 从下到上打印一行 开始于[col-start-2,start],结束于[start+1,start] 3.代码123456789101112131415161718192021222324252627282930313233343536373839404142434445import java.util.ArrayList;public class Solution &#123; public ArrayList&lt;Integer&gt; printMatrix(int [][] matrix) &#123; // 矩阵行数 int rows = matrix.length; // 矩阵列数 int columns = matrix[0].length; ArrayList&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;(); // 让循环继续的条件是当前行数大于该圈循环开始的行数的两倍以及当前列数大于 //该圈循环开始的列数的两倍（每圈循环开始的行数、列数相同） int start = 0; // 从(0,0)开始循环,圈数：start=0第一圈，start=1第二圈...以此类推 while (rows &gt; start * 2 &amp;&amp; columns &gt; start * 2)&#123; // 每一圈最后一行下标 int endRow = rows - 1 - start; // 每一圈最后一列下标 int endColumn = columns - 1 - start; // 开始一圈圈打印，每打印一圈分为四步，从左到右、从上到下、从右到左、从下到上 // 从左到右，第一步一定会走 for (int i = start; i &lt;= endColumn; i++) list.add(matrix[start][i]); // 从上到下，最后一行大于开始行 if (endRow &gt; start)&#123; for (int i = start + 1; i &lt;= endRow; i++) list.add(matrix[i][endColumn]); &#125; // 从右到左，最后一行大于开始行，最后一列大于开始列 if (endRow &gt; start &amp;&amp; endColumn &gt; start)&#123; for (int i = endColumn - 1; i &gt;= start; i--) list.add(matrix[endRow][i]); &#125; // 从下到上,至少是三行两列，也就是最后一行大于开始行加2，最后一列大于开始列 if (endRow &gt;= start + 2 &amp;&amp; endColumn &gt; start)&#123; for (int i = endRow - 1; i &gt; start; i--) list.add(matrix[i][start]); &#125; // 继续打印下一圈 start++; &#125; return list; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -269,7 +269,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【18]二叉树的镜像]]></title>
-    <url>%2F2019%2F04%2F30%2F18-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F%2F</url>
+    <url>%2Fblog%2F2019%2F04%2F18-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F%2F</url>
     <content type="text"><![CDATA[1.题目描述操作给定的二叉树，将其变换为源二叉树的镜像。 二叉树的镜像定义： 8 / \ 6 10 / \ / \ 5 7 9 11 镜像二叉树 8 / \ 10 6 / \ / \ 11 9 7 5 2.解题思路(1)镜像即左右子树交换位置，故交换左子树右子树位置 (2)交换后的左右子树的节点保持原来的顺序，故要交换左右子树自己的左右子树 (3)终止条件为root==null || root.left==null ||root.right == null 3.代码123456789101112131415161718192021222324252627282930313233/* public class TreeNode &#123; int val = 0; TreeNode left = null; TreeNode right = null; public TreeNode(int val) &#123; this.val = val; &#125; &#125; */ public class Solution &#123; public void Mirror(TreeNode root) &#123; if(root!=null&amp;&amp;(root.left!=null||root.right!=null))&#123; //这三句是左子树跟右子树交换 TreeNode tem=root.left; root.left=root.right; root.right=tem; //然后将根节点换成root.left Mirror(root.left); //然后将根节点换成root.right Mirror(root.right); &#125; &#125; &#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -280,7 +280,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【17】树的子结构]]></title>
-    <url>%2F2019%2F04%2F30%2F17-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84%2F</url>
+    <url>%2Fblog%2F2019%2F04%2F17-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84%2F</url>
     <content type="text"><![CDATA[1.题目描述输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构） 2.解题思路大体思路是首先判断B的根节点和A的根节点是否相同（这里的相同是指节点的值相同并且左右子节点相同），如果相同比较他们的左右子节点，这一步骤是相同的，可以用递归完成，直到B遍历到每个尾节点，如果这一过程比较的所有节点是相同的，则证明B是A的子结构。如果B的根节点和A的根节点不同，则A向他的左右子节点滑动，然后继续跟B的子节点比较，步骤同上。 (1) 如果root1.val==root2.val,那个就以这个为起点判断是否A包含B (2) 如果没找到，就以root1.left作为起点继续判断A是否包含B (3) 如果没找到，再以root1.right作为起点判断A是否包含B 3.代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647public class Solution &#123; public boolean HasSubtree(TreeNode root1, TreeNode root2) &#123; boolean result = false; //当Tree1和Tree2都不为零的时候，才进行比较。否则直接返回false if (root2 != null &amp;&amp; root1 != null) &#123; //如果找到了对应Tree2的根节点的点 if(root1.val == root2.val)&#123; //以这个根节点为为起点判断是否包含Tree2 result = doesTree1HaveTree(root1,root2); &#125; //如果找不到，那么就再去root的左儿子当作起点，去判断时候包含Tree2 if (!result) &#123; result = HasSubtree(root1.left,root2); &#125; //如果还找不到，那么就再去root的右儿子当作起点，去判断时候包含Tree2 if (!result) &#123; result = HasSubtree(root1.right,root2); &#125; &#125; //返回结果 return result; &#125;public boolean doesTree1HaveTree(TreeNode node1, TreeNode node2) &#123; //如果Tree2已经遍历完了都能对应的上，返回true if (node2 == null) &#123; return true; &#125; //如果Tree2还没有遍历完，Tree1却遍历完了。返回false if (node1 == null) &#123; return false; &#125; //如果其中有一个点没有对应上，返回false if (node1.val != node2.val) &#123; return false; &#125; //如果根节点对应的上，那么就分别去子节点里面匹配 return doesTree1HaveTree(node1.left,node2.left) &amp;&amp; doesTree1HaveTree(node1.right,node2.right); &#125; &#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -291,7 +291,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【16】合并两个排序的链表]]></title>
-    <url>%2F2019%2F04%2F29%2F16-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%8E%92%E5%BA%8F%E7%9A%84%E9%93%BE%E8%A1%A8%2F</url>
+    <url>%2Fblog%2F2019%2F04%2F16-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%8E%92%E5%BA%8F%E7%9A%84%E9%93%BE%E8%A1%A8%2F</url>
     <content type="text"><![CDATA[1.题目描述 输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。 例： 链表1： 1 ----&gt; 3 ----&gt; 5 ----&gt; 8 链表2： 2 ----&gt; 4 ----&gt; 6 ----&gt; 7 合并结果： 1 ----&gt; 2 ----&gt; 3 ----&gt; 4 ----&gt; 5 ----&gt; 6 ----&gt; 7 ----&gt; 8 2.解题思路 判断有没有ListNode是空的，如果有则返回另一个 递归实现，如果List1.val&lt;list2.val,pMergeHead = list1,否则pMergeHead = list2，递归直到两个ListNode都为空 3.代码123456789101112131415161718192021222324252627/*public class ListNode &#123; int val; ListNode next = null; ListNode(int val) &#123; this.val = val; &#125;&#125;*/public class Solution &#123; public ListNode Merge(ListNode list1,ListNode list2) &#123; if(list1==null)&#123; return list2; &#125;else if(list2==null)&#123; return list1; &#125; ListNode pMergeHead = null; if(list1.val&lt;list2.val)&#123; pMergeHead = list1; pMergeHead.next = Merge(list1.next,list2); &#125;else&#123; pMergeHead = list2; pMergeHead.next = Merge(list1,list2.next); &#125; return pMergeHead; &#125;&#125;i]]></content>
       <categories>
         <category>剑指offer</category>
@@ -302,7 +302,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【15】反转链表]]></title>
-    <url>%2F2019%2F04%2F29%2F15-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8%2F</url>
+    <url>%2Fblog%2F2019%2F04%2F15-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8%2F</url>
     <content type="text"><![CDATA[1.题目描述 输入一个链表，反转链表后，输出新链表的表头。 2.解题思路 用一个栈stack依次存储ListNode里面的值，因为stack的特点是先进后出，故依次弹出即为反转链表 用一个链表temp依次存储弹出的值，依次next存入下一个链表值，链表res指向这个temp的头节点 反转链表的结果为res.next,因为我们之前设temp的头节点为-1（自己设的）。 3.代码123456789101112131415161718192021222324252627 /* public static class ListNode &#123; int val; ListNode next = null; ListNode(int val) &#123; this.val = val; &#125; &#125; */import java.util.*; public class Solution &#123; public ListNode ReverseList(ListNode head) &#123; Stack&lt;Integer&gt; stack = new Stack&lt;&gt;(); while (head!=null)&#123; stack.push(head.val); head = head.next; &#125; ListNode temp = new ListNode(-1); ListNode res = temp; while(stack.size()!=0)&#123; temp.next = new ListNode(stack.pop()); temp = temp.next; &#125; return res.next; &#125; &#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -313,7 +313,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【14】链表中倒数第K个结点]]></title>
-    <url>%2F2019%2F04%2F29%2F14-%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACK%E4%B8%AA%E7%BB%93%E7%82%B9%2F</url>
+    <url>%2Fblog%2F2019%2F04%2F14-%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACK%E4%B8%AA%E7%BB%93%E7%82%B9%2F</url>
     <content type="text"><![CDATA[1.题目描述 输入一个链表，输出该链表中倒数第k个结点。 2.解题思路 先用一个count计算出链表的长度，如果count&lt;k，返回null 链表的倒数第K个即为链表的正数（count-k+1）个,一个for循环，将指针轮询倒那个点，然后再将起后面截断（head.next = null）即可。 3.代码1234567891011121314151617181920212223242526272829/*public class ListNode &#123; int val; ListNode next = null; ListNode(int val) &#123; this.val = val; &#125;*/public class Solution &#123; public ListNode FindKthToTail(ListNode head,int k) &#123; ListNode root = head; int count = 0; while(root!=null)&#123; count ++; root = root.next; &#125; if(count&lt;k)&#123; return null; &#125; //倒数第K个即正数第（count-k+1）个 for(int i = 1;i&lt;(count-k+1);i++)&#123; head = head.next; &#125; return head; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -324,7 +324,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【13】调整数值顺序使奇数位于偶数前面]]></title>
-    <url>%2F2019%2F04%2F29%2F13-%E8%B0%83%E6%95%B4%E6%95%B0%E5%80%BC%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2%2F</url>
+    <url>%2Fblog%2F2019%2F04%2F13-%E8%B0%83%E6%95%B4%E6%95%B0%E5%80%BC%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2%2F</url>
     <content type="text"><![CDATA[1.题目描述 输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。 2.解题思路依次遍历array数组，遇到奇数存到原来的array数组前面，遇到偶数放到res数组，然后将两个数组拼接即可。 3.代码1234567891011121314151617181920public class Solution &#123; public void reOrderArray(int [] array) &#123; int []res = new int[array.length]; int count = 0; int count2 = 0; for(int i = 0;i&lt;array.length;i++)&#123; //如果是奇数，则放在数组前面 if(array[i]%2 != 0)&#123; array[count++] = array[i]; &#125;else&#123; //偶数放在另一个数组里 res[count2++] = array[i]; &#125; &#125; int j = 0; for(int i = count;i&lt;array.length;i++)&#123; array[i] = res[j++]; &#125; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -335,7 +335,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【12】数值的整数次方]]></title>
-    <url>%2F2019%2F04%2F29%2F12-%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9%2F</url>
+    <url>%2Fblog%2F2019%2F04%2F12-%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9%2F</url>
     <content type="text"><![CDATA[1.题目描述 给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方 2.解题思路 （1）exponent &gt; 0,如2^3,则可以直接运算得出结果 （2）exponent &lt; 0,如2^-3,则结果为（1/2）^3 （3）exponent = 0,如2^0,则结果为1 3.代码123456789101112131415161718192021public class Solution &#123; public double Power(double base, int exponent) &#123; if(exponent&lt;0)&#123; return powCal(1.0/base,-1*exponent); &#125;else if(exponent&gt;0)&#123; return powCal(base,exponent); &#125;else&#123; return 1; &#125; &#125; //计算base的exponent次方 public double powCal(double base, int exponent) &#123; double res = 1; for(int i = 0;i&lt;exponent;i++)&#123; res = res*base; &#125; return res; &#125; &#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -346,7 +346,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【11】二进制中1的个数]]></title>
-    <url>%2F2019%2F04%2F29%2F11-%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0%2F</url>
+    <url>%2Fblog%2F2019%2F04%2F11-%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0%2F</url>
     <content type="text"><![CDATA[1.题目描述输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。 2.解题思路 方法1：直接将其转成二进制数组 方法2：把一个整数减去1，再和原整数做与运算，会把该整数最右边一个1变成0。那么一个整数的二进制表示中有多少个1，就可以进行多少次这样的操作。 3.代码方法1： 1234567891011121314public class Solution &#123; public int NumberOf1(int n) &#123; int count=0; char []a=Integer.toBinaryString(n).toCharArray(); for(int i=0;i&lt;a.length;i++) &#123; if(a[i]=='1') &#123; count++; &#125; &#125; return count; &#125;&#125; 方法2： 123456789101112131415public class Solution &#123; public static int NumberOf(int n) &#123; int count = 0; while (n &gt; 0) &#123; count++; n = (n - 1) &amp; n; &#125; return count; &#125; &#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -357,7 +357,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【10】矩形覆盖]]></title>
-    <url>%2F2019%2F04%2F29%2F10-%E7%9F%A9%E5%BD%A2%E8%A6%86%E7%9B%96%2F</url>
+    <url>%2Fblog%2F2019%2F04%2F10-%E7%9F%A9%E5%BD%A2%E8%A6%86%E7%9B%96%2F</url>
     <content type="text"><![CDATA[1.题目描述 我们可以用2 * 1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2 * 1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？ 2.解题思路类似于青蛙跳台阶 当 n = 1时，只有一种横向排列的方式 当 n = 2时，有两种选择，横向或者竖向 当 n = 3时，如果选择竖向，则还剩下2*2的排列，如果选择横向，只有一种选择方案(剩下的一个横向一个竖向) 递推可得F(2 * n) = F(2 * (n-1))+F(2 * (n-2) ) , n&gt;=3 3.代码1234567891011public class Solution &#123; public int RectCover(inttarget) &#123; if(target &lt;=0)&#123; return0; &#125; elseif(target ==1|| target == 2)&#123; returntarget; &#125; return(RectCover(target-1)+RectCover(target-2)); &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -368,7 +368,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【9】变态跳台阶]]></title>
-    <url>%2F2019%2F04%2F29%2F9-%E5%8F%98%E6%80%81%E8%B7%B3%E5%8F%B0%E9%98%B6%2F</url>
+    <url>%2Fblog%2F2019%2F04%2F9-%E5%8F%98%E6%80%81%E8%B7%B3%E5%8F%B0%E9%98%B6%2F</url>
     <content type="text"><![CDATA[1.题目描述 一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。 2.解题思路123456789101112131415161718//f(0) = 0//f(1) = 1//f(2) = f(2-1) + f(2-2) //f(2-2) 表示2阶一次跳2阶的次数。//f(3) = f(3-1) + f(3-2) + f(3-3) ...//f(n) = f(n-1) + f(n-2) + f(n-3) + ... + f(n-(n-1)) + f(n-n)/*说明：1）这里的f(n) 代表的是n个台阶有一次1,2,...n阶的 跳法数。2）n = 1时，只有1种跳法，f(1) = 13) n = 2时，会有两个跳得方式，一次1阶或者2阶，这回归到了问题（1） ，f(2) = f(2-1) + f(2-2)4) n = 3时，会有三种跳得方式，1阶、2阶、3阶， 那么就是第一次跳出1阶后面剩下：f(3-1);第一次跳出2阶，剩下f(3-2)；第一次3阶，那么剩下f(3-3) 因此结论是f(3) = f(3-1)+f(3-2)+f(3-3)5) n = n时，会有n中跳的方式，1阶、2阶...n阶，得出结论： f(n) = f(n-1)+f(n-2)+...+f(n-(n-1)) + f(n-n) =&gt; f(0) + f(1) + f(2) + f(3) + ... + f(n-1)6) 由以上已经是一种结论，但是为了简单，我们可以继续简化： f(n-1) =f(0)+f(1)+f(2)+f(3)+...+f((n-1)-1) =f(0)+f(1)+f(2)+f(3)+...+f(n-2) f(n) =f(0)+f(1)+f(2)+f(3)+...+f(n-2)+f(n-1)=f(n-1)+f(n-1)可以得出：f(n) = 2*f(n-1)*/ 3.代码1234567891011public class Solution &#123; public int JumpFloorII(int target) &#123; if(target&lt;=0)&#123; return 0; &#125;else if(target==1)&#123; return 1; &#125;else&#123; return 2*JumpFloorII(target-1); &#125; &#125; &#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -379,7 +379,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【8】跳台阶]]></title>
-    <url>%2F2019%2F04%2F29%2F8-%E8%B7%B3%E5%8F%B0%E9%98%B6%2F</url>
+    <url>%2Fblog%2F2019%2F04%2F8-%E8%B7%B3%E5%8F%B0%E9%98%B6%2F</url>
     <content type="text"><![CDATA[1.题目描述 一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。 2.解题思路 把n级台阶的跳的次数看成是n的函数,即为f(n),当n&gt;2时,第一次跳有两种跳法, 第一次跳1级,则该次跳法数目为后面剩下的n-1级台阶的跳法数目f(n-1)。 第一次跳2级,则该次跳法数目为后面剩下的n-2级台阶的跳法数目f(n-2)。 所以f(n)=f(n-1)+f(n-2),即相当于斐波那契数列。` 即该题跟斐波那契数列是相似的，青蛙跳台阶的公式为 F(n) = F(n-1)+F(n-2),n&gt;=3 3.代码1234567891011121314151617181920public class Solution &#123; public int JumpFloor(int target) &#123; if(target&lt;=2) &#123; return target; &#125; int one_=1; //第一次跳台阶的方法数 int two_=2; //第二次跳台阶的方法数 int finN=0; for(int i=3;i&lt;=target;i++) &#123; finN=one_+two_; one_=two_; two_=finN; &#125; return finN; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -390,7 +390,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【7】斐波那契数组]]></title>
-    <url>%2F2019%2F04%2F28%2F7-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E7%BB%84%2F</url>
+    <url>%2Fblog%2F2019%2F04%2F7-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E7%BB%84%2F</url>
     <content type="text"><![CDATA[1.题目描述大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。n&lt;=39 斐波那契数列：1 1 2 3 5 8 13 21 34 …. 2.解题思路 斐波那契数列：从第三项开始，每一项都等于前两项之和。通项公式为 F(n) = F(n-1)+F(n-2),n&gt;=3 方法1：通过递归实现，但是时间复杂度和空间复杂度都会很大 方法2：依次F(n-1)和F(n-2)值，求F(n)就很简单啦 3.代码方法一： 1234567891011public class Solution &#123; public int Fibonacci(int n) &#123; if(n==0) return 0; else if(n==1 || n==2) return 1; else return (Fibonacci(n-1)+Fibonacci(n-2)); &#125;&#125; 方法2： 1234567891011121314151617181920212223public class Solution &#123; public int Fibonacci(int n) &#123; if (n==0) return 0; if(n==1||n==2) return 1; int one_ = 1; //用于存储f(n-2) int two_ =1; //用于存储f(n-1) int fin = 0; for(int i = 3;i&lt;=n;i++)&#123; fin = one_+two_; //向前递推 one_ = two_; //下一次的f(n-2)为 上一次结果的f(n-1) two_ = fin; //下一次的f(n-1)为 上一次结果的fin &#125; return fin; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -401,7 +401,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【6】旋转数组的最小数字]]></title>
-    <url>%2F2019%2F04%2F28%2F6-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97%2F</url>
+    <url>%2Fblog%2F2019%2F04%2F6-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97%2F</url>
     <content type="text"><![CDATA[1. 题目描述 把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。 2.解题思路 方法1：重头到尾遍历，找到数组的最小值，时间复杂度为O(N) 方法2：二分遍历查找 mid = low +(high-low)/2; 需要考虑三种情况： arr[mid] &gt; arr[high],如[3,4,5,1,2]说明最小数字在mid的右边，缩小范围，low = mid+1; arr[mid]&lt;arr[high],如[1,2,3,4,5]说明最小数字在mid的左边，high = mid-1; arr[mid] = arr[high],如[0,1,1,1,1]或者[1,1,1,0,1],一步步缩小范围，high = high-1; 3.代码123456789101112131415161718192021222324252627import java.util.ArrayList;public class Solution &#123; public static int minNumberInRotateArray(int[] arr)&#123; int low = 0; int high = arr.length - 1; while(low &lt; high)&#123; int mid = low + (high - low)/2; if(arr[mid] &gt; arr[high])&#123; low = mid + 1; &#125;else if(arr[mid] == arr[high])&#123; high = high - 1; &#125;else&#123; high = mid; &#125; &#125; return arr[low]; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -412,7 +412,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【5】两个栈实现队列]]></title>
-    <url>%2F2019%2F04%2F28%2F5.%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97%2F</url>
+    <url>%2Fblog%2F2019%2F04%2F5.%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97%2F</url>
     <content type="text"><![CDATA[1. 题目描述 用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。 2. 解题思路 栈的规则是先进后出，队列的规则是先进先出 stack1一直维持着栈底–栈顶是队列的入队顺序 stack2一直维持着栈顶–栈尾为队列的入队顺序 当执行队列的入队（push）时，如果stack2为空，则直接插入到stack1,stack1从栈底到栈顶的顺序为入队顺序，如果stack2不为空，则将stack2的元素倒入（栈顶—栈尾）stack1,然后再插入数据 4- 当执行队列的出队(pop)操作时，应该出的是stack1的栈底元素，故将stack1依次倒入stack2,这时stack2的栈顶就是要出队的数值，此时stack1为空，stack2从（栈顶–栈尾）为入队顺序 3. 代码12345678910111213141516171819202122232425262728public class Solution &#123; Stack&lt;Integer&gt; stack1 = new Stack&lt;Integer&gt;(); Stack&lt;Integer&gt; stack2 = new Stack&lt;Integer&gt;(); //队列的入队 public void push(int node) &#123; //将stack2倒入stack1 while (!stack2.empty()) &#123; stack1.push(stack2.pop()); &#125; //将元素插入stack1 stack1.push(node); &#125; //队列的出队 public int pop() &#123; //将stack1倒入stack2 while (!stack1.empty()) &#123; stack2.push(stack1.pop()); &#125; //stack2的栈顶就是出队数值 return stack2.pop(); &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -423,7 +423,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【4】重建二叉树]]></title>
-    <url>%2F2019%2F04%2F28%2F4.%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <url>%2Fblog%2F2019%2F04%2F4.%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
     <content type="text"><![CDATA[1. 题目描述 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。 2.解题思路 先序遍历为：根-&gt;左子树-&gt;右子树，中序遍历为左子树-&gt;根-&gt;右子树 先找到根结点，为先序遍历的第一个数值 根据这个数值，可以划分中序中的左子树和右子树范围 递归构建左子树和右子树 3.代码12345678910111213141516171819202122232425262728293031323334353637383940import java.util.Arrays;//** * Definition for binary tree public class TreeNode &#123; int val; TreeNode left; TreeNode right; TreeNode(int x) &#123; val = x; &#125; &#125; public class Solution &#123; public TreeNode reConstructBinaryTree(int [] pre,int [] in) &#123; if(pre.length==0 || in.length==0) return null; TreeNode node = new TreeNode(pre[0]); //根结点 for(int i=0;i&lt;pre.length;i++)&#123; //找到根节点在中序遍历的点，左边为根的左节点，右边为根的右节点 if(pre[0] == in[i])&#123; //递归构建左子树，此时前序的范围缩小为[1,i+1),中序缩小为[0,i) node.left =reConstructBinaryTree(Arrays.copyOfRange (pre,1,i+1),Arrays.copyOfRange(in,0,i)); //递归构建右子树,此时前序的范围缩小为[i+1,len),中序缩小为[i+1,len) node.right = reConstructBinaryTree(Arrays.copyOfRange (pre,i+1,pre.length),Arrays.copyOfRange(in,i+1,in.length)); break; &#125; &#125; return node; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -434,7 +434,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【3】从尾到头打印链表]]></title>
-    <url>%2F2019%2F04%2F28%2F3.%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8%2F</url>
+    <url>%2Fblog%2F2019%2F04%2F3.%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8%2F</url>
     <content type="text"><![CDATA[1.题目描述 输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。 2.解题思路 先用一个栈stack存储从头到尾的链表数值 再依次弹出，因为栈是先进后出的，故弹出的结果为从尾到头 将弹出的结果放入list返回 3.代码123456789101112131415161718192021222324252627282930public class Main_3 &#123; public static class ListNode &#123; int val; ListNode next = null; ListNode(int val) &#123; this.val = val; &#125; &#125; public static class Solution &#123; ArrayList&lt;Integer&gt; arrayList = new ArrayList&lt;Integer&gt;(); public static ArrayList&lt;Integer&gt; printListFromTailToHead(ListNode listNode) &#123; Stack&lt;Integer&gt; stack = new Stack&lt;&gt;(); while (listNode != null) &#123; stack.push(listNode.val); listNode = listNode.next; &#125; ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;(); while (!stack.isEmpty()) &#123; list.add(stack.pop()); &#125; return list; &#125; &#125; &#125;]]></content>
       <categories>
         <category>剑指offer</category>
@@ -445,7 +445,7 @@
   </entry>
   <entry>
     <title><![CDATA[leetcode-15:三数之和]]></title>
-    <url>%2F2019%2F04%2F27%2Fleetcode-15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C%2F</url>
+    <url>%2Fblog%2F2019%2F04%2Fleetcode-15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C%2F</url>
     <content type="text"><![CDATA[1.题目描述：给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。注意：答案中不可以包含重复的三元组。 例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]， 满足要求的三元组集合为：[ [-1, 0, 1], [-1, -1, 2]] 2.解题思路 首先按升序排序；然后定义下标变量i,j,k，因为是三元组，所以要三个变量如果简单的遍历，那么跟是否有序没有关系，其时间复杂度将达到O(n^3)。仔细想想：如果当前选择了a、b、c三个数，如果其和小于目标target，那么需要将其中一个数用更大的数替换；反之亦然。但究竟替换三个数中的哪个数？无法确定就只能先固定两个变量，让其第三个变化（替换）。一种办法是：固定前两个数i,j，然后让k在一个范围中二分变化（二分查找思想） 3.代码12345678910111213141516171819202122232425262728293031323334353637class Solution &#123; public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) &#123; List&lt;List&lt;Integer&gt;&gt; list = new ArrayList(); Arrays.sort(nums); List&lt;Integer&gt; targets = new ArrayList&lt;&gt;(); // 用于去重 if((nums.length&gt;0 &amp;&amp; nums.length&lt;3) ||(nums.length&gt;0 &amp;&amp;nums[0]&gt;0)) return list; for(int i = 0;i&lt;=nums.length-3;i++) &#123; int target = 0 - nums[i]; if (!targets.contains(target)) &#123; //用于去重 targets.add(target); int k = i + 1; int j = nums.length - 1; while (k &lt; j) &#123; if (nums[k] + nums[j] == target) &#123; List&lt;Integer&gt; li = new ArrayList(); li.add(nums[i]); li.add(nums[k]); li.add(nums[j]); list.add(li); while (k &lt; j &amp;&amp; nums[k] == nums[k + 1]) ++k; while (k &lt; j &amp;&amp; nums[j] == nums[j - 1]) --j; k++; j--; &#125; else if (nums[k] + nums[j] &lt; target) &#123; k++; &#125; else &#123; j--; &#125; &#125; &#125; &#125; return list; &#125;&#125; 4.我的提交记录]]></content>
       <categories>
         <category>algorithm</category>
@@ -456,7 +456,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【2】空格替换]]></title>
-    <url>%2F2019%2F04%2F27%2F2.%E7%A9%BA%E6%A0%BC%E6%9B%BF%E6%8D%A2%2F</url>
+    <url>%2Fblog%2F2019%2F04%2F2.%E7%A9%BA%E6%A0%BC%E6%9B%BF%E6%8D%A2%2F</url>
     <content type="text"><![CDATA[1. 题目描述 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 2. 解题思路 方法1：利用函数replaceAll完成 方法2： **先计算需要多少的空间 **从后向前依次插入 3.代码方法1： 12345public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; return str.toString().replaceAll(" ", "%20"); &#125;&#125; 方法2： 12345678910111213141516171819202122232425262728public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; int spacenum = 0;//spacenum为计算空格数 for(int i=0;i&lt;str.length();i++)&#123; if(str.charAt(i)==' ') spacenum++; &#125; //indexold为为替换前的str下标 int indexold = str.length()-1; //计算空格转换成%20之后的str长度 int newlength = str.length() + spacenum*2; //indexold为为把空格替换为%20后的str下标 int indexnew = newlength-1; //使str的长度扩大到转换成%20之后的长度,防止下标越界 str.setLength(newlength); for(;indexold&gt;=0 &amp;&amp; indexold&lt;newlength;--indexold)&#123; if(str.charAt(indexold) == ' ')&#123; str.setCharAt(indexnew--, '0'); str.setCharAt(indexnew--, '2'); str.setCharAt(indexnew--, '%'); &#125;else&#123; str.setCharAt(indexnew--, str.charAt(indexold)); &#125; &#125; return str.toString(); &#125;&#125; 补充1：String和StringBuffer的转换String转换成StringBuffer 12String str = "abc";StringBuffer b=new StringBuffer(str); StringBuffer转换成String 12StringBuffer a=new StringBuffer();String b=a.toString(） 补充2：String、StringBuffer、StringBuilder 1）运行速度StringBuilder&gt;StringBuffer&gt;String 2）String是字符串常量，String对象一旦创建就不能更改。StringBuffer为 字符串变量，可更改 3） String适用于少量的字符串操作，StringBuffer适用于多线程下字符缓冲区进行大量操作的情况。 4） StringBuffer 与 StringBuilder 中的方法和功能完全是等价的， 5） 只是StringBuffer 中的方法大都采用了 synchronized 关键字进行修饰，因此是线程安全的，而 StringBuilder 没有这个修饰，可以被认为是线程不安全的。 6） 在单线程程序下，StringBuilder效率更快，因为它不需要加锁，不具备多线程安全，而StringBuffer则每次都需要判断锁，效率相对更低。]]></content>
       <categories>
         <category>剑指offer</category>
@@ -467,7 +467,7 @@
   </entry>
   <entry>
     <title><![CDATA[剑指offer_【1】二维数组的查找]]></title>
-    <url>%2F2019%2F04%2F27%2F1.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
+    <url>%2Fblog%2F2019%2F04%2F1.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
     <content type="text"><![CDATA[1.题目描述： 在一个二维数组中（每个一维数组的长度相同），如数组 1 2 3 4 5 6 7 8 9 每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 2.解题思路 选择右上角的数字作为开始点 如果array[row][col]&gt;target,则向左查找，col–； 如果array[row][col]&lt;target,则向下查找，row++； 3.代码123456789101112131415161718public class Solution &#123; public boolean Find(int target, int [][] array) &#123; boolean res = false; int row = 0; int col = array[0].length-1; while(row&lt;=array.length-1&amp;&amp;col&gt;=0)&#123; if(array[row][col]&gt;target)&#123; col--; &#125;else if(array[row][col]&lt;target)&#123; row++; &#125;else&#123; res = true; break; &#125; &#125; return res; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
