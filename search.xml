@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[剑指offer_【56】删除链表中重复的结点]]></title>
+    <url>%2F2019%2F05%2F56-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E7%BB%93%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[1.题目描述 在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5 处理后为 1-&gt;2-&gt;5 2.解题思路 方法一：重头构建该链表 (1) 新建两个list，一个用于存放只出现一次的数值，一个存放重复的数值 (2) 将只出现过一次的数重头构建成链表 方法二：递归思想 3.代码方法1： 1234567891011121314151617181920212223public static ListNode deleteDuplication(ListNode pHead) &#123; ArrayList&lt;Integer&gt; ss = new ArrayList&lt;&gt;(); ArrayList&lt;Integer&gt; ss2 = new ArrayList&lt;&gt;(); ListNode res = new ListNode(-1); ListNode node = res; while(pHead!=null)&#123; if(!ss.contains(pHead.val) &amp;&amp; !ss2.contains(pHead.val))&#123; ss.add(pHead.val); pHead = pHead.next; &#125;else&#123; ss2.add(pHead.val); ss.remove(Integer.valueOf(pHead.val)); pHead = pHead.next; &#125; &#125; for(int i = 0;i&lt;ss.size();i++)&#123; res.next =new ListNode(ss.get(i)); res = res.next; &#125; return node.next; &#125; 方法2： 123456789101112131415161718192021222324public class Solution &#123; public ListNode deleteDuplication(ListNode pHead) &#123; // 只有0个或1个结点，则返回 if (pHead == null || pHead.next == null) &#123; return pHead; &#125; if (pHead.val == pHead.next.val) &#123; // 当前结点是重复结点 ListNode pNode = pHead.next; while (pNode != null &amp;&amp; pNode.val == pHead.val) &#123; // 跳过值与当前结点相同的全部结点,找到第一个与当前结点不同的结点 pNode = pNode.next; &#125; // 从第一个与当前结点不同的结点开始递归 return deleteDuplication(pNode); &#125; else &#123; // 当前结点不是重复结点 // 保留当前结点，从下一个结点开始递归 pHead.next = deleteDuplication(pHead.next); return pHead; &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>链表题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JSR303参数校验和全局异常处理]]></title>
     <url>%2F2019%2F05%2FJSR303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C%2F</url>
     <content type="text"><![CDATA[开发web项目有时候我们需要对controller层传过来的参数进行一些基本的校验，比如非空，非null，整数值的范围，字符串的个数，日期，邮箱等等。最常见的就是我们直接写代码校验，这样以后比较繁琐，而且不够灵活。故引出使用JSR303来做参数校验。参数校验的实现: 手机号和密码字段自定义注解 为了让客户端显示更加友好 需要自定义异常拦截器 1. 添加依赖123456&lt;!--JSR303参数检验+全局异常处理器--&gt;&lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt; &lt;version&gt;2.0.6.RELEASE&lt;/version&gt;&lt;/dependency&gt; 2.在需要验证的类前加@Valid并在该类内需要参数检查的成员上加自定义注解1234567891011@Controller@RequestMapping("/login")public class LoginController &#123; @RequestMapping("/do_login") @ResponseBody public Result&lt;String&gt; doLogin(HttpServletResponse response, @Valid LoginVo loginVo)&#123; logger.info(loginVo.toString()); &#125;&#125; 12345678910@Datapublic class LoginVo &#123; @NotNull @IsMobile private String mobile; @NotNull @Length(min = 32) private String password;&#125; 3. IsMobile注解的编写[可参考@NotNull]12345678910111213141516171819202122@Target(&#123; ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER, ElementType.TYPE_USE &#125;)@Retention(RetentionPolicy.RUNTIME)@Documented@Constraint( validatedBy = &#123;IsMobileValidator.class&#125;)public @interface IsMobile &#123; boolean required() default true; String message() default "电话号码格式错误"; Class&lt;?&gt;[] groups() default &#123;&#125;; Class&lt;? extends Payload&gt;[] payload() default &#123;&#125;; 4.指定校验器的实现[IsMobileValidator.class]1234567891011121314151617181920212223public class IsMobileValidator implements ConstraintValidator&lt;IsMobile,String&gt; &#123; private boolean required = false; @Override //初始化方法拿到注解，可以定义一个字符为空 public void initialize(IsMobile constraintAnnotation) &#123; constraintAnnotation.required(); &#125; @Override public boolean isValid(String value, ConstraintValidatorContext context) &#123; //值是必须的 if(required)&#123; return ValidatorUtil.isMobile(value); &#125;else&#123; if(StringUtils.isEmpty(value))&#123; return true; &#125;else&#123; return ValidatorUtil.isMobile(value); &#125; &#125; &#125;&#125; 5.自定义异常拦截器 当校验不通过时，会抛出异常。这时如果没有定义全局异常处理器进行处理（对异常进行封装和返回）。则会发生400错误（即只有请求的发起，却没有收到正常的响应（response），因为还没有来得及return就抛出了异常（这种异常没有被处理））。 1234567891011121314151617181920212223@ControllerAdvice@ResponseBodypublic class GlobalExceptionHandler &#123; @ExceptionHandler(value = Exception.class) public Result&lt;String&gt; exceptionHandler(HttpServletRequest request,Exception e)&#123; e.printStackTrace(); if(e instanceof GlobalException) &#123; GlobalException ex = (GlobalException) e; return Result.Error(ex.getCm()); &#125;else if(e instanceof BindException)&#123; BindException ex = (BindException) e; List&lt;ObjectError&gt; errors = ex.getAllErrors(); //为了方便起见，只取第一个错误 ObjectError error = errors.get(0); String msg = error.getDefaultMessage(); return Result.Error(CodeMsg.BIND_ERROR.fillArgs(msg)); &#125;else&#123; return Result.Error(CodeMsg.SERVER_ERROR); &#125; &#125;&#125;]]></content>
@@ -42,6 +53,39 @@
       </categories>
       <tags>
         <tag>秒杀</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【59】按之字形顺序打印二叉树]]></title>
+    <url>%2F2019%2F05%2F59-%E6%8C%89%E4%B9%8B%E5%AD%97%E5%BD%A2%E9%A1%BA%E5%BA%8F%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[1.题目描述 请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左到右的顺序打印，其他行以此类推。 2.解题思路 用一个布尔量控制从左到右还是从右到左的顺序；如果为真则他的左右孩子按照从左到右的顺序放入list中，否则按照从右到左的顺序，当本行结束之后，再把list中的数据放入一个result中。其中用一个null值作为层次的分隔符。 3.代码1234567891011121314151617181920212223242526272829303132333435363738394041public static class Solution &#123; public static ArrayList&lt;ArrayList&lt;Integer&gt;&gt; Print(TreeNode pRoot) &#123; ArrayList&lt;ArrayList&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;(); if (pRoot == null) &#123; return result; &#125; ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;(); LinkedList&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;(); queue.addLast(null);//层分隔符 queue.addLast(pRoot); boolean leftToRight = true; while (queue.size() != 1) &#123; TreeNode node = queue.removeFirst(); if (node == null) &#123;//到达层分隔符 Iterator&lt;TreeNode&gt; iter = null; if (leftToRight) &#123; iter = queue.iterator();//从前往后遍历 &#125; else &#123; //从后往前遍历 iter = queue.descendingIterator(); &#125; leftToRight = !leftToRight; while (iter.hasNext()) &#123; TreeNode temp = (TreeNode) iter.next(); list.add(temp.val); &#125; result.add(new ArrayList&lt;Integer&gt;(list)); list.clear(); queue.addLast(null);//添加层分隔符 continue;//一定要continue &#125; if (node.left != null) &#123; queue.addLast(node.left); &#125; if (node.right != null) &#123; queue.addLast(node.right); &#125; &#125; return result; &#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>二叉树题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【58】对称的二叉树]]></title>
+    <url>%2F2019%2F05%2F58-%E5%AF%B9%E7%A7%B0%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[1.题目描述 请实现一个函数，用来判断一颗二叉树是不是对称的。注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的。 2.解题思路 【分析1】首先我们需要明确一下镜像二叉树的概念，简单来说就是左子树与右子树对调。而根据树的递归定义可以，左子树和右子树的定义也是递归而言的。 【分析2】接下来我们需要明确两棵二叉树什么时候相同。显然，根结点的值相等，左右子树相同，则这两颗二叉树相同。显然，在判断两棵二叉树是否相同时也需要递归地进行判断。 【分析3】根结点对应的值相等，原二叉树Root的左子树与其镜像二叉树Root’的右子树相同，且原二叉树Root的右子树与其镜像二叉树Root’的左子树相同。如此递归下去。直到 ① 如果Root和Root&apos;均为空，则返回true； ② 如果Root为空或者Root&apos;为空，则返回false； ③ 如果Root对应的值与Root&apos;对应的值不相等，则返回false。 3.代码12345678910111213141516171819202122public class Solution &#123; boolean isSymmetrical(TreeNode pRoot) &#123; if(pRoot==null || pRoot.left==null&amp;&amp;pRoot.right==null) return true; return Symmetrical(pRoot.left,pRoot.right); &#125; boolean Symmetrical(TreeNode left,TreeNode right) &#123; if(left==null&amp;&amp;right==null) return true; if(left==null||right==null) return false; if(left.val==right.val) //右子树的左边跟左子树的右边是否对称 return Symmetrical(left.left,right.right) //左子树的右边跟右子树的左边是否对称 &amp;&amp; Symmetrical(left.right,right.left); return false; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>二叉树题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【57】二叉树的下一个结点]]></title>
+    <url>%2F2019%2F05%2F57-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E7%BB%93%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[1.题目描述 给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针。 2.解题思路 情况1：该节点有右子树： 6 / \ 3 10 / \ / \ 2 5 8 12 中序遍历结果为：2–&gt;3–&gt;5–&gt;6–&gt;8–&gt;10–&gt;12 即它的下一个结点就是它的右子树中最左子结点 情况2.1：该节点无右子树：(为父节点6的左子节点) 6 / \ 3 10 / / \ 2 8 12 2–&gt;3–&gt;6–&gt;8–&gt;10–&gt;12 该节点是父节点的左子节点的这种情况比较简单，直接将父节点返回即可 情况2.2：该节点无右子树：(为父节点6的右子节点) 6 / \ 3 10 / \ / \ 2 5 8 null 2–&gt;3–&gt;6–&gt;8–&gt;10 –&gt;null 如果是父节点的右子节点的话，需要不断的向上移动，直到对应的节点不是父节点的右节点（即左节点），既然他是父节点的左节点，此时将这个节点父节点返回即可，或者遍历到了根节点，返回null； 3.代码12345678910111213141516171819202122232425262728293031323334353637383940414243/*public class TreeLinkNode &#123; int val; TreeLinkNode left = null; TreeLinkNode right = null; TreeLinkNode next = null; TreeLinkNode(int val) &#123; this.val = val; &#125;&#125;*/ public class Solution &#123; public TreeLinkNode GetNext(TreeLinkNode pNode) &#123; if(pNode == null)&#123; return null; &#125; //该节点有右子树,它的下一个结点就是它的右子树中最左子结点 if(pNode.right != null)&#123; pNode = pNode.right; while(pNode.left != null)&#123; pNode = pNode.left; &#125; return pNode; &#125; //该节点无右子树，父节点不为空 while(pNode.next != null)&#123; //pNode为父节点的左节点为该节点，直接返回父节点 if(pNode.next.left== pNode)&#123; return pNode.next; &#125; //为父节点的右子节点，不断的向上移动，直到对应的节点不是父节点的左子节点 //一直回溯如果遍历到他是父节点的左节点，此时将这个节点父节点返回即可， //或者遍历到了根节点，返回null； pNode = pNode.next; &#125; return null; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>二叉树题</tag>
       </tags>
   </entry>
   <entry>
@@ -463,7 +507,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[剑指offer_【18]二叉树的镜像]]></title>
+    <title><![CDATA[剑指offer_【18】二叉树的镜像]]></title>
     <url>%2F2019%2F04%2F18-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F%2F</url>
     <content type="text"><![CDATA[1.题目描述操作给定的二叉树，将其变换为源二叉树的镜像。 二叉树的镜像定义： 8 / \ 6 10 / \ / \ 5 7 9 11 镜像二叉树 8 / \ 10 6 / \ / \ 11 9 7 5 2.解题思路(1)镜像即左右子树交换位置，故交换左子树右子树位置 (2)交换后的左右子树的节点保持原来的顺序，故要交换左右子树自己的左右子树 (3)终止条件为root==null || root.left==null ||root.right == null 3.代码123456789101112131415161718192021222324252627282930313233/* public class TreeNode &#123; int val = 0; TreeNode left = null; TreeNode right = null; public TreeNode(int val) &#123; this.val = val; &#125; &#125; */ public class Solution &#123; public void Mirror(TreeNode root) &#123; if(root!=null&amp;&amp;(root.left!=null||root.right!=null))&#123; //这三句是左子树跟右子树交换 TreeNode tem=root.left; root.left=root.right; root.right=tem; //然后将根节点换成root.left Mirror(root.left); //然后将根节点换成root.right Mirror(root.right); &#125; &#125; &#125;]]></content>
       <categories>
