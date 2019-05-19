@@ -45,9 +45,53 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[剑指offer_【55】链表中环的入口结点]]></title>
+    <url>%2F2019%2F05%2F55-%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%8E%AF%E7%9A%84%E5%85%A5%E5%8F%A3%E7%BB%93%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[1.题目描述给一个链表，若其中包含环，请找出该链表的环的入口结点，否则，输出null。 2.解题思路 方法1： 利用hashSet不存储重复值的思想 方法2： 链表包含环，像数字6的图形。 (1)设置快慢指针，假设快指针在环内与慢指针相遇，设头节点到入口结点的距离为x,入口结点到相遇点为y,相遇点到入口结点距离为z,则有(x+y)*2 = (x+y+z+y),即z = x，即相遇点到入口结点的距离跟头节点到入口结点的距离相等。 (2)这时再设置fast = pHead,一个指针重头走，另一个指针重相遇节点走，当两个点相等时即为入口节点所在。 3.代码方法1： 1234567891011121314public ListNode EntryNodeOfLoop(ListNode pHead)&#123; HashSet&lt;ListNode&gt; hs = new HashSet&lt;ListNode&gt;(); while(pHead!=null)&#123; if(!hs.add(pHead))//如果包含了，那么这个就是入口结点 return pHead; pHead = pHead.next; &#125; return null;&#125; 方法2： 1234567891011121314151617181920212223242526272829303132/* public class ListNode &#123; int val; ListNode next = null; ListNode(int val) &#123; this.val = val; &#125;&#125;*/public class Solution &#123; public ListNode EntryNodeOfLoop(ListNode pHead) &#123; ListNode fast = pHead; ListNode slow = pHead; while(fast!=null &amp;&amp; fast.next!=null)&#123; fast = fast.next.next; slow = slow.next; if(fast==slow)&#123; fast=pHead; while (fast!=slow)&#123; fast = fast.next; slow = slow.next; &#125; return fast; &#125; &#125; return null; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>链表题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【54】字符流中第一个不重复的字符]]></title>
+    <url>%2F2019%2F05%2F54-%E5%AD%97%E7%AC%A6%E6%B5%81%E4%B8%AD%E7%AC%AC%E4%B8%80%E4%B8%AA%E4%B8%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E5%AD%97%E7%AC%A6%2F</url>
+    <content type="text"><![CDATA[1.题目描述 请实现一个函数用来找出字符流中第一个只出现一次的字符。例如，当从字符流中只读出前两个字符”go”时，第一个只出现一次的字符是”g”。当从该字符流中读出前六个字符“google”时，第一个只出现一次的字符是”l”。 2.解题思路桶排序思想 3.代码1234567891011121314151617181920212223//源源不断的有字母放到字符串中，建立一个256个大小的int型数组来代表哈希表public class Solution &#123; String str=""; int[] count=new int[256]; public void Insert(char ch) &#123; if(ch &gt;=256)&#123; return ; &#125;else&#123; str+=ch;//字符放入字符串 count[ch]++;//根据字符，修改数组字符元素的值 &#125; &#125; public char FirstAppearingOnce() &#123; for(char c:str.toCharArray())&#123;// //注意的是，要找第一个出现一次的字符，所以遍历字符串，不能遍历哈希数组 if(count[c]==1)&#123;//如果字符串作为下表的元素值为1，说明该字符出现一次，直接返回该字符 return c; &#125; &#125; return '#'; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>字符串题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【53】表示数值的字符串]]></title>
+    <url>%2F2019%2F05%2F53-%E8%A1%A8%E7%A4%BA%E6%95%B0%E5%80%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%2F</url>
+    <content type="text"><![CDATA[1.题目描述 请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。例如，字符串”+100”,”5e2”,”-123”,”3.1416”和”-1E-16”都表示数值。 但是”12e”,”1a3.14”,”1.2.3”,”+-5”和”12e+4.3”都不是。 2.解题思路 (1) 先判断每个字符是否合法 (2) 正负号的位置和e不能在结尾位置 (3) 小数点只能存在一个 (4)正负号在中间位置时，前面是e后面是数字 (5)e后面不能有小数点 3.代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354public class Solution &#123; public boolean isNumeric(char[] str) &#123; String ss = String.valueOf(str); int len = ss.length(); //先判断每个字符是否合法 for(int i=0; i&lt;len; i++)&#123; char c = ss.charAt(i); if(!((c&gt;='0' &amp;&amp; c &lt;= '9') || c=='e' || c=='E' || c=='+' || c=='-'|| c=='.')) return false; &#125; ////正负号,E不能在末尾 if(ss.charAt(len-1) == '+' || ss.charAt(len-1) == '-' || ss.charAt(len-1) == 'E' || ss.charAt(len-1) == 'e') return false; //判断小数点，只能有一个 if(ss.indexOf(".") != ss.lastIndexOf(".")) return false; //正负号在中间的位置时，前面的是e，E,后面是数字 for(int i=1; i&lt;len-1; i++)&#123; char c = ss.charAt(i); if(c == '+' || c=='-')&#123; if(!(ss.charAt(i-1) == 'e' || ss.charAt(i-1) == 'E') ||!(ss.charAt(i+1)&gt;='0' &amp;&amp; ss.charAt(i+1)&lt;='9')) return false; &#125; &#125; ////e的后面不能有数字12E+4.3 for(int i=1; i&lt;len; i++)&#123; char c = ss.charAt(i); if(c == 'e' || c=='E')&#123; if(i==len-1) return false; if(ss.charAt(i+1) == '+' || ss.charAt(i+1) == '-')&#123; //从i+2开始往后没有小数点.则返回-1 if(ss.indexOf(".", i+2) != -1)&#123; return false; &#125; &#125;else&#123; if(ss.indexOf(".", i+1) != -1)&#123; return false; &#125; &#125; &#125; &#125; return true; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>数组类型题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【52】正则表达式匹配]]></title>
+    <url>%2F2019%2F05%2F52-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D%2F</url>
+    <content type="text"><![CDATA[1.题目描述 请实现一个函数用来匹配包括’.’和’‘的正则表达式。模式中的字符’.’表示任意一个字符，而’‘表示它前面的字符可以出现任意次（包含0次）。 在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串”aaa”与模式”a.a”和”abaca”匹配，但是与”aa.a”和”ab*a”均不匹配。 2.解题思路 这道题的核心其实在于分析’‘,对于’.’来说，它和任意字符都匹配，可把其当做普通字符。对于’‘的分析，我们要进行分情况讨论，当所有的情况都搞清楚了以后，就可以写代码了。 在每轮匹配中，Patttern第二个字符是’*’时： 1.第一个字符不匹配（’.’与任意字符视作匹配），那么’‘只能代表匹配0次，比如’ba’与’aba’，字符串不变，模式向后移动两个字符，然后匹配剩余字符串和模式 2.第一个字符匹配，那么’‘可能代表匹配0次，1次，多次，比如’aaa’与’aaaa’、’aba’与’aba’、’aaaba’与’aba’。匹配0次时，字符串不变，模式向后移动两个字符，然后匹配剩余字符串和模式；匹配1次时，字符串往后移动一个字符，模式向后移动2个字符；匹配多次时，字符串往后移动一个字符，模式不变； 而当Patttern第二个字符不是’*’时，情况就简单多了： (1)如果字符串的第一个字符和模式中的第一个字符匹配，那么在字符串和模式上都向后移动一个字符，然后匹配剩余字符串和模式。 (2)如果字符串的第一个字符和模式中的第一个字符不匹配，那么直接返回false。 3.代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667public class Solution &#123; public boolean match(char[] str, char[] pattern) &#123; if (str == null || pattern == null) return false; int strIndex = 0,patternIndex = 0; return matchCore(str, strIndex, pattern, patternIndex); &#125; public boolean matchCore(char[] str, int strIndex, char[] pattern, int patternIndex) &#123; //有效性检验：str到尾，pattern到尾，匹配成功 if (strIndex == str.length &amp;&amp; patternIndex == pattern.length) &#123; return true; &#125; //pattern先到尾，匹配失败 if (strIndex != str.length &amp;&amp; patternIndex == pattern.length) &#123; return false; &#125; //模式第2个是*，且字符串第1个跟模式第1个匹配, //分3种匹配模式；如不匹配，模式后移2位 if (patternIndex + 1 &lt; pattern.length &amp;&amp; pattern[patternIndex + 1] == '*') &#123; if ((strIndex != str.length &amp;&amp; pattern[patternIndex] == str[strIndex]) || (pattern[patternIndex] == '.' &amp;&amp; strIndex != str.length)) &#123; return //模式后移2，视为x*匹配0个字符 matchCore(str, strIndex, pattern, patternIndex + 2) //视为模式匹配1个字符 || matchCore(str, strIndex + 1, pattern, patternIndex + 2) //*匹配1个，再匹配str中的下一个 || matchCore(str, strIndex + 1, pattern, patternIndex); &#125; else &#123; return matchCore(str, strIndex, pattern, patternIndex + 2); &#125; &#125; //模式第2个不是*，且字符串第1个跟模式第1个匹配，则都后移1位，否则直接返回false if ((strIndex != str.length &amp;&amp; pattern[patternIndex] == str[strIndex]) || (pattern[patternIndex] == '.' &amp;&amp; strIndex != str.length)) &#123; return matchCore(str, strIndex + 1, pattern, patternIndex + 1); &#125; return false; &#125; &#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>数组类型题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[剑指offer_【51】构建乘积数组]]></title>
     <url>%2F2019%2F05%2F51-%E6%9E%84%E5%BB%BA%E4%B9%98%E7%A7%AF%E6%95%B0%E7%BB%84%2F</url>
-    <content type="text"><![CDATA[1.题目描述 给定一个数组A[0,1,…,n-1],请构建一个数组B[0,1,…,n-1],其中B中的元素B[i]=A[0]A[1]…A[i-1]A[i+1]…A[n-1]。不能使用除法。 2.解题思路 题目的意思就是B[i] = A[0]*A[1]….*A[n-2]*A[n-1] / A[i],但是题目要求不能用除法 创建一个left数组和一个rigth数组，拿n = 3为例 res[i] left[0]*right[0] left[1]*right[1] left[2]*right[2] left[3]*right[3] right数组 A[2]*A[1]*A[0]*1 A[1]*A[0]*1 A[0]*1 1 left数组 1 1*A[0] 1*A[0]*A[1] 1*A[0]*A[1]*A[2] | 短文本 | 中等文本 | 稍微长一点的文本 | | 稍微长一点的文本 | 短文本 | 中等文本 | 12| left数组 | 1 | 1*A[0] |1*A[0]*A[1] | 1*A[0]*A[1]*A[2]|right数组 |A[2]*A[1]*A[0]*1 3.代码123456789101112131415161718192021222324import java.util.ArrayList;public class Solution &#123; public int[] multiply(int[] A) &#123; int []res = new int[A.length]; int []left = new int[A.length]; int []right = new int[A.length]; left[0] = 1; for(int i = 1;i&lt;A.length;i++)&#123; left[i] = A[i-1]*left[i-1]; &#125; right[A.length-1] = 1; for(int i = A.length-2;i&gt;=0;i--)&#123; right[i] = right[i+1]*A[i+1]; &#125; //计算结果 for(int i = 0;i&lt;A.length;i++)&#123; res[i] = left[i]*right[i]; &#125; return res; &#125;&#125;]]></content>
+    <content type="text"><![CDATA[1.题目描述 给定一个数组A[0,1,…,n-1],请构建一个数组B[0,1,…,n-1],其中B中的元素B[i]=A[0]A[1]…A[i-1]A[i+1]…A[n-1]。不能使用除法。 2.解题思路 题目的意思就是B[i] = A[0]*A[1]….*A[n-2]*A[n-1] / A[i],但是题目要求不能用除法 创建一个left数组和一个rigth数组，拿n = 3为例 res[i] left[0]*right[0] left[1]*right[1] left[2]*right[2] left[3]*right[3] right数组 A[2]*A[1]*A[0]*1 A[1]*A[0]*1 A[0]*1 1 left数组 1 1*A[0] 1*A[0]*A[1] 1*A[0]*A[1]*A[2] 3.代码123456789101112131415161718192021222324import java.util.ArrayList;public class Solution &#123; public int[] multiply(int[] A) &#123; int []res = new int[A.length]; int []left = new int[A.length]; int []right = new int[A.length]; left[0] = 1; for(int i = 1;i&lt;A.length;i++)&#123; left[i] = A[i-1]*left[i-1]; &#125; right[A.length-1] = 1; for(int i = A.length-2;i&gt;=0;i--)&#123; right[i] = right[i+1]*A[i+1]; &#125; //计算结果 for(int i = 0;i&lt;A.length;i++)&#123; res[i] = left[i]*right[i]; &#125; return res; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
       </categories>
