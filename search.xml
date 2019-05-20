@@ -201,6 +201,8 @@
             
             <tag> 秒杀 </tag>
             
+            <tag> rabbitMQ </tag>
+            
         </tags>
       
     </entry>
@@ -225,6 +227,8 @@
         <tags>
             
             <tag> 秒杀 </tag>
+            
+            <tag> redis </tag>
             
         </tags>
       
