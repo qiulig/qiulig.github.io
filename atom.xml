@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blogs.qiulig.website/"/>
-  <updated>2019-05-20T03:12:17.810Z</updated>
+  <updated>2019-05-20T03:10:14.329Z</updated>
   <id>http://blogs.qiulig.website/</id>
   
   <author>
@@ -15,27 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>66.机器人的运动范围</title>
-    <link href="http://blogs.qiulig.website/2019/05/66-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E8%BF%90%E5%8A%A8%E8%8C%83%E5%9B%B4/"/>
-    <id>http://blogs.qiulig.website/2019/05/66-机器人的运动范围/</id>
-    <published>2019-05-20T03:12:17.000Z</published>
-    <updated>2019-05-20T03:12:17.810Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>剑指offer_【62】二叉搜索树的第K个结点</title>
@@ -57,6 +36,56 @@
     
     
       <category term="二叉树题" scheme="http://blogs.qiulig.website/tags/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer_【66】机器人的运动范围</title>
+    <link href="http://blogs.qiulig.website/2019/05/66-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E8%BF%90%E5%8A%A8%E8%8C%83%E5%9B%B4/"/>
+    <id>http://blogs.qiulig.website/2019/05/66-机器人的运动范围/</id>
+    <published>2019-05-17T03:12:17.000Z</published>
+    <updated>2019-05-20T08:13:11.863Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><blockquote><p>地上有一个m行和n列的方格。一个机器人从坐标0,0的格子开始移动，每一次只能向左，右，上，下四个方向移动一格，但是不能进入行坐标和列坐标的数位之和大于k的格子。 例如，当k为18时，机器人能够进入方格（35,37），因为3+5+3+7 = 18。但是，它不能进入方格（35,38），因为3+5+3+8 = 19。请问该机器人能够达到多少个格子？<a id="more"></a></p></blockquote><h4 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h4><blockquote><p>本题使用的方法同样还是回溯法，另外还需要会计算给定整数上的各个位上数之和。</p><pre><code>(1)使用一个访问数组记录是否已经经过该格子。机器人从(0,0)开始移动，当它准备进入(i,j)的格子时，通过检查坐标的数位来判断机器人是否能够进入。(2)如果机器人能进入(i,j)的格子，接着在判断它是否能进入四个相邻的格子(i,j-1),(i,j+1),(i-1,j),(i+1,j)。</code></pre><p>因此，可以用回溯法来解决这一问题。</p></blockquote><h4 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">movingCount</span><span class="params">(<span class="keyword">int</span> threshold, <span class="keyword">int</span> rows, <span class="keyword">int</span> cols)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(rows&lt;<span class="number">1</span>||cols&lt;<span class="number">1</span>||threshold&lt;<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">         <span class="keyword">boolean</span> []visit=<span class="keyword">new</span> <span class="keyword">boolean</span>[rows*cols];</span><br><span class="line">        <span class="keyword">return</span> count(threshold,rows,cols,visit,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">count</span><span class="params">(<span class="keyword">int</span> threshold, <span class="keyword">int</span> rows, <span class="keyword">int</span> cols, </span></span></span><br><span class="line"><span class="function"><span class="params">                             <span class="keyword">boolean</span>[] visit, <span class="keyword">int</span> row, <span class="keyword">int</span> col)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(check(threshold,rows,cols,visit,row,col))</span><br><span class="line">        &#123;</span><br><span class="line">            visit[row*cols+col]=<span class="keyword">true</span>;</span><br><span class="line">            res=<span class="number">1</span>+count(threshold,rows,cols,visit,row,col+<span class="number">1</span>)</span><br><span class="line">                 +count(threshold,rows,cols,visit,row,col-<span class="number">1</span>)</span><br><span class="line">                 +count(threshold,rows,cols,visit,row+<span class="number">1</span>,col)</span><br><span class="line">                 +count(threshold,rows,cols,visit,row-<span class="number">1</span>,col);</span><br><span class="line">                </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>  res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> threshold, <span class="keyword">int</span> rows, <span class="keyword">int</span> cols, <span class="keyword">boolean</span>[] visit, <span class="keyword">int</span> row, <span class="keyword">int</span> col)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (row &gt;= <span class="number">0</span> &amp;&amp; row &lt; rows &amp;&amp; col &gt;= <span class="number">0</span> &amp;&amp; col &lt; cols</span><br><span class="line">                     &amp;&amp; visit[row * cols + col] == <span class="keyword">false</span></span><br><span class="line"></span><br><span class="line">                     &amp;&amp;getNum(col) + getNum(row) &lt;= threshold) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//获取位数之和</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span>  <span class="keyword">int</span> <span class="title">getNum</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (num &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            sum += num % <span class="number">10</span>;</span><br><span class="line">            num /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;1-题目描述&quot;&gt;&lt;a href=&quot;#1-题目描述&quot; class=&quot;headerlink&quot; title=&quot;1.题目描述&quot;&gt;&lt;/a&gt;1.题目描述&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;地上有一个m行和n列的方格。一个机器人从坐标0,0的格子开始移动，每一次只能向左，右，上，下四个方向移动一格，但是不能进入行坐标和列坐标的数位之和大于k的格子。 例如，当k为18时，机器人能够进入方格（35,37），因为3+5+3+7 = 18。但是，它不能进入方格（35,38），因为3+5+3+8 = 19。请问该机器人能够达到多少个格子？&lt;/p&gt;&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="剑指offer" scheme="http://blogs.qiulig.website/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="数组类型题" scheme="http://blogs.qiulig.website/tags/%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B%E9%A2%98/"/>
+    
+      <category term="回溯法" scheme="http://blogs.qiulig.website/tags/%E5%9B%9E%E6%BA%AF%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer_【65】矩阵中的路径</title>
+    <link href="http://blogs.qiulig.website/2019/05/65-%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/"/>
+    <id>http://blogs.qiulig.website/2019/05/65-矩阵中的路径/</id>
+    <published>2019-05-17T03:11:57.000Z</published>
+    <updated>2019-05-20T08:04:15.206Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><blockquote><p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则之后不能再次进入这个格子。 例如 a b c e s f c s a d e e 这样的3 * 4 矩阵中包含一条字符串”bcced”的路径，但是矩阵中不包含”abcb”路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子。<a id="more"></a></p></blockquote><h4 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h4><blockquote><p>回溯法</p><p>(1)在矩阵中任选一个格子作为路径的起点。假设矩阵中某个格子的字符为ch，那么这个格子不可能处在路径上的第i个位置。如果路径上的第i个字符不是ch，那么这个格子不可能处在路径上的第i个位置。如果路径上的第i个字符正好是ch，那么往相邻的格子寻找路径上的第i+1个字符。除在矩阵边界上的格子之外，其他格子都有4个相邻的格子。重复这个过程直到路径上的所有字符都在矩阵中找到相应的位置。<br>　　由于回朔法的递归特性，路径可以被开成一个栈。当在矩阵中定位了路径中前n个字符的位置之后，在与第n个字符对应的格子的周围都没有找到第n+1个字符，这个时候只要在路径上回到第n-1个字符，重新定位第n个字符。<br>　　需要判断这个矩阵中的每一个结点是否可以走一条路径，在走的过程中，设置一个和矩阵大小相同的整型数组flag表示是否已经访问，如果某个结点访问了，那么该结点的是否访问则为1。每次遍历一个结点的时候，递归的方式分别向左、向右、向上、向下。</p></blockquote><h4 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>  <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">boolean</span> <span class="title">hasPath</span><span class="params">(<span class="keyword">char</span>[] matrix, <span class="keyword">int</span> rows, <span class="keyword">int</span> cols, <span class="keyword">char</span>[] str)</span>    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] flag = <span class="keyword">new</span> <span class="keyword">int</span>[matrix.length];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rows; i ++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cols; j ++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(helper(matrix, rows, cols, i, j, str, <span class="number">0</span>, flag))&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">boolean</span> <span class="title">helper</span><span class="params">(<span class="keyword">char</span>[] matrix, <span class="keyword">int</span> rows, <span class="keyword">int</span> cols, </span></span></span><br><span class="line"><span class="function"><span class="params">                      <span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">char</span>[] str, <span class="keyword">int</span> k, <span class="keyword">int</span>[] flag)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> index = i * cols + j;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(i &lt; <span class="number">0</span> || i &gt;= rows || j &lt; <span class="number">0</span> || j &gt;= cols </span><br><span class="line">                || matrix[index] != str[k] || flag[index] == <span class="number">1</span>)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">/// /下标不符合，index对应的值不为和字符数组中的不一致，或者该index已经被访问，这些情况只要有符合的就返回false</span></span><br><span class="line">            <span class="comment">// 只有上面的所有情况都不符合，也就是值相等，且没有访问过，下标不符合</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(k == str.length - <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        flag[index] = <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">       <span class="keyword">if</span>(helper(matrix, rows, cols, i - <span class="number">1</span>, j, str, k + <span class="number">1</span>, flag)<span class="comment">//左</span></span><br><span class="line"></span><br><span class="line">        ||helper(matrix, rows, cols, i + <span class="number">1</span>, j, str, k + <span class="number">1</span>, flag)<span class="comment">//右</span></span><br><span class="line"></span><br><span class="line">        ||helper(matrix, rows, cols, i, j - <span class="number">1</span>, str, k + <span class="number">1</span>, flag)<span class="comment">//上</span></span><br><span class="line"></span><br><span class="line">      ||helper(matrix, rows, cols, i , j + <span class="number">1</span>, str, k + <span class="number">1</span>, flag))<span class="comment">//下  </span></span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        flag[index] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;1-题目描述&quot;&gt;&lt;a href=&quot;#1-题目描述&quot; class=&quot;headerlink&quot; title=&quot;1.题目描述&quot;&gt;&lt;/a&gt;1.题目描述&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则之后不能再次进入这个格子。 例如 a b c e s f c s a d e e 这样的3 * 4 矩阵中包含一条字符串”bcced”的路径，但是矩阵中不包含”abcb”路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子。&lt;/p&gt;&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="剑指offer" scheme="http://blogs.qiulig.website/categories/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="数组类型题" scheme="http://blogs.qiulig.website/tags/%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B%E9%A2%98/"/>
+    
+      <category term="回溯法" scheme="http://blogs.qiulig.website/tags/%E5%9B%9E%E6%BA%AF%E6%B3%95/"/>
     
   </entry>
   
@@ -440,29 +469,6 @@
     
       &lt;h4 id=&quot;1-题目描述&quot;&gt;&lt;a href=&quot;#1-题目描述&quot; class=&quot;headerlink&quot; title=&quot;1.题目描述&quot;&gt;&lt;/a&gt;1.题目描述&lt;/h4&gt;&lt;blockquote&gt;
 &lt;p&gt;给定一个数组A[0,1,…,n-1],请构建一个数组B[0,1,…,n-1],其中B中的元素B[i]=A[0]&lt;em&gt;A[1]&lt;/em&gt;…&lt;em&gt;A[i-1]&lt;/em&gt;A[i+1]&lt;em&gt;…&lt;/em&gt;A[n-1]。&lt;strong&gt;不能使用除法&lt;/strong&gt;。&lt;/p&gt;&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="剑指offer" scheme="http://blogs.qiulig.website/categories/%E5%89%91%E6%8C%87offer/"/>
-    
-    
-      <category term="数组类型题" scheme="http://blogs.qiulig.website/tags/%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>剑指offer_【50】数组中重复的数字</title>
-    <link href="http://blogs.qiulig.website/2019/05/50-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/"/>
-    <id>http://blogs.qiulig.website/2019/05/50-数组中重复的数字/</id>
-    <published>2019-05-12T02:54:07.000Z</published>
-    <updated>2019-05-19T03:22:49.086Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><blockquote><p>在一个<strong>长度为n</strong>的数组里的所有数字都在<strong>0到n-1的范围</strong>内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是第一个重复的数字2。<a id="more"></a></p></blockquote><h4 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h4><blockquote><p>长度为n,数字都在[0,n-1]范围，可以利用桶排序的思想，将numbers[i]的个数存入相应的res索引下，当第一次桶里有2个numbers[i]时，直接返回即找到第一个数组里面的重复数字。</p></blockquote><h4 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">duplicate</span><span class="params">(<span class="keyword">int</span> numbers[],<span class="keyword">int</span> length,<span class="keyword">int</span> [] duplication)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(length == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">int</span> res[] = <span class="keyword">new</span> <span class="keyword">int</span> [length];</span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;length;i++)&#123;</span><br><span class="line">           res[numbers[i]]++;</span><br><span class="line">            <span class="comment">//有重复的数</span></span><br><span class="line">            <span class="keyword">if</span>(res[numbers[i]]&gt;<span class="number">1</span>)&#123;</span><br><span class="line">              duplication[<span class="number">0</span>] = numbers[i];</span><br><span class="line">               flag = <span class="keyword">true</span>;</span><br><span class="line">               <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> flag;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;1-题目描述&quot;&gt;&lt;a href=&quot;#1-题目描述&quot; class=&quot;headerlink&quot; title=&quot;1.题目描述&quot;&gt;&lt;/a&gt;1.题目描述&lt;/h4&gt;&lt;blockquote&gt;
-&lt;p&gt;在一个&lt;strong&gt;长度为n&lt;/strong&gt;的数组里的所有数字都在&lt;strong&gt;0到n-1的范围&lt;/strong&gt;内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是第一个重复的数字2。&lt;/p&gt;&lt;/blockquote&gt;
     
     </summary>
     
