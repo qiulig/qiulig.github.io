@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="qiulig">
+
+
+
+<meta name="description" content="@Results                 —-表字段与数据库字段映射 @Entity                    —- 生成表 @Transient              —-后台与数据库不映射 @Id                            —-主键 @Transactional        —-事务 @GeneratedValuestrategy=Gene">
+<meta name="keywords" content="数据库,springboot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sprintboot中的数据库注解">
+<meta property="og:url" content="http://blogs.qiulig.website/2019/03/sprintboot中的数据库注解/index.html">
+<meta property="og:site_name" content="Long&#39;s Blog">
+<meta property="og:description" content="@Results                 —-表字段与数据库字段映射 @Entity                    —- 生成表 @Transient              —-后台与数据库不映射 @Id                            —-主键 @Transactional        —-事务 @GeneratedValuestrategy=Gene">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-22T12:09:35.173Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sprintboot中的数据库注解">
+<meta name="twitter:description" content="@Results                 —-表字段与数据库字段映射 @Entity                    —- 生成表 @Transient              —-后台与数据库不映射 @Id                            —-主键 @Transactional        —-事务 @GeneratedValuestrategy=Gene">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Long&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>sprintboot中的数据库注解 | Long&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?464240a4c3e7da4512bd33ba1c040abb";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head></html>
+<body>
+
+<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">qiulig</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">菜鸟要更加努力才能追上别人的步伐</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false">
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:qiuling_long@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/qiulig" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rabbitMQ/">rabbitMQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树题/">二叉树题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回溯法/">回溯法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字符串题/">字符串题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数组类型题/">数组类型题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/栈/">栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/秒杀/">秒杀</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/讯飞科技笔试/">讯飞科技笔试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链表题/">链表题</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://qiulig.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://blogs/qiulig.website/">HOME</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，与大家分享交流，同时能够对这些技术进行备忘，以便日后查询</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">qiulig</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">qiulig</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">菜鸟要更加努力才能追上别人的步伐</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:qiuling_long@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/qiulig" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-sprintboot中的数据库注解" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/sprintboot中的数据库注解/" class="article-date">
+      <time datetime="2019-03-22T06:03:03.000Z" itemprop="datePublished">2019-03-22</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+	
+		
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://blogs.qiulig.website/2019/03/sprintboot中的数据库注解/';
+            this.page.identifier = '2019/03/sprintboot中的数据库注解/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      sprintboot中的数据库注解
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/数据库/">数据库</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/">springboot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>@Results                 —-表字段与数据库字段映射</p>
+<p>@Entity                    —- 生成表</p>
+<p>@Transient              —-后台与数据库不映射</p>
+<p>@Id                            —-主键</p>
+<p>@Transactional        —-事务</p>
+<p>@GeneratedValuestrategy=GenerationType.IDENTITY   —–自增值</p>
+<p>@Table - 映射表名   —– 映射表名</p>
+<p>@Column(name = “dict_name”,columnDefinition=”varchar(100) COMMENT ‘字典名’”)                           —– 字段名、类型、注释</p>
+<p>@Select</p>
+<p>@Update</p>
+<p>@Delete</p>
+<p>@Insert</p>
+<p>@UpdateTimestamp  —— 更新时自动更新时间</p>
+<p>@CreationTimestamp ——创建时自动更新时间</p>
+<p>@Version                       —– 版本号，更新时自动加1</p>
+<h5 id="1-Entity"><a href="#1-Entity" class="headerlink" title="1.@Entity"></a>1.@Entity</h5><p>@Entity说明这个class是实体类，并且使用默认的orm规则，即class名即数据库表中表名，class字段名即表中的字段名</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@DynamicUpdate</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderDetail</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="keyword">private</span> String detailId;</span><br><span class="line">    <span class="keyword">private</span> String orderId;</span><br><span class="line">    <span class="keyword">private</span> String productId;</span><br><span class="line">    <span class="keyword">private</span> String productName;</span><br><span class="line">    <span class="keyword">private</span> BigDecimal productPrice;</span><br><span class="line">    <span class="keyword">private</span> Integer productQuantity;</span><br><span class="line">    <span class="keyword">private</span> String productIcon;</span><br><span class="line">    <span class="keyword">private</span> Date createTime;</span><br><span class="line">    <span class="keyword">private</span>  Date updateTime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行将对应生成数据库表名为OrderDetail的表，里面字段对应上面的字段。</p>
+<h5 id="2-DynamicUpdate"><a href="#2-DynamicUpdate" class="headerlink" title="2.@DynamicUpdate"></a>2.@DynamicUpdate</h5><p>动态更新表。</p>
+<p>如果我们在更新表时,只想更新某个字段,就不要加 @DynamicUpdate,通常为了更新表时的效率,都是不加的.反之,如果我们更新某个字段时,更新所有的字段,就可以加上 @DynamicUpdate.</p>
+<p>@DynamicUpdate属性:设置为true,设置为true,表示update对象的时候,生成动态的update语句,如果这个字段的值是null就不会被加入到update语句中,默认false。<br>比如只想更新某个属性，但是却把整个对象的属性都更新了，这并不是我们希望的结果，我们希望的结果是：我更改了哪些字段，只要更新我修改的字段就够了。</p>
+<h5 id="3-Table"><a href="#3-Table" class="headerlink" title="3.@Table"></a>3.@Table</h5><p>@Table注解用来标识实体类与数据表的对应关系，默认和类名一致。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name=<span class="string">"c_user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Id</span></span><br><span class="line">        <span class="meta">@GeneratedValue</span></span><br><span class="line">        <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@NotNull</span></span><br><span class="line">        <span class="meta">@Column</span>(length = <span class="number">50</span>)</span><br><span class="line">        <span class="keyword">private</span> String userName;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@NotNull</span></span><br><span class="line">        <span class="meta">@Column</span>(length = <span class="number">20</span> , unique = <span class="keyword">true</span>, nullable = <span class="keyword">false</span>)</span><br><span class="line">        <span class="keyword">private</span> Long mobile;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Column</span>(length = <span class="number">20</span> , unique = <span class="keyword">true</span>)</span><br><span class="line">        <span class="keyword">private</span> String email;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@NotNull</span></span><br><span class="line">        <span class="meta">@Column</span>(columnDefinition=<span class="string">"tinyint"</span>)</span><br><span class="line">        <span class="keyword">private</span> Integer status;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> String password;</span><br><span class="line">        <span class="keyword">private</span> String nickname;</span><br><span class="line">        <span class="keyword">private</span> Integer companyId;</span><br><span class="line">        <span class="keyword">private</span> Integer departmentId;</span><br><span class="line">        <span class="keyword">private</span> Date regTime;</span><br><span class="line">        <span class="keyword">private</span> String regIp;</span><br><span class="line">        <span class="keyword">private</span> Integer loginNum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="4-Column"><a href="#4-Column" class="headerlink" title="4. @Column"></a>4. @Column</h5><p>@Column注解来标识实体类中属性与数据表中字段的对应关系。共有10个属性，这10个属性均为可选属性：</p>
+<ul>
+<li>name属性定义了被标注字段在数据库表中所对应字段的名称；</li>
+<li>unique属性表示该字段是否为唯一标识，默认为false。如果表中有一个字段需要唯一标识，则既可以使用该标记，也可以使用@Table标记中的@UniqueConstraint。</li>
+<li>nullable属性表示该字段是否可以为null值，默认为true。如果属性里使用了验证类里的@NotNull注释，这个属性可以不写。</li>
+<li>insertable属性表示在使用“INSERT”脚本插入数据时，是否需要插入该字段的值。</li>
+<li>updatable属性表示在使用“UPDATE”脚本插入数据时，是否需要更新该字段的值。insertable和updatable属性一般多用于只读的属性，例如主键和外键等。这些字段的值通常是自动生成的。</li>
+<li>columnDefinition属性表示创建表时，该字段创建的SQL语句，一般用于通过Entity生成表定义时使用。若不指定该属性，通常使用默认的类型建表，若此时需要自定义建表的类型时，可在该属性中设置。（也就是说，如果DB中表已经建好，该属性没有必要使用。）</li>
+<li>table属性定义了包含当前字段的表名。</li>
+<li>length属性表示字段的长度，当字段的类型为varchar时，该属性才有效，默认为255个字符。</li>
+<li>precision属性和scale属性表示精度，当字段类型为double时，precision表示数值的总长度，scale表示小数点所占的位数。</li>
+</ul>
+<h5 id="5-Transactional-事务"><a href="#5-Transactional-事务" class="headerlink" title="5.@Transactional 事务"></a>5.@Transactional 事务</h5><h5 id="Transactional-注解的属性信息"><a href="#Transactional-注解的属性信息" class="headerlink" title="@Transactional 注解的属性信息"></a>@Transactional 注解的属性信息</h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>当在配置文件中有多个 TransactionManager , 可以用该属性指定选择哪个事务管理器。</td>
+</tr>
+<tr>
+<td>propagation</td>
+<td>事务的传播行为，默认值为 REQUIRED。</td>
+</tr>
+<tr>
+<td>isolation</td>
+<td>事务的隔离度，默认值采用 DEFAULT。</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>事务的超时时间，默认值为-1。如果超过该时间限制但事务还没有完成，则自动回滚事务。</td>
+</tr>
+<tr>
+<td>read-only</td>
+<td>指定事务是否为只读事务，默认值为 false；为了忽略那些不需要事务的方法，比如读取数据，可以设置 read-only 为 true。</td>
+</tr>
+<tr>
+<td>rollback-for</td>
+<td>用于指定能够触发事务回滚的异常类型，如果有多个异常类型需要指定，各类型之间可以通过逗号分隔。</td>
+</tr>
+<tr>
+<td>no-rollback- for</td>
+<td>抛出 no-rollback-for 指定的异常类型，不回滚事务。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="6-Transient"><a href="#6-Transient" class="headerlink" title="6.@Transient"></a>6.@Transient</h5><p>@Transient是希望该属性不会在数据表中产生字段，但又可以在程序中使用它。</p>
+<h5 id="7-Results"><a href="#7-Results" class="headerlink" title="7.@Results"></a>7.@Results</h5><p>(1)当数据库字段名与实体类对应的属性名不一致时，可以使用@Results映射来将其对应起来。column为数据库字段名，porperty为实体类属性名，jdbcType为数据库字段数据类型，id为是否为主键。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Select</span>(&#123;<span class="string">"select id, name, class_id from my_student"</span>&#125;)</span><br><span class="line"><span class="meta">@Results</span>(&#123;</span><br><span class="line">    <span class="meta">@Result</span>(column=<span class="string">"id"</span>, property=<span class="string">"id"</span>, jdbcType=JdbcType.INTEGER, id=<span class="keyword">true</span>),</span><br><span class="line">    <span class="meta">@Result</span>(column=<span class="string">"name"</span>, property=<span class="string">"name"</span>, jdbcType=JdbcType.VARCHAR),</span><br><span class="line">    <span class="meta">@Result</span>(column=<span class="string">"class_id"</span>, property=<span class="string">"classId"</span>, jdbcType=JdbcType.INTEGER)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="function">List&lt;Student&gt; <span class="title">selectAll</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p>(2)@ResultMap的用法。当这段@Results代码需要在多个方法用到时，为了提高代码复用性，我们可以为这个@Results注解设置id，然后使用@ResultMap注解来复用这段代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Select</span>(&#123;<span class="string">"select id, name, class_id from my_student"</span>&#125;)</span><br><span class="line"><span class="meta">@Results</span>(id=<span class="string">"studentMap"</span>, value=&#123;</span><br><span class="line">    <span class="meta">@Result</span>(column=<span class="string">"id"</span>, property=<span class="string">"id"</span>, jdbcType=JdbcType.INTEGER, id=<span class="keyword">true</span>),</span><br><span class="line">    <span class="meta">@Result</span>(column=<span class="string">"class_id"</span>, property=<span class="string">"classId"</span>, jdbcType=JdbcType.INTEGER)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="function">List&lt;Student&gt; <span class="title">selectAll</span><span class="params">()</span></span>;</span><br><span class="line"> </span><br><span class="line"><span class="meta">@Select</span>(&#123;<span class="string">"select id, name, class_id from my_student where id = #&#123;id&#125;"</span>&#125;)</span><br><span class="line"><span class="meta">@ResultMap</span>(value=<span class="string">"studentMap"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function">Student <span class="title">selectById</span><span class="params">(integer id)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>(3)@One的用法。当我们需要通过查询到的一个字段值作为参数，去执行另外一个方法来查询关联的内容，而且两者是一对一关系时，可以使用@One注解来便捷的实现。比如当我们需要查询学生信息以及其所属班级信息时，需要以查询到的class_id为参数，来执行ClassesMapper中的selectById方法，从而获得学生所属的班级信息。可以使用如下代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Select(&#123;<span class="string">"select id, name, class_id from my_student"</span>&#125;)</span><br><span class="line"><span class="meta">@Results</span>(id=<span class="string">"studentMap"</span>, value=&#123;</span><br><span class="line"> <span class="meta">@Result</span>(column=<span class="string">"id"</span>, property=<span class="string">"id"</span>, jdbcType=JdbcType.INTEGER, id=<span class="keyword">true</span>),</span><br><span class="line"> <span class="meta">@Result</span>(column=<span class="string">"class_id"</span>, property=<span class="string">"myClass"</span>, javaType=MyClass.class,</span><br><span class="line"> one=<span class="meta">@One</span>(select=<span class="string">"com.mapper.MyClassMapper.selectById"</span>))</span><br><span class="line">&#125;)</span><br><span class="line"><span class="function">List&lt;Student&gt; <span class="title">selectAllAndClassMsg</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p>（4）@Many的用法。与@One类似，只不过如果使用@One查询到的结果是多行，会抛出TooManyResultException异常，这种时候应该使用的是@Many注解，实现一对多的查询。比如在需要查询学生信息和每次考试的成绩信息时。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select</span>(&#123;<span class="string">"select id, name, class_id from my_student"</span>&#125;)</span><br><span class="line"><span class="meta">@Results</span>(id=<span class="string">"studentMap"</span>, value=&#123;</span><br><span class="line"> <span class="meta">@Result</span>(column=<span class="string">"id"</span>, property=<span class="string">"id"</span>, jdbcType=JdbcType.INTEGER, id=<span class="keyword">true</span>),</span><br><span class="line"> <span class="meta">@Result</span>(column=<span class="string">"class_id"</span>, property=<span class="string">"classId"</span>, jdbcType=JdbcType.INTEGER),</span><br><span class="line"> <span class="meta">@Result</span>(column=<span class="string">"id"</span>, property=<span class="string">"gradeList"</span>, javaType=List.class,</span><br><span class="line"> many=<span class="meta">@Many</span>(select=<span class="string">"com.example.demo.mapper.GradeMapper.selectByStudentId"</span>))</span><br><span class="line">&#125;)</span><br><span class="line"><span class="function">List&lt;Student&gt; <span class="title">selectAllAndGrade</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p>（5）传递多个参数。首先我们给这张表增加age（年龄）和gender（性别）两个参数。当我们需要根据age和gender查询学生的午餐，这时需要改写column属性的格式。等号左侧的age和gender对应java接口的参数，右侧的对应数据库字段名。即将查到的my_student表中age和gender字段的值，分别赋给getLunchByAgeAndGender方法中的age和gender参数，去查询对应的name（午餐名）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select</span>(<span class="string">"select id, name, age, gender from my_student"</span>)</span><br><span class="line"><span class="meta">@Results</span>(&#123;</span><br><span class="line"> <span class="meta">@Result</span>(column=<span class="string">"id"</span>, property=<span class="string">"id"</span>, jdbcType=JdbcType.INTEGER, id=<span class="keyword">true</span>),</span><br><span class="line"> <span class="meta">@Result</span>(column=<span class="string">"class_id"</span>, property=<span class="string">"classId"</span>, jdbcType=JdbcType.INTEGER),</span><br><span class="line"> <span class="meta">@Result</span>(column=<span class="string">"&#123;age=age,gender=gender&#125;"</span>, property=<span class="string">"lunch"</span>,</span><br><span class="line"> one=<span class="meta">@One</span>(select=<span class="string">"com.example.demo.mapper.StudentMapper.getLunchByAgeAndGender"</span>)),</span><br><span class="line"> &#125;)</span><br><span class="line"><span class="function">List&lt;Student&gt; <span class="title">selectAllAndLunch</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Select</span>(<span class="string">"select name from lunch where student_age = #&#123;age&#125; and student_gender = #&#123;gender&#125;"</span>)</span><br><span class="line"><span class="function">String <span class="title">getLunchByAgeAndGender</span><span class="params">(@Param(<span class="string">"age"</span>)</span> <span class="keyword">int</span> age, @<span class="title">Param</span><span class="params">(<span class="string">"gender"</span>)</span> <span class="keyword">int</span> gender)</span>;</span><br></pre></td></tr></table></figure>
+<hr>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/03/sprintboot中的数据库注解/">sprintboot中的数据库注解</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">qiulig</a></p>
+        <p><span>发布时间:</span>2019-03-22, 14:03:03</p>
+        <p><span>最后更新:</span>2019-05-22, 20:09:35</p>
+        <p><span class="post-count">文章字数:</span>1.9k</p> 
+		<p>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/sprintboot中的数据库注解/" title="sprintboot中的数据库注解">http://blogs.qiulig.website/2019/03/sprintboot中的数据库注解/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blogs.qiulig.website/2019/03/sprintboot中的数据库注解/　　作者: qiulig" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/04/JVM-回收算法/">
+                    JVM_垃圾回收算法
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/03/redis数据的持久化/">
+                    redis数据的持久化
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Entity"><span class="toc-number">1.</span> <span class="toc-text">1.@Entity</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-DynamicUpdate"><span class="toc-number">2.</span> <span class="toc-text">2.@DynamicUpdate</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-Table"><span class="toc-number">3.</span> <span class="toc-text">3.@Table</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-Column"><span class="toc-number">4.</span> <span class="toc-text">4. @Column</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-Transactional-事务"><span class="toc-number">5.</span> <span class="toc-text">5.@Transactional 事务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Transactional-注解的属性信息"><span class="toc-number">6.</span> <span class="toc-text">@Transactional 注解的属性信息</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-Transient"><span class="toc-number">7.</span> <span class="toc-text">6.@Transient</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-Results"><span class="toc-number">8.</span> <span class="toc-text">7.@Results</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"sprintboot中的数据库注解　| Long's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://blogs.qiulig.website/2019/03/sprintboot中的数据库注解/';
+            this.page.identifier = '2019/03/sprintboot中的数据库注解/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/04/JVM-回收算法/" title="上一篇: JVM_垃圾回收算法">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/03/redis数据的持久化/" title="下一篇: redis数据的持久化">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/05/66-机器人的运动范围/">剑指offer_【66】机器人的运动范围</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/65-矩阵中的路径/">剑指offer_【65】矩阵中的路径</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/64-滑动窗口的最大值/">剑指offer_【64】滑动窗口的最大值</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/63-数据流中的中位数/">剑指offer_【63】数据流中的中位数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/62-二叉搜索树的第K个结点/">剑指offer_【62】二叉搜索树的第K个结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/JSR303参数校验/">JSR303参数校验和全局异常处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/通用缓存key/">通用缓存key</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/rabbitMQ消息队列/">rabbitMQ实现消息缓冲</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/Redis缓存java端实现/">Redis缓存java端实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/61-序列化二叉树/">剑指offer_【61】序列化二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/60-把二叉树打印成多行/">剑指offer_【60】把二叉树打印成多行</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/59-按之字形顺序打印二叉树/">剑指offer_【59】按之字形顺序打印二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/58-对称的二叉树/">剑指offer_【58】对称的二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/57-二叉树的下一个结点/">剑指offer_【57】二叉树的下一个结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/56-删除链表中重复的结点/">剑指offer_【56】删除链表中重复的结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/55-链表中环的入口结点/">剑指offer_【55】链表中环的入口结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/54-字符流中第一个不重复的字符/">剑指offer_【54】字符流中第一个不重复的字符</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/53-表示数值的字符串/">剑指offer_【53】表示数值的字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/52-正则表达式匹配/">剑指offer_【52】正则表达式匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/51-构建乘积数组/">剑指offer_【51】构建乘积数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/50-数组中重复的数字/">剑指offer_【50】数组中重复的数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/49-把字符串转换成整数/">剑指offer_【49】把字符串转换成整数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/48-不用加减乘除做加法/">剑指offer_【48】不用加减乘除做加法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/47-求1-2-n/">剑指offer_【47】求1+2+...+n</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/46-孩子们的游戏/">剑指offer_【46】孩子们的游戏(圆圈中最后剩下的数)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/45-扑克牌顺子/">剑指offer_【45】扑克牌顺子</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/44-翻转单词顺序列/">剑指offer_【44】翻转单词顺序列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/43-左旋转字符串/">剑指offer_【43】左旋转字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/42-和为s的两个数字/">剑指offer_【42】和为s的两个数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/41-和为S的连续正数序列/">剑指offer_【41】和为S的连续正数序列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/40-数组中只出现一次的数字/">剑指offer_【40】数组中只出现一次的数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/39-平衡二叉树/">剑指offer_【39】平衡二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/38-二叉树的深度/">剑指offer_【38】二叉树的深度</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/37-数字在排序数组中出现的次数/">剑指offer_【37】数字在排序数组中出现的次数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/36-两个链表的第一个公共结点/">剑指offer_【36】两个链表的第一个公共结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/争吵问题-md/">争吵问题.md</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/34-第一个只出现一次的字符位置/">剑指offer_【34】第一个只出现一次的字符位置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/35.数组中的逆序对/">剑指offer_【35】数组中的逆序对</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/33-丑数/">剑指offer_【33】丑数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/32-把数组排成最小的数/">剑指offer_【32】把数组排成最小的数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/31-整数中1出现的次数/">剑指offer_【31】整数中1出现的次数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/30-连续子数组的最大和/">剑指offer_【30】连续子数组的最大和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/29-最小的K个数/">剑指offer_【29】最小的K个数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/28-数组中出现次数超过一半的数字/">剑指offer_【28】数组中出现次数超过一半的数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/27-字符串的排列/">剑指offer_【27】字符串的排列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/26-二叉搜索树与双向链表/">剑指offer_【26】二叉搜索树与双向链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/25-复杂链表的复制/">剑指offer_【25】复杂链表的复制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/24-二叉树中和为某值的路径/">剑指offer_【24】二叉树中和为某值的路径</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/23-二叉搜索树的后序遍历序列/">剑指offer_【23】二叉搜索树的后序遍历序列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/22-从上到下打印二叉树/">剑指offer_【22】从上到下打印二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/21-栈的压入、弹出/">剑指offer_【21】栈的压入、弹出</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/20-包含min函数的栈/">剑指offer_【20】包含min函数的栈</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/19-顺时针打印矩阵/">剑指offer_【19】顺时针打印矩阵</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/18-二叉树的镜像/">剑指offer_【18】二叉树的镜像</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/17-树的子结构/">剑指offer_【17】树的子结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/16-合并两个排序的链表/">剑指offer_【16】合并两个排序的链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15-反转链表/">剑指offer_【15】反转链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/14-链表中倒数第K个结点/">剑指offer_【14】链表中倒数第K个结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/13-调整数值顺序使奇数位于偶数前面/">剑指offer_【13】调整数值顺序使奇数位于偶数前面</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12-数值的整数次方/">剑指offer_【12】数值的整数次方</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11-二进制中1的个数/">剑指offer_【11】二进制中1的个数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10-矩形覆盖/">剑指offer_【10】矩形覆盖</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/9-变态跳台阶/">剑指offer_【9】变态跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/8-跳台阶/">剑指offer_【8】跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/7-斐波那契数组/">剑指offer_【7】斐波那契数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/6-旋转数组的最小数字/">剑指offer_【6】旋转数组的最小数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/5.两个栈实现队列/">剑指offer_【5】两个栈实现队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/4.重建二叉树/">剑指offer_【4】重建二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/3.从尾到头打印链表/">剑指offer_【3】从尾到头打印链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/leetcode-15-三数之和/">leetcode-15:三数之和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/1.二维数组的查找/">剑指offer_【1】二维数组的查找</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/2.空格替换/">剑指offer_【2】空格替换</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/JVM-内存分配和回收策略/">JVM_内存分配和回收策略</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/JVM-对象已死/">JVM_对象已死</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/JVM-垃圾回收器/">JVM_垃圾收集器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/JVM-回收算法/">JVM_垃圾回收算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/sprintboot中的数据库注解/">sprintboot中的数据库注解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/redis数据的持久化/">redis数据的持久化</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/redis-数据的淘汰机制/">redis.数据的淘汰机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/redis与memcached/">redis与memcached</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/redis-数据类型/">redis数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/redis应用场景/">redis应用场景</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2019 qiulig
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+					<span title="本站总字数统计">
+                         <span><i class="fa fa-map" aria-hidden="true"></i></span>
+                        <span class="post-count"><b>39.4k</b></span>
+                    </span>
+             
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
