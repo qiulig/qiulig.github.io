@@ -282,6 +282,88 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-2.空格替换" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/2.空格替换/" class="article-date">
+      <time datetime="2019-04-26T16:00:00.000Z" itemprop="datePublished">2019-04-27</time>
+</a>
+
+ 
+    <a href="/2019/04/2.空格替换/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+        
+            <span class="disqus-comment-count" data-disqus-identifier="2019/04/2.空格替换/"></span>
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+	
+		
+
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/2.空格替换/">剑指offer_【2】空格替换</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h4><blockquote>
+<p>请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</p></blockquote>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/剑指offer/">剑指offer</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串题/">字符串题</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/04/2.空格替换/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-1.二维数组的查找" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -368,20 +450,20 @@
 
 
   
-    <article id="post-2.空格替换" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-jvm-线程TLAB局部缓存区域" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/2.空格替换/" class="article-date">
-      <time datetime="2019-04-26T16:00:00.000Z" itemprop="datePublished">2019-04-27</time>
+      <a href="/2019/04/jvm-线程TLAB局部缓存区域/" class="article-date">
+      <time datetime="2019-04-22T13:31:05.000Z" itemprop="datePublished">2019-04-22</time>
 </a>
 
  
-    <a href="/2019/04/2.空格替换/#comments" title="查看评论">
+    <a href="/2019/04/jvm-线程TLAB局部缓存区域/#comments" title="查看评论">
         <i class="fa fa-comments-o" aria-hidden="true"></i>
         <span class="count-comment"></span>
         
         
-            <span class="disqus-comment-count" data-disqus-identifier="2019/04/2.空格替换/"></span>
+            <span class="disqus-comment-count" data-disqus-identifier="2019/04/jvm-线程TLAB局部缓存区域/"></span>
         
     </a>
 
@@ -400,7 +482,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/2.空格替换/">剑指offer_【2】空格替换</a>
+      <a class="article-title" href="/2019/04/jvm-线程TLAB局部缓存区域/">JVM_线程TLAB局部缓存区域</a>
     </h1>
   
 
@@ -410,9 +492,24 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h4><blockquote>
-<p>请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</p></blockquote>
-          
+        <h2 id="1-对象内存分配的两种方法"><a href="#1-对象内存分配的两种方法" class="headerlink" title="1.对象内存分配的两种方法"></a>1.对象内存分配的两种方法</h2><p>Ø 指针碰撞</p>
+<blockquote>
+<p>假设Java堆中内存是绝对规整的，所有用过的内存都放在一边，空闲的内存放在另一边，中间放着一个指针作为分界点的指示器，那所分配内存就仅仅是把那个指针向空闲空间那边挪动一段与对象大小相等的距离，这种分配方式称为“指针碰撞”</p>
+</blockquote>
+<p>Ø 空闲列表</p>
+<blockquote>
+<p>如果Java堆中的内存并不是规整的，已使用的内存和空闲的内存相互交错，那就没有办法简单地进行指针碰撞了，虚拟机就必须维护一个列表，记录上哪些内存块是可用的，在分配的时候从列表中找到一块足够大的空间划分给对象实例，并更新列表上的记录，这种分配方式称为“空闲列表”</p>
+</blockquote>
+<p>问题：</p>
+<pre><code>多线程执行时，一个线程正在给A对象分配内存，指针还没有来的及修改，其它为B对象分配内存的线程，而且还是引用这之前的指针指向。就出现问题了
+</code></pre><h3 id="2-TLAB线程本地分配缓存区"><a href="#2-TLAB线程本地分配缓存区" class="headerlink" title="2.TLAB线程本地分配缓存区"></a>2.TLAB线程本地分配缓存区</h3><p>概念：线程本地分配缓存区,这是一个线程专用的内存分配区域。 由于对象一般会分配在堆上，而堆是全局共享的。因此在同一时间，可能会有多个线程在堆上申请空间。因此，每次对象分配都必须要进行同步（虚拟机采用CAS配上失败重试的方式保证更新操作的原子性），而在竞争激烈的场合分配的效率又会进一步下降。JVM使用TLAB来避免多线程冲突，在给对象分配内存时，每个线程使用自己的TLAB，这样可以避免线程同步，提高了对象分配的效率。</p>
+<h6 id="划重点："><a href="#划重点：" class="headerlink" title="划重点："></a>划重点：</h6><p>1.堆是JVM中所有线程共享的，因此在其上进行对象内存的分配均需要进行加锁，这也导致了new对象的开销是比较大的</p>
+<p>2.Sun Hotspot JVM为了提升对象内存分配的效率，对于所创建的线程都会分配一块独立的空间TLAB（Thread Local Allocation Buffer），<br>   其大小由JVM根据运行的情况计算而得，在TLAB上分配对象时不需要加锁，因此JVM在给线程的对象分配内存时会尽量的在TLAB上分配，在这种情况下JVM中分配对象内存的性能和C基本是一样高效的，但如果对象过大的话则仍然是直接使用堆空间分配</p>
+<p>3.JVM在内存新生代Eden Space中开辟了一小块线程私有的区域，称作TLAB。默认设定为占用Eden Space的1%。TLAB上的分配由于是线程私有所以没有锁开销。</p>
+<p>4.TLAB仅作用于新生代的Eden Space，因此在编写Java程序时，通常多个小的对象比大的对象分配起来更加高效。</p>
+<p>5.所有新创建的Object 都将会存储在新生代Yong Generation中。<br>   如果Young Generation的数据在一次或多次GC后存活下来，那么将被转移到OldGeneration。新的Object总是创建在Eden Space。</p>
+<hr>
+
       
     </div>
     
@@ -420,19 +517,15 @@
       
       
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/剑指offer/">剑指offer</a>
+    <a class="article-category-link" href="/categories/JAVA虚拟机/">JAVA虚拟机</a>
     </div>
 
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串题/">字符串题</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2019/04/2.空格替换/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -495,13 +588,38 @@
         <h2 id="1-内存分配"><a href="#1-内存分配" class="headerlink" title="1.内存分配"></a>1.内存分配</h2><p>1.对象优先在eden分配</p>
 <pre><code>对象先在新生代Eden区分配，当Eden区没有足够空间进行分配，虚拟机将发起  Minor GC
 </code></pre><p>2.大对象直接进入老年代</p>
-<pre><code>大对象指的是需要大量的连续内存空间的java对象。如**很长的字符串或者数组**
+<pre><code>大对象指的是需要大量的连续内存空间的java对象。如很长的字符串或者数组
  -XX:PretenureSizeThreshold:大于该值直接在老年代分配
-</code></pre><p>3.长期存活的对象直接进入老年代<br>        设置对象年龄计数器，GC一遍没死年龄加1,默认老年阈值为15<br>         -XX:MaxTenuringThreshold:老年代年龄设置</p>
+</code></pre><p>3.长期存活的对象直接进入老年代</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">设置对象年龄计数器，GC一遍没死年龄加1,默认老年阈值为15</span><br><span class="line">-XX:MaxTenuringThreshold:老年代年龄设置</span><br></pre></td></tr></table></figure>
 <h6 id="动态对象年龄判定"><a href="#动态对象年龄判定" class="headerlink" title="动态对象年龄判定"></a>动态对象年龄判定</h6><pre><code>survivor空间中相同年龄的对象大小总和&gt;survivor的一半，该年龄进入老年代，无需等到MaxTenuringThreshold设定的年龄。
-</code></pre><p>###### </p>
-<h6 id="空间分配担保："><a href="#空间分配担保：" class="headerlink" title="空间分配担保："></a>空间分配担保：</h6><pre><code>老年代最大可用空间&gt;新生代所有对象总空间，Minor GC 确保安全。如果允许，继续比较 老年代最大可用空间&gt;晋升到老年代对象的平均大小，如果大于进行Minor GC,否则进行Full GC.
-</code></pre><h2 id="2-回收策略"><a href="#2-回收策略" class="headerlink" title="2.回收策略"></a>2.回收策略</h2>
+</code></pre><h2 id="2-回收策略"><a href="#2-回收策略" class="headerlink" title="2.回收策略"></a>2.回收策略</h2><h6 id="空间分配担保："><a href="#空间分配担保：" class="headerlink" title="空间分配担保："></a>空间分配担保：</h6><pre><code>老年代最大可用空间&gt;新生代所有对象总空间，Minor GC 确保安全。
+如果允许，继续比较 老年代最大可用空间&gt;晋升到老年代对象的平均大小，如果大于进行Minor GC,否则进行Full GC.
+</code></pre><h4 id="Full-GC-和Minor-GC"><a href="#Full-GC-和Minor-GC" class="headerlink" title="Full GC 和Minor GC"></a>Full GC 和Minor GC</h4><blockquote>
+<p>对象通常在新生代的Eden区进行分配，当Eden区没有足够空间进行分配时，虚拟机将发起一次Minor GC，与Minor GC对应的是Major GC、Full GC。</p>
+</blockquote>
+<pre><code>(1)Minor GC:指发生在新生代的垃圾收集动作，非常频繁，速度较快。
+
+(2)Major GC:指发生在老年代的GC，出现Major GC，经常会伴随一次Minor GC，同时Minor GC也会引起Major GC，一般在GC日志中统称为GC，不频繁。
+
+(3)Full GC:指发生在老年代和新生代的GC，速度很慢，需要Stop The World。
+</code></pre><h5 id="Minor-GC-触发条件"><a href="#Minor-GC-触发条件" class="headerlink" title="Minor GC 触发条件"></a>Minor GC 触发条件</h5><pre><code>当Eden区满时，触发Minor GC。
+</code></pre><h5 id="Full-GC-触发条件"><a href="#Full-GC-触发条件" class="headerlink" title="Full GC 触发条件"></a>Full GC 触发条件</h5><pre><code>(1) 调用System.gc
+
+(2) 老年代空间不足
+
+    新生代对象转入及创建为大对象、大数组时出现不足的现象
+
+(3) 永久代空间不足
+
+   永久代中存放的为一些class的信息等，当系统中要加载的类、反射的类和调用的方法较多时，Permanet Generation可能会被占满，在未配置为采用CMS GC的情况下会执行Full GC。
+
+(4) gc担保失败
+
+ 老年代最大可用空间&lt;新生代所有对象总空间,继续比较老年代最大可用空间&lt;晋升到老年代对象的平均大小
+
+(5) CMS清理阶段，发现有新的垃圾，而老年代没有足够空间
+</code></pre>
       
     </div>
     
@@ -1349,87 +1467,6 @@ CMS垃圾收集器应用的算法
 
 
   
-    <article id="post-redis与memcached" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/03/redis与memcached/" class="article-date">
-      <time datetime="2019-03-21T12:25:10.000Z" itemprop="datePublished">2019-03-21</time>
-</a>
-
- 
-    <a href="/2019/03/redis与memcached/#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
-        
-        
-            <span class="disqus-comment-count" data-disqus-identifier="2019/03/redis与memcached/"></span>
-        
-    </a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-	
-		
-
-
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/redis与memcached/">redis与memcached</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="Memcached介绍"><a href="#Memcached介绍" class="headerlink" title="Memcached介绍"></a>Memcached介绍</h3><p>Memcached是一种基于内存的key-value存储，用来存储小块的任意数据（字符串、对象）。这些数据可以是数据库调用、API调用或者是页面渲染的结果。一般的使用目的是，通过缓存数据库查询结果，减少数据库访问次数，以提高动态Web应用的速度、提高可扩展性。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/redis/">redis</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/03/redis与memcached/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
@@ -1465,7 +1502,7 @@ CMS垃圾收集器应用的算法
                     </span>
 					<span title="本站总字数统计">
                          <span><i class="fa fa-map" aria-hidden="true"></i></span>
-                        <span class="post-count"><b>39.4k</b></span>
+                        <span class="post-count"><b>40.6k</b></span>
                     </span>
              
                 

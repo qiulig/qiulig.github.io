@@ -775,17 +775,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[剑指offer_【1】二维数组的查找]]></title>
-    <url>%2F2019%2F04%2F1.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
-    <content type="text"><![CDATA[1.题目描述： 在一个二维数组中（每个一维数组的长度相同），如数组 1 2 3 4 5 6 7 8 9 每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 2.解题思路 选择右上角的数字作为开始点 如果array[row][col]&gt;target,则向左查找，col–； 如果array[row][col]&lt;target,则向下查找，row++； 3.代码123456789101112131415161718public class Solution &#123; public boolean Find(int target, int [][] array) &#123; boolean res = false; int row = 0; int col = array[0].length-1; while(row&lt;=array.length-1&amp;&amp;col&gt;=0)&#123; if(array[row][col]&gt;target)&#123; col--; &#125;else if(array[row][col]&lt;target)&#123; row++; &#125;else&#123; res = true; break; &#125; &#125; return res; &#125;&#125;]]></content>
-      <categories>
-        <category>剑指offer</category>
-      </categories>
-      <tags>
-        <tag>数组类型题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[剑指offer_【2】空格替换]]></title>
     <url>%2F2019%2F04%2F2.%E7%A9%BA%E6%A0%BC%E6%9B%BF%E6%8D%A2%2F</url>
     <content type="text"><![CDATA[1. 题目描述 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 2. 解题思路 方法1：利用函数replaceAll完成 方法2： **先计算需要多少的空间 **从后向前依次插入 3.代码方法1： 12345public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; return str.toString().replaceAll(" ", "%20"); &#125;&#125; 方法2： 12345678910111213141516171819202122232425262728public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; int spacenum = 0;//spacenum为计算空格数 for(int i=0;i&lt;str.length();i++)&#123; if(str.charAt(i)==' ') spacenum++; &#125; //indexold为为替换前的str下标 int indexold = str.length()-1; //计算空格转换成%20之后的str长度 int newlength = str.length() + spacenum*2; //indexold为为把空格替换为%20后的str下标 int indexnew = newlength-1; //使str的长度扩大到转换成%20之后的长度,防止下标越界 str.setLength(newlength); for(;indexold&gt;=0 &amp;&amp; indexold&lt;newlength;--indexold)&#123; if(str.charAt(indexold) == ' ')&#123; str.setCharAt(indexnew--, '0'); str.setCharAt(indexnew--, '2'); str.setCharAt(indexnew--, '%'); &#125;else&#123; str.setCharAt(indexnew--, str.charAt(indexold)); &#125; &#125; return str.toString(); &#125;&#125; 补充1：String和StringBuffer的转换String转换成StringBuffer 12String str = "abc";StringBuffer b=new StringBuffer(str); StringBuffer转换成String 12StringBuffer a=new StringBuffer();String b=a.toString(） 补充2：String、StringBuffer、StringBuilder 1）运行速度StringBuilder&gt;StringBuffer&gt;String 2）String是字符串常量，String对象一旦创建就不能更改。StringBuffer为 字符串变量，可更改 3） String适用于少量的字符串操作，StringBuffer适用于多线程下字符缓冲区进行大量操作的情况。 4） StringBuffer 与 StringBuilder 中的方法和功能完全是等价的， 5） 只是StringBuffer 中的方法大都采用了 synchronized 关键字进行修饰，因此是线程安全的，而 StringBuilder 没有这个修饰，可以被认为是线程不安全的。 6） 在单线程程序下，StringBuilder效率更快，因为它不需要加锁，不具备多线程安全，而StringBuffer则每次都需要判断锁，效率相对更低。]]></content>
@@ -797,9 +786,31 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[剑指offer_【1】二维数组的查找]]></title>
+    <url>%2F2019%2F04%2F1.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
+    <content type="text"><![CDATA[1.题目描述： 在一个二维数组中（每个一维数组的长度相同），如数组 1 2 3 4 5 6 7 8 9 每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 2.解题思路 选择右上角的数字作为开始点 如果array[row][col]&gt;target,则向左查找，col–； 如果array[row][col]&lt;target,则向下查找，row++； 3.代码123456789101112131415161718public class Solution &#123; public boolean Find(int target, int [][] array) &#123; boolean res = false; int row = 0; int col = array[0].length-1; while(row&lt;=array.length-1&amp;&amp;col&gt;=0)&#123; if(array[row][col]&gt;target)&#123; col--; &#125;else if(array[row][col]&lt;target)&#123; row++; &#125;else&#123; res = true; break; &#125; &#125; return res; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>数组类型题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JVM_线程TLAB局部缓存区域]]></title>
+    <url>%2F2019%2F04%2Fjvm-%E7%BA%BF%E7%A8%8BTLAB%E5%B1%80%E9%83%A8%E7%BC%93%E5%AD%98%E5%8C%BA%E5%9F%9F%2F</url>
+    <content type="text"><![CDATA[1.对象内存分配的两种方法Ø 指针碰撞 假设Java堆中内存是绝对规整的，所有用过的内存都放在一边，空闲的内存放在另一边，中间放着一个指针作为分界点的指示器，那所分配内存就仅仅是把那个指针向空闲空间那边挪动一段与对象大小相等的距离，这种分配方式称为“指针碰撞” Ø 空闲列表 如果Java堆中的内存并不是规整的，已使用的内存和空闲的内存相互交错，那就没有办法简单地进行指针碰撞了，虚拟机就必须维护一个列表，记录上哪些内存块是可用的，在分配的时候从列表中找到一块足够大的空间划分给对象实例，并更新列表上的记录，这种分配方式称为“空闲列表” 问题： 多线程执行时，一个线程正在给A对象分配内存，指针还没有来的及修改，其它为B对象分配内存的线程，而且还是引用这之前的指针指向。就出现问题了 2.TLAB线程本地分配缓存区概念：线程本地分配缓存区,这是一个线程专用的内存分配区域。 由于对象一般会分配在堆上，而堆是全局共享的。因此在同一时间，可能会有多个线程在堆上申请空间。因此，每次对象分配都必须要进行同步（虚拟机采用CAS配上失败重试的方式保证更新操作的原子性），而在竞争激烈的场合分配的效率又会进一步下降。JVM使用TLAB来避免多线程冲突，在给对象分配内存时，每个线程使用自己的TLAB，这样可以避免线程同步，提高了对象分配的效率。 划重点：1.堆是JVM中所有线程共享的，因此在其上进行对象内存的分配均需要进行加锁，这也导致了new对象的开销是比较大的 2.Sun Hotspot JVM为了提升对象内存分配的效率，对于所创建的线程都会分配一块独立的空间TLAB（Thread Local Allocation Buffer）， 其大小由JVM根据运行的情况计算而得，在TLAB上分配对象时不需要加锁，因此JVM在给线程的对象分配内存时会尽量的在TLAB上分配，在这种情况下JVM中分配对象内存的性能和C基本是一样高效的，但如果对象过大的话则仍然是直接使用堆空间分配 3.JVM在内存新生代Eden Space中开辟了一小块线程私有的区域，称作TLAB。默认设定为占用Eden Space的1%。TLAB上的分配由于是线程私有所以没有锁开销。 4.TLAB仅作用于新生代的Eden Space，因此在编写Java程序时，通常多个小的对象比大的对象分配起来更加高效。 5.所有新创建的Object 都将会存储在新生代Yong Generation中。 如果Young Generation的数据在一次或多次GC后存活下来，那么将被转移到OldGeneration。新的Object总是创建在Eden Space。]]></content>
+      <categories>
+        <category>JAVA虚拟机</category>
+      </categories>
+      <tags>
+        <tag>JVM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JVM_内存分配和回收策略]]></title>
     <url>%2F2019%2F04%2FJVM-%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E5%92%8C%E5%9B%9E%E6%94%B6%E7%AD%96%E7%95%A5%2F</url>
-    <content type="text"><![CDATA[1.内存分配1.对象优先在eden分配 对象先在新生代Eden区分配，当Eden区没有足够空间进行分配，虚拟机将发起 Minor GC 2.大对象直接进入老年代 大对象指的是需要大量的连续内存空间的java对象。如**很长的字符串或者数组** -XX:PretenureSizeThreshold:大于该值直接在老年代分配 3.长期存活的对象直接进入老年代 设置对象年龄计数器，GC一遍没死年龄加1,默认老年阈值为15 -XX:MaxTenuringThreshold:老年代年龄设置 动态对象年龄判定survivor空间中相同年龄的对象大小总和&gt;survivor的一半，该年龄进入老年代，无需等到MaxTenuringThreshold设定的年龄。 ###### 空间分配担保：老年代最大可用空间&gt;新生代所有对象总空间，Minor GC 确保安全。如果允许，继续比较 老年代最大可用空间&gt;晋升到老年代对象的平均大小，如果大于进行Minor GC,否则进行Full GC. 2.回收策略]]></content>
+    <content type="text"><![CDATA[1.内存分配1.对象优先在eden分配 对象先在新生代Eden区分配，当Eden区没有足够空间进行分配，虚拟机将发起 Minor GC 2.大对象直接进入老年代 大对象指的是需要大量的连续内存空间的java对象。如很长的字符串或者数组 -XX:PretenureSizeThreshold:大于该值直接在老年代分配 3.长期存活的对象直接进入老年代 12设置对象年龄计数器，GC一遍没死年龄加1,默认老年阈值为15-XX:MaxTenuringThreshold:老年代年龄设置 动态对象年龄判定survivor空间中相同年龄的对象大小总和&gt;survivor的一半，该年龄进入老年代，无需等到MaxTenuringThreshold设定的年龄。 2.回收策略空间分配担保：老年代最大可用空间&gt;新生代所有对象总空间，Minor GC 确保安全。 如果允许，继续比较 老年代最大可用空间&gt;晋升到老年代对象的平均大小，如果大于进行Minor GC,否则进行Full GC. Full GC 和Minor GC 对象通常在新生代的Eden区进行分配，当Eden区没有足够空间进行分配时，虚拟机将发起一次Minor GC，与Minor GC对应的是Major GC、Full GC。 (1)Minor GC:指发生在新生代的垃圾收集动作，非常频繁，速度较快。 (2)Major GC:指发生在老年代的GC，出现Major GC，经常会伴随一次Minor GC，同时Minor GC也会引起Major GC，一般在GC日志中统称为GC，不频繁。 (3)Full GC:指发生在老年代和新生代的GC，速度很慢，需要Stop The World。 Minor GC 触发条件当Eden区满时，触发Minor GC。 Full GC 触发条件(1) 调用System.gc (2) 老年代空间不足 新生代对象转入及创建为大对象、大数组时出现不足的现象 (3) 永久代空间不足 永久代中存放的为一些class的信息等，当系统中要加载的类、反射的类和调用的方法较多时，Permanet Generation可能会被占满，在未配置为采用CMS GC的情况下会执行Full GC。 (4) gc担保失败 老年代最大可用空间&lt;新生代所有对象总空间,继续比较老年代最大可用空间&lt;晋升到老年代对象的平均大小 (5) CMS清理阶段，发现有新的垃圾，而老年代没有足够空间]]></content>
       <categories>
         <category>JAVA虚拟机</category>
       </categories>
