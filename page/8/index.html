@@ -205,7 +205,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rabbitMQ/">rabbitMQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树题/">二叉树题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回溯法/">回溯法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字符串题/">字符串题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数组类型题/">数组类型题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/栈/">栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/秒杀/">秒杀</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/讯飞科技笔试/">讯飞科技笔试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链表题/">链表题</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rabbitMQ/">rabbitMQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树题/">二叉树题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回溯法/">回溯法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字符串题/">字符串题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并发/">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数组类型题/">数组类型题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/栈/">栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/秒杀/">秒杀</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/讯飞科技笔试/">讯飞科技笔试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链表题/">链表题</a></li></ul>
                     </div>
                 </section>
                 
@@ -281,6 +281,87 @@
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
       <div class="body-wrap">
+  
+    <article id="pages-leetcode-15-三数之和" class="article article-type-pages" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/leetcode-15-三数之和/" class="article-date">
+      <time datetime="2019-04-27T02:20:16.000Z" itemprop="datePublished">2019-04-27</time>
+</a>
+
+ 
+    <a href="/2019/04/leetcode-15-三数之和/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+        
+            <span class="disqus-comment-count" data-disqus-identifier="2019/04/leetcode-15-三数之和/"></span>
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+	
+		
+
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/leetcode-15-三数之和/">leetcode-15:三数之和</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="1-题目描述："><a href="#1-题目描述：" class="headerlink" title="1.题目描述："></a>1.题目描述：</h3><h5 id="给定一个包含-n-个整数的数组-nums，判断-nums-中是否存在三个元素-a，b，c-，使得-a-b-c-0-？找出所有满足条件且不重复的三元组。"><a href="#给定一个包含-n-个整数的数组-nums，判断-nums-中是否存在三个元素-a，b，c-，使得-a-b-c-0-？找出所有满足条件且不重复的三元组。" class="headerlink" title="给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。"></a>给定一个包含 <em>n</em> 个整数的数组 <code>nums</code>，判断 <code>nums</code> 中是否存在三个元素 <em>a，b，c ，</em>使得 <em>a + b + c =</em> 0 ？找出所有满足条件且不重复的三元组。</h5>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/algorithm/">algorithm</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/04/leetcode-15-三数之和/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-2.空格替换" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -492,24 +573,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="1-对象内存分配的两种方法"><a href="#1-对象内存分配的两种方法" class="headerlink" title="1.对象内存分配的两种方法"></a>1.对象内存分配的两种方法</h2><p>Ø 指针碰撞</p>
+              <h2 id="1-对象内存分配的两种方法"><a href="#1-对象内存分配的两种方法" class="headerlink" title="1.对象内存分配的两种方法"></a>1.对象内存分配的两种方法</h2><p>Ø 指针碰撞</p>
 <blockquote>
-<p>假设Java堆中内存是绝对规整的，所有用过的内存都放在一边，空闲的内存放在另一边，中间放着一个指针作为分界点的指示器，那所分配内存就仅仅是把那个指针向空闲空间那边挪动一段与对象大小相等的距离，这种分配方式称为“指针碰撞”</p>
-</blockquote>
-<p>Ø 空闲列表</p>
-<blockquote>
-<p>如果Java堆中的内存并不是规整的，已使用的内存和空闲的内存相互交错，那就没有办法简单地进行指针碰撞了，虚拟机就必须维护一个列表，记录上哪些内存块是可用的，在分配的时候从列表中找到一块足够大的空间划分给对象实例，并更新列表上的记录，这种分配方式称为“空闲列表”</p>
-</blockquote>
-<p>问题：</p>
-<pre><code>多线程执行时，一个线程正在给A对象分配内存，指针还没有来的及修改，其它为B对象分配内存的线程，而且还是引用这之前的指针指向。就出现问题了
-</code></pre><h3 id="2-TLAB线程本地分配缓存区"><a href="#2-TLAB线程本地分配缓存区" class="headerlink" title="2.TLAB线程本地分配缓存区"></a>2.TLAB线程本地分配缓存区</h3><p>概念：线程本地分配缓存区,这是一个线程专用的内存分配区域。 由于对象一般会分配在堆上，而堆是全局共享的。因此在同一时间，可能会有多个线程在堆上申请空间。因此，每次对象分配都必须要进行同步（虚拟机采用CAS配上失败重试的方式保证更新操作的原子性），而在竞争激烈的场合分配的效率又会进一步下降。JVM使用TLAB来避免多线程冲突，在给对象分配内存时，每个线程使用自己的TLAB，这样可以避免线程同步，提高了对象分配的效率。</p>
-<h6 id="划重点："><a href="#划重点：" class="headerlink" title="划重点："></a>划重点：</h6><p>1.堆是JVM中所有线程共享的，因此在其上进行对象内存的分配均需要进行加锁，这也导致了new对象的开销是比较大的</p>
-<p>2.Sun Hotspot JVM为了提升对象内存分配的效率，对于所创建的线程都会分配一块独立的空间TLAB（Thread Local Allocation Buffer），<br>   其大小由JVM根据运行的情况计算而得，在TLAB上分配对象时不需要加锁，因此JVM在给线程的对象分配内存时会尽量的在TLAB上分配，在这种情况下JVM中分配对象内存的性能和C基本是一样高效的，但如果对象过大的话则仍然是直接使用堆空间分配</p>
-<p>3.JVM在内存新生代Eden Space中开辟了一小块线程私有的区域，称作TLAB。默认设定为占用Eden Space的1%。TLAB上的分配由于是线程私有所以没有锁开销。</p>
-<p>4.TLAB仅作用于新生代的Eden Space，因此在编写Java程序时，通常多个小的对象比大的对象分配起来更加高效。</p>
-<p>5.所有新创建的Object 都将会存储在新生代Yong Generation中。<br>   如果Young Generation的数据在一次或多次GC后存活下来，那么将被转移到OldGeneration。新的Object总是创建在Eden Space。</p>
-<hr>
-
+<p>假设Java堆中内存是绝对规整的，所有用过的内存都放在一边，空闲的内存放在另一边，中间放着一个指针作为分界点的指示器，那所分配内存就仅仅是把那个指针向空闲空间那边挪动一段与对象大小相等的距离，这种分配方式称为“指针碰撞”</p></blockquote>
+          
       
     </div>
     
@@ -526,6 +593,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/04/jvm-线程TLAB局部缓存区域/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -585,41 +656,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="1-内存分配"><a href="#1-内存分配" class="headerlink" title="1.内存分配"></a>1.内存分配</h2><p>1.对象优先在eden分配</p>
+              <h2 id="1-内存分配"><a href="#1-内存分配" class="headerlink" title="1.内存分配"></a>1.内存分配</h2><p>1.对象优先在eden分配</p>
 <pre><code>对象先在新生代Eden区分配，当Eden区没有足够空间进行分配，虚拟机将发起  Minor GC
-</code></pre><p>2.大对象直接进入老年代</p>
-<pre><code>大对象指的是需要大量的连续内存空间的java对象。如很长的字符串或者数组
- -XX:PretenureSizeThreshold:大于该值直接在老年代分配
-</code></pre><p>3.长期存活的对象直接进入老年代</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">设置对象年龄计数器，GC一遍没死年龄加1,默认老年阈值为15</span><br><span class="line">-XX:MaxTenuringThreshold:老年代年龄设置</span><br></pre></td></tr></table></figure>
-<h6 id="动态对象年龄判定"><a href="#动态对象年龄判定" class="headerlink" title="动态对象年龄判定"></a>动态对象年龄判定</h6><pre><code>survivor空间中相同年龄的对象大小总和&gt;survivor的一半，该年龄进入老年代，无需等到MaxTenuringThreshold设定的年龄。
-</code></pre><h2 id="2-回收策略"><a href="#2-回收策略" class="headerlink" title="2.回收策略"></a>2.回收策略</h2><h6 id="空间分配担保："><a href="#空间分配担保：" class="headerlink" title="空间分配担保："></a>空间分配担保：</h6><pre><code>老年代最大可用空间&gt;新生代所有对象总空间，Minor GC 确保安全。
-如果允许，继续比较 老年代最大可用空间&gt;晋升到老年代对象的平均大小，如果大于进行Minor GC,否则进行Full GC.
-</code></pre><h4 id="Full-GC-和Minor-GC"><a href="#Full-GC-和Minor-GC" class="headerlink" title="Full GC 和Minor GC"></a>Full GC 和Minor GC</h4><blockquote>
-<p>对象通常在新生代的Eden区进行分配，当Eden区没有足够空间进行分配时，虚拟机将发起一次Minor GC，与Minor GC对应的是Major GC、Full GC。</p>
-</blockquote>
-<pre><code>(1)Minor GC:指发生在新生代的垃圾收集动作，非常频繁，速度较快。
-
-(2)Major GC:指发生在老年代的GC，出现Major GC，经常会伴随一次Minor GC，同时Minor GC也会引起Major GC，一般在GC日志中统称为GC，不频繁。
-
-(3)Full GC:指发生在老年代和新生代的GC，速度很慢，需要Stop The World。
-</code></pre><h5 id="Minor-GC-触发条件"><a href="#Minor-GC-触发条件" class="headerlink" title="Minor GC 触发条件"></a>Minor GC 触发条件</h5><pre><code>当Eden区满时，触发Minor GC。
-</code></pre><h5 id="Full-GC-触发条件"><a href="#Full-GC-触发条件" class="headerlink" title="Full GC 触发条件"></a>Full GC 触发条件</h5><pre><code>(1) 调用System.gc
-
-(2) 老年代空间不足
-
-    新生代对象转入及创建为大对象、大数组时出现不足的现象
-
-(3) 永久代空间不足
-
-   永久代中存放的为一些class的信息等，当系统中要加载的类、反射的类和调用的方法较多时，Permanet Generation可能会被占满，在未配置为采用CMS GC的情况下会执行Full GC。
-
-(4) gc担保失败
-
- 老年代最大可用空间&lt;新生代所有对象总空间,继续比较老年代最大可用空间&lt;晋升到老年代对象的平均大小
-
-(5) CMS清理阶段，发现有新的垃圾，而老年代没有足够空间
 </code></pre>
+          
       
     </div>
     
@@ -636,6 +676,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/04/JVM-内存分配和回收策略/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -695,36 +739,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>垃圾收集器再对堆进行回收前，第一个要做的事就是确定对象是否还存活，判断方法有2种</p>
+              <p>垃圾收集器再对堆进行回收前，第一个要做的事就是确定对象是否还存活，判断方法有2种</p>
 <p>1)引用计数法</p>
 <p>2)可达性分析</p>
-<h4 id="1-引用计数法"><a href="#1-引用计数法" class="headerlink" title="1.引用计数法"></a>1.引用计数法</h4><blockquote>
-<p>给对象中添加一个引用计数器，每当一个地方引用这个对象时，计数器值+1；当引用失效时，计数器值-1。任何时刻计数值为0的对象就是不可能再被使用的。</p>
-<h6 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h6><p>很难解决对象之间的相互循环引用问题，导致它们的引用计数都不为0，于是引用计数算法无法通知GC收集器收集它们。</p>
-</blockquote>
-<h4 id="2-可达性分析"><a href="#2-可达性分析" class="headerlink" title="2.可达性分析"></a>2.可达性分析</h4><blockquote>
-<p>通过一系列称为“GC Roots”的对象作为起始点，从这些节点向下搜索，搜索所走过的路径称为引用链，当一个对象到GC Roots没有任何引用链（即GC Roots到对象不可达）时，则证明此对象是不可用的。</p>
-<h6 id="GC-Roots对象"><a href="#GC-Roots对象" class="headerlink" title="GC Roots对象:"></a>GC Roots对象:</h6><p>(1). 虚拟机栈（栈帧中的局部变量区，也叫做局部变量表）中引用的对象。</p>
-<p>(2). 方法区中的<strong>类静态属性引用的对象</strong>。static对象</p>
-<p>(3). 方法区中<strong>常量</strong>引用的对象。final对象</p>
-<p>(4). <strong>本地方法</strong>栈中JNI(Native方法)引用的对象。</p>
-</blockquote>
-<h5 id="扩展：引用"><a href="#扩展：引用" class="headerlink" title="扩展：引用"></a>扩展：引用</h5><blockquote>
-<p>(1) <strong>强引用</strong> ：只要强引用还存在，垃圾收集器就永远不会回收该对象</p>
-<pre><code>Object obj = new Object();
-</code></pre><p>(2) <strong>软引用</strong> :软引用关联的对象，在系统发生内存溢出异常前，会将这些对象进行第二次回收。如果第二次回收还没有足够内存才抛出内存溢出异常。</p>
-<p>(3) <strong>弱引用</strong>：描述非必需对象。关联的对象只能生存到下一次垃圾回收前，当垃圾收集器工作时，无论当前内存是否足够，都会回收掉它们。</p>
-<p>(4) <strong>虚引用</strong> ：无法通过虚引用来取得一个对象实例。唯一目的是能在这个对象被收集器回收时收到一个系统通知。</p>
-</blockquote>
-<h5 id="死亡过程"><a href="#死亡过程" class="headerlink" title="死亡过程"></a>死亡过程</h5><blockquote>
-<p>可达性分析没有发现与GCRoots的引用链 </p>
-<p>1.如果不可达，则标记筛选（条件是对象是否有必要执行finalize）<br>   1)没必要，对象没有覆盖finalize方法或者finalize已经被虚拟机调用<br>   2)有必要。放置在F-Queue队列中。这时候二次标记。如果重新与对象建立连接则不会被回收。</p>
-</blockquote>
-<h5 id="方法区的回收"><a href="#方法区的回收" class="headerlink" title="方法区的回收"></a>方法区的回收</h5><blockquote>
-<p>永久代的垃圾收集主要回收两部分内容：<strong>废弃常量和无用的类</strong></p>
-<p>1.废弃常量<br>         没有在其他地方引用则回收<br>2.无用的类<br>         (1) 类的实例已被回收<br>         (2) 加载该类的classloader已被回收<br>         (3) 该类对应的class没有被引用，也无反射访问。</p>
-</blockquote>
-
+          
       
     </div>
     
@@ -741,6 +759,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/04/JVM-对象已死/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -800,124 +822,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>垃圾收集器一共有7种，如果说收集算法是内存回收的方法，那个垃圾收集器就是垃圾回收的具体实现。</p>
-<p><img src="https://github.com/qiulig/IMG/raw/master/垃圾收集器.png" alt="垃圾收集器"></p>
-<p><code>以中间绿线为界，上边三个用于年轻代，下边三个用在年老代，而G1则老少通吃，**黑线**线表示两个回收器可搭配使用，**红线**则表示两者可以在同一区域交替使用。由于G1在JDK1.7才达到商用级别，而且目前线上环境也很少使用。</code></p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th></th>
-<th>区域</th>
-<th>算法</th>
-<th>适用情况</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Serial</td>
-<td>串行</td>
-<td>年轻代</td>
-<td>复制</td>
-<td>单CPU（或CPU较少）、小型客户端应用</td>
-</tr>
-<tr>
-<td>Parallel Scavenge</td>
-<td>并行</td>
-<td>年轻代</td>
-<td>复制</td>
-<td>多CPU、吞吐量优先（后台处理、科学计算）</td>
-</tr>
-<tr>
-<td>ParNew</td>
-<td>并行</td>
-<td>年轻代</td>
-<td>复制</td>
-<td>多CPU、响应优先（web服务器等）</td>
-</tr>
-<tr>
-<td>CMS</td>
-<td>并发</td>
-<td>年老代</td>
-<td>标记-清除</td>
-<td>响应优先（web服务器等）</td>
-</tr>
-<tr>
-<td>Serial Old</td>
-<td>串行</td>
-<td>年老代</td>
-<td>标记-整理</td>
-<td>单CPU、小型客户端应用</td>
-</tr>
-<tr>
-<td>Parallel Old</td>
-<td>并行</td>
-<td>年老代</td>
-<td>标记-整理</td>
-<td>多CPU、吞吐量优先（后台处理、科学计算）</td>
-</tr>
-</tbody>
-</table>
-<h3 id="1-Serial收集器"><a href="#1-Serial收集器" class="headerlink" title="1.Serial收集器"></a>1.Serial收集器</h3><blockquote>
-<p>从名字就能看出是串行的意思，该回收器是最早实现的，<strong>基于单线程</strong>，</p>
-<p>优点：</p>
-<pre><code>实现简单且效率高，
-</code></pre><p>缺点：</p>
-<pre><code>进行垃圾回收是会造成“Stop-the-World”(STW)，当回收内存区域较大时，就会造成程序响应时间变长。  
-</code></pre><p>STW：在执行垃圾收集算法时，Java应用程序的其他所有线程都被挂起（除了垃圾收集帮助器之外）。Java中一种全局暂停现象，全局停顿，所有Java代码停止，native代码可以执行，但不能与JVM交互；这些现象多半是由于gc引起。</p>
-</blockquote>
-<h3 id="2-ParNew收集器"><a href="#2-ParNew收集器" class="headerlink" title="2.ParNew收集器"></a>2.ParNew收集器</h3><blockquote>
-<p>全名Parallel New Generation，也就是<strong>并行新生代垃圾收集</strong>器，该回收器实现与Serial基本上一样，只是采用多线程执行回收。是运行在<strong>服务端模式</strong>下首选的新生代收集器。</p>
-</blockquote>
-<h3 id="3-Parallel-Scavenge收集器"><a href="#3-Parallel-Scavenge收集器" class="headerlink" title="3.Parallel Scavenge收集器"></a>3.Parallel Scavenge收集器</h3><blockquote>
-<p>Parallel Scavenge则<strong>侧重于吞吐量的控制</strong>，又名”吞吐量优先”回收器</p>
-<p>(吞吐量 = 运行用户代码时间 /（运行用户代码时间 + 垃圾收集时间）；</p>
-<p><strong>停顿时间</strong>：适合需要与用户交互的程序，良好的响应速度能提升用户体验</p>
-<p><strong>高吞吐量</strong>：高效率的利用CPU时间，尽快完成程序的运算任务，适合在后台运算而不需要太多的交互任务。</p>
-<p>自适应调节策略：虚拟机会根据当前系统的运行监控信息，动态调整参数以提供最合适的停顿时间或者最大吞吐量。</p>
-<p>该回收器与ParNew的最大区别在于ParNew通常与CMS搭配。</p>
-</blockquote>
-<h3 id="4-CMS收集器"><a href="#4-CMS收集器" class="headerlink" title="4.CMS收集器"></a>4.CMS收集器</h3><blockquote>
-<p>Concurrent Mark Sweep，是一个并发回收器，旨在减少<strong>垃圾回收的停顿时间</strong>。集中应用于<strong>B/S系统的服务端</strong>，尤其注重服务的响应速度</p>
-</blockquote>
-<h6 id="CMS运作操作流程"><a href="#CMS运作操作流程" class="headerlink" title="CMS运作操作流程"></a>CMS运作操作流程</h6><blockquote>
-<p>(1)初始标记：标记GCRoots能直接关联到的对象</p>
-<p>(2)并发标记：GCRoot开始对堆中对象进行可达性分析</p>
-<p>(3)重新标记：修正在并发标记期间因用户程序继续运作而导致标记产生变动的那部分标记记录</p>
-<p>(4)并发清除：回收标记的垃圾</p>
-</blockquote>
-<h6 id="CMS缺点："><a href="#CMS缺点：" class="headerlink" title="CMS缺点："></a>CMS缺点：</h6><blockquote>
-<p>（1）对CPU资源非常敏感</p>
-<p>（2）无法处理浮动垃圾：CMS在并发清除阶段用户线程还在运行，会产生新的垃圾。这部分垃圾出现在标记之后，要等待下次GC才能清理掉</p>
-<p>（3）基于标记-清除算法，会产生大量的内存碎片。</p>
-</blockquote>
-<h3 id="5-Serial-Old收集器"><a href="#5-Serial-Old收集器" class="headerlink" title="5.Serial Old收集器"></a>5.Serial Old收集器</h3><blockquote>
-<p>   标记-整理算法实现的，相当于Serial的年老代版。</p>
-<p>（1）可以与Parallel Scavenge收集器搭配使用</p>
-<p>（2）作为CMS收集器的后备预案</p>
-</blockquote>
-<h3 id="6-Paraller-Old收集器"><a href="#6-Paraller-Old收集器" class="headerlink" title="6.Paraller Old收集器"></a>6.Paraller Old收集器</h3><blockquote>
-<p>标记-整理算法实现，相当于Parallel Scavenge的年老代版。</p>
-<p>在注重吞吐量以及CPU资源敏感的场合：Parallel Old + Parallel Scavengr </p>
-</blockquote>
-<h3 id="7-G1收集器"><a href="#7-G1收集器" class="headerlink" title="7.G1收集器"></a>7.G1收集器</h3><blockquote>
-<p>G1是一款面向服务端应用的垃圾收集器。具备以下特点：</p>
-<p>(1)并行与并发</p>
-<pre><code>并行即使用多个CPU来缩端STW停顿的时间，还可以通过并发方式让java程序继续执行。
-</code></pre><p> (2)分代收集</p>
-<pre><code>可以不需要其他收集器配合就能独立管理整个GC堆
-</code></pre><p> (3)空间整合</p>
-<pre><code>标记整理算法实现，在运行期间不会产生内存空间碎片，收集后可以提供规整的可用内存。
-</code></pre><p> (4)可预测停顿</p>
-<pre><code>除了追求低停顿外，还能建立可预测的停顿时间模型。能让使用者明确指定在一个长度为M毫秒的时间片段内，消耗在垃圾收集上时间不超过N秒。
-</code></pre></blockquote>
-<h6 id="G1收集器运作流程："><a href="#G1收集器运作流程：" class="headerlink" title="G1收集器运作流程："></a>G1收集器运作流程：</h6><blockquote>
-<p>(1)初始标记：标记GCRoots能直接关联到的对象</p>
-<p>(2)并发标记：GCRoot开始对堆中对象进行可达性分析</p>
-<p>(3)最终标记：修正在并发标记期间因用户程序继续运作而导致标记产生变动的那部分标记记录</p>
-<p>(4)筛选回收：回收标记的垃圾</p>
-</blockquote>
-
+              <p>垃圾收集器一共有7种，如果说收集算法是内存回收的方法，那个垃圾收集器就是垃圾回收的具体实现。</p>
+          
       
     </div>
     
@@ -934,6 +840,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/04/JVM-垃圾回收器/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -993,7 +903,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>垃圾回收算法有4种</p>
+              <p>垃圾回收算法有4种</p>
 <ol>
 <li><p>标记-清除算法</p>
 </li>
@@ -1001,50 +911,8 @@
 </li>
 <li><p>标记-整理算法</p>
 </li>
-<li><p>分代收集算法</p>
-</li>
-</ol>
-<h2 id="1-复制算法"><a href="#1-复制算法" class="headerlink" title="1.复制算法"></a>1.复制算法</h2><p><code>可用的内存空间分为大小相等的两块，每次只是用其中的一块，当这一块被用完的时候，就将还存活的对象复制到另一块中，然后把原已使用过的那一块内存空间一次回收掉。这个算法常用于新生代的垃圾回收。</code></p>
-<p><img src="https://github.com/qiulig/IMG/raw/master/复制算法.jpg" alt="复制算法"></p>
-<h6 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h6><ol>
-<li>复制算法解决了标记-清除算法的效率问题，以空间换时间。</li>
-</ol>
-<h6 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h6><ol>
-<li>但是当存活对象非常多的时候，复制操作效率将会变低，而且每次只能使用一半的内存空间，利用率不高。</li>
-</ol>
-<h6 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h6><ol>
-<li><p>应用于新生代</p>
-</li>
-<li><p>Serial、ParNew、Parallel Scavenge 垃圾收集器应用的算法</p>
-</li>
-</ol>
-<h2 id="2-标记-清除算法"><a href="#2-标记-清除算法" class="headerlink" title="2. 标记-清除算法"></a>2. 标记-清除算法</h2><p><code>先标记出所有需要被回收的对象，然后在标记完成后统一回收掉所有被标记的对象。</code></p>
-<p><img src="https://github.com/qiulig/IMG/raw/master/标记清除算法.png" alt="标记清除算法"></p>
-<h6 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h6><pre><code>效率问题：标记与清除两个过程的效率都不高
-
-空间问题：产生大量不连续的内存碎片，碎片太多会导致再程序运行过程中需要分配较大对象时，找不到足够的连续内存尔不得不提前触发垃圾回收动作。
-</code></pre><h6 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a>应用场景</h6><pre><code>应用于老年代的垃圾回收
-
-CMS垃圾收集器应用的算法
-</code></pre><h2 id="3-标记-整理算法"><a href="#3-标记-整理算法" class="headerlink" title="3.标记-整理算法"></a>3.标记-整理算法</h2><p>这个算法分为三部分：</p>
-<blockquote>
-<p>标记出所有需要被回收的对象；</p>
-<p>把所有存活的对象都向一端移动；</p>
-<p>把所有存活对象边界以外的内存空间都回收掉。</p>
-</blockquote>
-<p><img src="https://github.com/qiulig/IMG/raw/master/标记整理算法.png" alt="标记整理算法"></p>
-<h6 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h6><blockquote>
-<p>标记-整理算法解决了复制算法多复制效率低、空间利用率低的问题，</p>
-<p>解决了内存碎片的问题。</p>
-</blockquote>
-<h6 id="应用场景-2"><a href="#应用场景-2" class="headerlink" title="应用场景"></a>应用场景</h6><blockquote>
-<p>Serial Old、Parallel Old 垃圾收集器应用的算法</p>
-<p>主要应用于老年代</p>
-</blockquote>
-<h2 id="4-分代收集算法"><a href="#4-分代收集算法" class="headerlink" title="4.分代收集算法"></a>4.分代收集算法</h2><blockquote>
-<p>根据对象生存周期的不同将内存空间划分为不同的块，然后对不同的块使用不同的回收算法。一般把Java堆分为新生代和老年代，新生代中对象的存活周期短，只有少量存活的对象，所以可以使用复制算法，而老年代中对象存活时间长，而且对象比较多，所以可以采用标记-清除和标记-整理算法。</p>
-</blockquote>
-
+<li><p>分代收集算法</p></li></ol>
+          
       
     </div>
     
@@ -1061,6 +929,10 @@ CMS垃圾收集器应用的算法
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/04/JVM-回收算法/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1120,92 +992,12 @@ CMS垃圾收集器应用的算法
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>@Results                 —-表字段与数据库字段映射</p>
+              <p>@Results                 —-表字段与数据库字段映射</p>
 <p>@Entity                    —- 生成表</p>
 <p>@Transient              —-后台与数据库不映射</p>
 <p>@Id                            —-主键</p>
 <p>@Transactional        —-事务</p>
-<p>@GeneratedValuestrategy=GenerationType.IDENTITY   —–自增值</p>
-<p>@Table - 映射表名   —– 映射表名</p>
-<p>@Column(name = “dict_name”,columnDefinition=”varchar(100) COMMENT ‘字典名’”)                           —– 字段名、类型、注释</p>
-<p>@Select</p>
-<p>@Update</p>
-<p>@Delete</p>
-<p>@Insert</p>
-<p>@UpdateTimestamp  —— 更新时自动更新时间</p>
-<p>@CreationTimestamp ——创建时自动更新时间</p>
-<p>@Version                       —– 版本号，更新时自动加1</p>
-<h5 id="1-Entity"><a href="#1-Entity" class="headerlink" title="1.@Entity"></a>1.@Entity</h5><p>@Entity说明这个class是实体类，并且使用默认的orm规则，即class名即数据库表中表名，class字段名即表中的字段名</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@DynamicUpdate</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderDetail</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="keyword">private</span> String detailId;</span><br><span class="line">    <span class="keyword">private</span> String orderId;</span><br><span class="line">    <span class="keyword">private</span> String productId;</span><br><span class="line">    <span class="keyword">private</span> String productName;</span><br><span class="line">    <span class="keyword">private</span> BigDecimal productPrice;</span><br><span class="line">    <span class="keyword">private</span> Integer productQuantity;</span><br><span class="line">    <span class="keyword">private</span> String productIcon;</span><br><span class="line">    <span class="keyword">private</span> Date createTime;</span><br><span class="line">    <span class="keyword">private</span>  Date updateTime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行将对应生成数据库表名为OrderDetail的表，里面字段对应上面的字段。</p>
-<h5 id="2-DynamicUpdate"><a href="#2-DynamicUpdate" class="headerlink" title="2.@DynamicUpdate"></a>2.@DynamicUpdate</h5><p>动态更新表。</p>
-<p>如果我们在更新表时,只想更新某个字段,就不要加 @DynamicUpdate,通常为了更新表时的效率,都是不加的.反之,如果我们更新某个字段时,更新所有的字段,就可以加上 @DynamicUpdate.</p>
-<p>@DynamicUpdate属性:设置为true,设置为true,表示update对象的时候,生成动态的update语句,如果这个字段的值是null就不会被加入到update语句中,默认false。<br>比如只想更新某个属性，但是却把整个对象的属性都更新了，这并不是我们希望的结果，我们希望的结果是：我更改了哪些字段，只要更新我修改的字段就够了。</p>
-<h5 id="3-Table"><a href="#3-Table" class="headerlink" title="3.@Table"></a>3.@Table</h5><p>@Table注解用来标识实体类与数据表的对应关系，默认和类名一致。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name=<span class="string">"c_user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Id</span></span><br><span class="line">        <span class="meta">@GeneratedValue</span></span><br><span class="line">        <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@NotNull</span></span><br><span class="line">        <span class="meta">@Column</span>(length = <span class="number">50</span>)</span><br><span class="line">        <span class="keyword">private</span> String userName;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@NotNull</span></span><br><span class="line">        <span class="meta">@Column</span>(length = <span class="number">20</span> , unique = <span class="keyword">true</span>, nullable = <span class="keyword">false</span>)</span><br><span class="line">        <span class="keyword">private</span> Long mobile;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Column</span>(length = <span class="number">20</span> , unique = <span class="keyword">true</span>)</span><br><span class="line">        <span class="keyword">private</span> String email;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@NotNull</span></span><br><span class="line">        <span class="meta">@Column</span>(columnDefinition=<span class="string">"tinyint"</span>)</span><br><span class="line">        <span class="keyword">private</span> Integer status;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> String password;</span><br><span class="line">        <span class="keyword">private</span> String nickname;</span><br><span class="line">        <span class="keyword">private</span> Integer companyId;</span><br><span class="line">        <span class="keyword">private</span> Integer departmentId;</span><br><span class="line">        <span class="keyword">private</span> Date regTime;</span><br><span class="line">        <span class="keyword">private</span> String regIp;</span><br><span class="line">        <span class="keyword">private</span> Integer loginNum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="4-Column"><a href="#4-Column" class="headerlink" title="4. @Column"></a>4. @Column</h5><p>@Column注解来标识实体类中属性与数据表中字段的对应关系。共有10个属性，这10个属性均为可选属性：</p>
-<ul>
-<li>name属性定义了被标注字段在数据库表中所对应字段的名称；</li>
-<li>unique属性表示该字段是否为唯一标识，默认为false。如果表中有一个字段需要唯一标识，则既可以使用该标记，也可以使用@Table标记中的@UniqueConstraint。</li>
-<li>nullable属性表示该字段是否可以为null值，默认为true。如果属性里使用了验证类里的@NotNull注释，这个属性可以不写。</li>
-<li>insertable属性表示在使用“INSERT”脚本插入数据时，是否需要插入该字段的值。</li>
-<li>updatable属性表示在使用“UPDATE”脚本插入数据时，是否需要更新该字段的值。insertable和updatable属性一般多用于只读的属性，例如主键和外键等。这些字段的值通常是自动生成的。</li>
-<li>columnDefinition属性表示创建表时，该字段创建的SQL语句，一般用于通过Entity生成表定义时使用。若不指定该属性，通常使用默认的类型建表，若此时需要自定义建表的类型时，可在该属性中设置。（也就是说，如果DB中表已经建好，该属性没有必要使用。）</li>
-<li>table属性定义了包含当前字段的表名。</li>
-<li>length属性表示字段的长度，当字段的类型为varchar时，该属性才有效，默认为255个字符。</li>
-<li>precision属性和scale属性表示精度，当字段类型为double时，precision表示数值的总长度，scale表示小数点所占的位数。</li>
-</ul>
-<h5 id="5-Transactional-事务"><a href="#5-Transactional-事务" class="headerlink" title="5.@Transactional 事务"></a>5.@Transactional 事务</h5><h5 id="Transactional-注解的属性信息"><a href="#Transactional-注解的属性信息" class="headerlink" title="@Transactional 注解的属性信息"></a>@Transactional 注解的属性信息</h5><table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>name</td>
-<td>当在配置文件中有多个 TransactionManager , 可以用该属性指定选择哪个事务管理器。</td>
-</tr>
-<tr>
-<td>propagation</td>
-<td>事务的传播行为，默认值为 REQUIRED。</td>
-</tr>
-<tr>
-<td>isolation</td>
-<td>事务的隔离度，默认值采用 DEFAULT。</td>
-</tr>
-<tr>
-<td>timeout</td>
-<td>事务的超时时间，默认值为-1。如果超过该时间限制但事务还没有完成，则自动回滚事务。</td>
-</tr>
-<tr>
-<td>read-only</td>
-<td>指定事务是否为只读事务，默认值为 false；为了忽略那些不需要事务的方法，比如读取数据，可以设置 read-only 为 true。</td>
-</tr>
-<tr>
-<td>rollback-for</td>
-<td>用于指定能够触发事务回滚的异常类型，如果有多个异常类型需要指定，各类型之间可以通过逗号分隔。</td>
-</tr>
-<tr>
-<td>no-rollback- for</td>
-<td>抛出 no-rollback-for 指定的异常类型，不回滚事务。</td>
-</tr>
-</tbody>
-</table>
-<h5 id="6-Transient"><a href="#6-Transient" class="headerlink" title="6.@Transient"></a>6.@Transient</h5><p>@Transient是希望该属性不会在数据表中产生字段，但又可以在程序中使用它。</p>
-<h5 id="7-Results"><a href="#7-Results" class="headerlink" title="7.@Results"></a>7.@Results</h5><p>(1)当数据库字段名与实体类对应的属性名不一致时，可以使用@Results映射来将其对应起来。column为数据库字段名，porperty为实体类属性名，jdbcType为数据库字段数据类型，id为是否为主键。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Select</span>(&#123;<span class="string">"select id, name, class_id from my_student"</span>&#125;)</span><br><span class="line"><span class="meta">@Results</span>(&#123;</span><br><span class="line">    <span class="meta">@Result</span>(column=<span class="string">"id"</span>, property=<span class="string">"id"</span>, jdbcType=JdbcType.INTEGER, id=<span class="keyword">true</span>),</span><br><span class="line">    <span class="meta">@Result</span>(column=<span class="string">"name"</span>, property=<span class="string">"name"</span>, jdbcType=JdbcType.VARCHAR),</span><br><span class="line">    <span class="meta">@Result</span>(column=<span class="string">"class_id"</span>, property=<span class="string">"classId"</span>, jdbcType=JdbcType.INTEGER)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="function">List&lt;Student&gt; <span class="title">selectAll</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-<p>(2)@ResultMap的用法。当这段@Results代码需要在多个方法用到时，为了提高代码复用性，我们可以为这个@Results注解设置id，然后使用@ResultMap注解来复用这段代码。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Select</span>(&#123;<span class="string">"select id, name, class_id from my_student"</span>&#125;)</span><br><span class="line"><span class="meta">@Results</span>(id=<span class="string">"studentMap"</span>, value=&#123;</span><br><span class="line">    <span class="meta">@Result</span>(column=<span class="string">"id"</span>, property=<span class="string">"id"</span>, jdbcType=JdbcType.INTEGER, id=<span class="keyword">true</span>),</span><br><span class="line">    <span class="meta">@Result</span>(column=<span class="string">"class_id"</span>, property=<span class="string">"classId"</span>, jdbcType=JdbcType.INTEGER)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="function">List&lt;Student&gt; <span class="title">selectAll</span><span class="params">()</span></span>;</span><br><span class="line"> </span><br><span class="line"><span class="meta">@Select</span>(&#123;<span class="string">"select id, name, class_id from my_student where id = #&#123;id&#125;"</span>&#125;)</span><br><span class="line"><span class="meta">@ResultMap</span>(value=<span class="string">"studentMap"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function">Student <span class="title">selectById</span><span class="params">(integer id)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>(3)@One的用法。当我们需要通过查询到的一个字段值作为参数，去执行另外一个方法来查询关联的内容，而且两者是一对一关系时，可以使用@One注解来便捷的实现。比如当我们需要查询学生信息以及其所属班级信息时，需要以查询到的class_id为参数，来执行ClassesMapper中的selectById方法，从而获得学生所属的班级信息。可以使用如下代码。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Select(&#123;<span class="string">"select id, name, class_id from my_student"</span>&#125;)</span><br><span class="line"><span class="meta">@Results</span>(id=<span class="string">"studentMap"</span>, value=&#123;</span><br><span class="line"> <span class="meta">@Result</span>(column=<span class="string">"id"</span>, property=<span class="string">"id"</span>, jdbcType=JdbcType.INTEGER, id=<span class="keyword">true</span>),</span><br><span class="line"> <span class="meta">@Result</span>(column=<span class="string">"class_id"</span>, property=<span class="string">"myClass"</span>, javaType=MyClass.class,</span><br><span class="line"> one=<span class="meta">@One</span>(select=<span class="string">"com.mapper.MyClassMapper.selectById"</span>))</span><br><span class="line">&#125;)</span><br><span class="line"><span class="function">List&lt;Student&gt; <span class="title">selectAllAndClassMsg</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-<p>（4）@Many的用法。与@One类似，只不过如果使用@One查询到的结果是多行，会抛出TooManyResultException异常，这种时候应该使用的是@Many注解，实现一对多的查询。比如在需要查询学生信息和每次考试的成绩信息时。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select</span>(&#123;<span class="string">"select id, name, class_id from my_student"</span>&#125;)</span><br><span class="line"><span class="meta">@Results</span>(id=<span class="string">"studentMap"</span>, value=&#123;</span><br><span class="line"> <span class="meta">@Result</span>(column=<span class="string">"id"</span>, property=<span class="string">"id"</span>, jdbcType=JdbcType.INTEGER, id=<span class="keyword">true</span>),</span><br><span class="line"> <span class="meta">@Result</span>(column=<span class="string">"class_id"</span>, property=<span class="string">"classId"</span>, jdbcType=JdbcType.INTEGER),</span><br><span class="line"> <span class="meta">@Result</span>(column=<span class="string">"id"</span>, property=<span class="string">"gradeList"</span>, javaType=List.class,</span><br><span class="line"> many=<span class="meta">@Many</span>(select=<span class="string">"com.example.demo.mapper.GradeMapper.selectByStudentId"</span>))</span><br><span class="line">&#125;)</span><br><span class="line"><span class="function">List&lt;Student&gt; <span class="title">selectAllAndGrade</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-<p>（5）传递多个参数。首先我们给这张表增加age（年龄）和gender（性别）两个参数。当我们需要根据age和gender查询学生的午餐，这时需要改写column属性的格式。等号左侧的age和gender对应java接口的参数，右侧的对应数据库字段名。即将查到的my_student表中age和gender字段的值，分别赋给getLunchByAgeAndGender方法中的age和gender参数，去查询对应的name（午餐名）。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select</span>(<span class="string">"select id, name, age, gender from my_student"</span>)</span><br><span class="line"><span class="meta">@Results</span>(&#123;</span><br><span class="line"> <span class="meta">@Result</span>(column=<span class="string">"id"</span>, property=<span class="string">"id"</span>, jdbcType=JdbcType.INTEGER, id=<span class="keyword">true</span>),</span><br><span class="line"> <span class="meta">@Result</span>(column=<span class="string">"class_id"</span>, property=<span class="string">"classId"</span>, jdbcType=JdbcType.INTEGER),</span><br><span class="line"> <span class="meta">@Result</span>(column=<span class="string">"&#123;age=age,gender=gender&#125;"</span>, property=<span class="string">"lunch"</span>,</span><br><span class="line"> one=<span class="meta">@One</span>(select=<span class="string">"com.example.demo.mapper.StudentMapper.getLunchByAgeAndGender"</span>)),</span><br><span class="line"> &#125;)</span><br><span class="line"><span class="function">List&lt;Student&gt; <span class="title">selectAllAndLunch</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Select</span>(<span class="string">"select name from lunch where student_age = #&#123;age&#125; and student_gender = #&#123;gender&#125;"</span>)</span><br><span class="line"><span class="function">String <span class="title">getLunchByAgeAndGender</span><span class="params">(@Param(<span class="string">"age"</span>)</span> <span class="keyword">int</span> age, @<span class="title">Param</span><span class="params">(<span class="string">"gender"</span>)</span> <span class="keyword">int</span> gender)</span>;</span><br></pre></td></tr></table></figure>
-<hr>
-
+          
       
     </div>
     
@@ -1222,6 +1014,10 @@ CMS垃圾收集器应用的算法
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/">springboot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/03/sprintboot中的数据库注解/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1352,121 +1148,6 @@ CMS垃圾收集器应用的算法
 
 
   
-    <article id="post-redis-数据的淘汰机制" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/03/redis-数据的淘汰机制/" class="article-date">
-      <time datetime="2019-03-21T12:55:40.000Z" itemprop="datePublished">2019-03-21</time>
-</a>
-
- 
-    <a href="/2019/03/redis-数据的淘汰机制/#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
-        
-        
-            <span class="disqus-comment-count" data-disqus-identifier="2019/03/redis-数据的淘汰机制/"></span>
-        
-    </a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-	
-		
-
-
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/redis-数据的淘汰机制/">redis.数据的淘汰机制</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>可以设置内存最大使用量，当内存使用量超出时，会施行数据淘汰策略。</p>
-<p>Redis 具体有 6 种淘汰策略：</p>
-<table>
-<thead>
-<tr>
-<th>策略</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>volatile-lru</td>
-<td>从已设置过期时间的数据集中挑选最近最少使用的数据淘汰</td>
-</tr>
-<tr>
-<td>volatile-ttl</td>
-<td>从已设置过期时间的数据集中挑选将要过期的数据淘汰</td>
-</tr>
-<tr>
-<td>volatile-random</td>
-<td>从已设置过期时间的数据集中任意选择数据淘汰</td>
-</tr>
-<tr>
-<td>allkeys-lru</td>
-<td>从所有数据集中挑选最近最少使用的数据淘汰</td>
-</tr>
-<tr>
-<td>allkeys-random</td>
-<td>从所有数据集中任意选择数据进行淘汰</td>
-</tr>
-<tr>
-<td>noeviction</td>
-<td>禁止驱逐数据</td>
-</tr>
-</tbody>
-</table>
-<p>作为内存数据库，出于对性能和内存消耗的考虑，Redis 的淘汰算法实际实现上并非针对所有 key，而是抽样一小部分并且从中选出被淘汰的 key。</p>
-<p>使用 Redis 缓存数据时，为了提高缓存命中率，需要保证缓存数据都是热点数据。可以将内存最大使用量设置为热点数据占用的内存量，然后启用 allkeys-lru 淘汰策略，将最近最少使用的数据淘汰。</p>
-<p>Redis 4.0 引入了 volatile-lfu 和 allkeys-lfu 淘汰策略，LFU 策略通过统计访问频率，将访问频率最少的键值对淘汰。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/redis/">redis</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
@@ -1502,7 +1183,7 @@ CMS垃圾收集器应用的算法
                     </span>
 					<span title="本站总字数统计">
                          <span><i class="fa fa-map" aria-hidden="true"></i></span>
-                        <span class="post-count"><b>40.6k</b></span>
+                        <span class="post-count"><b>40.9k</b></span>
                     </span>
              
                 
