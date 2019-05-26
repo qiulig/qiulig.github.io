@@ -15,18 +15,22 @@
 
 
 
-<meta name="description" content="1. 题目描述 用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。">
-<meta name="keywords" content="栈">
+<meta name="description" content="SQL分类(1) DDL(Data Definition Languages):数据定义语言：不同的数据段、数据库、表、列、索引等数据库对象的定义（create、drop、alter） (2)DML (Data Manipulation Language)：数据操纵语句：增删改查(inset、delete、select) (3) DCL(Data Control Language) :数据控制语句">
+<meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="剑指offer_【5】两个栈实现队列">
-<meta property="og:url" content="http://blogs.qiulig.website/2019/04/5.两个栈实现队列/index.html">
+<meta property="og:title" content="SQL基础">
+<meta property="og:url" content="http://blogs.qiulig.website/2019/03/SQL基础/index.html">
 <meta property="og:site_name" content="Long&#39;s Blog">
-<meta property="og:description" content="1. 题目描述 用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。">
+<meta property="og:description" content="SQL分类(1) DDL(Data Definition Languages):数据定义语言：不同的数据段、数据库、表、列、索引等数据库对象的定义（create、drop、alter） (2)DML (Data Manipulation Language)：数据操纵语句：增删改查(inset、delete、select) (3) DCL(Data Control Language) :数据控制语句">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-18T08:20:32.511Z">
+<meta property="og:image" content="https://github.com/qiulig/IMG/raw/master/sql数值型.png">
+<meta property="og:image" content="https://github.com/qiulig/IMG/raw/master/sql字符串类型.png">
+<meta property="og:image" content="https://github.com/qiulig/IMG/raw/master/sql日期和时间类型.png">
+<meta property="og:updated_time" content="2019-05-26T05:57:37.848Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="剑指offer_【5】两个栈实现队列">
-<meta name="twitter:description" content="1. 题目描述 用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。">
+<meta name="twitter:title" content="SQL基础">
+<meta name="twitter:description" content="SQL分类(1) DDL(Data Definition Languages):数据定义语言：不同的数据段、数据库、表、列、索引等数据库对象的定义（create、drop、alter） (2)DML (Data Manipulation Language)：数据操纵语句：增删改查(inset、delete、select) (3) DCL(Data Control Language) :数据控制语句">
+<meta name="twitter:image" content="https://github.com/qiulig/IMG/raw/master/sql数值型.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -58,7 +62,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>剑指offer_【5】两个栈实现队列 | Long&#39;s Blog</title>
+<title>SQL基础 | Long&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -280,11 +284,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-5.两个栈实现队列" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-SQL基础" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/5.两个栈实现队列/" class="article-date">
-      <time datetime="2019-04-28T13:16:12.000Z" itemprop="datePublished">2019-04-28</time>
+      <a href="/2019/03/SQL基础/" class="article-date">
+      <time datetime="2019-03-26T02:05:50.000Z" itemprop="datePublished">2019-03-26</time>
 </a>
 
 
@@ -302,8 +306,8 @@
     <div id="disqus_thread"></div>
     <script>
         var disqus_config = function(){
-            this.page.url = 'http://blogs.qiulig.website/2019/04/5.两个栈实现队列/';
-            this.page.identifier = '2019/04/5.两个栈实现队列/';
+            this.page.url = 'http://blogs.qiulig.website/2019/03/SQL基础/';
+            this.page.identifier = '2019/03/SQL基础/';
         };
         var loadComment = function(){
             var d = document, s = d.createElement('script');
@@ -327,7 +331,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      剑指offer_【5】两个栈实现队列
+      SQL基础
     </h1>
   
 
@@ -336,13 +340,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/剑指offer/">剑指offer</a>
+    <a class="article-category-link" href="/categories/数据库/">数据库</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/栈/">栈</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -352,22 +356,187 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h4><blockquote>
-<p>用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。<a id="more"></a></p>
-</blockquote>
-<h4 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h4><ul>
-<li style="list-style: none"><input type="checkbox"> 栈的规则是先进后出，队列的规则是先进先出</li>
-</ul>
-<ol>
-<li><p>stack1一直维持着栈底–栈顶是队列的入队顺序</p>
-</li>
-<li><p>stack2一直维持着栈顶–栈尾为队列的入队顺序</p>
-</li>
-<li><p>当执行队列的入队（push）时，如果stack2为空，则直接插入到stack1,stack1从栈底到栈顶的顺序为入队顺序，如果stack2不为空，则将stack2的元素倒入（栈顶—栈尾）stack1,然后再插入数据</p>
-</li>
-</ol>
-<p>4- 当执行队列的出队(pop)操作时，应该出的是stack1的栈底元素，故将stack1依次倒入stack2,这时stack2的栈顶就是要出队的数值，此时stack1为空，stack2从（栈顶–栈尾）为入队顺序</p>
-<h4 id="3-代码"><a href="#3-代码" class="headerlink" title="3. 代码"></a>3. 代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    Stack&lt;Integer&gt; stack1 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">    Stack&lt;Integer&gt; stack2 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">    <span class="comment">//队列的入队</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> node)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//将stack2倒入stack1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!stack2.empty()) &#123;</span><br><span class="line">            stack1.push(stack2.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将元素插入stack1</span></span><br><span class="line"></span><br><span class="line">        stack1.push(node);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//队列的出队</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//将stack1倒入stack2</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!stack1.empty()) &#123;</span><br><span class="line">            stack2.push(stack1.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//stack2的栈顶就是出队数值</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> stack2.pop();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="SQL分类"><a href="#SQL分类" class="headerlink" title="SQL分类"></a>SQL分类</h3><p>(1) DDL(Data Definition Languages):数据定义语言：不同的数据段、数据库、表、列、索引等数据库对象的定义（create、drop、alter）</p>
+<p>(2)DML (Data Manipulation Language)：数据操纵语句：增删改查(inset、delete、select)</p>
+<p>(3) DCL(Data Control Language) :数据控制语句：数据库、表、字段、用户的访问权限和安全级别。</p>
+<h3 id="1-DDL数据定义语句"><a href="#1-DDL数据定义语句" class="headerlink" title="1.DDL数据定义语句"></a>1.DDL数据定义语句</h3><pre><code>对数据库内部的对象进行创建、删除、修改的操作语言。涉及表的定义，结构的修改。
+</code></pre><table>
+<thead>
+<tr>
+<th>语句</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><br><strong>CREATE DATABASE</strong> dbname<br><br></td>
+<td>创建数据库</td>
+</tr>
+<tr>
+<td><br><strong>SHOW databases/tables</strong><br><br></td>
+<td>查看系统存在哪些数据库/数据表</td>
+</tr>
+<tr>
+<td><br><strong>USE</strong> dbname<br><br></td>
+<td>选择数据库</td>
+</tr>
+<tr>
+<td><br><strong>DROP DATABASE</strong> dbname<br><br></td>
+<td>删除数据库</td>
+</tr>
+<tr>
+<td><br><strong>DROP TABLE</strong> tablename<br><br></td>
+<td>删除表</td>
+</tr>
+<tr>
+<td><br><strong>CREATE TABLE</strong> tablename <br> (<br> column_name_1 column_type_1 constraints，<br> column_name_2 column_type_2 constraints ， ……<br> column_name_n column_type_n<br> constraints<br> )<br><br></td>
+<td>创建数据库</td>
+</tr>
+<tr>
+<td><br><strong>DESC</strong> tablename<br><br></td>
+<td>查看表定义</td>
+</tr>
+<tr>
+<td><br><strong>SHOW CREATE TABLE</strong> tablename \G<br><br></td>
+<td>查看更详细的表定义,\G表示使字段按照顺序竖着排列</td>
+</tr>
+<tr>
+<td><br><strong>ALTER TABLE</strong> tablename<br>  <strong>MODIFY</strong> [COLUMN] column_definition<br> [FIRST &#124; AFTER col_name]<br><br></td>
+<td>修改表类型</td>
+</tr>
+<tr>
+<td><br><strong>ALTER TABLE</strong> tablename<br> <strong>ADD</strong> [COLUMN] column_definition<br> [FIRST &#124; AFTER col_name]<br><br></td>
+<td>增加表字段</td>
+</tr>
+<tr>
+<td><br><strong>ALTER TABLE</strong> tablename <br><strong>DROP</strong> [COLUMN] col_name<br><br></td>
+<td>删除表字段</td>
+</tr>
+<tr>
+<td><br><strong>ALTER TABLE</strong> tablename<br> <strong>CHANGE</strong> [COLUMN] old_col_name column_definition<br> [FIRST&#124;AFTER col_name]<br><br></td>
+<td>字段改名</td>
+</tr>
+<tr>
+<td><br><strong>ALTER TABLE</strong> tablename<br> <strong>RENAME</strong> [TO] new_tablename<br><br></td>
+<td>表改名</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-DML数据操纵语句"><a href="#2-DML数据操纵语句" class="headerlink" title="2.DML数据操纵语句"></a>2.DML数据操纵语句</h3><pre><code>DML 操作是指对数据库中表记录的操作，主要包括表记录的插入（insert）、更新（update）、删除（delete）和查询（select）
+</code></pre><table>
+<thead>
+<tr>
+<th>语句</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><br><strong>INSERT INTO</strong> tablename (field1,field2,……fieldn)<br> <strong>VALUES</strong>(value1,value2,……valuesn);<br><br></td>
+<td>插入记录</td>
+</tr>
+<tr>
+<td><br><strong>UPDATE</strong> tablename<br> <strong>SET</strong> field1=value1，field2.=value2，……fieldn=valuen<br> [WHERE CONDITION]<br><br></td>
+<td>更新记录</td>
+</tr>
+<tr>
+<td><br><strong>DELETE FROM</strong> tablename<br> [<strong>WHERE</strong> CONDITION]<br><br></td>
+<td>删除记录</td>
+</tr>
+<tr>
+<td><br><strong>SELECT * FROM</strong> tablename<br> [<strong>WHERE</strong> CONDITION]<br><br></td>
+<td>查询记录</td>
+</tr>
+<tr>
+<td><br><strong>SELECT DISTINCT</strong> column_name<br>  <strong>FROM</strong> tablename<br> [<strong>WHERE</strong> CONDITION]<br><br></td>
+<td>查询不重复的记录</td>
+</tr>
+<tr>
+<td><br><strong>SELECT * FROM</strong> tablename<br>   [<strong>WHERE</strong> CONDITION]<br> [<strong>ORDER BY</strong><br>        field1 [<strong>DESC &#124; ASC</strong>],<br>        field2[DESC &#124; ASC],<br>  ……fieldn [DESC&#124;ASC]<br> [<strong>LIMIT</strong> offset_start,row_count]<br><br></td>
+<td>排序限制</td>
+</tr>
+<tr>
+<td><br><strong>SELECT</strong> [field1,field2,……fieldn]  fun_name<br><strong>FROM</strong> tablename<br>[<strong>WHERE</strong> where_contition]<br>[<strong>GROUP BY</strong> field1,field2,……fieldn<br>[<strong>WITH ROLLUP</strong>]]<br>[<strong>HAVING</strong> where_contition]<br><br></td>
+<td>聚合操作group by /having</td>
+</tr>
+<tr>
+<td><br><strong>SELECT</strong> ename,deptname<br>  <strong>FROM</strong> dept<br><strong>RIGHT JOIN[LEFT JOIN]</strong> emp<br> <strong>ON</strong> dept.deptno=emp.deptno;<br><br></td>
+<td>右连接right join 左连接left join</td>
+</tr>
+<tr>
+<td><br><strong>in、not in、=、!=、exists、not exists</strong><br></td>
+<td>子查询</td>
+</tr>
+<tr>
+<td><br><strong>SELECT * FROM</strong> t1<br><strong>UNION&#124;UNION ALL</strong><br><strong>SELECT * FROM</strong> t2<br>……<br><strong>UNION&#124;UNION ALL</strong><br><strong>SELECT * FROM</strong> tn;<br><br></td>
+<td>记录联合</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-DCL数据控制语句"><a href="#3-DCL数据控制语句" class="headerlink" title="3.DCL数据控制语句"></a>3.DCL数据控制语句</h3><pre><code>DCL 语句主要是 DBA 用来管理系统中的对象权限时所使用
+</code></pre><table>
+<thead>
+<tr>
+<th>语句</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><br><strong>grant select,insert</strong> <strong>on</strong><br> sakila.* <strong>to</strong><br> ‘z1‘@’localhost’ identified by ‘123’<br><br></td>
+<td>创建一个数据库用户 z1，具有对 sakila 数据库中所有表的 SELECT/INSERT 权限</td>
+</tr>
+<tr>
+<td><br><strong>revoke insert on</strong> sakila.* from ‘z1‘@’localhost’;<br><br></td>
+<td>将z1 的权限变更，收回 INSERT，只能对数据进行 SELECT 操作</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-帮助的使用"><a href="#4-帮助的使用" class="headerlink" title="4.帮助的使用"></a>4.帮助的使用</h3><table>
+<thead>
+<tr>
+<th>语句</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>？contents</strong></td>
+<td>显示所有可供查询的的分类</td>
+</tr>
+<tr>
+<td>？ data types</td>
+<td>Mysql支持的数据类型</td>
+</tr>
+<tr>
+<td>？ show</td>
+<td>…</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-MYSQL支持的数据类型"><a href="#5-MYSQL支持的数据类型" class="headerlink" title="5.MYSQL支持的数据类型"></a>5.MYSQL支持的数据类型</h3><blockquote>
+<p>(1)数值型</p>
+<pre><code>整数：tinyint  smallint  mediumint  int/integer  bigint 
+
+浮点数：float  double 
+
+定点数：dec(m,d) decimal(m,d):m表示长度，d表示小数位数
+
+位：bit
+</code></pre><p>(2)字符串类型</p>
+<pre><code>date  datetime  timestamp  time  year
+</code></pre><p>(3)日期和时间类型</p>
+<pre><code>整数：char   varchar
+
+字节：tinyblob   blob   mediumblob   longblob  tinytext   text mediumtext   longtext   varbinary  binary
+</code></pre></blockquote>
+<p><img src="https://github.com/qiulig/IMG/raw/master/sql数值型.png" alt="sql数值型类型"></p>
+<p><img src="https://github.com/qiulig/IMG/raw/master/sql字符串类型.png" alt="sql字符串类型"></p>
+<p><img src="https://github.com/qiulig/IMG/raw/master/sql日期和时间类型.png" alt="日期和时间类型"></p>
 
       
     </div>
@@ -376,14 +545,14 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/04/5.两个栈实现队列/">剑指offer_【5】两个栈实现队列</a></p>
+        <p><span>本文标题:</span><a href="/2019/03/SQL基础/">SQL基础</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">qiulig</a></p>
-        <p><span>发布时间:</span>2019-04-28, 21:16:12</p>
-        <p><span>最后更新:</span>2019-05-18, 16:20:32</p>
-        <p><span class="post-count">文章字数:</span>317</p> 
+        <p><span>发布时间:</span>2019-03-26, 10:05:50</p>
+        <p><span>最后更新:</span>2019-05-26, 13:57:37</p>
+        <p><span class="post-count">文章字数:</span>721</p> 
 		<p>
-            <span>原始链接:</span><a class="post-url" href="/2019/04/5.两个栈实现队列/" title="剑指offer_【5】两个栈实现队列">http://blogs.qiulig.website/2019/04/5.两个栈实现队列/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://blogs.qiulig.website/2019/04/5.两个栈实现队列/　　作者: qiulig" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/SQL基础/" title="SQL基础">http://blogs.qiulig.website/2019/03/SQL基础/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blogs.qiulig.website/2019/03/SQL基础/　　作者: qiulig" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -396,15 +565,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/04/6-旋转数组的最小数字/">
-                    剑指offer_【6】旋转数组的最小数字
+                <a href="/2019/04/JVM-回收算法/">
+                    JVM_垃圾回收算法
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/04/4.重建二叉树/">
-                    剑指offer_【4】重建二叉树
+                <a href="/2019/03/sprintboot中的数据库注解/">
+                    sprintboot中的数据库注解
                 </a>
             </div>
         
@@ -416,7 +585,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-题目描述"><span class="toc-number">1.</span> <span class="toc-text">1. 题目描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-解题思路"><span class="toc-number">2.</span> <span class="toc-text">2. 解题思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-代码"><span class="toc-number">3.</span> <span class="toc-text">3. 代码</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL分类"><span class="toc-number">1.</span> <span class="toc-text">SQL分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-DDL数据定义语句"><span class="toc-number">2.</span> <span class="toc-text">1.DDL数据定义语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-DML数据操纵语句"><span class="toc-number">3.</span> <span class="toc-text">2.DML数据操纵语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-DCL数据控制语句"><span class="toc-number">4.</span> <span class="toc-text">3.DCL数据控制语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-帮助的使用"><span class="toc-number">5.</span> <span class="toc-text">4.帮助的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-MYSQL支持的数据类型"><span class="toc-number">6.</span> <span class="toc-text">5.MYSQL支持的数据类型</span></a></li></ol>
         
     </div>
     <style>
@@ -452,7 +621,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"剑指offer_【5】两个栈实现队列　| Long's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"SQL基础　| Long's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -471,8 +640,8 @@
     <div id="disqus_thread"></div>
     <script>
         var disqus_config = function(){
-            this.page.url = 'http://blogs.qiulig.website/2019/04/5.两个栈实现队列/';
-            this.page.identifier = '2019/04/5.两个栈实现队列/';
+            this.page.url = 'http://blogs.qiulig.website/2019/03/SQL基础/';
+            this.page.identifier = '2019/03/SQL基础/';
         };
         var loadComment = function(){
             var d = document, s = d.createElement('script');
@@ -494,7 +663,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/04/6-旋转数组的最小数字/" title="上一篇: 剑指offer_【6】旋转数组的最小数字">
+            <a href="/2019/04/JVM-回收算法/" title="上一篇: JVM_垃圾回收算法">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -502,7 +671,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/04/4.重建二叉树/" title="下一篇: 剑指offer_【4】重建二叉树">
+            <a href="/2019/03/sprintboot中的数据库注解/" title="下一篇: sprintboot中的数据库注解">
                 <i class="fa fa-angle-right"></i>
             </a>
         
