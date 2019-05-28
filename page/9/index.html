@@ -282,6 +282,89 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-jvm-线程TLAB局部缓存区域" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/jvm-线程TLAB局部缓存区域/" class="article-date">
+      <time datetime="2019-04-22T13:31:05.000Z" itemprop="datePublished">2019-04-22</time>
+</a>
+
+ 
+    <a href="/2019/04/jvm-线程TLAB局部缓存区域/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+        
+            <span class="disqus-comment-count" data-disqus-identifier="2019/04/jvm-线程TLAB局部缓存区域/"></span>
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+	
+		
+
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/jvm-线程TLAB局部缓存区域/">JVM_线程TLAB局部缓存区域</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="1-对象内存分配的两种方法"><a href="#1-对象内存分配的两种方法" class="headerlink" title="1.对象内存分配的两种方法"></a>1.对象内存分配的两种方法</h2><p>Ø 指针碰撞</p>
+<blockquote>
+<p>假设Java堆中内存是绝对规整的，所有用过的内存都放在一边，空闲的内存放在另一边，中间放着一个指针作为分界点的指示器，那所分配内存就仅仅是把那个指针向空闲空间那边挪动一段与对象大小相等的距离，这种分配方式称为“指针碰撞”</p></blockquote>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/JAVA虚拟机/">JAVA虚拟机</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/04/jvm-线程TLAB局部缓存区域/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-JVM-内存分配和回收策略" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1036,87 +1119,6 @@ MySQL 中还支持全文本（FULLTEXT）索引，用于全文搜索，默认情
 
 
   
-    <article id="post-SQL-存储引擎" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/03/SQL-存储引擎/" class="article-date">
-      <time datetime="2019-03-27T01:50:30.000Z" itemprop="datePublished">2019-03-27</time>
-</a>
-
- 
-    <a href="/2019/03/SQL-存储引擎/#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
-        
-        
-            <span class="disqus-comment-count" data-disqus-identifier="2019/03/SQL-存储引擎/"></span>
-        
-    </a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-	
-		
-
-
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/SQL-存储引擎/">SQL_存储引擎</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="四种存储引擎"><a href="#四种存储引擎" class="headerlink" title="四种存储引擎"></a>四种存储引擎</h2>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/数据库/">数据库</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MYSQL/">MYSQL</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/03/SQL-存储引擎/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
@@ -1152,7 +1154,7 @@ MySQL 中还支持全文本（FULLTEXT）索引，用于全文搜索，默认情
                     </span>
 					<span title="本站总字数统计">
                          <span><i class="fa fa-map" aria-hidden="true"></i></span>
-                        <span class="post-count"><b>51.3k</b></span>
+                        <span class="post-count"><b>51.7k</b></span>
                     </span>
              
                 
