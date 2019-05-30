@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="qiulig">
+
+
+
+<meta name="description" content="内存泄漏概念： 一个不再被程序使用的对象或者变量还在内存中占有存储空间。 （1）堆中申请的空间没有被释放 （2）对象不在使用但还在内存中保留">
+<meta name="keywords" content="JVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM_内存泄漏和内存溢出">
+<meta property="og:url" content="http://blogs.qiulig.website/2019/05/JVMVM-内存泄漏和内存溢出/index.html">
+<meta property="og:site_name" content="Long&#39;s Blog">
+<meta property="og:description" content="内存泄漏概念： 一个不再被程序使用的对象或者变量还在内存中占有存储空间。 （1）堆中申请的空间没有被释放 （2）对象不在使用但还在内存中保留">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-30T12:42:33.669Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JVM_内存泄漏和内存溢出">
+<meta name="twitter:description" content="内存泄漏概念： 一个不再被程序使用的对象或者变量还在内存中占有存储空间。 （1）堆中申请的空间没有被释放 （2）对象不在使用但还在内存中保留">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Long&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>JVM_内存泄漏和内存溢出 | Long&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?464240a4c3e7da4512bd33ba1c040abb";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head></html>
+<body>
+
+<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">qiulig</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">菜鸟要更加努力才能追上别人的步伐</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false">
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:qiuling_long@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/qiulig" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAVA基础/">JAVA基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MYDQL/">MYDQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MYSQL/">MYSQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/manacher算法/">manacher算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rabbitMQ/">rabbitMQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树题/">二叉树题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/动态规划/">动态规划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回溯法/">回溯法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字符串题/">字符串题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并发/">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数组类型题/">数组类型题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/栈/">栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/滑动窗口法/">滑动窗口法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/秒杀/">秒杀</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/讯飞科技笔试/">讯飞科技笔试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链表题/">链表题</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://qiulig.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://blogs/qiulig.website/">HOME</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，与大家分享交流，同时能够对这些技术进行备忘，以便日后查询</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">qiulig</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">qiulig</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">菜鸟要更加努力才能追上别人的步伐</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:qiuling_long@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/qiulig" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-JVMVM-内存泄漏和内存溢出" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/05/JVMVM-内存泄漏和内存溢出/" class="article-date">
+      <time datetime="2019-05-30T11:54:41.000Z" itemprop="datePublished">2019-05-30</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+	
+		
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://blogs.qiulig.website/2019/05/JVMVM-内存泄漏和内存溢出/';
+            this.page.identifier = '2019/05/JVMVM-内存泄漏和内存溢出/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JVM_内存泄漏和内存溢出
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/JAVA虚拟机/">JAVA虚拟机</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h2><h6 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h6><blockquote>
+<p>一个不再被程序使用的对象或者变量还在内存中占有存储空间。</p>
+<p>（1）堆中申请的空间没有被释放</p>
+<p>（2）对象不在使用但还在内存中保留</p>
+<a id="more"></a>
+</blockquote>
+<h6 id="内存泄漏的原因："><a href="#内存泄漏的原因：" class="headerlink" title="内存泄漏的原因："></a>内存泄漏的原因：</h6><blockquote>
+<p>（1）静态集合类，如hashmap和vector，如果容器为静态，她们的生命周期与程序一致。</p>
+<p>（2）各种连接，如数据库连接，IO连接</p>
+<p>（3）监听器：通常一个应用中会用到多个监听器，但是在释放对象的同时往往没有相应的删除监听器</p>
+<p>（4）变量不合理的作用域。一方面一个变量的定义作用范围大于其使用范围，很可能造成内存泄漏。另一方面如果没有及时把对象设置为null,很可能导致内存泄漏。</p>
+<p>（5）单例模式：一直存在着一个对对象的引用，并且以一个静态变量的方式存储，因此它在JVM整个生命周期都存在。</p>
+</blockquote>
+<h6 id="内存泄漏解决方案："><a href="#内存泄漏解决方案：" class="headerlink" title="内存泄漏解决方案："></a>内存泄漏解决方案：</h6><blockquote>
+<p>（1）避免在循环中创建对象</p>
+<p>（2） 尽早释放无用的对象引用</p>
+<p>（3）尽量少用静态变量</p>
+<p>（4）使用字符串处理，避免使用String,应大量使用StringBuffer,因为每个String对象都得独立占用内存一块区域</p>
+</blockquote>
+<h2 id="内存溢出OOM"><a href="#内存溢出OOM" class="headerlink" title="内存溢出OOM"></a>内存溢出OOM</h2><h6 id="概念：-1"><a href="#概念：-1" class="headerlink" title="概念："></a>概念：</h6><blockquote>
+<p>程序运行过程中无法申请到足够的内存而导致的一种错误，除了程序计数器外，其他几个运行区都有OOM的可能。</p>
+</blockquote>
+<h6 id="内存溢出情况："><a href="#内存溢出情况：" class="headerlink" title="内存溢出情况："></a>内存溢出情况：</h6><blockquote>
+<p>（1）虚拟机栈和本地方法栈溢出</p>
+<pre><code>如果线程请求的栈深度大于虚拟机所允许的最大深度,将抛出StackOverflowError 异常。  
+
+如果虚拟机在扩展栈时无法申请到足够的内存空间，则抛出OutOfMemoryError 异常。  
+</code></pre><p> （2）<strong>堆溢出</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; 一般的异常信息： java.lang.OutOfMemoryError:Java heap spaces</span><br><span class="line">&gt;  出现这种异常，一般手段是先通过内存映像分析工具(如 Eclipse Memory Analyzer)对 dump 出来的堆转存快照进行分析,</span><br><span class="line">&gt;  重点是确认内存中的对象是否是必要的，先分清是因为内存泄漏还是内存溢出。</span><br><span class="line">&gt;     1.如果是内存泄漏， 可进一步通过工具查看泄漏对象到 GC Roots 的引用链。于是就能找到泄漏对象是通过怎样的路径与 GC Roots 相关联并导致垃圾收集器无法自动回收。</span><br><span class="line">&gt;     2.如果不存在泄漏， 那就应该检查虚拟机的参数(-Xmx 与-Xms)的设置是否适当。</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>（3）<strong>方法区溢出</strong></p>
+<pre><code>异常信息： java.lang.OutOfMemoryError:PermGen space。
+</code></pre><p>（4）<strong>运行时常量池溢出</strong></p>
+<pre><code>异常信息： java.lang.OutOfMemoryError:PermGen space。  
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; 如果要向运行时常量池中添加内容，最简单的做法就是使用 String.intern()这个Native 方法。</span><br><span class="line">&gt;     该方法的作用是:如果池中已经包含一个等于此 String 的字符串， 则返回代表池中这个字符串的 String 对象；</span><br><span class="line">&gt;     否则，将此 String 对象包含的字符串添加到常量池中， 并且返回此 String 对象的引用 。</span><br><span class="line">&gt; 由于常量池分配在方法区内，我们可以通过-XX:PermSize 和 -XX:MaxPermSize 限制方法区的大小， 从而间接限制其中常量池的容量。</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h6 id="内存溢出原因："><a href="#内存溢出原因：" class="headerlink" title="内存溢出原因："></a>内存溢出原因：</h6><blockquote>
+<p>1.内存中加载的数据量过于庞大， 如一次从数据库取出过多数据；</p>
+<p>2.集合类中有对对象的引用， 使用完后未清空， 使得 JVM 不能回收；<br>3.代码中存在死循环或循环产生过多重复的对象实体；<br>4.启动参数内存值设定的过小。</p>
+</blockquote>
+<h6 id="内存溢出解决方法："><a href="#内存溢出解决方法：" class="headerlink" title="内存溢出解决方法："></a>内存溢出解决方法：</h6><blockquote>
+<p>(1) 修改 JVM 启动参数， 直接增加内存。 (-Xms， -Xmx 参数一定不要忘记加。一般要将-Xms 和-Xmx 选项设置为相同， 以避免在每次 GC 后调整堆的大小； 建  议堆的最大值设置为可用内存的最大值的 80%)。  </p>
+<p>(2) 检查错误日志， 查看“OutOfMemory” 错误前是否有其它异常或错误。 </p>
+<p>(3)对代码进行走查和分析， 找出可能发生内存溢出的位置</p>
+<p>(4)  使用内存查看工具动态查看内存使用情况（Jconsole）。</p>
+</blockquote>
+<h2 id="减少gc次数的方法："><a href="#减少gc次数的方法：" class="headerlink" title="减少gc次数的方法："></a>减少gc次数的方法：</h2><blockquote>
+<p><strong>（1）对象不用时最好显式置为 Null</strong></p>
+<pre><code>一般而言,为 Null 的对象都会被作为垃圾处理,所以将不用的对象显式地设  为 Null,有利于 GC 收集器判定垃圾,从而提高了 GC 的效率。  
+</code></pre><p><strong>（2）尽量少用 System.gc()</strong>  </p>
+<pre><code>此函数建议 JVM进行主 GC,虽然只是建议而非一定,但很多情况下它会触发  主 GC,从而增加主 GC 的频率,也即增加了间歇性停顿的次数。  
+</code></pre><p><strong>（3）尽量少用静态变量</strong>  </p>
+<pre><code>静态变量属于全局变量,不会被 GC 回收,它们会一直占用内存。  
+</code></pre><p><strong>（4） 尽量使用 StringBuffer,而不用 String 来累加字符串。</strong><br>    由于 String 是固定长的字符串对象,累加 String 对象时,并非在一个 String  对象中扩增,而是重新创建新的 String 对象,如 Str5=Str1+Str2+Str3+Str4,这条  语句执行过程中会产生多个垃圾对象,因为对次作“+”操作时都必须创建新  的 String 对象,但这些过渡对象对系统来说是没有实际意义的,只会增加更多  的垃圾。 避免这种情况可以改用 StringBuffer 来累加字符串,因 StringBuffer 是可变长的,它在原有基础上进行扩增,不会产生中间对象。<br><strong>（5）分散对象创建或删除的时间</strong>  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; 集中在短时间内大量创建新对象,特别是大对象,会导致突然需要大量内存,JVM 在面临这种情况时,只能进行主 GC,以回收内存或整合</span><br><span class="line">&gt; 内存碎片从而增加主 GC 的频率。集中删除对象,道理也是一样的。 它使得突然出现了大量的垃圾对象,空闲空间必然减少,从而大大</span><br><span class="line">&gt; 增加了下一次创建新对象时强制主 GC 的机会。</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>（6） <strong>尽量少用 finalize 函数。 因为它会加大 GC 的工作量， 因此尽量少</strong>用finalize 方式回收资源。  </p>
+<p><strong>（7） 如果需要使用经常用到的图片， 可以使用软引用类型， 它可以尽可能</strong></p>
+<p><strong>（8）能用基本类型如 int,long,就不用 Integer,Long 对象</strong></p>
+<pre><code>基本类型变量占用的内存资源比相应包装类对象占用的少得多,如果没有必要,最好使用基本变量。  
+</code></pre><p><strong>（9） 增大-Xmx 的值。</strong></p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/05/JVMVM-内存泄漏和内存溢出/">JVM_内存泄漏和内存溢出</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">qiulig</a></p>
+        <p><span>发布时间:</span>2019-05-30, 19:54:41</p>
+        <p><span>最后更新:</span>2019-05-30, 20:42:33</p>
+        <p><span class="post-count">文章字数:</span>1.7k</p> 
+		<p>
+            <span>原始链接:</span><a class="post-url" href="/2019/05/JVMVM-内存泄漏和内存溢出/" title="JVM_内存泄漏和内存溢出">http://blogs.qiulig.website/2019/05/JVMVM-内存泄漏和内存溢出/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blogs.qiulig.website/2019/05/JVMVM-内存泄漏和内存溢出/　　作者: qiulig" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/05/Java-深拷贝和浅拷贝/">
+                    Java_深拷贝和浅拷贝
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#内存泄漏"><span class="toc-number">1.</span> <span class="toc-text">内存泄漏</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#概念："><span class="toc-number">1.0.0.0.1.</span> <span class="toc-text">概念：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#内存泄漏的原因："><span class="toc-number">1.0.0.0.2.</span> <span class="toc-text">内存泄漏的原因：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#内存泄漏解决方案："><span class="toc-number">1.0.0.0.3.</span> <span class="toc-text">内存泄漏解决方案：</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#内存溢出OOM"><span class="toc-number">2.</span> <span class="toc-text">内存溢出OOM</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#概念：-1"><span class="toc-number">2.0.0.0.1.</span> <span class="toc-text">概念：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#内存溢出情况："><span class="toc-number">2.0.0.0.2.</span> <span class="toc-text">内存溢出情况：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#内存溢出原因："><span class="toc-number">2.0.0.0.3.</span> <span class="toc-text">内存溢出原因：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#内存溢出解决方法："><span class="toc-number">2.0.0.0.4.</span> <span class="toc-text">内存溢出解决方法：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#减少gc次数的方法："><span class="toc-number">3.</span> <span class="toc-text">减少gc次数的方法：</span></a></li>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"JVM_内存泄漏和内存溢出　| Long's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://blogs.qiulig.website/2019/05/JVMVM-内存泄漏和内存溢出/';
+            this.page.identifier = '2019/05/JVMVM-内存泄漏和内存溢出/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/05/Java-深拷贝和浅拷贝/" title="下一篇: Java_深拷贝和浅拷贝">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/05/JVMVM-内存泄漏和内存溢出/">JVM_内存泄漏和内存溢出</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/Java-深拷贝和浅拷贝/">Java_深拷贝和浅拷贝</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-42-接雨水/">leetcode_【42】接雨水</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-11-盛最多水的容器/">leetcode_【11】盛最多水的容器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-10-正则表达式匹配/">leetcode_【10】正则表达式匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-234-回文链表/">leetcode_【234】回文链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-9-回文数/">leetcode_【9】回文数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-8-字符串转换成整数/">leetcode_【8】字符串转换成整数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-7-整数反转/">leetcode_【7】整数反转</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/回文/">得到的最短的回文长度</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-5-最长回文子串/">leetcode_【5】最长回文子串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-4-寻找两个有序数组的中位数/">leetcode_【4】寻找两个有序数组的中位数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-3-无重复字符的最长子串/">leetcode_【3】无重复字符的最长子串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-2-两数相加/">leetcode_【2】两数相加</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-1-两数之和/">leetcode_【1】两数之和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/volatile介绍/">volatile介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/66-机器人的运动范围/">剑指offer_【66】机器人的运动范围</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/65-矩阵中的路径/">剑指offer_【65】矩阵中的路径</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/64-滑动窗口的最大值/">剑指offer_【64】滑动窗口的最大值</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/63-数据流中的中位数/">剑指offer_【63】数据流中的中位数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/62-二叉搜索树的第K个结点/">剑指offer_【62】二叉搜索树的第K个结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/JSR303参数校验/">JSR303参数校验和全局异常处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/通用缓存key/">通用缓存key</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/rabbitMQ消息队列/">rabbitMQ实现消息缓冲</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/Redis缓存java端实现/">Redis缓存java端实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/61-序列化二叉树/">剑指offer_【61】序列化二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/60-把二叉树打印成多行/">剑指offer_【60】把二叉树打印成多行</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/59-按之字形顺序打印二叉树/">剑指offer_【59】按之字形顺序打印二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/58-对称的二叉树/">剑指offer_【58】对称的二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/57-二叉树的下一个结点/">剑指offer_【57】二叉树的下一个结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/56-删除链表中重复的结点/">剑指offer_【56】删除链表中重复的结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/55-链表中环的入口结点/">剑指offer_【55】链表中环的入口结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/54-字符流中第一个不重复的字符/">剑指offer_【54】字符流中第一个不重复的字符</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/53-表示数值的字符串/">剑指offer_【53】表示数值的字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/52-正则表达式匹配/">剑指offer_【52】正则表达式匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/51-构建乘积数组/">剑指offer_【51】构建乘积数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/50-数组中重复的数字/">剑指offer_【50】数组中重复的数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/49-把字符串转换成整数/">剑指offer_【49】把字符串转换成整数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/48-不用加减乘除做加法/">剑指offer_【48】不用加减乘除做加法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/47-求1-2-n/">剑指offer_【47】求1+2+...+n</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/46-孩子们的游戏/">剑指offer_【46】孩子们的游戏(圆圈中最后剩下的数)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/45-扑克牌顺子/">剑指offer_【45】扑克牌顺子</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/44-翻转单词顺序列/">剑指offer_【44】翻转单词顺序列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/43-左旋转字符串/">剑指offer_【43】左旋转字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/42-和为s的两个数字/">剑指offer_【42】和为s的两个数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/41-和为S的连续正数序列/">剑指offer_【41】和为S的连续正数序列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/40-数组中只出现一次的数字/">剑指offer_【40】数组中只出现一次的数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/39-平衡二叉树/">剑指offer_【39】平衡二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/38-二叉树的深度/">剑指offer_【38】二叉树的深度</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/37-数字在排序数组中出现的次数/">剑指offer_【37】数字在排序数组中出现的次数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/36-两个链表的第一个公共结点/">剑指offer_【36】两个链表的第一个公共结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/争吵问题-md/">争吵问题.md</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/34-第一个只出现一次的字符位置/">剑指offer_【34】第一个只出现一次的字符位置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/35.数组中的逆序对/">剑指offer_【35】数组中的逆序对</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/33-丑数/">剑指offer_【33】丑数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/32-把数组排成最小的数/">剑指offer_【32】把数组排成最小的数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/31-整数中1出现的次数/">剑指offer_【31】整数中1出现的次数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/30-连续子数组的最大和/">剑指offer_【30】连续子数组的最大和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/29-最小的K个数/">剑指offer_【29】最小的K个数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/28-数组中出现次数超过一半的数字/">剑指offer_【28】数组中出现次数超过一半的数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/27-字符串的排列/">剑指offer_【27】字符串的排列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/26-二叉搜索树与双向链表/">剑指offer_【26】二叉搜索树与双向链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/25-复杂链表的复制/">剑指offer_【25】复杂链表的复制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/24-二叉树中和为某值的路径/">剑指offer_【24】二叉树中和为某值的路径</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/23-二叉搜索树的后序遍历序列/">剑指offer_【23】二叉搜索树的后序遍历序列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/22-从上到下打印二叉树/">剑指offer_【22】从上到下打印二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/21-栈的压入、弹出/">剑指offer_【21】栈的压入、弹出</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/20-包含min函数的栈/">剑指offer_【20】包含min函数的栈</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/19-顺时针打印矩阵/">剑指offer_【19】顺时针打印矩阵</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/18-二叉树的镜像/">剑指offer_【18】二叉树的镜像</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/17-树的子结构/">剑指offer_【17】树的子结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/16-合并两个排序的链表/">剑指offer_【16】合并两个排序的链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15-反转链表/">剑指offer_【15】反转链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/14-链表中倒数第K个结点/">剑指offer_【14】链表中倒数第K个结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/13-调整数值顺序使奇数位于偶数前面/">剑指offer_【13】调整数值顺序使奇数位于偶数前面</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12-数值的整数次方/">剑指offer_【12】数值的整数次方</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11-二进制中1的个数/">剑指offer_【11】二进制中1的个数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10-矩形覆盖/">剑指offer_【10】矩形覆盖</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/9-变态跳台阶/">剑指offer_【9】变态跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/8-跳台阶/">剑指offer_【8】跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/7-斐波那契数组/">剑指offer_【7】斐波那契数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/6-旋转数组的最小数字/">剑指offer_【6】旋转数组的最小数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/5.两个栈实现队列/">剑指offer_【5】两个栈实现队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/4.重建二叉树/">剑指offer_【4】重建二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/3.从尾到头打印链表/">剑指offer_【3】从尾到头打印链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/leetcode-15-三数之和/">leetcode_【15】三数之和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/2.空格替换/">剑指offer_【2】空格替换</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/1.二维数组的查找/">剑指offer_【1】二维数组的查找</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/jvm-线程TLAB局部缓存区域/">JVM_线程TLAB局部缓存区域</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/JVM-内存分配和回收策略/">JVM_内存分配和回收策略</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/JVM-对象已死/">JVM_对象已死</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/JVM-垃圾回收器/">JVM_垃圾收集器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/JVM-回收算法/">JVM_垃圾回收算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-锁问题/">SQL_锁问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-触发器/">SQL_触发器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-存储过程和函数/">SQL_存储过程和函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-视图/">SQL_视图</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-索引/">SQL_索引</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-存储引擎/">SQL_存储引擎</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-常用函数/">SQL_常用函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL基础/">SQL_基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/sprintboot中的数据库注解/">sprintboot中的数据库注解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/redis数据的持久化/">redis_数据的持久化</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/redis-数据的淘汰机制/">redis.数据的淘汰机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/redis与memcached/">redis与memcached</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/redis-数据类型/">redis数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/redis应用场景/">redis应用场景</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2019 qiulig
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+					<span title="本站总字数统计">
+                         <span><i class="fa fa-map" aria-hidden="true"></i></span>
+                        <span class="post-count"><b>58.3k</b></span>
+                    </span>
+             
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
