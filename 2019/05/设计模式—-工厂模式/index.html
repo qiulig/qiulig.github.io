@@ -15,18 +15,20 @@
 
 
 
-<meta name="description" content="1.题目描述 在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&amp;gt;2-&amp;gt;3-&amp;gt;3-&amp;gt;4-&amp;gt;4-&amp;gt;5 处理后为 1-&amp;gt;2-&amp;gt;5">
-<meta name="keywords" content="链表题">
+<meta name="description" content="工厂模式定义一个用于创建对象的接口，让子类决定实例化哪个类，工厂方法使一个类的实例化延迟到其子类。">
+<meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="剑指offer_【56】删除链表中重复的结点">
-<meta property="og:url" content="http://blogs.qiulig.website/2019/05/56-删除链表中重复的结点/index.html">
+<meta property="og:title" content="设计模式—-工厂模式">
+<meta property="og:url" content="http://blogs.qiulig.website/2019/05/设计模式—-工厂模式/index.html">
 <meta property="og:site_name" content="Long&#39;s Blog">
-<meta property="og:description" content="1.题目描述 在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&amp;gt;2-&amp;gt;3-&amp;gt;3-&amp;gt;4-&amp;gt;4-&amp;gt;5 处理后为 1-&amp;gt;2-&amp;gt;5">
+<meta property="og:description" content="工厂模式定义一个用于创建对象的接口，让子类决定实例化哪个类，工厂方法使一个类的实例化延迟到其子类。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-19T14:07:32.468Z">
+<meta property="og:image" content="https://github.com/qiulig/IMG/raw/master/设计模式之工厂模式.png">
+<meta property="og:updated_time" content="2019-05-31T11:29:24.480Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="剑指offer_【56】删除链表中重复的结点">
-<meta name="twitter:description" content="1.题目描述 在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&amp;gt;2-&amp;gt;3-&amp;gt;3-&amp;gt;4-&amp;gt;4-&amp;gt;5 处理后为 1-&amp;gt;2-&amp;gt;5">
+<meta name="twitter:title" content="设计模式—-工厂模式">
+<meta name="twitter:description" content="工厂模式定义一个用于创建对象的接口，让子类决定实例化哪个类，工厂方法使一个类的实例化延迟到其子类。">
+<meta name="twitter:image" content="https://github.com/qiulig/IMG/raw/master/设计模式之工厂模式.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -58,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>剑指offer_【56】删除链表中重复的结点 | Long&#39;s Blog</title>
+<title>设计模式—-工厂模式 | Long&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -280,11 +282,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-56-删除链表中重复的结点" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-设计模式—-工厂模式" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/05/56-删除链表中重复的结点/" class="article-date">
-      <time datetime="2019-05-13T11:19:47.000Z" itemprop="datePublished">2019-05-13</time>
+      <a href="/2019/05/设计模式—-工厂模式/" class="article-date">
+      <time datetime="2019-05-31T11:21:52.000Z" itemprop="datePublished">2019-05-31</time>
 </a>
 
 
@@ -302,8 +304,8 @@
     <div id="disqus_thread"></div>
     <script>
         var disqus_config = function(){
-            this.page.url = 'http://blogs.qiulig.website/2019/05/56-删除链表中重复的结点/';
-            this.page.identifier = '2019/05/56-删除链表中重复的结点/';
+            this.page.url = 'http://blogs.qiulig.website/2019/05/设计模式—-工厂模式/';
+            this.page.identifier = '2019/05/设计模式—-工厂模式/';
         };
         var loadComment = function(){
             var d = document, s = d.createElement('script');
@@ -327,7 +329,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      剑指offer_【56】删除链表中重复的结点
+      设计模式—-工厂模式
     </h1>
   
 
@@ -336,13 +338,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/剑指offer/">剑指offer</a>
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/链表题/">链表题</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -352,19 +354,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h4><blockquote>
-<p>在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5 处理后为 1-&gt;2-&gt;5 <a id="more"></a></p>
-</blockquote>
-<h4 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h4><blockquote>
-<p>方法一：重头构建该链表</p>
-<p>(1) 新建两个list，一个用于存放只出现一次的数值，一个存放重复的数值</p>
-<p>(2) 将只出现过一次的数重头构建成链表</p>
-<p>方法二：递归思想</p>
-</blockquote>
-<h4 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h4><p>方法1：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ListNode <span class="title">deleteDuplication</span><span class="params">(ListNode pHead)</span> </span>&#123;</span><br><span class="line">           ArrayList&lt;Integer&gt; ss = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">           ArrayList&lt;Integer&gt; ss2 = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">           ListNode res = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">           ListNode node = res;</span><br><span class="line">           <span class="keyword">while</span>(pHead!=<span class="keyword">null</span>)&#123;</span><br><span class="line">               <span class="keyword">if</span>(!ss.contains(pHead.val)</span><br><span class="line">                      &amp;&amp; !ss2.contains(pHead.val))&#123;</span><br><span class="line"></span><br><span class="line">                   ss.add(pHead.val);</span><br><span class="line">                   pHead = pHead.next;</span><br><span class="line">               &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                   ss2.add(pHead.val);</span><br><span class="line">                   ss.remove(Integer.valueOf(pHead.val));</span><br><span class="line">                   pHead = pHead.next;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;ss.size();i++)&#123;</span><br><span class="line">               res.next =<span class="keyword">new</span> ListNode(ss.get(i));</span><br><span class="line">               res = res.next;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">return</span> node.next;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
-<p>方法2：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">deleteDuplication</span><span class="params">(ListNode pHead)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 只有0个或1个结点，则返回</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (pHead == <span class="keyword">null</span> || pHead.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> pHead;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (pHead.val == pHead.next.val) &#123; <span class="comment">// 当前结点是重复结点</span></span><br><span class="line">            ListNode pNode = pHead.next;</span><br><span class="line">            <span class="keyword">while</span> (pNode != <span class="keyword">null</span> &amp;&amp; pNode.val == pHead.val) &#123;</span><br><span class="line">              <span class="comment">// 跳过值与当前结点相同的全部结点,找到第一个与当前结点不同的结点</span></span><br><span class="line"></span><br><span class="line">                pNode = pNode.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 从第一个与当前结点不同的结点开始递归</span></span><br><span class="line">            <span class="keyword">return</span> deleteDuplication(pNode);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">// 当前结点不是重复结点</span></span><br><span class="line">            <span class="comment">// 保留当前结点，从下一个结点开始递归</span></span><br><span class="line"></span><br><span class="line">            pHead.next = deleteDuplication(pHead.next); </span><br><span class="line">            <span class="keyword">return</span> pHead;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>定义一个用于创建对象的接口，让子类决定实例化哪个类，工厂方法使一个类的实例化延迟到其子类。</p>
+<p><img src="https://github.com/qiulig/IMG/raw/master/设计模式之工厂模式.png" alt="工厂模式结构图"></p>
 
       
     </div>
@@ -373,14 +364,14 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/05/56-删除链表中重复的结点/">剑指offer_【56】删除链表中重复的结点</a></p>
+        <p><span>本文标题:</span><a href="/2019/05/设计模式—-工厂模式/">设计模式—-工厂模式</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">qiulig</a></p>
-        <p><span>发布时间:</span>2019-05-13, 19:19:47</p>
-        <p><span>最后更新:</span>2019-05-19, 22:07:32</p>
-        <p><span class="post-count">文章字数:</span>405</p> 
+        <p><span>发布时间:</span>2019-05-31, 19:21:52</p>
+        <p><span>最后更新:</span>2019-05-31, 19:29:24</p>
+        <p><span class="post-count">文章字数:</span>46</p> 
 		<p>
-            <span>原始链接:</span><a class="post-url" href="/2019/05/56-删除链表中重复的结点/" title="剑指offer_【56】删除链表中重复的结点">http://blogs.qiulig.website/2019/05/56-删除链表中重复的结点/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://blogs.qiulig.website/2019/05/56-删除链表中重复的结点/　　作者: qiulig" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/05/设计模式—-工厂模式/" title="设计模式—-工厂模式">http://blogs.qiulig.website/2019/05/设计模式—-工厂模式/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blogs.qiulig.website/2019/05/设计模式—-工厂模式/　　作者: qiulig" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -392,16 +383,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/05/57-二叉树的下一个结点/">
-                    剑指offer_【57】二叉树的下一个结点
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/05/55-链表中环的入口结点/">
-                    剑指offer_【55】链表中环的入口结点
+                <a href="/2019/05/设计模式-原型模式/">
+                    设计模式-原型模式
                 </a>
             </div>
         
@@ -413,7 +398,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-题目描述"><span class="toc-number">1.</span> <span class="toc-text">1.题目描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-解题思路"><span class="toc-number">2.</span> <span class="toc-text">2.解题思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-代码"><span class="toc-number">3.</span> <span class="toc-text">3.代码</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#工厂模式"><span class="toc-number">1.</span> <span class="toc-text">工厂模式</span></a></li></ol>
         
     </div>
     <style>
@@ -449,7 +434,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"剑指offer_【56】删除链表中重复的结点　| Long's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"设计模式—-工厂模式　| Long's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -468,8 +453,8 @@
     <div id="disqus_thread"></div>
     <script>
         var disqus_config = function(){
-            this.page.url = 'http://blogs.qiulig.website/2019/05/56-删除链表中重复的结点/';
-            this.page.identifier = '2019/05/56-删除链表中重复的结点/';
+            this.page.url = 'http://blogs.qiulig.website/2019/05/设计模式—-工厂模式/';
+            this.page.identifier = '2019/05/设计模式—-工厂模式/';
         };
         var loadComment = function(){
             var d = document, s = d.createElement('script');
@@ -491,15 +476,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/05/57-二叉树的下一个结点/" title="上一篇: 剑指offer_【57】二叉树的下一个结点">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/05/55-链表中环的入口结点/" title="下一篇: 剑指offer_【55】链表中环的入口结点">
+            <a href="/2019/05/设计模式-原型模式/" title="下一篇: 设计模式-原型模式">
                 <i class="fa fa-angle-right"></i>
             </a>
         
