@@ -324,9 +324,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>定义一个用于创建对象的接口，让子类决定实例化哪个类，工厂方法使一个类的实例化延迟到其子类。</p>
-<p><img src="https://github.com/qiulig/IMG/raw/master/设计模式之工厂模式.png" alt="工厂模式结构图"></p>
-
+              <h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>定义一个用于创建对象的接口，让子类决定实例化哪个类，工厂方法使一个类的<strong>实例化延迟</strong>到其子类。</p>
+<p><strong>提供一个创建对象实例的功能，而无须关心其具体实现</strong>。被创建实例的类型可以是接口、抽象类，也可以是具体的类。工厂模式是我们最常用的实例化对象模式了，是用工厂方法代替new操作的一种模式。</p>
+          
       
     </div>
     
@@ -343,6 +343,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2019/05/设计模式—-工厂模式/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -727,7 +731,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/Hashmap底层/">Hashmap底层</a>
+      <a class="article-title" href="/2019/05/Hashmap底层/">HashMap底层</a>
     </h1>
   
 
@@ -738,7 +742,8 @@
       
           
               <p>HashMap简介</p>
-<h4 id="1-实现原理"><a href="#1-实现原理" class="headerlink" title="1.实现原理"></a>1.实现原理</h4><p><img src="https://github.com/qiulig/IMG/raw/master/hashmap_1.jpg" alt="hashmap底层"></p>
+<h4 id="1-实现原理"><a href="#1-实现原理" class="headerlink" title="1.实现原理"></a>1.实现原理</h4><p><strong>底层是链表+数组，当链表长度大于8自动转化成红黑树。</strong></p>
+<p><strong>首先有一个每个元素都是链表的数组，当添加一个元素（key-value）时，就首先计算元素key的hash值，以此确定插入数组中的位置，但是可能存在同一hash值的元素已经被放在数组同一位置了，这时就添加到同一hash值的元素的后面，他们在数组的同一位置，但是形成了链表，同一各链表上的Hash值是相同的，所以说数组存放的是链表。而当链表长度太长时，链表就转换为红黑树，这样大大提高了查找的效率。</strong></p>
           
       
     </div>
@@ -1145,7 +1150,7 @@
                     </span>
 					<span title="本站总字数统计">
                          <span><i class="fa fa-map" aria-hidden="true"></i></span>
-                        <span class="post-count"><b>62.7k</b></span>
+                        <span class="post-count"><b>63.3k</b></span>
                     </span>
              
                 
