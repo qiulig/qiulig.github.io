@@ -282,6 +282,195 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-设计模式—-6大原则" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/06/设计模式—-6大原则/" class="article-date">
+      <time datetime="2019-06-01T06:32:35.000Z" itemprop="datePublished">2019-06-01</time>
+</a>
+
+ 
+    <a href="/2019/06/设计模式—-6大原则/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+        
+            <span class="disqus-comment-count" data-disqus-identifier="2019/06/设计模式—-6大原则/"></span>
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+	
+		
+
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/设计模式—-6大原则/">设计模式—-6大原则</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>六原则一法则</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s( Single-Resposibility Principle ): 单一职责原则。</span><br><span class="line">o( Open-Closed principle ): 开放封闭原则。</span><br><span class="line">l( Liskov-Substituion Principle ): 里氏替换原则。</span><br><span class="line">d( Dependecy-Inversion Principle ): 依赖倒置原则。</span><br><span class="line">i( Interface-Segregation Principle ): 接口隔离原则。</span><br><span class="line"> 合成/聚合复用。</span><br><span class="line"> 迪米特法则（最少知道）&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/06/设计模式—-6大原则/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JAVA中的NIO-BIO" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/06/JAVA中的NIO-BIO/" class="article-date">
+      <time datetime="2019-06-01T01:08:24.000Z" itemprop="datePublished">2019-06-01</time>
+</a>
+
+ 
+    <a href="/2019/06/JAVA中的NIO-BIO/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+        
+            <span class="disqus-comment-count" data-disqus-identifier="2019/06/JAVA中的NIO-BIO/"></span>
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+	
+		
+
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/JAVA中的NIO-BIO/">JAVA中的【IO】、【NIO】、【AIO】</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="IO和NIO的区别"><a href="#IO和NIO的区别" class="headerlink" title="IO和NIO的区别"></a>IO和NIO的区别</h2><table>
+<thead>
+<tr>
+<th><strong>IO</strong></th>
+<th><strong>NIO</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>面向流</td>
+<td>面向缓冲</td>
+</tr>
+<tr>
+<td>阻塞IO</td>
+<td>非阻塞IO</td>
+</tr>
+<tr>
+<td>无</td>
+<td>选择器</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>1.面向流与面向缓冲</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;     Java IO 面向流意味着每次从流中读一个或多个字节， 直至读取所有字节，它们没有被缓存在任何地方。 此外， 它不能前后</span><br><span class="line">&gt; 移动流中的数据。</span><br><span class="line">&gt;     Java NIO 中把数据读取到一个缓冲区中， 需要时可在缓冲区中前后移动。 这就增加了处理过程中的灵活性。而且， 需确保当</span><br><span class="line">&gt; 更多的数据读入缓冲区时， 不要覆盖缓冲区里尚未处理的数据。</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote></blockquote>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/JAVA基础/">JAVA基础</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVA基础/">JAVA基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线程/">线程</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/06/JAVA中的NIO-BIO/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-设计模式—-工厂模式" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -951,170 +1140,6 @@
 
 
   
-    <article id="post-leetcode-42-接雨水" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/05/leetcode-42-接雨水/" class="article-date">
-      <time datetime="2019-05-30T07:31:57.000Z" itemprop="datePublished">2019-05-30</time>
-</a>
-
- 
-    <a href="/2019/05/leetcode-42-接雨水/#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
-        
-        
-            <span class="disqus-comment-count" data-disqus-identifier="2019/05/leetcode-42-接雨水/"></span>
-        
-    </a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-	
-		
-
-
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/leetcode-42-接雨水/">leetcode_【42】接雨水</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h3><blockquote>
-<p>给定 <em>n</em> 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p></blockquote>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数组类型题/">数组类型题</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/滑动窗口法/">滑动窗口法</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/05/leetcode-42-接雨水/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-leetcode-11-盛最多水的容器" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/05/leetcode-11-盛最多水的容器/" class="article-date">
-      <time datetime="2019-05-30T07:20:14.000Z" itemprop="datePublished">2019-05-30</time>
-</a>
-
- 
-    <a href="/2019/05/leetcode-11-盛最多水的容器/#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
-        
-        
-            <span class="disqus-comment-count" data-disqus-identifier="2019/05/leetcode-11-盛最多水的容器/"></span>
-        
-    </a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-	
-		
-
-
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/leetcode-11-盛最多水的容器/">leetcode_【11】盛最多水的容器</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h3><blockquote>
-<p>给定  <em>n</em>  个非负整数  <em>a</em>1，<em>a</em>2，…，<em>a</em>n，每个数代表坐标中的一个点 (<em>i</em>, <em>ai</em>) 。在坐标内画  <em>n</em>  条垂直线，垂直线  <em>i</em> 的两个端点分别为 (<em>i</em>, <em>ai</em>) 和 (<em>i</em>, 0)。找出其中的两条线，使得它们与 <em>x</em> 轴共同构成的容器可以容纳最多的水。</p></blockquote>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数组类型题/">数组类型题</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/滑动窗口法/">滑动窗口法</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/05/leetcode-11-盛最多水的容器/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1150,7 +1175,7 @@
                     </span>
 					<span title="本站总字数统计">
                          <span><i class="fa fa-map" aria-hidden="true"></i></span>
-                        <span class="post-count"><b>63.3k</b></span>
+                        <span class="post-count"><b>67.1k</b></span>
                     </span>
              
                 
