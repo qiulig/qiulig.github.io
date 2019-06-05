@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blogs.qiulig.website/"/>
-  <updated>2019-06-03T03:14:02.257Z</updated>
+  <updated>2019-06-05T13:56:34.173Z</updated>
   <id>http://blogs.qiulig.website/</id>
   
   <author>
@@ -15,6 +15,130 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode_【13】罗马数字转整数</title>
+    <link href="http://blogs.qiulig.website/2019/06/leetcode-13-%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0/"/>
+    <id>http://blogs.qiulig.website/2019/06/leetcode-13-罗马数字转整数/</id>
+    <published>2019-06-05T13:32:34.000Z</published>
+    <updated>2019-06-05T13:56:34.173Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h3><blockquote><p>罗马数字包含以下七种字符: <code>I</code>， <code>V</code>， <code>X</code>， <code>L</code>，<code>C</code>，<code>D</code> 和 <code>M</code>。</p><table><thead><tr><th><strong>字符</strong></th><th><strong>数值</strong></th></tr></thead><tbody><tr><td>I</td><td>1</td></tr><tr><td>V</td><td>5</td></tr><tr><td>X</td><td>10</td></tr><tr><td>L</td><td>50</td></tr><tr><td>C</td><td>100</td></tr><tr><td>D</td><td>500</td></tr><tr><td>M</td><td>1000</td></tr></tbody></table><p>例如， 罗马数字 2 写做 <code>II</code> ，即为两个并列的 1。12 写做 <code>XII</code> ，即为 <code>X</code> + <code>II</code> 。 27 写做 <code>XXVII</code>, 即为 <code>XX</code> + <code>V</code> + <code>II</code> 。<a id="more"></a></p><p>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 <code>IIII</code>，而是 <code>IV</code>。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 <code>IX</code>。这个特殊的规则只适用于以下六种情况：</p><ul><li><code>I</code> 可以放在 <code>V</code> (5) 和 <code>X</code> (10) 的左边，来表示 4 和 9。</li><li><code>X</code> 可以放在 <code>L</code> (50) 和 <code>C</code> (100) 的左边，来表示 40 和 90。</li><li><code>C</code> 可以放在 <code>D</code> (500) 和 <code>M</code> (1000) 的左边，来表示 400 和 900。</li></ul><p>给定一个罗马数字，将其转换成整数。输入确保在 1 到 3999 的范围内。</p><p><strong>示例 1:</strong></p><p><strong>输入:</strong> “III”<br><strong>输出:</strong> 3</p><p><strong>示例 2:</strong></p><p><strong>输入:</strong> “IV”<br><strong>输出:</strong> 4</p><p><strong>示例 3:</strong></p><p><strong>输入:</strong> “IX”<br><strong>输出:</strong> 9</p><p><strong>示例 4:</strong></p><p><strong>输入:</strong> “LVIII”<br><strong>输出:</strong> 58<br><strong>解释:</strong> L = 50, V= 5, III = 3.</p><p><strong>示例 5:</strong></p><p><strong>输入:</strong> “MCMXCIV”<br><strong>输出:</strong> 1994<br><strong>解释:</strong> M = 1000, CM = 900, XC = 90, IV = 4.</p></blockquote><h3 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h3><blockquote><p>通常情况下，<strong>罗马数字中小的数字在大的数字的右边</strong>。这句话很关键，意思是要变成罗马数字，必须先排列大的数</p><p>（1）res初始化为字符串的最后一个字符所代表的数字</p><p>（2）从字符串数组尾部开始遍历，</p><pre><code>1)如果下一个字符所代表的数字小于当前字符所代表的数字，则res减去下一个字符所代表的数字：如IV,下一个字符I所代表数字1&lt;当前字符所代表数字5，res = res-12)如果下一个字符所代表的数字大于当前字符所代表的数字，则res加上下一个字符所代表的数字如VI,下一个字符V 所代表数字5&gt;当前字符I所代表数字1,res = res+5</code></pre></blockquote><h3 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">romanToInt</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        HashMap&lt;Character,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        map.put(<span class="string">'I'</span>,<span class="number">1</span>);</span><br><span class="line">        map.put(<span class="string">'V'</span>,<span class="number">5</span>);</span><br><span class="line">        map.put(<span class="string">'X'</span>,<span class="number">10</span>);</span><br><span class="line">        map.put(<span class="string">'L'</span>,<span class="number">50</span>);</span><br><span class="line">        map.put(<span class="string">'C'</span>,<span class="number">100</span>);</span><br><span class="line">        map.put(<span class="string">'D'</span>,<span class="number">500</span>);</span><br><span class="line">        map.put(<span class="string">'M'</span>,<span class="number">1000</span>);</span><br><span class="line">        <span class="keyword">int</span> res = map.get(s.charAt(s.length()-<span class="number">1</span>));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = s.length()-<span class="number">1</span>;i&gt;<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="comment">//罗马数字中大的数字在小的数字的右边，用减法</span></span><br><span class="line">            <span class="keyword">if</span>(map.get(s.charAt(i))&gt;map.get(s.charAt(i-<span class="number">1</span>)))&#123;</span><br><span class="line">                res -=map.get(s.charAt(i-<span class="number">1</span>));</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//罗马数字中小的数字在大的数字的右边，用加法</span></span><br><span class="line">                res +=map.get(s.charAt(i-<span class="number">1</span>));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="4-提交记录"><a href="#4-提交记录" class="headerlink" title="4.提交记录"></a>4.提交记录</h3><p><img src="https://github.com/qiulig/IMG/raw/master/13.png" alt="罗马数字转整数"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-题目描述&quot;&gt;&lt;a href=&quot;#1-题目描述&quot; class=&quot;headerlink&quot; title=&quot;1.题目描述&quot;&gt;&lt;/a&gt;1.题目描述&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;罗马数字包含以下七种字符: &lt;code&gt;I&lt;/code&gt;， &lt;code&gt;V&lt;/code&gt;， &lt;code&gt;X&lt;/code&gt;， &lt;code&gt;L&lt;/code&gt;，&lt;code&gt;C&lt;/code&gt;，&lt;code&gt;D&lt;/code&gt; 和 &lt;code&gt;M&lt;/code&gt;。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;字符&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;数值&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;I&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;V&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;L&lt;/td&gt;
+&lt;td&gt;50&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;C&lt;/td&gt;
+&lt;td&gt;100&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;D&lt;/td&gt;
+&lt;td&gt;500&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;M&lt;/td&gt;
+&lt;td&gt;1000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;例如， 罗马数字 2 写做 &lt;code&gt;II&lt;/code&gt; ，即为两个并列的 1。12 写做 &lt;code&gt;XII&lt;/code&gt; ，即为 &lt;code&gt;X&lt;/code&gt; + &lt;code&gt;II&lt;/code&gt; 。 27 写做 &lt;code&gt;XXVII&lt;/code&gt;, 即为 &lt;code&gt;XX&lt;/code&gt; + &lt;code&gt;V&lt;/code&gt; + &lt;code&gt;II&lt;/code&gt; 。&lt;/p&gt;&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="http://blogs.qiulig.website/categories/leetcode/"/>
+    
+    
+      <category term="数组类型题" scheme="http://blogs.qiulig.website/tags/%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode_【12】整数转罗马数字</title>
+    <link href="http://blogs.qiulig.website/2019/06/leetcode-12-%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97/"/>
+    <id>http://blogs.qiulig.website/2019/06/leetcode-12-整数转罗马数字/</id>
+    <published>2019-06-05T12:56:48.000Z</published>
+    <updated>2019-06-05T14:00:11.931Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h3><blockquote><p>罗马数字包含以下七种字符： <code>I</code>， <code>V</code>， <code>X</code>， <code>L</code>，<code>C</code>，<code>D</code> 和 <code>M</code>。</p><table><thead><tr><th style="text-align:center"><strong>字符</strong></th><th style="text-align:center"><strong>数值</strong></th></tr></thead><tbody><tr><td style="text-align:center">I</td><td style="text-align:center">1</td></tr><tr><td style="text-align:center">V</td><td style="text-align:center">5</td></tr><tr><td style="text-align:center">X</td><td style="text-align:center">10</td></tr><tr><td style="text-align:center">L</td><td style="text-align:center">50</td></tr><tr><td style="text-align:center">C</td><td style="text-align:center">100</td></tr><tr><td style="text-align:center">D</td><td style="text-align:center">500</td></tr><tr><td style="text-align:center">M</td><td style="text-align:center">1000</td></tr></tbody></table><p>例如， 罗马数字 2 写做 <code>II</code> ，即为两个并列的 1。12 写做 <code>XII</code> ，即为 <code>X</code> + <code>II</code> 。 27 写做 <code>XXVII</code>, 即为 <code>XX</code> + <code>V</code> + <code>II</code> 。</p><a id="more"></a><p>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 <code>IIII</code>，而是 <code>IV</code>。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 <code>IX</code>。这个特殊的规则只适用于以下六种情况：</p><ul><li><code>I</code> 可以放在 <code>V</code> (5) 和 <code>X</code> (10) 的左边，来表示 4 和 9。</li><li><code>X</code> 可以放在 <code>L</code> (50) 和 <code>C</code> (100) 的左边，来表示 40 和 90。</li><li><code>C</code> 可以放在 <code>D</code> (500) 和 <code>M</code> (1000) 的左边，来表示 400 和 900。</li></ul><p>给定一个整数，将其转为罗马数字。输入确保在 1 到 3999 的范围内。</p><p><strong>示例 1:</strong></p><p><strong>输入:</strong> 3<br><strong>输出:</strong> “III”</p><p><strong>示例 2:</strong></p><p><strong>输入:</strong> 4<br><strong>输出:</strong> “IV”</p><p><strong>示例 3:</strong></p><p><strong>输入:</strong> 9<br><strong>输出:</strong> “IX”</p><p><strong>示例 4:</strong></p><p><strong>输入:</strong> 58<br><strong>输出:</strong> “LVIII”<br><strong>解释:</strong> L = 50, V = 5, III = 3.</p><p><strong>示例 5:</strong></p><p><strong>输入:</strong> 1994<br><strong>输出:</strong> “MCMXCIV”<br><strong>解释:</strong> M = 1000, CM = 900, XC = 90, IV = 4.</p></blockquote><h3 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h3><blockquote><p>通常情况下，<strong>罗马数字中小的数字在大的数字的右边</strong>。这句话很关键，意思是要变成罗马数字，必须先排列大的数</p><p>（1）定义一个arr[],代表能用罗马数字代表的数</p><p>（2）定义一个str[],里面的字符串分别与数字arr[]里面的数字相对应，两个的联系即arr[i]  —–&gt;str[i]</p><p>（3）定义一个i,i从0开始，找到数组中第一个小于等于num的值，第一个罗马数字就是str[i],再依次循环知道num==0</p></blockquote><h3 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">intToRoman</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>   arr [] = &#123;<span class="number">1000</span>, <span class="number">900</span>, <span class="number">500</span>, <span class="number">400</span>,<span class="number">100</span>,  <span class="number">90</span>, <span class="number">50</span>,  <span class="number">40</span>, <span class="number">10</span>,   <span class="number">9</span>,  <span class="number">5</span>,   <span class="number">4</span>, <span class="number">1</span> &#125;;</span><br><span class="line">        String str[] = &#123; <span class="string">"M"</span>,<span class="string">"CM"</span>, <span class="string">"D"</span>,<span class="string">"CD"</span>,<span class="string">"C"</span>,<span class="string">"XC"</span>,<span class="string">"L"</span>,<span class="string">"XL"</span>,<span class="string">"X"</span>,<span class="string">"IX"</span>,<span class="string">"V"</span>,<span class="string">"IV"</span>,<span class="string">"I"</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        StringBuilder res = <span class="keyword">new</span> StringBuilder(<span class="string">""</span>);</span><br><span class="line">        <span class="comment">//一般情况下罗马数字小的在大的右边</span></span><br><span class="line">        <span class="keyword">while</span>(num!=<span class="number">0</span>&amp;&amp; i&lt;arr.length)&#123;</span><br><span class="line">            <span class="keyword">if</span>(num &gt;= arr[i])&#123;</span><br><span class="line">                num  = num-arr[i];</span><br><span class="line">                res.append(str[i]);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="4-提交记录"><a href="#4-提交记录" class="headerlink" title="4.提交记录"></a>4.提交记录</h3><p><img src="https://github.com/qiulig/IMG/raw/master/12.jpg" alt="整数转罗马数字"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-题目描述&quot;&gt;&lt;a href=&quot;#1-题目描述&quot; class=&quot;headerlink&quot; title=&quot;1.题目描述&quot;&gt;&lt;/a&gt;1.题目描述&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;罗马数字包含以下七种字符： &lt;code&gt;I&lt;/code&gt;， &lt;code&gt;V&lt;/code&gt;， &lt;code&gt;X&lt;/code&gt;， &lt;code&gt;L&lt;/code&gt;，&lt;code&gt;C&lt;/code&gt;，&lt;code&gt;D&lt;/code&gt; 和 &lt;code&gt;M&lt;/code&gt;。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&lt;strong&gt;字符&lt;/strong&gt;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&lt;strong&gt;数值&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;I&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;V&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;X&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;L&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;50&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;C&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;100&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;D&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;500&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;M&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;1000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;例如， 罗马数字 2 写做 &lt;code&gt;II&lt;/code&gt; ，即为两个并列的 1。12 写做 &lt;code&gt;XII&lt;/code&gt; ，即为 &lt;code&gt;X&lt;/code&gt; + &lt;code&gt;II&lt;/code&gt; 。 27 写做 &lt;code&gt;XXVII&lt;/code&gt;, 即为 &lt;code&gt;XX&lt;/code&gt; + &lt;code&gt;V&lt;/code&gt; + &lt;code&gt;II&lt;/code&gt; 。&lt;/p&gt;&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="http://blogs.qiulig.website/categories/leetcode/"/>
+    
+    
+      <category term="数组类型题" scheme="http://blogs.qiulig.website/tags/%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B%E9%A2%98/"/>
+    
+  </entry>
   
   <entry>
     <title>死锁</title>
@@ -477,54 +601,6 @@
     
     
       <category term="字符串题" scheme="http://blogs.qiulig.website/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode_【7】整数反转</title>
-    <link href="http://blogs.qiulig.website/2019/05/leetcode-7-%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC/"/>
-    <id>http://blogs.qiulig.website/2019/05/leetcode-7-整数反转/</id>
-    <published>2019-05-28T13:08:00.000Z</published>
-    <updated>2019-05-28T14:17:23.191Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h3><blockquote><p>给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。<a id="more"></a></p><p><strong>示例 1:</strong></p><p><strong>输入:</strong> 123<br><strong>输出:</strong> 321</p><p><strong>示例 2:</strong></p><p><strong>输入:</strong> -123<br><strong>输出:</strong> -321</p><p><strong>示例 3:</strong></p><p><strong>输入:</strong> 120<br><strong>输出:</strong> 21</p><p><strong>注意:</strong></p><p>假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231, 231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。</p></blockquote><h3 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h3><blockquote><p>主要是注意溢出问题</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; （<span class="number">1</span>）当x&gt;<span class="number">0</span>时，溢出考虑上界</span><br><span class="line">&gt;     <span class="number">1</span>)如果 result 的值大于 Integer.MAX_VALUE / <span class="number">10</span> ，那么一定会溢出</span><br><span class="line">&gt;     <span class="number">2</span>)如果 result 的值等于 Integer.MAX_VALUE / <span class="number">10</span>，那么 pop 的值如果大于 Integer.MAX_VALUE % <span class="number">10</span> 也会溢出</span><br><span class="line">&gt; (<span class="number">2</span>) 当x&lt;<span class="number">0</span> 时，溢出考虑下界</span><br><span class="line">&gt;     <span class="number">1</span>)result 的值小于 Integer.MIN_VALUE / <span class="number">10</span> ，那么一定会溢出</span><br><span class="line">&gt;     <span class="number">2</span>)result 的值等于 Integer.MIN_VALUE / <span class="number">10</span>，那么 pop 的值如果小于于 Integer.MIN_VALUE % <span class="number">10</span> 也会溢出</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></blockquote><h3 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (x!=<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> pop = x%<span class="number">10</span>;</span><br><span class="line">        x = x/<span class="number">10</span>;</span><br><span class="line">        <span class="comment">//考虑上界溢出</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (res &gt; Integer.MAX_VALUE / <span class="number">10</span> || (res == Integer.MAX_VALUE / <span class="number">10</span> &amp;&amp; pop &gt; Integer.MAX_VALUE % <span class="number">10</span>)) &#123;</span><br><span class="line">            res = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125; <span class="comment">//考虑下界溢出</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (res &lt; Integer.MIN_VALUE / <span class="number">10</span> || (res == Integer.MIN_VALUE / <span class="number">10</span> &amp;&amp; pop &lt; Integer.MIN_VALUE % <span class="number">10</span>)) &#123;</span><br><span class="line">            res = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        res = res*<span class="number">10</span> +pop;<span class="comment">//得到最后一位</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="4-提交记录"><a href="#4-提交记录" class="headerlink" title="4.提交记录"></a>4.提交记录</h3><p><img src="https://github.com/qiulig/IMG/raw/master/7.png" alt="leetcode提交结果"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;1-题目描述&quot;&gt;&lt;a href=&quot;#1-题目描述&quot; class=&quot;headerlink&quot; title=&quot;1.题目描述&quot;&gt;&lt;/a&gt;1.题目描述&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。&lt;/p&gt;&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="http://blogs.qiulig.website/categories/leetcode/"/>
-    
-    
-      <category term="数组类型题" scheme="http://blogs.qiulig.website/tags/%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>得到的最短的回文长度</title>
-    <link href="http://blogs.qiulig.website/2019/05/%E5%9B%9E%E6%96%87/"/>
-    <id>http://blogs.qiulig.website/2019/05/回文/</id>
-    <published>2019-05-28T11:41:20.000Z</published>
-    <updated>2019-05-28T12:34:58.008Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h3><blockquote><p>京京和东东是好朋友。东东很喜欢回文。回文是指从前往后读和从后往前读是一样的词语。京京准备给东东一个惊喜，先取定一个字符串s，然后在后面附上0个或者更多个字母形成回文，京京希望这个回文越短越好。请帮助京京计算他能够得到的最短的回文长度。</p><a id="more"></a><h6 id="输入描述："><a href="#输入描述：" class="headerlink" title="输入描述："></a>输入描述：</h6><p>输入包括一个字符串s，字符串s长度length(1 ≤ length ≤ 50)。</p><h6 id="输出描述："><a href="#输出描述：" class="headerlink" title="输出描述："></a>输出描述：</h6><p>输出一个整数，表示京京能够得到的最短的回文长度。</p><h6 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h6><h6 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h6><p>abab</p><h6 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h6><p>5</p></blockquote><h3 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h3><p>转化成求字符串中的最长回文子串的大小，结果即不是回文那部分逆序即可。</p><p>从左往右，</p><p>三个概念：回文半径数组pArr[]，回文右边界pr，取得回文右边界的轴中心i</p><p>1）没在回文右边界里边，暴力</p><p>2）i’在回文范围里，回文右边界不扩</p><p>3）i’在回文范围外，回文右边界不扩</p><p>4）i’压线，回文右边界扩</p><p>直到回文右边界第一次到达最后一个字符</p><h3 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="comment">//manacher预处理</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span>  <span class="keyword">char</span>[] manacherString(String str) &#123;</span><br><span class="line"><span class="keyword">char</span>[] charArr = str.toCharArray();</span><br><span class="line"><span class="keyword">char</span>[] res = <span class="keyword">new</span> <span class="keyword">char</span>[str.length() * <span class="number">2</span> + <span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != res.length; i++) &#123;</span><br><span class="line">res[i] = (i &amp; <span class="number">1</span>) == <span class="number">0</span> ? <span class="string">'#'</span> : charArr[index++];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span>  <span class="keyword">int</span> <span class="title">shortestEnd</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (str == <span class="keyword">null</span> || str.length() == <span class="number">0</span>) &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">char</span>[] charArr = manacherString(str);</span><br><span class="line"><span class="keyword">int</span>[] pArr = <span class="keyword">new</span> <span class="keyword">int</span>[charArr.length];</span><br><span class="line"><span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> pR = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> maxContainsEnd = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != charArr.length; i++) &#123;</span><br><span class="line">pArr[i] = pR &gt; i ? Math.min(pArr[<span class="number">2</span> * index - i], pR - i) : <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (i + pArr[i] &lt; charArr.length &amp;&amp; i - pArr[i] &gt; -<span class="number">1</span>) &#123;</span><br><span class="line"><span class="keyword">if</span> (charArr[i + pArr[i]] == charArr[i - pArr[i]])</span><br><span class="line">pArr[i]++;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (i + pArr[i] &gt; pR) &#123;</span><br><span class="line">pR = i + pArr[i];</span><br><span class="line">index = i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//右边界到达最后一个字符就结束，那个中心就是包含最后一个字符的最长的回文</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (pR == charArr.length) &#123;</span><br><span class="line">    <span class="comment">//得到那个中心</span></span><br><span class="line"></span><br><span class="line">maxContainsEnd = pArr[i];</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//原来的长度 + 扩充的长度（字符最大的半径[str.length+1-回文最大的半径maxContainEnd]）</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> str.length() + str.length() - maxContainsEnd + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">Scanner sr = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        String s = sr.nextLine();</span><br><span class="line">        System.out.println(shortestEnd(s));      </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;1-题目描述&quot;&gt;&lt;a href=&quot;#1-题目描述&quot; class=&quot;headerlink&quot; title=&quot;1.题目描述&quot;&gt;&lt;/a&gt;1.题目描述&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;京京和东东是好朋友。东东很喜欢回文。回文是指从前往后读和从后往前读是一样的词语。京京准备给东东一个惊喜，先取定一个字符串s，然后在后面附上0个或者更多个字母形成回文，京京希望这个回文越短越好。请帮助京京计算他能够得到的最短的回文长度。&lt;/p&gt;&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="京东笔试题" scheme="http://blogs.qiulig.website/categories/%E4%BA%AC%E4%B8%9C%E7%AC%94%E8%AF%95%E9%A2%98/"/>
-    
-    
-      <category term="字符串题" scheme="http://blogs.qiulig.website/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A2%98/"/>
-    
-      <category term="manacher算法" scheme="http://blogs.qiulig.website/tags/manacher%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
