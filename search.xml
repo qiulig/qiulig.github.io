@@ -1,6 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode_【264】丑数2]]></title>
+    <url>%2F2019%2F06%2Fleetcode-264-%E4%B8%91%E6%95%B02%2F</url>
+    <content type="text"><![CDATA[1.题目描述 编写一个程序，找出第 n 个丑数。 丑数就是只包含质因数 2, 3, 5 的正整数。 示例: 输入: n = 10输出: 12 解释: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 是前 10 个丑数。 说明: 1 是丑数。 n 不超过1690。 2.解题思路 剑指offer-【33】 丑数的定义是1或者因子只有2 3 5,可推出丑数=丑数*丑数,假定丑数有序序列为:a1,a2,a3…….an 所以可以将以上序列(a1除外)可以分成3类,必定满足: 包含2的有序丑数序列:2a1, 2a2, 2*a3 ….. 包含3的有序丑数序列:3a1, 3a2, 3a3 ….. 包含5的有序丑数序列:5a1, 5a2, 5a3 ….. 以上3个序列的个数总数和为n个,而且已知a1 = 1了,将以上三个序列合并成一个有序序列即可 3.代码123456789101112131415161718192021222324class Solution &#123; public int nthUglyNumber(int n) &#123; int [] arr = new int[n]; if(n==0) return 0; arr[0] = 1; int t2 = 0; int t3 = 0; int t5 = 0; for(int i = 1;i&lt;n;i++)&#123; arr[i] =Math.min(Math.min(arr[t2]*2,arr[t3]*3),arr[t5]*5); if(arr[t2]*2 == arr[i])&#123; t2++; &#125; if(arr[t3]*3 == arr[i])&#123; t3++; &#125; if(arr[t5]*5 == arr[i])&#123; t5++; &#125; &#125; return arr[n-1]; &#125;&#125; 4.提交记录]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>数组类型题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode_【263】丑数]]></title>
+    <url>%2F2019%2F06%2Fleetcode-263-%E4%B8%91%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[1.题目描述 编写一个程序判断给定的数是否为丑数。 丑数就是只包含质因数 2, 3, 5 的正整数。 示例 1: 输入: 6输出: true解释: 6 = 2 × 3 示例 2: 输入: 8输出: true解释: 8 = 2 × 2 × 2 示例 3: 输入: 14输出: false解释: 14 不是丑数，因为它包含了另外一个质因数 7。 说明： 1 是丑数。 输入不会超过 32 位有符号整数的范围: [−231, 231 − 1]。 2.解题思路 丑数只能被2，3，5整除，所以丑数为2*i+3*j+5*k = num[i,j,k为任意整数] 3.代码1234567891011121314public static boolean isUgly(int num) &#123; if(num==0) return false; if(num==1) return true; while(num%2==0) &#123; num/=2; &#125; while(num%3==0) &#123; num/=3; &#125; while(num%5==0) &#123; num/=5; &#125; return num==1; &#125; 4.提交记录]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>数组类型题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode_23合并K个排序链表]]></title>
+    <url>%2F2019%2F06%2Fleetcode-23%E5%90%88%E5%B9%B6K%E4%B8%AA%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[1.题目描述 合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。 示例: 输入:[ 1-&gt;4-&gt;5, 1-&gt;3-&gt;4, 2-&gt;6]输出: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6 2.解题思路 方法1： (1)利用priorityQueue的性质，每放一个数字进去就给你从小到大排好序了 (2)队列的性质是先进先出，故依次poll出来就是从小到大的顺序，将该数值放到listNode里面即可。 方法2： 借用合并两个链表的代码，依次将list[]分成两部分，在分别合并，执行用时为6ms 3.代码123456789101112131415161718192021222324252627/** * Definition for singly-linked list. * public class ListNode &#123; * int val; * ListNode next; * ListNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public ListNode mergeKLists(ListNode[] lists) &#123; ListNode res = new ListNode(-1); ListNode ans = res; PriorityQueue&lt;Integer&gt; queue = new PriorityQueue&lt;&gt;(); for(int i = 0;i&lt; lists.length;i++)&#123; while(lists[i]!=null)&#123; queue.add(lists[i].val); lists[i] = lists[i].next; &#125; &#125; while(queue.size()!=0)&#123; res.next = new ListNode(queue.poll()); res = res.next; &#125; return ans.next; &#125; &#125; 方法2： 12345678910111213141516171819202122232425262728293031323334353637public ListNode mergeKLists(ListNode[] lists)&#123; if(lists.length == 0) return null; if(lists.length == 1) return lists[0]; if(lists.length == 2)&#123; return mergeTwoLists(lists[0],lists[1]); &#125; int mid = lists.length/2; ListNode[] l1 = new ListNode[mid]; for(int i = 0; i &lt; mid; i++)&#123; l1[i] = lists[i]; &#125; ListNode[] l2 = new ListNode[lists.length-mid]; for(int i = mid,j=0; i &lt; lists.length; i++,j++)&#123; l2[j] = lists[i]; &#125; return mergeTwoLists(mergeKLists(l1),mergeKLists(l2)); &#125; public ListNode mergeTwoLists(ListNode l1, ListNode l2) &#123; if (l1 == null) return l2; if (l2 == null) return l1; ListNode head = null; if (l1.val &lt;= l2.val)&#123; head = l1; head.next = mergeTwoLists(l1.next, l2); &#125; else &#123; head = l2; head.next = mergeTwoLists(l1, l2.next); &#125; return head; &#125; 4.提交记录]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>链表题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode_【21】合并两个有序链表]]></title>
+    <url>%2F2019%2F06%2Fleetcode-21%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[1.题目描述 将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 示例： 输入：1-&gt;2-&gt;4, 1-&gt;3-&gt;4输出：1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4 2.解题思路 (1) 判断是否有空链表，如果有则直接返回另一个不为空有序链表 (2) 依次判断是否有对应链表大小，小的加入res链表，并移动 注：该题与剑指offer-[16]题一致，还可以用递归。 3.代码12345678910111213141516171819202122232425262728293031323334353637383940/** * public class ListNode &#123; * int val; * ListNode next; * ListNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public ListNode mergeTwoLists(ListNode l1, ListNode l2) &#123; if(l1==null &amp;&amp;l2!=null) return l2; if(l2 == null &amp;&amp; l1!=null) return l1; ListNode res = new ListNode(-1); ListNode ans = res; while(l1!=null&amp;&amp;l2!=null)&#123; if(l1.val&gt;l2.val)&#123; res.next = new ListNode(l2.val); l2 = l2.next; res = res.next; &#125;else&#123; res.next = new ListNode(l1.val); l1 = l1.next; res = res.next; &#125; &#125; while(l1!=null)&#123; res.next = new ListNode(l1.val); l1 = l1.next; res = res.next; &#125; while(l2!=null)&#123; res.next = new ListNode(l2.val); l2 = l2.next; res = res.next; &#125; return ans.next; &#125;&#125; 4.提交记录]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>链表题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode_【19】删除链表的倒数第N个节点]]></title>
+    <url>%2F2019%2F06%2Fleetcode-19-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[1.题目描述 给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。 示例： 给定一个链表: 1-&gt;2-&gt;3-&gt;4-&gt;5, 和 n = 2. 当删除了倒数第二个节点后，链表变为 1-&gt;2-&gt;3-&gt;5. 说明： 给定的 n 保证是有效的。 进阶： 你能尝试使用一趟扫描实现吗？ 2.解题思路 双指针 (1)第一个指针curNode先走n步 (2)然后第二个指针preNode再重头跟刚刚第一个指针curNode走,直到走到尾部【preNode走了(len-N)步,即下一个节点就是要删除的节点】 (3)此时的preNode的下一个即为倒数第N个节点，将其删除即可 3.代码123456789101112131415161718192021222324252627/** * Definition for singly-linked list. * public class ListNode &#123; * int val; * ListNode next; * ListNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public ListNode removeNthFromEnd(ListNode head, int n) &#123; ListNode preNode = head; ListNode curNode = head; for (int i = 0; i &lt; n; i++) &#123; curNode = curNode.next; &#125; if (curNode == null) &#123; return preNode.next; &#125; while (curNode.next != null) &#123; preNode = preNode.next; curNode = curNode.next; &#125; preNode.next = preNode.next.next; return head; &#125;&#125; 4.提交记录]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>链表题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode_【434】字符串中的单词数]]></title>
+    <url>%2F2019%2F06%2Fleetcode-434-%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%8D%95%E8%AF%8D%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[1.题目描述 统计字符串中的单词个数，这里的单词指的是连续的不是空格的字符。 请注意，你可以假定字符串里不包括任何不可打印的字符。 示例: 输入: “Hello, my name is John”输出: 5 2.解题思路 每次出现非空字符，看看上一个是不是空格，如果是，发现一个新单词 3.代码1234567891011121314151617class Solution &#123; public int countSegments(String s) &#123; int count = 0; boolean lastIsBlank = true; for (int i = 0; i &lt; s.length(); i++) &#123; if (s.charAt(i) == ' ') &#123; lastIsBlank = true; &#125; else &#123; if (lastIsBlank) &#123; count++; &#125; lastIsBlank = false; &#125; &#125; return count; &#125;&#125; 4.提交记录]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>字符串题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode_【13】罗马数字转整数]]></title>
     <url>%2F2019%2F06%2Fleetcode-13-%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0%2F</url>
     <content type="text"><![CDATA[1.题目描述 罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。 字符 数值 I 1 V 5 X 10 L 50 C 100 D 500 M 1000 例如， 罗马数字 2 写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做 XXVII, 即为 XX + V + II 。 通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况： I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。 X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。 C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。 给定一个罗马数字，将其转换成整数。输入确保在 1 到 3999 的范围内。 示例 1: 输入: “III”输出: 3 示例 2: 输入: “IV”输出: 4 示例 3: 输入: “IX”输出: 9 示例 4: 输入: “LVIII”输出: 58解释: L = 50, V= 5, III = 3. 示例 5: 输入: “MCMXCIV”输出: 1994解释: M = 1000, CM = 900, XC = 90, IV = 4. 2.解题思路 通常情况下，罗马数字中小的数字在大的数字的右边。这句话很关键，意思是要变成罗马数字，必须先排列大的数 （1）res初始化为字符串的最后一个字符所代表的数字 （2）从字符串数组尾部开始遍历， 1)如果下一个字符所代表的数字小于当前字符所代表的数字，则res减去下一个字符所代表的数字：如IV,下一个字符I所代表数字1&lt;当前字符所代 表数字5，res = res-1 2)如果下一个字符所代表的数字大于当前字符所代表的数字，则res加上下一个字符所代表的数字如VI,下一个字符V 所代表数字5&gt;当前字符I所代 表数字1,res = res+5 3.代码1234567891011121314151617181920212223class Solution &#123; public static int romanToInt(String s) &#123; HashMap&lt;Character,Integer&gt; map = new HashMap&lt;&gt;(); map.put('I',1); map.put('V',5); map.put('X',10); map.put('L',50); map.put('C',100); map.put('D',500); map.put('M',1000); int res = map.get(s.charAt(s.length()-1)); for(int i = s.length()-1;i&gt;0;i--)&#123; //罗马数字中大的数字在小的数字的右边，用减法 if(map.get(s.charAt(i))&gt;map.get(s.charAt(i-1)))&#123; res -=map.get(s.charAt(i-1)); &#125;else&#123; //罗马数字中小的数字在大的数字的右边，用加法 res +=map.get(s.charAt(i-1)); &#125; &#125; return res; &#125;&#125; 4.提交记录]]></content>
@@ -933,7 +999,7 @@
   <entry>
     <title><![CDATA[剑指offer_【16】合并两个排序的链表]]></title>
     <url>%2F2019%2F04%2F16-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%8E%92%E5%BA%8F%E7%9A%84%E9%93%BE%E8%A1%A8%2F</url>
-    <content type="text"><![CDATA[1.题目描述 输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。 例： 链表1： 1 ----&gt; 3 ----&gt; 5 ----&gt; 8 链表2： 2 ----&gt; 4 ----&gt; 6 ----&gt; 7 合并结果： 1 ----&gt; 2 ----&gt; 3 ----&gt; 4 ----&gt; 5 ----&gt; 6 ----&gt; 7 ----&gt; 8 2.解题思路 判断有没有ListNode是空的，如果有则返回另一个 递归实现，如果List1.val&lt;list2.val,pMergeHead = list1,否则pMergeHead = list2，递归直到两个ListNode都为空 3.代码123456789101112131415161718192021222324252627/*public class ListNode &#123; int val; ListNode next = null; ListNode(int val) &#123; this.val = val; &#125;&#125;*/public class Solution &#123; public ListNode Merge(ListNode list1,ListNode list2) &#123; if(list1==null)&#123; return list2; &#125;else if(list2==null)&#123; return list1; &#125; ListNode pMergeHead = null; if(list1.val&lt;list2.val)&#123; pMergeHead = list1; pMergeHead.next = Merge(list1.next,list2); &#125;else&#123; pMergeHead = list2; pMergeHead.next = Merge(list1,list2.next); &#125; return pMergeHead; &#125;&#125;i]]></content>
+    <content type="text"><![CDATA[1.题目描述 输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。 例： 链表1： 1 ----&gt; 3 ----&gt; 5 ----&gt; 8 链表2： 2 ----&gt; 4 ----&gt; 6 ----&gt; 7 合并结果： 1 ----&gt; 2 ----&gt; 3 ----&gt; 4 ----&gt; 5 ----&gt; 6 ----&gt; 7 ----&gt; 8 2.解题思路 判断有没有ListNode是空的，如果有则返回另一个 递归实现，如果List1.val&lt;list2.val,pMergeHead = list1,否则pMergeHead = list2，递归直到两个ListNode都为空 3.代码123456789101112131415161718192021222324252627/*public class ListNode &#123; int val; ListNode next = null; ListNode(int val) &#123; this.val = val; &#125;&#125;*/public class Solution &#123; public ListNode Merge(ListNode list1,ListNode list2) &#123; if(list1==null)&#123; return list2; &#125;else if(list2==null)&#123; return list1; &#125; ListNode pMergeHead = null; if(list1.val&lt;list2.val)&#123; pMergeHead = list1; pMergeHead.next = Merge(list1.next,list2); &#125;else&#123; pMergeHead = list2; pMergeHead.next = Merge(list1,list2.next); &#125; return pMergeHead; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
       </categories>
@@ -1096,17 +1162,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[剑指offer_【1】二维数组的查找]]></title>
-    <url>%2F2019%2F04%2F1.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
-    <content type="text"><![CDATA[1.题目描述： 在一个二维数组中（每个一维数组的长度相同），如数组 1 2 3 4 5 6 7 8 9 每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 2.解题思路 选择右上角的数字作为开始点 如果array[row][col]&gt;target,则向左查找，col–； 如果array[row][col]&lt;target,则向下查找，row++； 3.代码123456789101112131415161718public class Solution &#123; public boolean Find(int target, int [][] array) &#123; boolean res = false; int row = 0; int col = array[0].length-1; while(row&lt;=array.length-1&amp;&amp;col&gt;=0)&#123; if(array[row][col]&gt;target)&#123; col--; &#125;else if(array[row][col]&lt;target)&#123; row++; &#125;else&#123; res = true; break; &#125; &#125; return res; &#125;&#125;]]></content>
-      <categories>
-        <category>剑指offer</category>
-      </categories>
-      <tags>
-        <tag>数组类型题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[剑指offer_【2】空格替换]]></title>
     <url>%2F2019%2F04%2F2.%E7%A9%BA%E6%A0%BC%E6%9B%BF%E6%8D%A2%2F</url>
     <content type="text"><![CDATA[1. 题目描述 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 2. 解题思路 方法1：利用函数replaceAll完成 方法2： **先计算需要多少的空间 **从后向前依次插入 3.代码方法1： 12345public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; return str.toString().replaceAll(" ", "%20"); &#125;&#125; 方法2： 12345678910111213141516171819202122232425262728public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; int spacenum = 0;//spacenum为计算空格数 for(int i=0;i&lt;str.length();i++)&#123; if(str.charAt(i)==' ') spacenum++; &#125; //indexold为为替换前的str下标 int indexold = str.length()-1; //计算空格转换成%20之后的str长度 int newlength = str.length() + spacenum*2; //indexold为为把空格替换为%20后的str下标 int indexnew = newlength-1; //使str的长度扩大到转换成%20之后的长度,防止下标越界 str.setLength(newlength); for(;indexold&gt;=0 &amp;&amp; indexold&lt;newlength;--indexold)&#123; if(str.charAt(indexold) == ' ')&#123; str.setCharAt(indexnew--, '0'); str.setCharAt(indexnew--, '2'); str.setCharAt(indexnew--, '%'); &#125;else&#123; str.setCharAt(indexnew--, str.charAt(indexold)); &#125; &#125; return str.toString(); &#125;&#125; 补充1：String和StringBuffer的转换String转换成StringBuffer 12String str = "abc";StringBuffer b=new StringBuffer(str); StringBuffer转换成String 12StringBuffer a=new StringBuffer();String b=a.toString(） 补充2：String、StringBuffer、StringBuilder 1）运行速度StringBuilder&gt;StringBuffer&gt;String 2）String是字符串常量，String对象一旦创建就不能更改。StringBuffer为 字符串变量，可更改 3） String适用于少量的字符串操作，StringBuffer适用于多线程下字符缓冲区进行大量操作的情况。 4） StringBuffer 与 StringBuilder 中的方法和功能完全是等价的， 5） 只是StringBuffer 中的方法大都采用了 synchronized 关键字进行修饰，因此是线程安全的，而 StringBuilder 没有这个修饰，可以被认为是线程不安全的。 6） 在单线程程序下，StringBuilder效率更快，因为它不需要加锁，不具备多线程安全，而StringBuffer则每次都需要判断锁，效率相对更低。]]></content>
@@ -1115,6 +1170,17 @@
       </categories>
       <tags>
         <tag>字符串题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【1】二维数组的查找]]></title>
+    <url>%2F2019%2F04%2F1.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
+    <content type="text"><![CDATA[1.题目描述： 在一个二维数组中（每个一维数组的长度相同），如数组 1 2 3 4 5 6 7 8 9 每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 2.解题思路 选择右上角的数字作为开始点 如果array[row][col]&gt;target,则向左查找，col–； 如果array[row][col]&lt;target,则向下查找，row++； 3.代码123456789101112131415161718public class Solution &#123; public boolean Find(int target, int [][] array) &#123; boolean res = false; int row = 0; int col = array[0].length-1; while(row&lt;=array.length-1&amp;&amp;col&gt;=0)&#123; if(array[row][col]&gt;target)&#123; col--; &#125;else if(array[row][col]&lt;target)&#123; row++; &#125;else&#123; res = true; break; &#125; &#125; return res; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>数组类型题</tag>
       </tags>
   </entry>
   <entry>
