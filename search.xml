@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[链表反转]]></title>
+    <url>%2F2019%2F06%2F%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC%2F</url>
+    <content type="text"><![CDATA[1.递归以链表 1-&gt;2-&gt;3-&gt;4 为例子： 程序到达Node newHead = reverse(head.next);时进入递归 我们假设此时递归到了3结点，此时head=3结点，temp=3结点.next(实际上是4结点) 执行Node newHead = reverse(head.next);传入的head.next是4结点，返回的newHead是4结点。 接下来就是弹栈过程了 程序继续执行 temp.next = head就相当于4-&gt;3 head.next = null 即把 3结点指向4结点的指针断掉。 返回新链表的头结点newHead 注意：当retuen后，系统会恢复2结点压栈时的现场，此时的head=2结点；temp=2结点.next(3结点)，再进行上述的操作。最后完成整个链表的翻转。 12345678910111213141516static class ListNode &#123; int val; ListNode next; ListNode(int x) &#123; val = x; &#125;&#125;public static ListNode reverse(ListNode head) &#123; if (head == null || head.next == null) return head; ListNode temp = head.next; ListNode newHead = reverse(head.next); temp.next = head; head.next = null; return newHead;&#125;&#125; 2.遍历依旧是1-&gt;2-&gt;3-&gt;4 准备两个空结点 pre用来保存先前结点、next用来做临时变量 在头结点node遍历的时候此时为1结点 next = 1结点.next(2结点) 1结点.next=pre(null) pre = 1结点 node = 2结点 进行下一次循环node=2结点 next = 2结点.next(3结点) 2结点.next=pre(1结点)=&gt;即完成2-&gt;1 pre = 2结点 node = 3结点 进行循环… 12345678910111213141516static class ListNode &#123; int val; ListNode next; ListNode(int x) &#123; val = x; &#125; &#125; public static ListNode reverseList(ListNode node) &#123; ListNode pre = null; ListNode now = node; while (now != null) &#123; ListNode next = now.next; //将下一个节点记录 now.next = pre; //当前节点指向上一个节点 pre = now; //记录当前节点 now = next; //将下一个节点变成当前节点 &#125; return pre; &#125;]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>链表题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode_【203】移除链表元素]]></title>
+    <url>%2F2019%2F06%2Fleetcode-203%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0%2F</url>
+    <content type="text"><![CDATA[1.题目描述 删除链表中等于给定值 val 的所有节点。 示例: 输入: 1-&gt;2-&gt;6-&gt;3-&gt;4-&gt;5-&gt;6, val = 6输出: 1-&gt;2-&gt;3-&gt;4-&gt;5 2.解题思路 方法1： 如果当前链表值head.val不等于val,则新建一个节点放到ans后面 如果相等，则跳到链表下一个。 方法2： 遇到相等则跳指针 要考虑好头节点跟val相等的情况。 3.代码方法1：新建 123456789101112131415public static ListNode removeElements(ListNode head, int val) &#123; ListNode ans = new ListNode(-1); ListNode res = ans; while(head!=null)&#123; if(head.val==val)&#123; head = head.next; &#125;else&#123; ans.next =new ListNode(head.val) ; ans = ans.next; head = head.next; &#125; &#125; return res.next; &#125; 方法2：跳指针 123456789101112131415public static ListNode removeElements(ListNode head, int val) &#123; if(head == null) return head; //如果头节点与val相同 while (head != null &amp;&amp; head.val == val) head = head.next; ListNode cur = head; while(cur.next != null)&#123; if(cur.next.val == val)&#123; cur.next = cur.next.next; &#125; cur = cur.next; &#125; return head; &#125; 4.提交记录]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>链表题</tag>
+        <tag>简单</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode_【120】三角形最小路径和]]></title>
     <url>%2F2019%2F06%2Fleetcode-120-%E4%B8%89%E8%A7%92%E5%BD%A2%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C%2F</url>
     <content type="text"><![CDATA[1.题目描述 给定一个三角形，找出自顶向下的最小路径和。每一步只能移动到下一行中相邻的结点上。 例如，给定三角形： [ [2], [3,4], [6,5,7], [4,1,8,3]]自顶向下的最小路径和为 11（即，2 + 3 + 5 + 1 = 11）。 2.解题思路 动态规划： 每一层的值加上上一层的值中最小值，最后取最后一层的最小值就好了 例如 123456&gt; &gt; [2] [2]&gt; [3,4] 变成 [5,6]&gt; [6,5,7] [11,10,13]&gt; [4,1,8,3] [15,11,18,16]&gt; 3.代码123456789101112131415161718192021222324252627282930313233343536class Solution &#123; public static int minimumTotal(List&lt;List&lt;Integer&gt;&gt; triangle) &#123; if(triangle.size() == 0) return 0; if(triangle.size() == 1) return triangle.get(0).get(0); int len = triangle.get(triangle.size()-1).size(); int dp[][] = new int[len][len]; //初始化第一层跟第二层 dp[0][0] = triangle.get(0).get(0); dp[1][0] = dp[0][0]+triangle.get(1).get(0); dp[1][1] = dp[0][0] + triangle.get(1).get(1); //第一列初始化 for(int i = 2;i &lt; len;i++)&#123; dp[i][0] = dp[i-1][0] + triangle.get(i).get(0); &#125; for(int i = 2;i&lt;len;i++)&#123; for(int j = 1;j&lt;= i ;j++)&#123; //最后一个数的dp,因为上一层比下一层少一个，所以只能最后一个数只能加上上一层的最后一个dp if(j == i)&#123; dp[i][j] = triangle.get(i).get(j) + dp[i-1][j-1]; &#125;else&#123; dp[i][j] = triangle.get(i).get(j)+ Math.min(dp[i-1][j-1],dp[i-1][j]); &#125; &#125; &#125; //三角形最后一层中的最小值就是最小路径 int res = dp[len-1][0]; for(int i = 1;i&lt;len;i++)&#123; if(dp[len-1][i] &lt; res)&#123; res = dp[len-1][i]; &#125; &#125; return res; &#125;&#125; 4.提交结果]]></content>
@@ -1286,17 +1309,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[剑指offer_【2】空格替换]]></title>
-    <url>%2F2019%2F04%2F2.%E7%A9%BA%E6%A0%BC%E6%9B%BF%E6%8D%A2%2F</url>
-    <content type="text"><![CDATA[1. 题目描述 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 2. 解题思路 方法1：利用函数replaceAll完成 方法2： **先计算需要多少的空间 **从后向前依次插入 3.代码方法1： 12345public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; return str.toString().replaceAll(" ", "%20"); &#125;&#125; 方法2： 12345678910111213141516171819202122232425262728public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; int spacenum = 0;//spacenum为计算空格数 for(int i=0;i&lt;str.length();i++)&#123; if(str.charAt(i)==' ') spacenum++; &#125; //indexold为为替换前的str下标 int indexold = str.length()-1; //计算空格转换成%20之后的str长度 int newlength = str.length() + spacenum*2; //indexold为为把空格替换为%20后的str下标 int indexnew = newlength-1; //使str的长度扩大到转换成%20之后的长度,防止下标越界 str.setLength(newlength); for(;indexold&gt;=0 &amp;&amp; indexold&lt;newlength;--indexold)&#123; if(str.charAt(indexold) == ' ')&#123; str.setCharAt(indexnew--, '0'); str.setCharAt(indexnew--, '2'); str.setCharAt(indexnew--, '%'); &#125;else&#123; str.setCharAt(indexnew--, str.charAt(indexold)); &#125; &#125; return str.toString(); &#125;&#125; 补充1：String和StringBuffer的转换String转换成StringBuffer 12String str = "abc";StringBuffer b=new StringBuffer(str); StringBuffer转换成String 12StringBuffer a=new StringBuffer();String b=a.toString(） 补充2：String、StringBuffer、StringBuilder 1）运行速度StringBuilder&gt;StringBuffer&gt;String 2）String是字符串常量，String对象一旦创建就不能更改。StringBuffer为 字符串变量，可更改 3） String适用于少量的字符串操作，StringBuffer适用于多线程下字符缓冲区进行大量操作的情况。 4） StringBuffer 与 StringBuilder 中的方法和功能完全是等价的， 5） 只是StringBuffer 中的方法大都采用了 synchronized 关键字进行修饰，因此是线程安全的，而 StringBuilder 没有这个修饰，可以被认为是线程不安全的。 6） 在单线程程序下，StringBuilder效率更快，因为它不需要加锁，不具备多线程安全，而StringBuffer则每次都需要判断锁，效率相对更低。]]></content>
-      <categories>
-        <category>剑指offer</category>
-      </categories>
-      <tags>
-        <tag>字符串题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[剑指offer_【1】二维数组的查找]]></title>
     <url>%2F2019%2F04%2F1.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
     <content type="text"><![CDATA[1.题目描述： 在一个二维数组中（每个一维数组的长度相同），如数组 1 2 3 4 5 6 7 8 9 每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 2.解题思路 选择右上角的数字作为开始点 如果array[row][col]&gt;target,则向左查找，col–； 如果array[row][col]&lt;target,则向下查找，row++； 3.代码123456789101112131415161718public class Solution &#123; public boolean Find(int target, int [][] array) &#123; boolean res = false; int row = 0; int col = array[0].length-1; while(row&lt;=array.length-1&amp;&amp;col&gt;=0)&#123; if(array[row][col]&gt;target)&#123; col--; &#125;else if(array[row][col]&lt;target)&#123; row++; &#125;else&#123; res = true; break; &#125; &#125; return res; &#125;&#125;]]></content>
@@ -1305,6 +1317,17 @@
       </categories>
       <tags>
         <tag>数组类型题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【2】空格替换]]></title>
+    <url>%2F2019%2F04%2F2.%E7%A9%BA%E6%A0%BC%E6%9B%BF%E6%8D%A2%2F</url>
+    <content type="text"><![CDATA[1. 题目描述 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 2. 解题思路 方法1：利用函数replaceAll完成 方法2： **先计算需要多少的空间 **从后向前依次插入 3.代码方法1： 12345public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; return str.toString().replaceAll(" ", "%20"); &#125;&#125; 方法2： 12345678910111213141516171819202122232425262728public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; int spacenum = 0;//spacenum为计算空格数 for(int i=0;i&lt;str.length();i++)&#123; if(str.charAt(i)==' ') spacenum++; &#125; //indexold为为替换前的str下标 int indexold = str.length()-1; //计算空格转换成%20之后的str长度 int newlength = str.length() + spacenum*2; //indexold为为把空格替换为%20后的str下标 int indexnew = newlength-1; //使str的长度扩大到转换成%20之后的长度,防止下标越界 str.setLength(newlength); for(;indexold&gt;=0 &amp;&amp; indexold&lt;newlength;--indexold)&#123; if(str.charAt(indexold) == ' ')&#123; str.setCharAt(indexnew--, '0'); str.setCharAt(indexnew--, '2'); str.setCharAt(indexnew--, '%'); &#125;else&#123; str.setCharAt(indexnew--, str.charAt(indexold)); &#125; &#125; return str.toString(); &#125;&#125; 补充1：String和StringBuffer的转换String转换成StringBuffer 12String str = "abc";StringBuffer b=new StringBuffer(str); StringBuffer转换成String 12StringBuffer a=new StringBuffer();String b=a.toString(） 补充2：String、StringBuffer、StringBuilder 1）运行速度StringBuilder&gt;StringBuffer&gt;String 2）String是字符串常量，String对象一旦创建就不能更改。StringBuffer为 字符串变量，可更改 3） String适用于少量的字符串操作，StringBuffer适用于多线程下字符缓冲区进行大量操作的情况。 4） StringBuffer 与 StringBuilder 中的方法和功能完全是等价的， 5） 只是StringBuffer 中的方法大都采用了 synchronized 关键字进行修饰，因此是线程安全的，而 StringBuilder 没有这个修饰，可以被认为是线程不安全的。 6） 在单线程程序下，StringBuilder效率更快，因为它不需要加锁，不具备多线程安全，而StringBuffer则每次都需要判断锁，效率相对更低。]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>字符串题</tag>
       </tags>
   </entry>
   <entry>
