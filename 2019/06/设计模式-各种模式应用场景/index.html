@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="qiulig">
+
+
+
+<meta name="description" content="创建型模式将对象的创建与使用分离”。这样可以降低系统的耦合度，使用者不需要关注对象的创建细节，对象的创建由相关的工厂来完成。&amp;lt;!--more--&amp;gt; 1234567891011-  单例（Singleton）模式：某个类只能生成一个实例，该类提供了一个全局访问点供外部获取该实例，其拓展是有限多例模式。-  原型（Prototype）模式：将一个对象作为原型，通过对其进行复制而克隆出多个和">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式-各种模式应用场景">
+<meta property="og:url" content="http://blogs.qiulig.website/2019/06/设计模式-各种模式应用场景/index.html">
+<meta property="og:site_name" content="Long&#39;s Blog">
+<meta property="og:description" content="创建型模式将对象的创建与使用分离”。这样可以降低系统的耦合度，使用者不需要关注对象的创建细节，对象的创建由相关的工厂来完成。&amp;lt;!--more--&amp;gt; 1234567891011-  单例（Singleton）模式：某个类只能生成一个实例，该类提供了一个全局访问点供外部获取该实例，其拓展是有限多例模式。-  原型（Prototype）模式：将一个对象作为原型，通过对其进行复制而克隆出多个和">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-17T04:43:12.070Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式-各种模式应用场景">
+<meta name="twitter:description" content="创建型模式将对象的创建与使用分离”。这样可以降低系统的耦合度，使用者不需要关注对象的创建细节，对象的创建由相关的工厂来完成。&amp;lt;!--more--&amp;gt; 1234567891011-  单例（Singleton）模式：某个类只能生成一个实例，该类提供了一个全局访问点供外部获取该实例，其拓展是有限多例模式。-  原型（Prototype）模式：将一个对象作为原型，通过对其进行复制而克隆出多个和">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Long&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>设计模式-各种模式应用场景 | Long&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?464240a4c3e7da4512bd33ba1c040abb";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head></html>
+<body>
+
+<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">qiulig</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">菜鸟要更加努力才能追上别人的步伐</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false">
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:qiuling_long@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/qiulig" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAVA基础/">JAVA基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MYSQL/">MYSQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/manacher算法/">manacher算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rabbitMQ/">rabbitMQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中等/">中等</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树题/">二叉树题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/创建型模式/">创建型模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/动态规划/">动态规划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回溯法/">回溯法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/困难/">困难</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字符串题/">字符串题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并发/">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/底层/">底层</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序算法/">排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数组类型题/">数组类型题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/栈/">栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/滑动窗口法/">滑动窗口法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/秒杀/">秒杀</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/简单/">简单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/结构型模式/">结构型模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/行为型模式/">行为型模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/讯飞科技笔试/">讯飞科技笔试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链表题/">链表题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/锁/">锁</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集合类/">集合类</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://qiulig.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://blogs/qiulig.website/">HOME</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，与大家分享交流，同时能够对这些技术进行备忘，以便日后查询</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">qiulig</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">qiulig</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">菜鸟要更加努力才能追上别人的步伐</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:qiuling_long@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/qiulig" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-设计模式-各种模式应用场景" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/06/设计模式-各种模式应用场景/" class="article-date">
+      <time datetime="2019-06-17T02:35:09.000Z" itemprop="datePublished">2019-06-17</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+	
+		
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://blogs.qiulig.website/2019/06/设计模式-各种模式应用场景/';
+            this.page.identifier = '2019/06/设计模式-各种模式应用场景/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      设计模式-各种模式应用场景
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h2><pre><code>将对象的创建与使用分离”。这样可以降低系统的耦合度，使用者不需要关注对象的创建细节，对象的创建由相关的工厂来完成。&lt;!--more--&gt;
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-  单例（Singleton）模式：某个类只能生成一个实例，该类提供了一个全局访问点供外部获取该实例，其拓展是有限多例模式。</span><br><span class="line"></span><br><span class="line">-  原型（Prototype）模式：将一个对象作为原型，通过对其进行复制而克隆出多个和原型类似的新实例。</span><br><span class="line"></span><br><span class="line">-  工厂方法（FactoryMethod）模式：定义一个用于创建产品的接口，由子类决定生产什么产品。</span><br><span class="line"></span><br><span class="line">-  抽象工厂（AbstractFactory）模式：提供一个创建产品族的接口，其每个子类可以生产一系列相关的产品。</span><br><span class="line"></span><br><span class="line">-  建造者（Builder）模式：将一个复杂对象分解成多个相对简单的部分，然后根据不同需要分别创建它们，最后构建成该复杂对象。</span><br><span class="line"></span><br><span class="line">以上 <span class="number">5</span> 种创建型模式，除了工厂方法模式属于类创建型模式，其他的全部属于对象创建型模式，</span><br></pre></td></tr></table></figure>
+<p>1.<strong>单例（Singleton）模式</strong></p>
+<pre><code>某个类只能生成一个实例，该类提供了一个全局访问点供外部获取该实例，其拓展是有限多例模式。
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.某类只要求生成一个对象的时候，如一个班中的班长、每个人的身份证号等。</span><br><span class="line"><span class="number">2</span>.当对象需要被共享的场合。由于单例模式只允许创建一个对象，共享该对象可以节省内存，并加快对象访问速度。如 Web 中的配置对象、数据库的连接池等。</span><br><span class="line"><span class="number">3</span>.当某类需要频繁实例化，而创建的对象又频繁被销毁的时候，如多线程的线程池、网络连接池等。</span><br></pre></td></tr></table></figure>
+<p>2.<strong>原型（Prototype）模式</strong></p>
+<pre><code>将一个对象作为原型，通过对其进行复制而克隆出多个和原型类似的新实例。
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.如果一个系统想要独立于它想要使用的对象时,可以使用原型模式,让系统只面向接口编程,在系统需要新的对象的时候,可以通过克隆原型来得到.  </span><br><span class="line"><span class="number">2</span>.如果需要实例化的类是在运行时刻动态指定时,可以使用原型模式,通过克隆原型来得到需要的实例.</span><br></pre></td></tr></table></figure>
+<p>3.<strong>工厂方法（FactoryMethod）模式</strong></p>
+<pre><code>定义一个用于创建产品的接口，由子类决定生产什么产品。
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.客户类不关心使用哪个具体类,只关心该接口所提供的功能.  </span><br><span class="line"><span class="number">2</span>.创建过程比较复杂,例如需要初始化其他关联的资源类,读取配置文件等.  </span><br><span class="line"><span class="number">3</span>.接口有很多具体实现或者抽象类有很多具体子类时,  </span><br><span class="line"><span class="number">4</span>.不希望给客户程序暴露过多的此类的内部结构,隐藏这些细节可以降低耦合度.      </span><br><span class="line"><span class="number">5</span>.优化性能,比如缓存大对象或者初始化比较耗时的对象.</span><br></pre></td></tr></table></figure>
+<p>4.<strong>抽象工厂（AbstractFactory）模式</strong></p>
+<pre><code>提供一个创建产品族的接口，其每个子类可以生产一系列相关的产品。
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.如果希望一个系统独立于它的产品的创建,组合和表示的时候,换句话书,希望一个系统只是知道产品的接口,而不关心实现的时候.  </span><br><span class="line"><span class="number">2</span>.如果一个系统要由多个产品系列中的一个来配置的时候.换句话说,就是可以,就是可以动态地切换产品簇的时候.  </span><br><span class="line"><span class="number">3</span>.如果强调一系列相关产品的接口,以便联合使用他们的时候</span><br></pre></td></tr></table></figure>
+<p>5.<strong>建造者（Builder）模式</strong></p>
+<pre><code>将一个复杂对象分解成多个相对简单的部分，然后根据不同需要分别创建它们，最后构建成该复杂对象。
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.如果创建对象的算法,应该独立于该对象的组成部分以及它们的装配方式时  </span><br><span class="line"><span class="number">2</span>.如果同一个构建过程有着不同的表示时</span><br></pre></td></tr></table></figure>
+<h2 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h2><pre><code>结构型模式描述如何将类或对象按某种布局组成更大的结构。它分为类结构型模式和对象结构型模式，前者采用继承机制来组织接口和类，后者釆用组合
+
+或聚合来组合对象。由于组合关系或聚合关系比继承关系耦合度低，满足“合成复用原则”，所以对象结构型模式比类结构型模式具有更大的灵活性。
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-   适配器（Adapter）模式：将一个类的接口转换成客户希望的另外一个接口，使得原本由于接口不兼容而不能一起工作的那些类能一起工作。</span><br><span class="line">-   桥接（Bridge）模式：将抽象与实现分离，使它们可以独立变化。它是用组合关系代替继承关系来实现的，从而降低了抽象和实现这两个可变维度的耦合度。</span><br><span class="line">-   组合（Composite）模式：将对象组合成树状层次结构，使用户对单个对象和组合对象具有一致的访问性。</span><br><span class="line">-   装饰（Decorator）模式：动态地给对象增加一些职责，即增加其额外的功能。</span><br><span class="line">-   外观（Facade）模式：为多个复杂的子系统提供一个一致的接口，使这些子系统更加容易被访问。</span><br><span class="line">-   享元（Flyweight）模式：运用共享技术来有效地支持大量细粒度对象的复用。</span><br><span class="line">-   代理（Proxy）模式：为某对象提供一种代理以控制对该对象的访问。即客户端通过代理间接地访问该对象，从而限制、增强或修改该对象的一些特性。</span><br><span class="line">    以上 <span class="number">7</span> 种结构型模式，除了 适配器模式 分为类结构型模式和对象结构型模式两种，其他的全部属于对象结构型模式</span><br></pre></td></tr></table></figure>
+<p><strong>1.适配器模式(Adapter)</strong></p>
+<pre><code>将一个类的接口转换成客户希望的另外一个接口.适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作. 
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.如果先要使用一个已经存在的类,但是它的接口不符合你的需求,这种情况可以使用适配器模式,来把已有的实现转换成你需要的接口.</span><br><span class="line"><span class="number">2</span>.如果你想创建一个可以复用的类,这个类可能和一些不兼容的类一起工作,这中情况可以使用适配器模式,到时候需要什么就适配什么. </span><br><span class="line"><span class="number">3</span>.如果你想使用一些已经窜在的子类,是不坑对每一个子类都进行适配,这中情况可以使用适配器模式,直接适配这些子类的父类就可以了.</span><br></pre></td></tr></table></figure>
+<p><strong>2.桥接模式(Bridge)</strong></p>
+<pre><code>将抽象部分与它的实现部分分离,使他们可以独立变化. 
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.如果你不希望在抽象部分和实现部分采用固定的绑定关系,可以采用桥接模式. </span><br><span class="line"><span class="number">2</span>.如果出现抽象部分和实现部分都能够扩展的情况,可以采用桥接模式,让抽象部分和实现部分独立地变化. </span><br><span class="line"><span class="number">3</span>.如果希望实现部分的修改不会对客户产生影响,可以采用桥接模式. </span><br><span class="line"><span class="number">4</span>.如果采用继承的实现方案,会导致产生很多子类,对于这种情况,可以考虑采用桥接模式.</span><br></pre></td></tr></table></figure>
+<p><strong>3.组合模式(Composite)</strong></p>
+<pre><code>将对象组合成属性结构以表示&quot;部分-整体&quot;的层次结构,组合模式使用的用户对单个对象和组合对象的使用具有一致性. 
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.如果你想表示对象的部分-整体层次结构,可以使用..把整体和部分的操作统一起来,使得层次结构实现更简单,从外部来使用,这个层次结构也容易. </span><br><span class="line"><span class="number">2</span>.如果希望同意地使用组合结构中的所有对象,可以选用,这正是组合模式提供的主要功能.</span><br></pre></td></tr></table></figure>
+<p><strong>4.装饰器模式(Decorator Method)</strong></p>
+<p> 动态的给一个对象增加一些额外的职责,就增加功能来说,装饰模式生成子类更为灵活. </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.如果需要爱不影响其他对象的情况下,以动态,透明的方式给对象添加职责,可以使用装饰模式. </span><br><span class="line"><span class="number">2</span>.如果不适合使用子类来进行扩展的时候,可以考虑使用装饰模式.</span><br></pre></td></tr></table></figure>
+<p><strong>5.外观模式(Facade)</strong></p>
+<pre><code>为子系统中的一组接口提供一个一致的界面,Facade模式定义了一个高层的接口,这个接口使得这一子系统更加同容易使用.
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.如果希望为一个复杂的子系统提供一个简单接口的时候,可以考虑使用外观模式.使用外观对象来实现大部分客户需要的功能,从而简化客户的使用. </span><br><span class="line"><span class="number">2</span>.如果想要让客户程序和抽象类的实现部分松散耦合,可以考虑使用外观模式,使用外观对象来将这个子系统与他的客户分离开来,从而提高子系统的独立性和可移植性. </span><br><span class="line"><span class="number">3</span>.如果构建多层节后的系统,可以考虑使用外观模式使用外观模式对象作为每层的入口,这样可以简化层间调用,也可以松散出层次之间的依赖关系.</span><br></pre></td></tr></table></figure>
+<p><strong>6.享元模式(Flyweight)</strong></p>
+<pre><code>运用共享技术有效地支持大量细粒度的对象. 
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.如果一个应用程序使用了大量的细粒度对象,可以使用享元模式来减少对象的数量. </span><br><span class="line"><span class="number">2</span>.如果犹豫使用大量的对象,造成很大的存储开销,可以使用享元模式来减少对象数量,并节约内存. </span><br><span class="line"><span class="number">3</span>.如果对象的大多数状态都可以转变成外部状态,比如通过计算得到,或者从外部传入等,可以使用享元模式来实现内部状态和外部状态的分离.</span><br><span class="line"><span class="number">4</span>.如果不考虑对象的外部状态,可以用相对较少的共享对象取代很多组合对象,可以使用享元模式来共享对象.然后组合对象来使用这些共享对象.</span><br></pre></td></tr></table></figure>
+<p><strong>7.代理模式(Proxy)</strong></p>
+<pre><code>为其他对象提供一种代理以控制对这个对象的访问.
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.需要为一个对象在不同的地址空间提供局部代表的时候,可以使用远程代理. </span><br><span class="line"><span class="number">2</span>.需要按照需要创建开销很大的对象的时候,可以使用虚代理. </span><br><span class="line"><span class="number">3</span>.需要控制对原始对象的访问的时候,可以使用保护代理. </span><br><span class="line"><span class="number">4</span>.需要在访问你对象执行一些附加操作的时候,可以使用智能指引代理.</span><br></pre></td></tr></table></figure>
+<h2 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h2><pre><code>行为型模式用于描述程序在运行时复杂的流程控制，即描述多个类或对象之间怎样相互协作共同完成单个对象都无法单独完成的任务，它涉及算法与对象间职责的分配。  
+
+行为型模式分为类行为模式和对象行为模式，前者采用继承机制来在类间分派行为，后者采用组合或聚合在对象间分配行为。由于组合关系或聚合关系比继承关系耦合度低，满足“合成复用原则”，所以对象行为模式比类行为模式具有更大的灵活性。  
+</code></pre><p>行为型模式是 设计模式中最为庞大的一类，它包含以下 11 种模式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-   模板方法（Template Method）模式：定义一个操作中的算法骨架，将算法的一些步骤延迟到子类中，使得子类在可以不改变该算法结构的情况下重定义该算法的某些特定步骤。</span><br><span class="line">-   策略（Strategy）模式：定义了一系列算法，并将每个算法封装起来，使它们可以相互替换，且算法的改变不会影响使用算法的客户。</span><br><span class="line">-   命令（Command）模式：将一个请求封装为一个对象，使发出请求的责任和执行请求的责任分割开。</span><br><span class="line">-   职责链（Chain of Responsibility）模式：把请求从链中的一个对象传到下一个对象，直到请求被响应为止。通过这种方式去除对象之间的耦合。</span><br><span class="line">-   状态（State）模式：允许一个对象在其内部状态发生改变时改变其行为能力。</span><br><span class="line">-   观察者（Observer）模式：多个对象间存在一对多关系，当一个对象发生改变时，把这种改变通知给其他多个对象，从而影响其他对象的行为。</span><br><span class="line">-   中介者（Mediator）模式：定义一个中介对象来简化原有对象之间的交互关系，降低系统中对象间的耦合度，使原有对象之间不必相互了解。</span><br><span class="line">-   迭代器（Iterator）模式：提供一种方法来顺序访问聚合对象中的一系列数据，而不暴露聚合对象的内部表示。</span><br><span class="line">-   访问者（Visitor）模式：在不改变集合元素的前提下，为一个集合中的每个元素提供多种访问方式，即每个元素有多个访问者对象访问。</span><br><span class="line">-   备忘录（Memento）模式：在不破坏封装性的前提下，获取并保存一个对象的内部状态，以便以后恢复它。</span><br><span class="line">-   解释器（Interpreter）模式：提供如何定义语言的文法，以及对语言句子的解释方法，即解释器。</span><br></pre></td></tr></table></figure>
+<p><strong>1.策略模式(Strategy)</strong></p>
+<pre><code>定义一系列的算法,把它们一个个封装起来,并且使他们可以相互替换.本模式使得算法可独立于使用它的客户而变化. 
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">1</span>.出现有许多相关的类,仅仅是行为有差别的情况下,可以使用策略模式来使用多个行为中的一个来配置一个类的方法,实现算法动态切换 </span><br><span class="line">    <span class="number">2</span>.出现同一算法,有很多不同实现的情况下,可以使用策略模式来把这些<span class="string">"不同的实现"</span>实现成为一个算法的类层次. </span><br><span class="line">    <span class="number">3</span>.需要封装算法中,有与算法相关数据的情况下,可以使用策略模式来避免暴露这些跟算法相关的数据结构. </span><br><span class="line">    <span class="number">4</span>.出现抽象一个定义了很多行为的类,并且是通过多个<span class="keyword">if</span>-<span class="keyword">else</span>语句来选择这些行为的情况下,可以使用策略模式来替换这些条件语句.</span><br></pre></td></tr></table></figure>
+<p><strong>2.模版方法模式(TemplateMethod)</strong></p>
+<pre><code>定义在一个操作中的算法框架,把一些步骤推迟到子类去实现.模版方法模式让子类不需要改变算法的结构而重新定义特定的算法步骤 
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">1</span>.算法的整体步骤很固定，但其中个别部分易变时，这时候可以使用模板方法模式，将容易变的部分抽象出来，供子类实现。</span><br><span class="line"></span><br><span class="line">    <span class="number">2</span>.当多个子类存在公共的行为时，可以将其提取出来并集中到一个公共父类中以避免代码重复。首先，要识别现有代码中的不同之处，并且将不同之处分离为新的操作。最后，用一个调用这些新的操作的模板方法来替换这些不同的代码。</span><br><span class="line"></span><br><span class="line">    <span class="number">3</span>.当需要控制子类的扩展时，模板方法只在特定点调用钩子操作，这样就只允许在这些点进行扩展。</span><br></pre></td></tr></table></figure>
+<p><strong>3.职责链模式(Chain Of Responsibility)</strong></p>
+<pre><code>使多个对象都有机会处理请求,,从而避免请求的发送者和接收者之间耦合关系.将这些对象连成一条链,并沿着这条链传递该请求,直到有一个对象处理它为止. 
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">1</span>.如果有多个对象可以处理同一个请求,但是具体由哪个对象来处理该请求,是运行时刻动态确定的. </span><br><span class="line">    <span class="number">2</span>.如果你想在不明确指定接收者的情况下,向多个对象中的其中一个提交请求的话,可以使用职责链模式. </span><br><span class="line">    <span class="number">3</span>.如果想要动态指定处理一个请求的对象结合,可以使用职责链模式.</span><br></pre></td></tr></table></figure>
+<p><strong>4.命令模式(Command)</strong></p>
+<pre><code>将一个请求封装为一个对象,从而使你可用不同的请求对客户进行参数化,对请求排队或者记录请求日志,以及支持可撤销的操作.
+</code></pre><p><strong>5.解释器模式(Interpreter)</strong></p>
+<pre><code>给定一个语言,定义它的文法的一种表示,并定义一个解释器,这个解释器使用该表示来解释语言中的句子. 使用场合:
+</code></pre><p><strong>6.迭代器模式(Iterator)</strong> </p>
+<pre><code>提供一种方法顺序访问一个聚合对象中的各个元素,而又不需要暴露该对象的内部表示. 
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">1</span>.如果你希望提供访问一个聚合对象的内容,但是又不想暴露他的内部表示的时候,可以使用迭代器模式来提供迭代器接口,从而让客户端只是通过迭代器的接口来访问聚合对象,而无须关心聚合对象的内部实现. </span><br><span class="line"><span class="number">2</span>.如果你希望有多种遍历方式可以访问聚合对象,可以使用</span><br><span class="line"><span class="number">3</span>.如果你希望为遍历不同的聚合对象提供一个统一的接口,可以使用....</span><br></pre></td></tr></table></figure>
+<p><strong>7.中介模式(Mediator)</strong></p>
+<pre><code>用一个中介对象类封装一系列对象的交互.中介者使得各对象不需要显式地相互引用,从而使其耦合松散,而且可以独立地改变他们之间的交互. 
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.如果一组对象之间的通信方式比较复杂,导致相互依赖,结构混乱,可以采用中介模式,把这些对象相互的交互管理起来,各个对象都只需要和中介者交互,从而是的各个对象松散耦合,结构也更清晰易懂. </span><br><span class="line"><span class="number">2</span>.如果一个对象引用很多的对象,并直接跟这些对象交互,导致难以复用该对象,可以采用中介者模式,把这个对象跟其他对象的交互封装到中介者对象里面,这个对象只需要和中介者对象交互就可了.</span><br></pre></td></tr></table></figure>
+<p><strong>8.备忘录模式(Memento)</strong></p>
+<pre><code>在不破坏封装性的前提下,捕获一个对象的内部状态,并在该对象之外保存这个状态.这样以后就可将该对象恢复到原先保存的状态. 
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">1</span>.如果必须要保存一个对象在某一个时刻的全部或者部分状态,方便以后需要的时候,可以把该对象恢复到先前的状态,可以使用备忘录模式. </span><br><span class="line">    <span class="number">2</span>.如果需要保存一个对象的内部状态,但是如果用接口来让其他对象直接得到这些需要保存的状态,将会暴露对象的实现希捷并破坏对象的封装性,这是可以使用备忘录.</span><br></pre></td></tr></table></figure>
+<p><strong>9.观察者模式(Observer)</strong></p>
+<pre><code>定义对象间的一种一对多的依赖关系.当一个对象的状态发生改变时,所有依赖于它的对象都得到通知并被自动更新. 
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">1</span>.当一个抽象模型有两个方面,其中一个方面的操作依赖于另一个方面的状态变化,那么就可以选用观察者模式,将这两者封装成观察者和目标对象,当目标对象变化的时候,依赖于它的观察者对象也会发生相应的变化.这样就把抽象模型的这两个方面分离了使得,它们可以独立地改变和复用. </span><br><span class="line">    <span class="number">2</span>.如果在更改一个对象的时候,需要同时连带改变其他对象,而且不知道究竟应该有多少对象需要被连带改变,这种情况可以选用观察者模式,被改的那一个对象很明显就相当于是目标对象,而需要连带修改的对歌其他对象,就作为多个观察着对象了. </span><br><span class="line">    <span class="number">3</span>.当一个对象必须通知其他的对象,但是你又希望这个对象和其他被它通知的对象是松散耦合的,也就是说这个对象其实不详知道具体被通知的对象.这种情况可以选用观察者模式,这个对象就相当于是目标对象,而被它通知的对象就是观察者对象了.</span><br></pre></td></tr></table></figure>
+<p><strong>10.状态模式(State)</strong></p>
+<pre><code>允许一个对象在其内部状态改变是改变它的行为.对象看起来似乎修改了他的类. 
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.如果一个对象的行为取决于它的状态,而且它必须在运行时刻根据状态来改变它的行为,可以使用.来包状态和行为分离开.虽然分离了,但是状态和行为是有对应关系的,可以在运行期间,通过改变状态,就能够调用到该状态对应的状态处理对象上去从而改变对象的行为. </span><br><span class="line"><span class="number">2</span>.如果一个操作中含有庞大的多分枝语句,而且这些分支依赖于该对象的状态,可以使用</span><br><span class="line"><span class="number">3</span>.把各个分支的处理分散包装到单独的对象处理类中,这样,这些分支对应的对象就可以不依赖于其他对象而独立变化了.</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/06/设计模式-各种模式应用场景/">设计模式-各种模式应用场景</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">qiulig</a></p>
+        <p><span>发布时间:</span>2019-06-17, 10:35:09</p>
+        <p><span>最后更新:</span>2019-06-17, 12:43:12</p>
+        <p><span class="post-count">文章字数:</span>5.6k</p> 
+		<p>
+            <span>原始链接:</span><a class="post-url" href="/2019/06/设计模式-各种模式应用场景/" title="设计模式-各种模式应用场景">http://blogs.qiulig.website/2019/06/设计模式-各种模式应用场景/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blogs.qiulig.website/2019/06/设计模式-各种模式应用场景/　　作者: qiulig" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/06/设计模式-观察者模式/">
+                    设计模式-观察者模式
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建型模式"><span class="toc-number">1.</span> <span class="toc-text">创建型模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结构型模式"><span class="toc-number">2.</span> <span class="toc-text">结构型模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#行为型模式"><span class="toc-number">3.</span> <span class="toc-text">行为型模式</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"设计模式-各种模式应用场景　| Long's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://blogs.qiulig.website/2019/06/设计模式-各种模式应用场景/';
+            this.page.identifier = '2019/06/设计模式-各种模式应用场景/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/06/设计模式-观察者模式/" title="下一篇: 设计模式-观察者模式">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-各种模式应用场景/">设计模式-各种模式应用场景</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-观察者模式/">设计模式-观察者模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-策略模式/">设计模式-策略模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-模板方法模式/">设计模式-模板方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-组合模式/">设计模式-组合模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-外观模式/">设计模式-外观模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-装饰模式/">设计模式-装饰模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-桥接模式/">设计模式-桥接模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-适配器模式/">设计模式-适配器模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-代理模式/">设计模式-代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-建造者模式/">设计模式-建造者模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/排序算法/">排序算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-237-删除链表的节点/">leetcode_【237】删除链表的节点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-24-两两交换链表中的节点/">leetcode_【24】两两交换链表中的节点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/链表反转/">链表反转</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-203移除链表元素/">leetcode_【203】移除链表元素</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-120-三角形最小路径和/">leetcode_【120】三角形最小路径和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-95-不同的二叉搜索树2/">leetcode_【95】不同的二叉搜索树2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-96-不同二叉搜索树/">leetcode_【96】不同二叉搜索树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-70-爬楼梯/">leetcode_【70】爬楼梯</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-64-最小路径和/">leetcode_【64】最小路径和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-63-不同路径2/">leetcode_【63】不同路径2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-62-不同的路径/">leetcode_【62】不同的路径</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-53-最大子序和/">leetcode_【53】最大子序和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-264-丑数2/">leetcode_【264】丑数2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-263-丑数/">leetcode_【263】丑数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-23合并K个排序链表/">leetcode_【23】合并K个排序链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-21合并两个有序链表/">leetcode_【21】合并两个有序链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-19-删除链表的倒数第N个节点/">leetcode_【19】删除链表的倒数第N个节点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-434-字符串中的单词数/">leetcode_【434】字符串中的单词数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-13-罗马数字转整数/">leetcode_【13】罗马数字转整数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-12-整数转罗马数字/">leetcode_【12】整数转罗马数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/死锁/">死锁</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/SQL-优化查询/">SQL-优化查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-6大原则/">设计模式-六大原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/JAVA中的NIO-BIO/">JAVA中的【IO】、【NIO】、【AIO】</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/设计模式-工厂模式/">设计模式-工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/设计模式-原型模式/">设计模式-原型模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/设计模式-享元模式/">设计模式-享元模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/设计模式-单例模式/">设计模式-单例模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/JAVAVA-java中的快速失败与安全失败/">JAVA_集合中的快速失败与安全失败</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/Hashmap底层/">HashMap底层</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/JVMVM-内存泄漏和内存溢出/">JVM_内存泄漏和内存溢出</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/Java-深拷贝和浅拷贝/">Java_深拷贝和浅拷贝</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-42-接雨水/">leetcode_【42】接雨水</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-11-盛最多水的容器/">leetcode_【11】盛最多水的容器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-10-正则表达式匹配/">leetcode_【10】正则表达式匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-234-回文链表/">leetcode_【234】回文链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-9-回文数/">leetcode_【9】回文数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-8-字符串转换成整数/">leetcode_【8】字符串转换成整数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-7-整数反转/">leetcode_【7】整数反转</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/回文/">得到的最短的回文长度</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-5-最长回文子串/">leetcode_【5】最长回文子串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-4-寻找两个有序数组的中位数/">leetcode_【4】寻找两个有序数组的中位数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-3-无重复字符的最长子串/">leetcode_【3】无重复字符的最长子串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-2-两数相加/">leetcode_【2】两数相加</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-15-三数之和/">leetcode_【15】三数之和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-1-两数之和/">leetcode_【1】两数之和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/volatile介绍/">volatile介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/66-机器人的运动范围/">剑指offer_【66】机器人的运动范围</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/65-矩阵中的路径/">剑指offer_【65】矩阵中的路径</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/64-滑动窗口的最大值/">剑指offer_【64】滑动窗口的最大值</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/63-数据流中的中位数/">剑指offer_【63】数据流中的中位数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/62-二叉搜索树的第K个结点/">剑指offer_【62】二叉搜索树的第K个结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/JSR303参数校验/">JSR303参数校验和全局异常处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/通用缓存key/">通用缓存key</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/rabbitMQ消息队列/">rabbitMQ实现消息缓冲</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/Redis缓存java端实现/">Redis缓存java端实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/61-序列化二叉树/">剑指offer_【61】序列化二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/60-把二叉树打印成多行/">剑指offer_【60】把二叉树打印成多行</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/59-按之字形顺序打印二叉树/">剑指offer_【59】按之字形顺序打印二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/58-对称的二叉树/">剑指offer_【58】对称的二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/57-二叉树的下一个结点/">剑指offer_【57】二叉树的下一个结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/56-删除链表中重复的结点/">剑指offer_【56】删除链表中重复的结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/55-链表中环的入口结点/">剑指offer_【55】链表中环的入口结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/54-字符流中第一个不重复的字符/">剑指offer_【54】字符流中第一个不重复的字符</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/53-表示数值的字符串/">剑指offer_【53】表示数值的字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/52-正则表达式匹配/">剑指offer_【52】正则表达式匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/51-构建乘积数组/">剑指offer_【51】构建乘积数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/50-数组中重复的数字/">剑指offer_【50】数组中重复的数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/49-把字符串转换成整数/">剑指offer_【49】把字符串转换成整数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/48-不用加减乘除做加法/">剑指offer_【48】不用加减乘除做加法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/47-求1-2-n/">剑指offer_【47】求1+2+...+n</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/46-孩子们的游戏/">剑指offer_【46】孩子们的游戏(圆圈中最后剩下的数)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/45-扑克牌顺子/">剑指offer_【45】扑克牌顺子</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/44-翻转单词顺序列/">剑指offer_【44】翻转单词顺序列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/43-左旋转字符串/">剑指offer_【43】左旋转字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/42-和为s的两个数字/">剑指offer_【42】和为s的两个数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/41-和为S的连续正数序列/">剑指offer_【41】和为S的连续正数序列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/40-数组中只出现一次的数字/">剑指offer_【40】数组中只出现一次的数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/39-平衡二叉树/">剑指offer_【39】平衡二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/38-二叉树的深度/">剑指offer_【38】二叉树的深度</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/37-数字在排序数组中出现的次数/">剑指offer_【37】数字在排序数组中出现的次数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/36-两个链表的第一个公共结点/">剑指offer_【36】两个链表的第一个公共结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/争吵问题-md/">争吵问题.md</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/34-第一个只出现一次的字符位置/">剑指offer_【34】第一个只出现一次的字符位置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/35.数组中的逆序对/">剑指offer_【35】数组中的逆序对</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/33-丑数/">剑指offer_【33】丑数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/32-把数组排成最小的数/">剑指offer_【32】把数组排成最小的数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/31-整数中1出现的次数/">剑指offer_【31】整数中1出现的次数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/30-连续子数组的最大和/">剑指offer_【30】连续子数组的最大和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/29-最小的K个数/">剑指offer_【29】最小的K个数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/28-数组中出现次数超过一半的数字/">剑指offer_【28】数组中出现次数超过一半的数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/27-字符串的排列/">剑指offer_【27】字符串的排列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/26-二叉搜索树与双向链表/">剑指offer_【26】二叉搜索树与双向链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/25-复杂链表的复制/">剑指offer_【25】复杂链表的复制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/24-二叉树中和为某值的路径/">剑指offer_【24】二叉树中和为某值的路径</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/23-二叉搜索树的后序遍历序列/">剑指offer_【23】二叉搜索树的后序遍历序列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/22-从上到下打印二叉树/">剑指offer_【22】从上到下打印二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/21-栈的压入、弹出/">剑指offer_【21】栈的压入、弹出</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/20-包含min函数的栈/">剑指offer_【20】包含min函数的栈</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/19-顺时针打印矩阵/">剑指offer_【19】顺时针打印矩阵</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/18-二叉树的镜像/">剑指offer_【18】二叉树的镜像</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/17-树的子结构/">剑指offer_【17】树的子结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/16-合并两个排序的链表/">剑指offer_【16】合并两个排序的链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15-反转链表/">剑指offer_【15】反转链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/14-链表中倒数第K个结点/">剑指offer_【14】链表中倒数第K个结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/13-调整数值顺序使奇数位于偶数前面/">剑指offer_【13】调整数值顺序使奇数位于偶数前面</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12-数值的整数次方/">剑指offer_【12】数值的整数次方</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11-二进制中1的个数/">剑指offer_【11】二进制中1的个数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10-矩形覆盖/">剑指offer_【10】矩形覆盖</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/9-变态跳台阶/">剑指offer_【9】变态跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/8-跳台阶/">剑指offer_【8】跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/7-斐波那契数组/">剑指offer_【7】斐波那契数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/6-旋转数组的最小数字/">剑指offer_【6】旋转数组的最小数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/5.两个栈实现队列/">剑指offer_【5】两个栈实现队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/4.重建二叉树/">剑指offer_【4】重建二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/3.从尾到头打印链表/">剑指offer_【3】从尾到头打印链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/1.二维数组的查找/">剑指offer_【1】二维数组的查找</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/2.空格替换/">剑指offer_【2】空格替换</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/jvm-线程TLAB局部缓存区域/">JVM_线程TLAB局部缓存区域</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/JVM-内存分配和回收策略/">JVM_内存分配和回收策略</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/JVM-对象已死/">JVM_对象已死</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/JVM-垃圾回收器/">JVM_垃圾收集器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/JVM-回收算法/">JVM_垃圾回收算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-锁问题/">SQL_锁问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-触发器/">SQL_触发器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-存储过程和函数/">SQL_存储过程和函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-视图/">SQL_视图</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-索引/">SQL_索引</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-存储引擎/">SQL_存储引擎</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-常用函数/">SQL_常用函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL基础/">SQL_基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/sprintboot中的数据库注解/">sprintboot中的数据库注解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/redis数据的持久化/">redis_数据的持久化</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/redis-数据的淘汰机制/">redis.数据的淘汰机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/redis与memcached/">redis与memcached</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/redis-数据类型/">redis数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/redis应用场景/">redis应用场景</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2019 qiulig
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+					<span title="本站总字数统计">
+                         <span><i class="fa fa-map" aria-hidden="true"></i></span>
+                        <span class="post-count"><b>94.8k</b></span>
+                    </span>
+             
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
