@@ -1,9 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode-102.二叉树的层次遍历]]></title>
+    <url>%2F2019%2F06%2Fleetcode-102-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86%2F</url>
+    <content type="text"><![CDATA[1.题目描述 给定一个二叉树，返回其按层次遍历的节点值。 （即逐层地，从左到右访问所有节点）。 例如:给定二叉树: [3,9,20,null,null,15,7], 123456&gt; 3&gt; / \&gt; 9 20&gt; / \&gt; 15 7&gt; 返回其层次遍历结果： [ [3], [9,20], [15,7]] 2.解题思路 同【剑指offer - 60】 BFS广度优先搜索的扩展题 迭代思想： 我们将树上顶点按照层次依次放入队列结构中，队列中元素满足 FIFO（先进先出）的原则。在 Java 中可以使用 Queue 接口中的 LinkedList实现。 第 0 层只包含根节点 root ，算法实现如下： (1)初始化队列只包含一个节点 root 和层次编号 0 ： level = 0。 (2)当队列非空的时候： 1) 在输出结果 levels 中插入一个空列表，开始当前层的算法。 2)计算当前层有多少个元素：等于队列的长度。 3)将这些元素从队列中弹出，并加入 levels 当前层的空列表中。 4)将他们的孩子节点作为下一层压入队列中。 5)进入下一层 level++。 递归思想： 最简单的解法就是递归，首先确认树非空，然后调用递归函数 helper(node, level)，参数是当前节点和节点的层次。程序过程如下： (1)输出列表称为 ans，当前最高层数就是列表的长度 len(ans)。比较访问节点所在的层次 level 和当前最高层次 len(ans) 的大小，如果前者更大就向 ans 添加一个空列表。 (2)将当前节点插入到对应层的列表 ans[level] 中。 (3)递归非空的孩子节点：helper(node.left , level + 1)。helper(node.right, level + 1)。 3.代码方法1：迭代 12345678910111213141516171819202122232425262728293031323334执行用时 : 3 ms, 在所有 Java 提交中击败了55.91%的用户内存消耗 : 36.5 MB, 在所有 Java 提交中击败了44.59%的用户 public List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123; //用于记录所有结果 List&lt;List&lt;Integer&gt;&gt; lists = new ArrayList&lt;&gt;(); if(root == null) return lists; Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;(); queue.add(root); while(!queue.isEmpty())&#123; //用于保存当前层的节点数 ArrayList&lt;Integer&gt; tmp = new ArrayList&lt;&gt;(); //当前层包含的节点个数 int count = queue.size(); for(int i = 0; i&lt;count;i++)&#123; //删除并返回queue中的头元素，删掉根（上一层结点元素） TreeNode node = queue.poll(); //加入左子树 if(node.left!=null) queue.add(node.left); //加入右子树 if(node.right!=null) queue.add(node.right); //加入当前层的节点 tmp.add(node.val); &#125; lists.add(tmp); &#125; return lists; &#125; 方法2：递归 12345678910111213141516171819202122232425执行用时 : 2 ms, 在所有 Java 提交中击败了92.32%的用户内存消耗 : 37.1 MB, 在所有 Java 提交中击败了42.97%的用户class Solution &#123; List&lt;List&lt;Integer&gt;&gt; ans = new ArrayList&lt;List&lt;Integer&gt;&gt;(); public List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123; if(root == null) return ans; helper(root,0); return ans; &#125; private void helper(TreeNode root, int level) &#123; if(ans.size() == level) ans.add(new ArrayList&lt;&gt;()); ans.get(level).add(root.val); if(root.left != null) helper(root.left,level+1); if(root.right != null) helper(root.right,level+1); &#125;&#125; 4.提交结果]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>二叉树题</tag>
+        <tag>中等</tag>
+        <tag>广度优先遍历</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode_【108】将有序数组转换成二叉搜索树]]></title>
+    <url>%2F2019%2F06%2Fleetcode-108-%E5%B0%86%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E6%88%90%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[1.题目描述 将一个按照升序排列的有序数组，转换为一棵高度平衡二叉搜索树。 本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1。 示例: 给定有序数组: [-10,-3,0,5,9], 一个可能的答案是：[0,-3,9,-10,null,5]，它可以表示下面这个高度平衡二叉搜索树： 123456&gt; 0&gt; / \&gt; -3 9&gt; / /&gt; -10 5&gt; 2.解题思路 将一个排序array转化为平衡二叉搜索树：平衡二叉树：对于每个根节点，左右子树高度差 &lt;= 1；二叉搜索树：对于每个节点，其左子树值&lt;此节点值，右子树&gt;此节点值。要满足以上两个特点，我们自然想到以array中点值作为根节点值，并递归重建，这样就可以同时保证以上两个条件。 3.代码12345678910111213141516171819202122232425/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */ 执行用时 : 3 ms, 在所有 Java 提交中击败了8.50%的用户 内存消耗 : 40.2 MB, 在所有 Java 提交中击败了29.40%的用户class Solution &#123; public TreeNode sortedArrayToBST(int[] nums) &#123; if(nums.length == 0) return null; //将最中间的数作为根节点 TreeNode root =new TreeNode( nums[nums.length/2]); //以中间的树为分界，左边归属于左子树，右边归属于右子树 root.left = sortedArrayToBST(Arrays.copyOfRange(nums,0,nums.length/2)); root.right = sortedArrayToBST(Arrays.copyOfRange(nums,nums.length/2+1,nums.length)); return root; &#125;&#125; 执行用时为2ms的范例： 12345678910111213141516171819202122232425262728293031323334/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public TreeNode sortedArrayToBST(int[] nums) &#123; // 左右等分建立左右子树，中间节点作为子树根节点，递归该过程 return nums == null ? null : buildTree(nums, 0, nums.length - 1); &#125; private TreeNode buildTree(int[] nums, int left, int right) &#123; if (left &gt; right) &#123; return null; &#125; int mid = left + (right - left) / 2; TreeNode root = new TreeNode(nums[mid]); root.left = buildTree(nums, left, mid - 1); root.right = buildTree(nums, mid + 1, right); return root; &#125;&#125; 4.提交记录]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>二叉树题</tag>
+        <tag>简单</tag>
+        <tag>广度优先遍历</tag>
+        <tag>深度优先遍历</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode_【106】从中序与后序遍历序列构造二叉树]]></title>
+    <url>%2F2019%2F06%2Fleetcode-106-%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[1.题目描述 根据一棵树的中序遍历与后序遍历构造二叉树。 注意:你可以假设树中没有重复的元素。 例如，给出 中序遍历 inorder = [9,3,15,20,7]后序遍历 postorder = [9,15,7,20,3]返回如下的二叉树： 123456&gt; 3&gt; / \&gt; 9 20&gt; / \&gt; 15 7&gt; 2.解题思路 中序9,3,15,20,7,后序 9,15,7,20,3 有如下特征： 后序中最后一位1肯定是根结点，我们可以据此找到中序中根结点的位置root； 中序中根结点左边就是左子树结点，右边就是右子树结点，即[左子树结点，根结点，右子树结点]，我们就可以得出左子树结点个数为int left = rootin - leftin;； 后序中结点分布应该是：[左子树结点，右子树结点，根结点]； 根据前一步确定的左子树个数，可以确定前序中左子树结点和右子树结点的范围； 如果我们要后序遍历生成二叉树的话，下一层递归应该是： 左子树：root.left = buildTree(中序左子树范围，后序左子树范围);； 右子树：root.right = buildTree(中序右子树范围，后序左子树范围，);。 每一层递归都要返回当前根结点root； 3.代码1234567891011121314151617181920212223242526272829303132/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */ 执行用时 : 42 ms, 在所有 Java 提交中击败了15.47%的用户 内存消耗 : 78.1 MB, 在所有 Java 提交中击败了5.17%的用户class Solution &#123; public static TreeNode buildTree(int[] inorder, int[] postorder) &#123; if(inorder.length == 0||postorder.length == 0) return null; //根节点为后序遍历的最后一个节点 TreeNode root = new TreeNode(postorder[postorder.length-1]); for(int i = 0;i&lt;inorder.length;i++)&#123; //找到根节点在中序遍历的点，左边为根的左节点，右边为根的右节点 if(inorder[i] == postorder[postorder.length-1])&#123; //递归构建左子树，此时,中序缩小为[0,i),后序的范围缩小为[0,i] root.left = buildTree(Arrays.copyOfRange(inorder,0,i),Arrays.copyOfRange(postorder,0,i)); //递归构建右子树,中序缩小为[i+1,len),后序的范围缩小为[i,len-1), root.right = buildTree(Arrays.copyOfRange(inorder,i+1,inorder.length),Arrays.copyOfRange(postorder,i,postorder.length-1)); break; &#125; &#125; return root; &#125;&#125; 4.提交记录]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>二叉树题</tag>
+        <tag>中等</tag>
+        <tag>广度优先遍历</tag>
+        <tag>深度优先遍历</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode_【105】从前序与中序遍历序列构造二叉树]]></title>
+    <url>%2F2019%2F06%2Fleetcode-105-%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[1.题目描述 根据一棵树的前序遍历与中序遍历构造二叉树。 注意:你可以假设树中没有重复的元素。 例如，给出 前序遍历 preorder = [3,9,20,15,7]中序遍历 inorder = [9,3,15,20,7]返回如下的二叉树： 123456&gt; 3&gt; / \&gt; 9 20&gt; / \&gt; 15 7&gt; 2.解题思路 同【剑指offer_4】 前序3,9,20,15,7 ，中序9,3,15,20,7； 有如下特征： 前序中左起第一位3肯定是根结点，我们可以据此找到中序中根结点的位置root； 中序中根结点左边就是左子树结点，右边就是右子树结点，即[左子树结点，根结点，右子树结点]，我们就可以得出左子树结点个数为int left = rootin - leftin;； 前序中结点分布应该是：[根结点，左子树结点，右子树结点]； 根据前一步确定的左子树个数，可以确定前序中左子树结点和右子树结点的范围； 如果我们要前序遍历生成二叉树的话，下一层递归应该是： 左子树：root.left = buildTree(前序左子树范围，中序左子树范围);； 右子树：root.right = buildTree(前序右子树范围，中序右子树范围);。 每一层递归都要返回当前根结点root； 3.代码123456789101112131415161718192021222324252627282930313233/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */ 执行用时 : 43 ms, 在所有 Java 提交中击败了15.42%的用户 内存消耗 : 76.5 MB, 在所有 Java 提交中击败了6.76%的用户class Solution &#123; public TreeNode buildTree(int[] preorder, int[] inorder) &#123; if(preorder.length == 0 || inorder.length == 0) return null; //根节点 TreeNode root = new TreeNode(preorder[0]); for(int i = 0;i&lt;inorder.length;i++)&#123; //找到根节点在中序遍历的点，左边为根的左节点，右边为根的右节点 if(preorder[0] == inorder[i])&#123; //递归构建左子树，此时前序的范围缩小为[1,i],中序缩小为[0,i) root.left = buildTree(Arrays.copyOfRange(preorder,1,i+1),Arrays.copyOfRange(inorder,0,i)); //递归构建右子树,此时前序的范围缩小为[i+1,len),中序缩小为[i+1,len) root.right = buildTree(Arrays.copyOfRange(preorder,i+1,preorder.length),Arrays.copyOfRange(inorder,i+1,inorder.length)); break; &#125; &#125; return root; &#125;&#125; 执行用时32ms的范例： 1234567891011121314151617181920212223242526272829303132333435/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public TreeNode buildTree(int[] preorder, int[] inorder) &#123; if (preorder.length != inorder.length) &#123; return null; &#125; return buildHelper(preorder, inorder, 0, preorder.length - 1, 0, inorder.length - 1); &#125; private TreeNode buildHelper(int[] preorder, int[] inorder, int preL, int preR, int inL, int inR) &#123; if (preL &gt; preR) &#123; return null; &#125; TreeNode root = new TreeNode(preorder[preL]); int rootIdx = -1; for (int i = inL; i &lt;= inR; i ++) &#123; if (inorder[i] == preorder[preL]) &#123; rootIdx = i; break; &#125; &#125; if (rootIdx == -1) &#123; return null; &#125; root.left = buildHelper(preorder, inorder, preL + 1, rootIdx - inL + preL, inL, rootIdx - 1); root.right = buildHelper(preorder, inorder, rootIdx - inL + preL + 1, preR, rootIdx + 1, inR); return root; &#125;&#125; 4.提交记录]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>二叉树题</tag>
+        <tag>中等</tag>
+        <tag>广度优先遍历</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode_【101】对称二叉树]]></title>
+    <url>%2F2019%2F06%2Fleetcode-101-%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[1.题目描述 给定一个二叉树，检查它是否是镜像对称的。 例如，二叉树 [1,2,2,3,4,4,3] 是对称的。 123456&gt; 1&gt; / \&gt; 2 2&gt; / \ / \&gt; 3 4 4 3&gt; 但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的: 123456&gt; 1&gt; / \&gt; 2 2&gt; \ \&gt; 3 3&gt; 2.解题思路方法1：递归 如果一个树的左子树与右子树镜像对称，那么这个树是对称的。 因此，该问题可以转化为：两个树在什么情况下互为镜像？ 如果同时满足下面的条件，两个树互为镜像： (1)它们的两个根结点具有相同的值。(2)每个树的右子树都与另一个树的左子树镜像对称。 递归过程： 判断两个指针当前节点值是否相等 判断 A 的右子树与 B 的左子树是否对称 判断 A 的左子树与 B 的右子树是否对称 方法2：迭代 类似于广度优先遍历BFS，用一个队列queue存储左右节点。其中队列中每两个连续的结点应该是相等的，而且它们的子树互为镜像。 (1) 最初，队列中包含的是 root 以及 root。每次提取两个结点并比较它们的值。 (2)当队列为空时，或者我们检测到树不对称（即从队列中取出两个不相等的连续结点）时，该算法结束。 (3)然后，将两个结点的左右子结点按相反的顺序插入队列中。 3.代码方法1：递归 123456789101112131415161718192021222324252627282930/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */ 执行用时 : 2 ms, 在所有 Java 提交中击败了84.89%的用户 内存消耗 : 35.5 MB, 在所有 Java 提交中击败了80.63%的用户class Solution &#123; public static boolean isSymmetric(TreeNode root) &#123; if(root == null) return true; return Symmetric(root.left,root.right); &#125; public static boolean Symmetric(TreeNode leftroot,TreeNode rightroot) &#123; if(leftroot==null &amp;&amp; rightroot==null) return true; if(leftroot==null || rightroot == null) return false; if(leftroot.val != rightroot.val) return false; return Symmetric(leftroot.left,rightroot.right) &amp;&amp; Symmetric(leftroot.right,rightroot.left); &#125;&#125; 方法2：迭代 1234567891011121314151617181920212223242526272829303132333435363738/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */ 执行用时 : 3 ms, 在所有 Java 提交中击败了28.02%的用户 内存消耗 : 35.7 MB, 在所有 Java 提交中击败了80.01%的用户class Solution &#123; public static boolean isSymmetric(TreeNode root) &#123; Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;(); queue.add(root); queue.add(root); while(!queue.isEmpty())&#123; TreeNode node1 = queue.poll(); TreeNode node2 = queue.poll(); if(node1==null &amp;&amp; node2==null) continue; if(node1==null || node2==null) return false; if(node1.val!=node2.val) return false; queue.add(node1.left); queue.add(node2.right); queue.add(node1.right); queue.add(node2.left); &#125; return true; &#125;&#125; 4.提交记录]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>二叉树题</tag>
+        <tag>简单</tag>
+        <tag>广度优先遍历</tag>
+        <tag>深度优先遍历</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode_【100】相同的树]]></title>
     <url>%2F2019%2F06%2Fleetcode-100-%E7%9B%B8%E5%90%8C%E7%9A%84%E6%A0%91%2F</url>
-    <content type="text"><![CDATA[1.题目描述 给定两个二叉树，编写一个函数来检验它们是否相同。 如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。 12345678910111213141516171819202122232425&gt; 示例 1:&gt; 输入: 1 1&gt; / \ / \&gt; 2 3 2 3&gt; &gt; [1,2,3], [1,2,3]&gt; 输出: true&gt; &gt; 示例 2:&gt; &gt; 输入: 1 1&gt; / \&gt; 2 2&gt; &gt; [1,2], [1,null,2]&gt; 输出: false&gt; &gt; 示例 3:&gt; 输入: 1 1&gt; / \ / \&gt; 2 1 1 2&gt; &gt; [1,2,1], [1,1,2]&gt; 输出：false&gt; 2.解题思路 最简单的策略是使用递归。检查p和q节点是否不是空，它们的值是否相等。如果所有检查都正常，则递归地为子节点执行相同操作。 3.代码12345678910111213141516171819202122232425执行用时 :1 ms, 在所有 Java 提交中击败了86.63%的用户内存消耗 :34.2 MB, 在所有 Java 提交中击败了85.19%的用户/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public boolean isSameTree(TreeNode p, TreeNode q) &#123; if(p == null &amp;&amp; q==null) return true; if(p==null ||q == null) return false; if(p.val !=q.val) return false; return isSameTree(p.left,q.left) &amp;&amp; isSameTree(p.right,q.right); &#125;&#125; 4. 提交结果]]></content>
+    <content type="text"><![CDATA[1.题目描述 给定两个二叉树，编写一个函数来检验它们是否相同。 如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。 12345678910111213141516171819202122232425&gt; 示例 1:&gt; 输入: 1 1&gt; / \ / \&gt; 2 3 2 3&gt; &gt; [1,2,3], [1,2,3]&gt; 输出: true&gt; &gt; 示例 2:&gt; &gt; 输入: 1 1&gt; / \&gt; 2 2&gt; &gt; [1,2], [1,null,2]&gt; 输出: false&gt; &gt; 示例 3:&gt; 输入: 1 1&gt; / \ / \&gt; 2 1 1 2&gt; &gt; [1,2,1], [1,1,2]&gt; 输出：false&gt; 2.解题思路 最简单的策略是使用递归。检查p和q节点是否不是空，它们的值是否相等。如果所有检查都正常，则递归地为子节点执行相同操作。 3.代码123456789101112131415161718192021222324执行用时 : 1 ms, 在所有 Java 提交中击败了86.63%的用户内存消耗 : 34.2 MB, 在所有 Java 提交中击败了85.19%的用户/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public boolean isSameTree(TreeNode p, TreeNode q) &#123; if(p == null &amp;&amp; q==null) return true; if(p==null ||q == null) return false; if(p.val !=q.val) return false; return isSameTree(p.left,q.left) &amp;&amp; isSameTree(p.right,q.right); &#125;&#125; 4. 提交结果]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -29,10 +97,10 @@
   <entry>
     <title><![CDATA[深度优先遍历和广度优先遍历]]></title>
     <url>%2F2019%2F06%2F%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86%2F</url>
-    <content type="text"><![CDATA[深度优先遍历(DFS) 假设给定图G的初态是所有顶点均未曾访问过。在G中任选一顶点v为初始出发点(源点)，则深度优先遍历可定义如下： (1)首先访问出发点v，并将其标记为已访问过； (2)然后依次从v出发搜索v的每个邻接点w。若w未曾访问过，则以w为新的出发点继续进行深度优先遍历，直至图中所有和源点v有路径相通的顶点(亦称为从源点可达的顶点)均已被访问为止。 (3)若此时图中仍有未访问的顶点，则另选一个尚未访问的顶点作为新的源点重复上述过程，直至图中所有顶点均已被访问为止。 123456789&gt; A&gt; / \&gt; B C&gt; / \ / &gt; E F G&gt; /&gt; I&gt; 深度遍历结果为： A--B--E--F--I--C--G(假设先走子节点的的左侧)&gt; 遍历过程如下： 先往栈中压入右节点，再压左节点，这样出栈就是先左节点后右节点了。 (1)首先将A节点压入栈中，stack（A）; (2)将A节点弹出，同时将A的子节点C，B压入栈中，此时B在栈的顶部，stack(B,C)； (3)将B节点弹出，同时将B的子节点F，E压入栈中，此时E在栈的顶部，stack（E,F,C）； (4)将E节点弹出，没有子节点压入,此时E在栈的顶部，stack（F，C）； (5)将F节点弹出，同时将F的子节点I压入，stack（I,C）； (6)将I节点弹出，没有子节点压入,此时C在栈的顶部，stack（C）； (7)将C节点弹出，同时将C的子节点G压入栈中，stack(G)； (8)将C节点弹出，没有子节点压入，stack为空； 最终遍历完成。 123456789101112131415161718192021222324252627// class TreeNode &#123;// int val;// TreeNode left;// TreeNode right;//// public TreeNode(int val) &#123;// this.val = val;// &#125;// &#125;public static ArrayList&lt;Integer&gt; DFS(TreeNode root) &#123; Stack&lt;TreeNode&gt; stack = new Stack&lt;&gt;(); ArrayList&lt;Integer&gt; res = new ArrayList&lt;&gt;(); if(root == null) return res; stack.push(root); while (!stack.isEmpty())&#123; TreeNode node = stack.pop(); //先往栈中压入右节点，再压左节点，这样出栈就是先左节点后右节点了。 if(node.right!=null) stack.push(node.right); if(node.left!=null) stack.push(node.left); res.add(node.val); &#125; return res; &#125; 递归实现： 12345678910111213141516class solution&#123; ArrayList&lt;Integer&gt; ans = new ArrayList(); public static ArrayList&lt;Integer&gt; DFS(TreeNode root) &#123; if (root != null) &#123; ans.add(root.val); DFS(root.left); DFS(root.right); &#125; return ans; &#125;&#125; 广度优先遍历(BFS) 广度优先遍历从某个顶点出发，首先访问这个顶点，然后找出这个结点的所有未被访问的邻接点，访问完后再访问这些结点中第一个邻接点的所有结点，重复此方法，直到所有结点都被访问完为止。 1、从图中某个顶点V0出发，并访问此顶点； 2、从V0出发，访问V0的各个未曾访问的邻接点W1，W2，…,Wk;然后,依次从W1,W2,…,Wk出发访问各自未被访问的邻接点； 3、重复步骤2，直到全部顶点都被访问为止。 123456789&gt; A&gt; / \&gt; B C&gt; / \ /&gt; E F G&gt; /&gt; I&gt; 深度遍历结果为： A--B--C--E--F--G--I(假设先走子节点的的左侧)&gt; 遍历过程如下： 先往队列中插入左节点，再插右节点，这样出队就是先左节点后右节点了。 (1)首先将A节点插入队列中，队列queue（A）; (2)将A节点弹出，同时将A节点的左、右节点B、C依次插入队列，queue（B，C）； (3)将B节点弹出，同时将B节点的左、右节点E、F依次插入队列，queue（C, E, F）； (4将C节点弹出，同时将C节点的左节点G依次插入队列，queue（E , F , G）； (5)将E节点弹出，同时将E节点的左节点I依次插入队列，queue（F , G , I）； (6)将F节点弹出，F没有子节点插入，queue（G,I）； (7)将G节点弹出，G没有子节点插入，queue（I）； (8)将I节点弹出，I没有子节点插入，queue为空； 最终遍历完成。 实现： 12345678910111213141516171819202122232425262728// class TreeNode &#123;// int val;// TreeNode left;// TreeNode right;//// public TreeNode(int val) &#123;// this.val = val;// &#125;// &#125; public static ArrayList&lt;Integer&gt; BFS(TreeNode root) &#123; ArrayList&lt;Integer&gt; res = new ArrayList&lt;&gt;(); if(root == null) return res; Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;(); queue.add(root); while (!queue.isEmpty())&#123; TreeNode node = queue.poll(); ////先往queue中压入左节点，再压右节点。 if(node.left!=null) queue.add(node.left); if(node.right!=null) queue.add(node.right); res.add(node.val); &#125; return res; &#125; &#125;]]></content>
+    <content type="text"><![CDATA[深度优先遍历(DFS) 假设给定图G的初态是所有顶点均未曾访问过。在G中任选一顶点v为初始出发点(源点)，则深度优先遍历可定义如下： (1)首先访问出发点v，并将其标记为已访问过； (2)然后依次从v出发搜索v的每个邻接点w。若w未曾访问过，则以w为新的出发点继续进行深度优先遍历，直至图中所有和源点v有路径相通的顶点(亦称为从源点可达的顶点)均已被访问为止。 (3)若此时图中仍有未访问的顶点，则另选一个尚未访问的顶点作为新的源点重复上述过程，直至图中所有顶点均已被访问为止。 123456789&gt; A&gt; / \&gt; B C&gt; / \ / &gt; E F G&gt; /&gt; I&gt; 深度遍历结果为： A--B--E--F--I--C--G(假设先走子节点的的左侧)&gt; 遍历过程如下： 先往栈中压入右节点，再压左节点，这样出栈就是先左节点后右节点了。 (1)首先将A节点压入栈中，stack（A）; (2)将A节点弹出，同时将A的子节点C，B压入栈中，此时B在栈的顶部，stack(B,C)； (3)将B节点弹出，同时将B的子节点F，E压入栈中，此时E在栈的顶部，stack（E,F,C）； (4)将E节点弹出，没有子节点压入,此时E在栈的顶部，stack（F，C）； (5)将F节点弹出，同时将F的子节点I压入，stack（I,C）； (6)将I节点弹出，没有子节点压入,此时C在栈的顶部，stack（C）； (7)将C节点弹出，同时将C的子节点G压入栈中，stack(G)； (8)将C节点弹出，没有子节点压入，stack为空； 最终遍历完成。 123456789101112131415161718192021222324252627// class TreeNode &#123;// int val;// TreeNode left;// TreeNode right;//// public TreeNode(int val) &#123;// this.val = val;// &#125;// &#125;public static ArrayList&lt;Integer&gt; DFS(TreeNode root) &#123; Stack&lt;TreeNode&gt; stack = new Stack&lt;&gt;(); ArrayList&lt;Integer&gt; res = new ArrayList&lt;&gt;(); if(root == null) return res; stack.push(root); while (!stack.isEmpty())&#123; TreeNode node = stack.pop(); //先往栈中压入右节点，再压左节点，这样出栈就是先左节点后右节点了。 if(node.right!=null) stack.push(node.right); if(node.left!=null) stack.push(node.left); res.add(node.val); &#125; return res; &#125; 递归实现： 1234567891011121314class solution&#123; ArrayList&lt;Integer&gt; ans = new ArrayList(); public static ArrayList&lt;Integer&gt; DFS(TreeNode root) &#123; if (root != null) &#123; ans.add(root.val); DFS(root.left); DFS(root.right); &#125; return ans; &#125;&#125; 广度优先遍历(BFS) 广度优先遍历从某个顶点出发，首先访问这个顶点，然后找出这个结点的所有未被访问的邻接点，访问完后再访问这些结点中第一个邻接点的所有结点，重复此方法，直到所有结点都被访问完为止。 1、从图中某个顶点V0出发，并访问此顶点； 2、从V0出发，访问V0的各个未曾访问的邻接点W1，W2，…,Wk;然后,依次从W1,W2,…,Wk出发访问各自未被访问的邻接点； 3、重复步骤2，直到全部顶点都被访问为止。 123456789&gt; A&gt; / \&gt; B C&gt; / \ /&gt; E F G&gt; /&gt; I&gt; 深度遍历结果为： A--B--C--E--F--G--I(假设先走子节点的的左侧)&gt; 遍历过程如下： 先往队列中插入左节点，再插右节点，这样出队就是先左节点后右节点了。 (1)首先将A节点插入队列中，队列queue（A）; (2)将A节点弹出，同时将A节点的左、右节点B、C依次插入队列，queue（B，C）； (3)将B节点弹出，同时将B节点的左、右节点E、F依次插入队列，queue（C, E, F）； (4将C节点弹出，同时将C节点的左节点G依次插入队列，queue（E , F , G）； (5)将E节点弹出，同时将E节点的左节点I依次插入队列，queue（F , G , I）； (6)将F节点弹出，F没有子节点插入，queue（G,I）； (7)将G节点弹出，G没有子节点插入，queue（I）； (8)将I节点弹出，I没有子节点插入，queue为空； 最终遍历完成。 实现： 123456789101112131415161718192021222324252627// class TreeNode &#123;// int val;// TreeNode left;// TreeNode right;//// public TreeNode(int val) &#123;// this.val = val;// &#125;// &#125; public static ArrayList&lt;Integer&gt; BFS(TreeNode root) &#123; ArrayList&lt;Integer&gt; res = new ArrayList&lt;&gt;(); if(root == null) return res; Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;(); queue.add(root); while (!queue.isEmpty())&#123; TreeNode node = queue.poll(); ////先往queue中压入左节点，再压右节点。 if(node.left!=null) queue.add(node.left); if(node.right!=null) queue.add(node.right); res.add(node.val); &#125; return res; &#125; &#125;]]></content>
       <tags>
-        <tag>深度优先遍历</tag>
         <tag>广度优先遍历</tag>
+        <tag>深度优先遍历</tag>
       </tags>
   </entry>
   <entry>
@@ -43,7 +111,8 @@
         <category>leetcode</category>
       </categories>
       <tags>
-        <tag>-二叉树题 - 中等</tag>
+        <tag>二叉树题</tag>
+        <tag>中等</tag>
       </tags>
   </entry>
   <entry>
@@ -66,7 +135,8 @@
         <category>leetcode</category>
       </categories>
       <tags>
-        <tag>-数组类型题 - 简单</tag>
+        <tag>数组类型题</tag>
+        <tag>简单</tag>
       </tags>
   </entry>
   <entry>
@@ -666,8 +736,8 @@
       </categories>
       <tags>
         <tag>数组类型题</tag>
-        <tag>滑动窗口法</tag>
         <tag>中等</tag>
+        <tag>滑动窗口法</tag>
       </tags>
   </entry>
   <entry>
@@ -939,7 +1009,7 @@
   <entry>
     <title><![CDATA[剑指offer_【61】序列化二叉树]]></title>
     <url>%2F2019%2F05%2F61-%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
-    <content type="text"><![CDATA[1.题目描述 请实现两个函数，分别用来序列化和反序列化二叉树 2.解题思路 二叉树的序列化 12&gt; 把一棵二叉树按照某种遍历方式的结果以某种格式保存为字符串，从而使得内存中建立起来的二叉树可以持久保存。&gt; 序列化可以基于 先序、中序、后序、按层 的二叉树遍历方式来进行修改。原理都是一样的（即遍历顺序不同而已，对每个结点的处理都是一样的），序列化的结果是一个字符串，序列化时通过 某种符号表示空节点（#），以 ！ 表示一个结点值的结束（value!）。 先序序列化二叉树——&gt;&gt;&gt;&gt;定义一个stringbuilder保存序列过程中的结果： (1)按照先序遍历方式遍历二叉树，若结点非空则把 “结点值,” append到builder中； (2)若结点空则把 “#,” append到builder中； (3)最后用builder生成字符串就是序列化结果。 二叉树的反序列化 根据某种遍历顺序得到的序列化字符串结果str，重构二叉树。 (1)先序序列化结果重构二叉树 (2)String[] nodes=str.split(“,”)；//由每个结点的结束符号划分序列化结果序列，得到各个结点值； (3)然后按照先序遍历的顺序“根左右”的特性，遍历nodes数组建立二叉树： 1)当前遍历元素非 # 则作为一个结点插入树中作为上一结点的左儿子； 2)当前遍历元素为 # 则表示此子树已结束，遍历下一元素作为上一结点的右儿子； 即：遇数作左；遇#变向 3.代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950class TreeNode &#123; int val = 0; TreeNode left = null; TreeNode right = null; public TreeNode(int val) &#123; this.val = val; &#125;&#125;public class Solution &#123; public int index = -1; //室友递归先序遍历对二叉树进行序列化 String Serialize(TreeNode root) &#123; StringBuffer sb = new StringBuffer(); if(root == null)&#123; sb.append("#,"); return sb.toString(); &#125; //先序遍历根结点 sb.append(root.val + ","); //左子树 sb.append(Serialize(root.left)); //右子树 sb.append(Serialize(root.right)); return sb.toString(); &#125; TreeNode Deserialize(String str) &#123; //特殊输入 if(str==null||str.length()&lt;=0) return null; //将字符串按照","拆分为数组 String[] strr = str.split(","); int len = strr.length; index++; if(index &gt;= len)&#123; return null; &#125; TreeNode node = null; //如果遇到的是#表示空节点，不再建立子树，这个结点null就是子树的根结点返回 if(!strr[index].equals("#"))&#123; node = new TreeNode(Integer.valueOf(strr[index])); //恢复左子树 node.left = Deserialize(str); //恢复右子树 node.right = Deserialize(str); &#125; //建立二叉树完成，返回根节点 return node; &#125;&#125;]]></content>
+    <content type="text"><![CDATA[1.题目描述 请实现两个函数，分别用来序列化和反序列化二叉树 2.解题思路 二叉树的序列化 12&gt; 把一棵二叉树按照某种遍历方式的结果以某种格式保存为字符串，从而使得内存中建立起来的二叉树可以持久保存。&gt; 序列化可以基于 先序、中序、后序、按层 的二叉树遍历方式来进行修改。原理都是一样的（即遍历顺序不同而已，对每个结点的处理都是一样的），序列化的结果是一个字符串，序列化时通过 某种符号表示空节点（#），以 ！ 表示一个结点值的结束（value!）。 先序序列化二叉树——&gt;&gt;&gt;&gt;定义一个stringbuilder保存序列过程中的结果： (1)按照先序遍历方式遍历二叉树，若结点非空则把 “结点值,” append到builder中； (2)若结点空则把 “#,” append到builder中； (3)最后用builder生成字符串就是序列化结果。 二叉树的反序列化 根据某种遍历顺序得到的序列化字符串结果str，重构二叉树。 (1)先序序列化结果重构二叉树 (2)String[] nodes=str.split(“,”)；//由每个结点的结束符号划分序列化结果序列，得到各个结点值； (3)然后按照先序遍历的顺序“根左右”的特性，遍历nodes数组建立二叉树： 1)当前遍历元素非 # 则作为一个结点插入树中作为上一结点的左儿子； 2)当前遍历元素为 # 则表示此子树已结束，遍历下一元素作为上一结点的右儿子； 即：遇数作左；遇#变向 3.代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051class TreeNode &#123; int val = 0; TreeNode left = null; TreeNode right = null; public TreeNode(int val) &#123; this.val = val; &#125;&#125;public class Solution &#123; //递归先序遍历对二叉树进行序列化 String Serialize(TreeNode root) &#123; StringBuffer sb = new StringBuffer(); if(root == null)&#123; sb.append("#,"); return sb.toString(); &#125; //先序遍历根结点 sb.append(root.val + ","); //左子树 sb.append(Serialize(root.left)); //右子树 sb.append(Serialize(root.right)); return sb.toString(); &#125; //反序列化 public int index = -1; TreeNode Deserialize(String str) &#123; //特殊输入 if(str==null||str.length()&lt;=0) return null; //将字符串按照","拆分为数组 String[] strr = str.split(","); int len = strr.length; index++; if(index &gt;= len)&#123; return null; &#125; TreeNode node = null; //如果遇到的是#表示空节点，不再建立子树，这个结点null就是子树的根结点返回 if(!strr[index].equals("#"))&#123; node = new TreeNode(Integer.valueOf(strr[index])); //恢复左子树 node.left = Deserialize(str); //恢复右子树 node.right = Deserialize(str); &#125; //建立二叉树完成，返回根节点 return node; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
       </categories>
@@ -1230,7 +1300,8 @@
         <category>笔试</category>
       </categories>
       <tags>
-        <tag>-笔试题 -讯飞科技</tag>
+        <tag>笔试题</tag>
+        <tag>讯飞科技</tag>
       </tags>
   </entry>
   <entry>
@@ -1577,7 +1648,7 @@
   <entry>
     <title><![CDATA[剑指offer_【4】重建二叉树]]></title>
     <url>%2F2019%2F04%2F4.%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
-    <content type="text"><![CDATA[1. 题目描述 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。 2.解题思路 先序遍历为：根-&gt;左子树-&gt;右子树，中序遍历为左子树-&gt;根-&gt;右子树 先找到根结点，为先序遍历的第一个数值 根据这个数值，可以划分中序中的左子树和右子树范围 递归构建左子树和右子树 3.代码12345678910111213141516171819202122232425262728293031323334353637383940import java.util.Arrays;//** * Definition for binary tree public class TreeNode &#123; int val; TreeNode left; TreeNode right; TreeNode(int x) &#123; val = x; &#125; &#125; public class Solution &#123; public TreeNode reConstructBinaryTree(int [] pre,int [] in) &#123; if(pre.length==0 || in.length==0) return null; TreeNode node = new TreeNode(pre[0]); //根结点 for(int i=0;i&lt;pre.length;i++)&#123; //找到根节点在中序遍历的点，左边为根的左节点，右边为根的右节点 if(pre[0] == in[i])&#123; //递归构建左子树，此时前序的范围缩小为[1,i+1),中序缩小为[0,i) node.left =reConstructBinaryTree(Arrays.copyOfRange (pre,1,i+1),Arrays.copyOfRange(in,0,i)); //递归构建右子树,此时前序的范围缩小为[i+1,len),中序缩小为[i+1,len) node.right = reConstructBinaryTree(Arrays.copyOfRange (pre,i+1,pre.length),Arrays.copyOfRange(in,i+1,in.length)); break; &#125; &#125; return node; &#125;&#125;]]></content>
+    <content type="text"><![CDATA[1. 题目描述 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。 2.解题思路 先序遍历为：根-&gt;左子树-&gt;右子树，中序遍历为左子树-&gt;根-&gt;右子树 先找到根结点，为先序遍历的第一个数值 根据这个数值，可以划分中序中的左子树和右子树范围 递归构建左子树和右子树 3.代码12345678910111213141516171819202122232425262728import java.util.Arrays;//** * Definition for binary tree public class TreeNode &#123; int val; TreeNode left; TreeNode right; TreeNode(int x) &#123; val = x; &#125; &#125; public class Solution &#123; public TreeNode reConstructBinaryTree(int [] pre,int [] in) &#123; if(pre.length==0 || in.length==0) return null; TreeNode node = new TreeNode(pre[0]); //根结点 for(int i=0;i&lt;pre.length;i++)&#123; //找到根节点在中序遍历的点，左边为根的左节点，右边为根的右节点 if(pre[0] == in[i])&#123; //递归构建左子树，此时前序的范围缩小为[1,i+1),中序缩小为[0,i) node.left =reConstructBinaryTree(Arrays.copyOfRange (pre,1,i+1),Arrays.copyOfRange(in,0,i)); //递归构建右子树,此时前序的范围缩小为[i+1,len),中序缩小为[i+1,len) node.right = reConstructBinaryTree(Arrays.copyOfRange (pre,i+1,pre.length),Arrays.copyOfRange(in,i+1,in.length)); break; &#125; &#125; return node; &#125;&#125;]]></content>
       <categories>
         <category>剑指offer</category>
       </categories>
@@ -1597,17 +1668,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[剑指offer_【2】空格替换]]></title>
-    <url>%2F2019%2F04%2F2.%E7%A9%BA%E6%A0%BC%E6%9B%BF%E6%8D%A2%2F</url>
-    <content type="text"><![CDATA[1. 题目描述 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 2. 解题思路 方法1：利用函数replaceAll完成 方法2： **先计算需要多少的空间 **从后向前依次插入 3.代码方法1： 12345public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; return str.toString().replaceAll(" ", "%20"); &#125;&#125; 方法2： 12345678910111213141516171819202122232425262728public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; int spacenum = 0;//spacenum为计算空格数 for(int i=0;i&lt;str.length();i++)&#123; if(str.charAt(i)==' ') spacenum++; &#125; //indexold为为替换前的str下标 int indexold = str.length()-1; //计算空格转换成%20之后的str长度 int newlength = str.length() + spacenum*2; //indexold为为把空格替换为%20后的str下标 int indexnew = newlength-1; //使str的长度扩大到转换成%20之后的长度,防止下标越界 str.setLength(newlength); for(;indexold&gt;=0 &amp;&amp; indexold&lt;newlength;--indexold)&#123; if(str.charAt(indexold) == ' ')&#123; str.setCharAt(indexnew--, '0'); str.setCharAt(indexnew--, '2'); str.setCharAt(indexnew--, '%'); &#125;else&#123; str.setCharAt(indexnew--, str.charAt(indexold)); &#125; &#125; return str.toString(); &#125;&#125; 补充1：String和StringBuffer的转换String转换成StringBuffer 12String str = "abc";StringBuffer b=new StringBuffer(str); StringBuffer转换成String 12StringBuffer a=new StringBuffer();String b=a.toString(） 补充2：String、StringBuffer、StringBuilder 1）运行速度StringBuilder&gt;StringBuffer&gt;String 2）String是字符串常量，String对象一旦创建就不能更改。StringBuffer为 字符串变量，可更改 3） String适用于少量的字符串操作，StringBuffer适用于多线程下字符缓冲区进行大量操作的情况。 4） StringBuffer 与 StringBuilder 中的方法和功能完全是等价的， 5） 只是StringBuffer 中的方法大都采用了 synchronized 关键字进行修饰，因此是线程安全的，而 StringBuilder 没有这个修饰，可以被认为是线程不安全的。 6） 在单线程程序下，StringBuilder效率更快，因为它不需要加锁，不具备多线程安全，而StringBuffer则每次都需要判断锁，效率相对更低。]]></content>
-      <categories>
-        <category>剑指offer</category>
-      </categories>
-      <tags>
-        <tag>字符串题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[剑指offer_【1】二维数组的查找]]></title>
     <url>%2F2019%2F04%2F1.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
     <content type="text"><![CDATA[1.题目描述： 在一个二维数组中（每个一维数组的长度相同），如数组 1 2 3 4 5 6 7 8 9 每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 2.解题思路 选择右上角的数字作为开始点 如果array[row][col]&gt;target,则向左查找，col–； 如果array[row][col]&lt;target,则向下查找，row++； 3.代码123456789101112131415161718public class Solution &#123; public boolean Find(int target, int [][] array) &#123; boolean res = false; int row = 0; int col = array[0].length-1; while(row&lt;=array.length-1&amp;&amp;col&gt;=0)&#123; if(array[row][col]&gt;target)&#123; col--; &#125;else if(array[row][col]&lt;target)&#123; row++; &#125;else&#123; res = true; break; &#125; &#125; return res; &#125;&#125;]]></content>
@@ -1616,6 +1676,17 @@
       </categories>
       <tags>
         <tag>数组类型题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【2】空格替换]]></title>
+    <url>%2F2019%2F04%2F2.%E7%A9%BA%E6%A0%BC%E6%9B%BF%E6%8D%A2%2F</url>
+    <content type="text"><![CDATA[1. 题目描述 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 2. 解题思路 方法1：利用函数replaceAll完成 方法2： **先计算需要多少的空间 **从后向前依次插入 3.代码方法1： 12345public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; return str.toString().replaceAll(" ", "%20"); &#125;&#125; 方法2： 12345678910111213141516171819202122232425262728public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; int spacenum = 0;//spacenum为计算空格数 for(int i=0;i&lt;str.length();i++)&#123; if(str.charAt(i)==' ') spacenum++; &#125; //indexold为为替换前的str下标 int indexold = str.length()-1; //计算空格转换成%20之后的str长度 int newlength = str.length() + spacenum*2; //indexold为为把空格替换为%20后的str下标 int indexnew = newlength-1; //使str的长度扩大到转换成%20之后的长度,防止下标越界 str.setLength(newlength); for(;indexold&gt;=0 &amp;&amp; indexold&lt;newlength;--indexold)&#123; if(str.charAt(indexold) == ' ')&#123; str.setCharAt(indexnew--, '0'); str.setCharAt(indexnew--, '2'); str.setCharAt(indexnew--, '%'); &#125;else&#123; str.setCharAt(indexnew--, str.charAt(indexold)); &#125; &#125; return str.toString(); &#125;&#125; 补充1：String和StringBuffer的转换String转换成StringBuffer 12String str = "abc";StringBuffer b=new StringBuffer(str); StringBuffer转换成String 12StringBuffer a=new StringBuffer();String b=a.toString(） 补充2：String、StringBuffer、StringBuilder 1）运行速度StringBuilder&gt;StringBuffer&gt;String 2）String是字符串常量，String对象一旦创建就不能更改。StringBuffer为 字符串变量，可更改 3） String适用于少量的字符串操作，StringBuffer适用于多线程下字符缓冲区进行大量操作的情况。 4） StringBuffer 与 StringBuilder 中的方法和功能完全是等价的， 5） 只是StringBuffer 中的方法大都采用了 synchronized 关键字进行修饰，因此是线程安全的，而 StringBuilder 没有这个修饰，可以被认为是线程不安全的。 6） 在单线程程序下，StringBuilder效率更快，因为它不需要加锁，不具备多线程安全，而StringBuffer则每次都需要判断锁，效率相对更低。]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>字符串题</tag>
       </tags>
   </entry>
   <entry>
