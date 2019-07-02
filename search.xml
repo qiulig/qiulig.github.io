@@ -22,8 +22,8 @@
       </categories>
       <tags>
         <tag>二叉树题</tag>
-        <tag>简单</tag>
         <tag>广度优先遍历</tag>
+        <tag>简单</tag>
         <tag>深度优先遍历</tag>
       </tags>
   </entry>
@@ -63,8 +63,8 @@
       </categories>
       <tags>
         <tag>二叉树题</tag>
-        <tag>简单</tag>
         <tag>广度优先遍历</tag>
+        <tag>简单</tag>
         <tag>深度优先遍历</tag>
       </tags>
   </entry>
@@ -152,7 +152,7 @@
   <entry>
     <title><![CDATA[leetcode_【55】跳跃游戏]]></title>
     <url>%2F2019%2F06%2Fleetcode-55-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F%2F</url>
-    <content type="text"><![CDATA[1.题目描述 给定一个非负整数数组，你最初位于数组的第一个位置。数组中的每个元素代表你在该位置可以跳跃的最大长度。判断你是否能够到达最后一个位置。 示例 1: 输入: [2,3,1,1,4]输出: true解释: 从位置 0 到 1 跳 1 步, 然后跳 3 步到达最后一个位置。示例 2: 输入: [3,2,1,0,4]输出: false解释: 无论怎样，你总会到达索引为 3 的位置。但该位置的最大跳跃长度是 0 ， 所以你永远不可能到达最后一个位置。 2.解题思路方法1：动态规划 从左到右依次判断索引坐标i是否能跳到，当遍历到数组末尾时，当dp[nums.length-1]==true时说明能跳到这个位置。即可以跳到最后一个位置。 方法2: 贪心算法 从右向左迭代，对于每个节点我们检查是否存在一步跳跃可以到达 GOOD 的位置（currPosition + nums[currPosition] &gt;= leftmostGoodIndex）。 如果可以到达，当前位置也标记为 GOOD ，同时，这个位置将成为新的最左边的 GOOD 位置，一直重复到数组的开头，如果第一个坐标标记为 GOOD 意 味着可以从第一个位置跳到最后的位置。 3.代码方法1：动态规划 1234567891011121314151617public static boolean canJump(int[] nums) &#123; if(nums==null) return false; boolean []dp = new boolean[nums.length]; dp[0] = true; for(int i = 1;i&lt;nums.length;i++)&#123; for(int j = 0;j&lt;i;j++)&#123; //如果之前j节点可达，并且从此节点可以跳到i if(dp[j] &amp;&amp; nums[j]+j&gt;=i)&#123; dp[i] = true; break; &#125; &#125; &#125; return dp[nums.length-1]; &#125; 方法2：贪心算法 123456789public static boolean canJump2(int[] nums) &#123; int lastPos = nums.length - 1; for (int i = nums.length - 1; i &gt;= 0; i--) &#123; if (i + nums[i] &gt;= lastPos) &#123; lastPos = i; &#125; &#125; return lastPos == 0; &#125; 4.提交记录方法1：动态规划 方法2：贪心算法]]></content>
+    <content type="text"><![CDATA[1.题目描述 给定一个非负整数数组，你最初位于数组的第一个位置。数组中的每个元素代表你在该位置可以跳跃的最大长度。判断你是否能够到达最后一个位置。 示例 1: 输入: [2,3,1,1,4]输出: true解释: 从位置 0 到 1 跳 1 步, 然后跳 3 步到达最后一个位置。示例 2: 输入: [3,2,1,0,4]输出: false解释: 无论怎样，你总会到达索引为 3 的位置。但该位置的最大跳跃长度是 0 ， 所以你永远不可能到达最后一个位置。 2.解题思路方法1：动态规划 从左到右依次判断索引坐标i是否能跳到，当遍历到数组末尾时，当dp[nums.length-1]==true时说明能跳到这个位置。即可以跳到最后一个位置。 方法2: 贪心算法 从右向左迭代，对于每个节点我们检查是否存在一步跳跃可以到达 GOOD 的位置（currPosition + nums[currPosition] &gt;= leftmostGoodIndex）。 如果可以到达，当前位置也标记为 GOOD ，同时，这个位置将成为新的最左边的 GOOD 位置，一直重复到数组的开头，如果第一个坐标标记为 GOOD 意 味着可以从第一个位置跳到最后的位置。 3.代码方法1：动态规划 1234567891011121314151617public static boolean canJump(int[] nums) &#123; if(nums==null) return false; boolean []dp = new boolean[nums.length]; dp[0] = true; for(int i = 1;i&lt;nums.length;i++)&#123; for(int j = 0;j&lt;i;j++)&#123; //如果之前j节点可达，并且从此节点可以跳到i if(dp[j] &amp;&amp; nums[j]+j&gt;=i)&#123; dp[i] = true; break; &#125; &#125; &#125; return dp[nums.length-1]; &#125; 方法2：贪心算法 123456789public static boolean canJump2(int[] nums) &#123; int lastPos = nums.length - 1; for (int i = nums.length - 1; i &gt;= 0; i--) &#123; if (i + nums[i] &gt;= lastPos) &#123; lastPos = i; &#125; &#125; return lastPos == 0; &#125; 4.提交记录方法1：动态规划 ![leetcode提交结果] (https://github.com/qiulig/IMG/raw/master/55-1.jpg) 方法2：贪心算法 ![leetcode提交结果] (https://github.com/qiulig/IMG/raw/master/55-2.jpg)]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -1668,17 +1668,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[剑指offer_【1】二维数组的查找]]></title>
-    <url>%2F2019%2F04%2F1.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
-    <content type="text"><![CDATA[1.题目描述： 在一个二维数组中（每个一维数组的长度相同），如数组 1 2 3 4 5 6 7 8 9 每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 2.解题思路 选择右上角的数字作为开始点 如果array[row][col]&gt;target,则向左查找，col–； 如果array[row][col]&lt;target,则向下查找，row++； 3.代码123456789101112131415161718public class Solution &#123; public boolean Find(int target, int [][] array) &#123; boolean res = false; int row = 0; int col = array[0].length-1; while(row&lt;=array.length-1&amp;&amp;col&gt;=0)&#123; if(array[row][col]&gt;target)&#123; col--; &#125;else if(array[row][col]&lt;target)&#123; row++; &#125;else&#123; res = true; break; &#125; &#125; return res; &#125;&#125;]]></content>
-      <categories>
-        <category>剑指offer</category>
-      </categories>
-      <tags>
-        <tag>数组类型题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[剑指offer_【2】空格替换]]></title>
     <url>%2F2019%2F04%2F2.%E7%A9%BA%E6%A0%BC%E6%9B%BF%E6%8D%A2%2F</url>
     <content type="text"><![CDATA[1. 题目描述 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 2. 解题思路 方法1：利用函数replaceAll完成 方法2： **先计算需要多少的空间 **从后向前依次插入 3.代码方法1： 12345public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; return str.toString().replaceAll(" ", "%20"); &#125;&#125; 方法2： 12345678910111213141516171819202122232425262728public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; int spacenum = 0;//spacenum为计算空格数 for(int i=0;i&lt;str.length();i++)&#123; if(str.charAt(i)==' ') spacenum++; &#125; //indexold为为替换前的str下标 int indexold = str.length()-1; //计算空格转换成%20之后的str长度 int newlength = str.length() + spacenum*2; //indexold为为把空格替换为%20后的str下标 int indexnew = newlength-1; //使str的长度扩大到转换成%20之后的长度,防止下标越界 str.setLength(newlength); for(;indexold&gt;=0 &amp;&amp; indexold&lt;newlength;--indexold)&#123; if(str.charAt(indexold) == ' ')&#123; str.setCharAt(indexnew--, '0'); str.setCharAt(indexnew--, '2'); str.setCharAt(indexnew--, '%'); &#125;else&#123; str.setCharAt(indexnew--, str.charAt(indexold)); &#125; &#125; return str.toString(); &#125;&#125; 补充1：String和StringBuffer的转换String转换成StringBuffer 12String str = "abc";StringBuffer b=new StringBuffer(str); StringBuffer转换成String 12StringBuffer a=new StringBuffer();String b=a.toString(） 补充2：String、StringBuffer、StringBuilder 1）运行速度StringBuilder&gt;StringBuffer&gt;String 2）String是字符串常量，String对象一旦创建就不能更改。StringBuffer为 字符串变量，可更改 3） String适用于少量的字符串操作，StringBuffer适用于多线程下字符缓冲区进行大量操作的情况。 4） StringBuffer 与 StringBuilder 中的方法和功能完全是等价的， 5） 只是StringBuffer 中的方法大都采用了 synchronized 关键字进行修饰，因此是线程安全的，而 StringBuilder 没有这个修饰，可以被认为是线程不安全的。 6） 在单线程程序下，StringBuilder效率更快，因为它不需要加锁，不具备多线程安全，而StringBuffer则每次都需要判断锁，效率相对更低。]]></content>
@@ -1687,6 +1676,17 @@
       </categories>
       <tags>
         <tag>字符串题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【1】二维数组的查找]]></title>
+    <url>%2F2019%2F04%2F1.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
+    <content type="text"><![CDATA[1.题目描述： 在一个二维数组中（每个一维数组的长度相同），如数组 1 2 3 4 5 6 7 8 9 每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 2.解题思路 选择右上角的数字作为开始点 如果array[row][col]&gt;target,则向左查找，col–； 如果array[row][col]&lt;target,则向下查找，row++； 3.代码123456789101112131415161718public class Solution &#123; public boolean Find(int target, int [][] array) &#123; boolean res = false; int row = 0; int col = array[0].length-1; while(row&lt;=array.length-1&amp;&amp;col&gt;=0)&#123; if(array[row][col]&gt;target)&#123; col--; &#125;else if(array[row][col]&lt;target)&#123; row++; &#125;else&#123; res = true; break; &#125; &#125; return res; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>数组类型题</tag>
       </tags>
   </entry>
   <entry>
