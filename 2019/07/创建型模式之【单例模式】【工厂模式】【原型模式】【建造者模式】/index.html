@@ -15,18 +15,20 @@
 
 
 
-<meta name="description" content="1.常用函数分为以下几种  (1) 字符串 (2) 数值函数 (3) 日期和时间函数 (4) 流程函数 (5) 其他">
-<meta name="keywords" content="MYSQL">
+<meta name="description" content="单例模式 保证一个类仅有一个实例，并提供一个访问它的全局访问点。    单例模式包括    &amp;emsp;（1）私有的构造方法      &amp;emsp;（2）含有一个该类的静态私有对象private static     &amp;emsp;（3）提供了一个静态的公有的函数用于创建或获取它本身的静态私有对象。">
+<meta name="keywords" content="设计模式,创建型模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SQL_常用函数">
-<meta property="og:url" content="http://blogs.qiulig.website/2019/03/SQL-常用函数/index.html">
+<meta property="og:title" content="创建型模式之【单例模式】【工厂模式】【原型模式】【建造者模式】">
+<meta property="og:url" content="http://blogs.qiulig.website/2019/07/创建型模式之【单例模式】【工厂模式】【原型模式】【建造者模式】/index.html">
 <meta property="og:site_name" content="Long&#39;s Blog">
-<meta property="og:description" content="1.常用函数分为以下几种  (1) 字符串 (2) 数值函数 (3) 日期和时间函数 (4) 流程函数 (5) 其他">
+<meta property="og:description" content="单例模式 保证一个类仅有一个实例，并提供一个访问它的全局访问点。    单例模式包括    &amp;emsp;（1）私有的构造方法      &amp;emsp;（2）含有一个该类的静态私有对象private static     &amp;emsp;（3）提供了一个静态的公有的函数用于创建或获取它本身的静态私有对象。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-27T07:31:00.899Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190717103842500.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE3NTU2MTkx,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-07-26T16:11:49.459Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SQL_常用函数">
-<meta name="twitter:description" content="1.常用函数分为以下几种  (1) 字符串 (2) 数值函数 (3) 日期和时间函数 (4) 流程函数 (5) 其他">
+<meta name="twitter:title" content="创建型模式之【单例模式】【工厂模式】【原型模式】【建造者模式】">
+<meta name="twitter:description" content="单例模式 保证一个类仅有一个实例，并提供一个访问它的全局访问点。    单例模式包括    &amp;emsp;（1）私有的构造方法      &amp;emsp;（2）含有一个该类的静态私有对象private static     &amp;emsp;（3）提供了一个静态的公有的函数用于创建或获取它本身的静态私有对象。">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190717103842500.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE3NTU2MTkx,size_16,color_FFFFFF,t_70">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -58,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>SQL_常用函数 | Long&#39;s Blog</title>
+<title>创建型模式之【单例模式】【工厂模式】【原型模式】【建造者模式】 | Long&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -280,11 +282,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-SQL-常用函数" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-创建型模式之【单例模式】【工厂模式】【原型模式】【建造者模式】" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/SQL-常用函数/" class="article-date">
-      <time datetime="2019-03-27T01:12:07.000Z" itemprop="datePublished">2019-03-27</time>
+      <a href="/2019/07/创建型模式之【单例模式】【工厂模式】【原型模式】【建造者模式】/" class="article-date">
+      <time datetime="2019-07-26T16:09:45.000Z" itemprop="datePublished">2019-07-27</time>
 </a>
 
 
@@ -302,8 +304,8 @@
     <div id="disqus_thread"></div>
     <script>
         var disqus_config = function(){
-            this.page.url = 'http://blogs.qiulig.website/2019/03/SQL-常用函数/';
-            this.page.identifier = '2019/03/SQL-常用函数/';
+            this.page.url = 'http://blogs.qiulig.website/2019/07/创建型模式之【单例模式】【工厂模式】【原型模式】【建造者模式】/';
+            this.page.identifier = '2019/07/创建型模式之【单例模式】【工厂模式】【原型模式】【建造者模式】/';
         };
         var loadComment = function(){
             var d = document, s = d.createElement('script');
@@ -327,7 +329,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      SQL_常用函数
+      创建型模式之【单例模式】【工厂模式】【原型模式】【建造者模式】
     </h1>
   
 
@@ -336,13 +338,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/数据库/">数据库</a>
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MYSQL/">MYSQL</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/创建型模式/">创建型模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -352,415 +354,91 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>1.常用函数分为以下几种</p>
-<blockquote>
-<p>(1) 字符串</p>
-<p>(2) 数值函数</p>
-<p>(3) 日期和时间函数</p>
-<p>(4) 流程函数</p>
-<p>(5) 其他</p>
-<a id="more"></a>
+        <h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><blockquote>
+<p>保证一个类仅有一个实例，并提供一个访问它的全局访问点。<br>    单例模式包括<br>    &emsp;（1）私有的构造方法<br>      &emsp;（2）含有一个该类的静态私有对象private static<br>     &emsp;（3）提供了一个静态的公有的函数用于创建或获取它本身的静态私有对象。</p>
 </blockquote>
-<h3 id="1-字符串"><a href="#1-字符串" class="headerlink" title="1.字符串"></a>1.字符串</h3><table>
-<thead>
-<tr>
-<th>函数</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CANCAT(S1,S2,…Sn)</td>
-<td>连接 S1,S2,…Sn 为一个字符串</td>
-</tr>
-<tr>
-<td>INSERT(str,x,y,instr)</td>
-<td>将字符串 str 从第 x 位置开始，y 个字符长的子串替换为字符串 instr</td>
-</tr>
-<tr>
-<td>LOWER(str)</td>
-<td>将字符串 str 中所有字符变为小写</td>
-</tr>
-<tr>
-<td>UPPER(str)</td>
-<td>将字符串 str 中所有字符变为大写</td>
-</tr>
-<tr>
-<td>LEFT(str ,x)</td>
-<td>返回字符串 str 最左边的 x 个字符</td>
-</tr>
-<tr>
-<td>RIGHT(str,x)</td>
-<td>返回字符串 str 最右边的 x 个字符</td>
-</tr>
-<tr>
-<td>LPAD(str,n ,pad)</td>
-<td>用字符串 pad 对 str 最左边进行填充，直到长度为 n 个字符长度</td>
-</tr>
-<tr>
-<td>RPAD(str,n ,pad)</td>
-<td>用字符串 pad 对 str 最右边进行填充，直到长度为 n 个字符长度</td>
-</tr>
-<tr>
-<td>LTRIM(str)</td>
-<td>去掉字符串 str 左侧的空格</td>
-</tr>
-<tr>
-<td>RTRIM(str)</td>
-<td>去掉字符串 str 行尾的空格</td>
-</tr>
-<tr>
-<td>REPEAT(str,x)</td>
-<td>返回 str 重复 x 次的结果</td>
-</tr>
-<tr>
-<td>REPLACE(str,a,b)</td>
-<td>用字符串 b 替换字符串 str 中所有出现的字符串 a</td>
-</tr>
-<tr>
-<td>STRCMP(s1,s2)</td>
-<td>比较字符串 s1 和 s2</td>
-</tr>
-<tr>
-<td>TRIM(str)</td>
-<td>去掉字符串行尾和行头的空格</td>
-</tr>
-<tr>
-<td>SUBSTRING(str,x,y)</td>
-<td>返回从字符串 str x 位置起 y 个字符长度的字串</td>
-</tr>
-</tbody>
-</table>
-<h3 id="2-数值函数"><a href="#2-数值函数" class="headerlink" title="2.数值函数"></a>2.数值函数</h3><style> </style>
-
-<table>
-<thead>
-<tr>
-<th>函数</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ABS(x)</td>
-<td>返回 x 的绝对值</td>
-</tr>
-<tr>
-<td>CEIL(x)</td>
-<td>返回大于 x 的最大整数值</td>
-</tr>
-<tr>
-<td>FLOOR(x)</td>
-<td>返回小于 x 的最大整数值</td>
-</tr>
-<tr>
-<td>MOD(x，y)</td>
-<td>返回 x/y 的模</td>
-</tr>
-<tr>
-<td>RAND()</td>
-<td>返回 0 到 1 内的随机值</td>
-</tr>
-<tr>
-<td>ROUND(x,y)</td>
-<td>返回参数 x 的四舍五入的有 y 位小数的值</td>
-</tr>
-<tr>
-<td>TRUNCATE(x,y)</td>
-<td>返回数字 x 截断为 y 位小数的结果</td>
-</tr>
-</tbody>
-</table>
-<h3 id="3-日期和时间函数"><a href="#3-日期和时间函数" class="headerlink" title="3.日期和时间函数"></a>3.日期和时间函数</h3><table>
-<thead>
-<tr>
-<th>函数</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CURDATE()</td>
-<td>返回当前日期</td>
-</tr>
-<tr>
-<td>CURTIME()</td>
-<td>返回当前时间</td>
-</tr>
-<tr>
-<td>NOW()</td>
-<td>返回当前的日期和时间</td>
-</tr>
-<tr>
-<td>UNIX_TIMESTAMP(date)</td>
-<td>返回日期 date 的 UNIX 时间戳</td>
-</tr>
-<tr>
-<td>FROM_UNIXTIME</td>
-<td>返回 UNIX 时间戳的日期值</td>
-</tr>
-<tr>
-<td>WEEK(date)</td>
-<td>返回日期 date 为一年中的第几周</td>
-</tr>
-<tr>
-<td>YEAR(date)</td>
-<td>返回日期 date 的年份</td>
-</tr>
-<tr>
-<td>HOUR(time)</td>
-<td>返回 time 的小时值</td>
-</tr>
-<tr>
-<td>MINUTE(time)</td>
-<td>返回 time 的分钟值</td>
-</tr>
-<tr>
-<td>MONTHNAME(date)</td>
-<td>返回 date 的月份名</td>
-</tr>
-<tr>
-<td>DATE_FORMAT(date,fmt)</td>
-<td>返回按字符串 <strong>fmt 格式化日期</strong> date 值</td>
-</tr>
-<tr>
-<td>DATE_ADD(date,<strong>INTERVAL</strong> expr type)</td>
-<td>返回一个日期或时间值加上一个<strong>时间间隔的时间值</strong>，<br>INTERVAL 是间隔类型关键字<br>expr 是一个表达式，这个表达式对应后面的类型<br>type 是间隔类型<br></td>
-</tr>
-<tr>
-<td>DATEDIFF(expr,expr2)</td>
-<td>返回起始时间 expr 和结束时间 expr2 之间的天数</td>
-</tr>
-</tbody>
-</table>
-<p>表： MySQL 中的日期时间格式</p>
-<table>
-<thead>
-<tr>
-<th>格式符</th>
-<th>格式说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>%S,%s</td>
-<td>两位数字形式的秒（00,01,…,59）</td>
-</tr>
-<tr>
-<td>%i</td>
-<td>两位数字形式的分（00,01,…,59）</td>
-</tr>
-<tr>
-<td>%H</td>
-<td>两位数字形式的小时，24 小时（00,01,…,23）</td>
-</tr>
-<tr>
-<td>%h,%I</td>
-<td>两位数字形式的小时，12 小时（01,02,…,12）</td>
-</tr>
-<tr>
-<td>%k</td>
-<td>数字形式的小时，24 小时（0,1,…,23）</td>
-</tr>
-<tr>
-<td>%l</td>
-<td>数字形式的小时，12 小时（1,2,…,12）</td>
-</tr>
-<tr>
-<td>%T</td>
-<td>24 小时的时间形式（hh:mm:ss）</td>
-</tr>
-<tr>
-<td>%r</td>
-<td>12 小时的时间形式（hh:mm:ssAM 或 hh:mm:ssPM）</td>
-</tr>
-<tr>
-<td>%p</td>
-<td>AM 或 PM</td>
-</tr>
-<tr>
-<td>%W</td>
-<td>一周中每一天的名称（Sunday,Monday,…,Saturday）</td>
-</tr>
-<tr>
-<td>%a</td>
-<td>一周中每一天名称的缩写（Sun,Mon,…,Sat）</td>
-</tr>
-<tr>
-<td>%d</td>
-<td>两位数字表示月中的天数（00,01,…,31）</td>
-</tr>
-<tr>
-<td>%e</td>
-<td>数字形式表示月中的天数（1,2，…,31）</td>
-</tr>
-<tr>
-<td>%D</td>
-<td>英文后缀表示月中的天数（1st,2nd,3rd,…）</td>
-</tr>
-<tr>
-<td>%w</td>
-<td>以数字形式表示周中的天数（0=Sunday,1=Monday,…,6=Saturday）</td>
-</tr>
-<tr>
-<td>%j</td>
-<td>以 3 位数字表示年中的天数（001,002,…,366）</td>
-</tr>
-<tr>
-<td>%U</td>
-<td>周（0,1,52），其中 Sunday 为周中的第一天</td>
-</tr>
-<tr>
-<td>%u</td>
-<td>周（0,1,52），其中 Monday 为周中的第一天</td>
-</tr>
-<tr>
-<td>%M</td>
-<td>月名（January,February,…,December）</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">表：MYSQL中的时间间隔类型</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>表达式类型</th>
-<th>描述</th>
-<th>格式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>HOUR</td>
-<td>小时</td>
-<td>hh</td>
-</tr>
-<tr>
-<td>MINUTE</td>
-<td>分</td>
-<td>mm</td>
-</tr>
-<tr>
-<td>SECOND</td>
-<td>秒</td>
-<td>ss</td>
-</tr>
-<tr>
-<td>YEAR</td>
-<td>年</td>
-<td>YY</td>
-</tr>
-<tr>
-<td>MONTH</td>
-<td>月</td>
-<td>MM</td>
-</tr>
-<tr>
-<td>DAY</td>
-<td>日</td>
-<td>DD</td>
-</tr>
-<tr>
-<td>YEAR_MONTH</td>
-<td>年和月</td>
-<td>YY-MM</td>
-</tr>
-<tr>
-<td>DAY_HOUR</td>
-<td>日和小时</td>
-<td>DD hh</td>
-</tr>
-<tr>
-<td>DAY_MINUTE</td>
-<td>日和分钟</td>
-<td>DD hh:mm</td>
-</tr>
-<tr>
-<td>DAY_ SECOND</td>
-<td>日和秒</td>
-<td>DD hh:mm:ss</td>
-</tr>
-<tr>
-<td>HOUR_MINUTE</td>
-<td>小时和分</td>
-<td>hh:mm</td>
-</tr>
-<tr>
-<td>HOUR_SECOND</td>
-<td>小时和秒</td>
-<td>hh:ss</td>
-</tr>
-<tr>
-<td>MINUTE_SECOND</td>
-<td>分钟和秒</td>
-<td>mm:ss</td>
-</tr>
-</tbody>
-</table>
-<h3 id="4-流程函数"><a href="#4-流程函数" class="headerlink" title="4.流程函数"></a>4.流程函数</h3><table>
-<thead>
-<tr>
-<th>函数</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>IF(value,t f)</td>
-<td>如果 value 是真，返回 t；否则返回 f</td>
-</tr>
-<tr>
-<td>IFNULL(value1,value2)</td>
-<td>如果 value1 不为空返回 value1，否则返回 value2</td>
-</tr>
-<tr>
-<td>CASE WHEN [value1]  THEN[result1]…ELSE[default]END</td>
-<td>如果 value1 是真，返回 result1，否则返回 default</td>
-</tr>
-<tr>
-<td>CASE [expr] WHEN [value1]<br>THEN[result1]…ELSE[default]END</td>
-<td>如果 expr 等于 value1，返回 result1，否则返回 default</td>
-</tr>
-</tbody>
-</table>
-<h3 id="5-其他函数"><a href="#5-其他函数" class="headerlink" title="5.其他函数"></a>5.其他函数</h3><table>
-<thead>
-<tr>
-<th>函数</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>DATABASE()</td>
-<td>返回当前数据库名</td>
-</tr>
-<tr>
-<td>VERSION()</td>
-<td>返回当前数据库版本</td>
-</tr>
-<tr>
-<td>USER()</td>
-<td>返回当前登录用户名</td>
-</tr>
-<tr>
-<td>INET_ATON(IP)</td>
-<td>返回 IP 地址的数字表示</td>
-</tr>
-<tr>
-<td>INET_NTOA(num)</td>
-<td>返回数字代表的 IP 地址</td>
-</tr>
-<tr>
-<td>PASSWORD(str)</td>
-<td>返回字符串 str 的加密版本</td>
-</tr>
-<tr>
-<td>MD5()</td>
-<td>返回字符串 str 的 MD5 值</td>
-</tr>
-</tbody>
-</table>
+<a id="more"></a>
+<h3 id="懒汉模式：全局的单例在第一次使用时构建（延迟初始化）"><a href="#懒汉模式：全局的单例在第一次使用时构建（延迟初始化）" class="headerlink" title="懒汉模式：全局的单例在第一次使用时构建（延迟初始化）"></a>懒汉模式：全局的单例在第一次使用时构建（延迟初始化）</h3><p>&emsp;<strong>优点：</strong><br>        &emsp;&emsp;避免了饿汉式的那种在没有用到的情况下创建事例，资源利用率高，不执行getInstance()就不会被实例，可以执行该类的其他静态方法。<br>     &emsp;<strong>缺点</strong>：<br>             &emsp; &emsp;懒汉式在单个线程中没有问题，但多个线程同事访问的时候就可能同事创建多个实例，而且这多个实例不是同一个对象，虽然后面创建的实例会覆盖先创建的实例，但是还是会存在拿到不同对象的情况。解决这个问题的办法就是加锁synchonized，第一次加载时不够快，多线程使用不必要的同步开销大。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Singleton instance = <span class="keyword">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span>(Singleton.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="饿汉模式：全局的单例实例在类装载时构建"><a href="#饿汉模式：全局的单例实例在类装载时构建" class="headerlink" title="饿汉模式：全局的单例实例在类装载时构建"></a>饿汉模式：全局的单例实例在类装载时构建</h3><pre><code>&amp;emsp;&amp;emsp;1.线程安全  
+ &amp;emsp;&amp;emsp;2.在类加载的同时已经创建好一个静态对象，调用时反应速度快  
+</code></pre><h6 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h6><blockquote>
+<p>资源效率不高，可能getInstance()永远不会执行到，但执行该类的其他静态方法或者加载了该类（class.forName)，那么这个实例仍然初始化</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Singleton instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">           <span class="keyword">return</span> instance;</span><br><span class="line">        &#125;</span><br><span class="line">          &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="单例模式的应用"><a href="#单例模式的应用" class="headerlink" title="单例模式的应用"></a>单例模式的应用</h3><p>&emsp;&emsp;数据库连接池，多线程连接池。Windows应用管理器</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><blockquote>
+<ul>
+<li>1.在单例模式中，活动的单例只有一个实例，对单例类的所有实例化得到的都是相同的一个实例。这样就 防止其它对象对自己的实例化，<strong>确保所有的对象都访问一个实例</strong> </li>
+<li>2.单例模式具有一定的伸缩性，类自己来控制实例化进程，类就在改变实例化进程上有相应的伸缩性。  </li>
+<li>3.<strong>提供了对唯一实例的受控访问</strong>。  </li>
+<li>4.由于在系统内存中只存在一个对象，因此可以<strong>节约系统资源</strong>，当需要频繁创建和销毁的对象时单例模式无疑可以提高系统的性能。  </li>
+<li>5.允许可变数目的实例。  </li>
+<li>6.<strong>避免对共享资源的多重占用。</strong></li>
+</ul>
+</blockquote>
+<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><blockquote>
+<p>单例模式可能<strong>导致内存泄漏（OOM）</strong></p>
+<ul>
+<li>&emsp;1.<strong>不适用于变化的对象</strong>，如果同一类型的对象总是要在不同的用例场景发生变化，单例就会引起数据的错误，不能保存彼此的状态。  <ul>
+<li>&emsp;2.由于单利模式中没有抽象层，因此单例类的<strong>扩展有很大的困难</strong>。  </li>
+<li>&emsp;3.单例类的职责过重，在一定程度上<strong>违背了“单一职责原则”</strong>。  </li>
+</ul>
+</li>
+<li>&emsp;4.滥用单例将带来一些负面问题，如为了节省资源将数据库连接池对象设计为的单例类，可能会导致共享连接池对象的程序过多而出现连接池溢出；如果实例化的对象长时间不被利用，系统会认为是垃圾而被回收，这将导致对象状态的丢失。</li>
+</ul>
+</blockquote>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>&emsp;&emsp;定义一个用于创建对象的接口，让子类决定实例化哪个类，工厂方法使一个类的<strong>实例化延迟</strong>到其子类。<br>&emsp;&emsp;<strong>提供一个创建对象实例的功能，而无须关心其具体实现</strong>。被创建实例的类型可以是接口、抽象类，也可以是具体的类。工厂模式是我们最常用的实例化对象模式了，是用工厂方法代替new操作的一种模式。<!--more--></p>
+<p><img src="https://img-blog.csdnimg.cn/20190717103842500.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE3NTU2MTkx,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="1-简单工厂方法"><a href="#1-简单工厂方法" class="headerlink" title="1.简单工厂方法"></a>1.简单工厂方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建工厂</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Factory</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ISample <span class="title">creator</span><span class="params">(<span class="keyword">int</span> which)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (which==<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> SampleA();</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (which==<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> SampleB();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建实例时</span></span><br><span class="line">ISample sampleA = Factory.creator(<span class="number">1</span>);</span><br><span class="line">ISample sampleA = Factory.creator(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="2-抽象工厂"><a href="#2-抽象工厂" class="headerlink" title="2.抽象工厂"></a>2.抽象工厂</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个工厂接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Factory</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> Sample <span class="title">creator</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> Sample2 <span class="title">creator</span><span class="params">(String name)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//创建实现接口的实体类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleFactory</span> <span class="keyword">extends</span> <span class="title">Factory</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Sample <span class="title">creator</span><span class="params">()</span></span>&#123;</span><br><span class="line">        .........</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SampleA</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Sample2 <span class="title">creator</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        .........</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Sample2A</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> <span class="comment">//创建工厂</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BombFactory</span> <span class="keyword">extends</span> <span class="title">Factory</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Sample <span class="title">creator</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ......</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SampleB</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Sample2 <span class="title">creator</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        ......</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Sample2B</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><blockquote>
+<p>&emsp;1、可以一定程度上<strong>解耦</strong>，消费者和产品实现类隔离开，只依赖产品接口(抽象产品)，产品实现类如何改动与消费者完全无关。<br>&emsp;2、可以一定程度<strong>增加扩展性</strong>，若增加一个产品实现，只需要实现产品接口，修改工厂创建产品的方法，消费者可以无感知（若消费者不关心具体产品是什么的情况）。<br>&emsp;3、可以一定程度<strong>增加代码的封装性、可读性</strong>。清楚的代码结构，对于消费者来说很少的代码量就可以完成很多工作。  </p>
+<!--more-->
+</blockquote>
+<h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h3><blockquote>
+<p>&emsp;&emsp;每次增加一个产品时，都需要增加一个具体类和对象实现工厂，使得系统中类的个数成倍增加，在一定程度上<strong>增加了系统的复杂度，同时也增加了系统具体类的依赖</strong>。</p>
+</blockquote>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><blockquote>
+<p>&emsp;1、<strong>日志记录器</strong>：记录可能记录到本地硬盘、系统事件、远程服务器等，用户可以选择记录日志到什么地方。 </p>
+<p>&emsp;2、<strong>数据库访问</strong>，当用户不知道最后系统采用哪一类数据库，以及数据库可能有变化时。 </p>
+<p>&emsp;3、<strong>设计一个连接服务器的框架</strong>，需要三个协议，”POP3”、”IMAP”、”HTTP”，可以把这三个作为产品类，共同实现一个接口。</p>
+</blockquote>
+<h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><p>&emsp;&ensp;创建对象的种类，并且通过拷贝这些原型创建新的对象。原型模式其实就是<strong>从一个对象再创建另外一个可定制的对象，而不需要知道任何创建细节</strong>。<!--more--></p>
+<h3 id="1-浅拷贝"><a href="#1-浅拷贝" class="headerlink" title="1.浅拷贝"></a>1.浅拷贝</h3><blockquote>
+<ul>
+<li>对类实现Cloneable接口（implements Cloneable），并且重写clone</li>
+<li>对值类型的成员变量进行值的复制,对引用类型的成员变量只复制引用,不复制引用的对象.</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//具体原型类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Realizetype</span> <span class="keyword">implements</span> <span class="title">Cloneable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    Realizetype()&#123;</span><br><span class="line">    System.out.println(<span class="string">"具体原型创建成功！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"具体原型复制成功！"</span>);</span><br><span class="line">        <span class="keyword">return</span> (Realizetype)<span class="keyword">super</span>.clone();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-深拷贝"><a href="#2-深拷贝" class="headerlink" title="2.深拷贝"></a>2.深拷贝</h3><blockquote>
+<ul>
+<li>对其中的引用类型的成员变量进行实现Cloneable接口，重写clone，就变成深拷贝了</li>
+<li>对值类型的成员变量进行值的复制,对引用类型的成员变量也进行引用对象的复制</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">implements</span> <span class="title">Cloneable</span></span>&#123;</span><br><span class="line">     String name;</span><br><span class="line"></span><br><span class="line">     String <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">     Child child; <span class="comment">//这是一个类，表A中的引用类型</span></span><br><span class="line"></span><br><span class="line">     <span class="meta">@Override</span></span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">public</span> Object <span class="title">clone</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">try</span>&#123;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">super</span>.clone();</span><br><span class="line"></span><br><span class="line">     &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">child</span> <span class="keyword">implements</span> <span class="title">Cloneable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line"></span><br><span class="line">         <span class="function"><span class="keyword">public</span> Object <span class="title">clone</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">         <span class="keyword">try</span>&#123;</span><br><span class="line"></span><br><span class="line">             <span class="keyword">return</span> <span class="keyword">super</span>.clone();</span><br><span class="line"></span><br><span class="line">         &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line"></span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h3><blockquote>
+<p>&emsp;1.如果创建新的对象比较复杂时，可以利用<strong>原型模式简化对象的创建过程</strong>。<br>&emsp;2.使用原型模式创建对象比直接 new 一个对象在<strong>性能</strong>上要好的多，因为 Object 类的 clone 方法是一个本地方法，它直接操作内存中的二进制流，特别是复制大对象时，性能的差别非常明显。</p>
+</blockquote>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><blockquote>
+<p><strong>在需要重复地创建相似对象时可以考虑使用原型模式</strong>。</p>
+<p>&emsp;&emsp;比如需要在一个循环体内创建对象，假如对象创建过程比较复杂或者循环次数很多的话，使用原型模式不但可以简化创建过程，而且可以使系统的整体性能提高很多。</p>
+</blockquote>
+<h2 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h2><p>&emsp;&emsp;将一个复杂对象的构造与它的表示分离，使同样的构建过程可以创建不同的表示</p>
+<!--more-->
+<h3 id="模式的结构"><a href="#模式的结构" class="headerlink" title="模式的结构"></a>模式的结构</h3><ol>
+<li><strong>产品角色</strong>（Product）：它是包含多个组成部件的复杂对象，由具体建造者来创建其各个部件。</li>
+<li><strong>抽象建造者</strong>（Builder）：它是一个包含创建产品各个子部件的抽象方法的<strong>接口</strong>，通常还包含一个返回复杂产品的方法 getResult()。</li>
+<li><strong>具体建造者</strong>(Concrete Builder）：实现 Builder 接口，完成复杂产品的各个部件的具体创建方法。</li>
+<li><strong>指挥者</strong>（Director）：构建一个使用builder接口的对象。它调用建造者对象中的部件构造与装配方法完成复杂对象的创建，在指挥者中不涉及具体产品的信息。</li>
+</ol>
+<h3 id="使用场景-1"><a href="#使用场景-1" class="headerlink" title="使用场景"></a>使用场景</h3><p>&emsp;&emsp;主要用于创建一些复杂的对象，这些对象内部间的建造顺序是稳定的，但对象内部的构建通常面临着复杂的变化。</p>
+<h3 id="优点-3"><a href="#优点-3" class="headerlink" title="优点"></a>优点</h3><p>&emsp;（1）使得建造代码与表示代码分离，由于建造者隐藏了产品如何组装，所以若需要改变一个产品内部表示，只需要在定义一个具体的建造者就可以了。</p>
+<p>&emsp;（2） 客户端不必知道产品内部组成的细节，将产品本身与产品的创建过程解耦，使得相同的创建过程可以创建不同的产品对象</p>
+<p>&emsp;（3）<strong>增加新的具体建造者无须修改原有类库的代码</strong>，指挥者类针对抽象建造者类编程，系统扩展方便，符合 <strong>“开闭原则”</strong></p>
+<p>&emsp;（4）<strong>可以更加精细地控制产品的创建过程</strong> 。将复杂产品的创建步骤分解在不同的方法中，使得创建过程更加清晰，也更方便使用程序来控制创建过程。</p>
 
       
     </div>
@@ -769,14 +447,14 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/SQL-常用函数/">SQL_常用函数</a></p>
+        <p><span>本文标题:</span><a href="/2019/07/创建型模式之【单例模式】【工厂模式】【原型模式】【建造者模式】/">创建型模式之【单例模式】【工厂模式】【原型模式】【建造者模式】</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">qiulig</a></p>
-        <p><span>发布时间:</span>2019-03-27, 09:12:07</p>
-        <p><span>最后更新:</span>2019-05-27, 15:31:00</p>
-        <p><span class="post-count">文章字数:</span>1.2k</p> 
+        <p><span>发布时间:</span>2019-07-27, 00:09:45</p>
+        <p><span>最后更新:</span>2019-07-27, 00:11:49</p>
+        <p><span class="post-count">文章字数:</span>2.6k</p> 
 		<p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/SQL-常用函数/" title="SQL_常用函数">http://blogs.qiulig.website/2019/03/SQL-常用函数/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://blogs.qiulig.website/2019/03/SQL-常用函数/　　作者: qiulig" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/07/创建型模式之【单例模式】【工厂模式】【原型模式】【建造者模式】/" title="创建型模式之【单例模式】【工厂模式】【原型模式】【建造者模式】">http://blogs.qiulig.website/2019/07/创建型模式之【单例模式】【工厂模式】【原型模式】【建造者模式】/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blogs.qiulig.website/2019/07/创建型模式之【单例模式】【工厂模式】【原型模式】【建造者模式】/　　作者: qiulig" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -788,16 +466,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/03/SQL-存储引擎/">
-                    SQL_存储引擎
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/03/SQL基础/">
-                    SQL_基础
+                <a href="/2019/07/二叉树的涉及的题/">
+                    二叉树的涉及的题
                 </a>
             </div>
         
@@ -809,7 +481,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-字符串"><span class="toc-number">1.</span> <span class="toc-text">1.字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-数值函数"><span class="toc-number">2.</span> <span class="toc-text">2.数值函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-日期和时间函数"><span class="toc-number">3.</span> <span class="toc-text">3.日期和时间函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-流程函数"><span class="toc-number">4.</span> <span class="toc-text">4.流程函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-其他函数"><span class="toc-number">5.</span> <span class="toc-text">5.其他函数</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#单例模式"><span class="toc-number">1.</span> <span class="toc-text">单例模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#懒汉模式：全局的单例在第一次使用时构建（延迟初始化）"><span class="toc-number">1.1.</span> <span class="toc-text">懒汉模式：全局的单例在第一次使用时构建（延迟初始化）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#饿汉模式：全局的单例实例在类装载时构建"><span class="toc-number">1.2.</span> <span class="toc-text">饿汉模式：全局的单例实例在类装载时构建</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#缺点"><span class="toc-number">1.2.0.0.1.</span> <span class="toc-text">缺点</span></a></li></ol></li></ol></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#单例模式的应用"><span class="toc-number">1.3.</span> <span class="toc-text">单例模式的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优点"><span class="toc-number">1.4.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缺点-1"><span class="toc-number">1.5.</span> <span class="toc-text">缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工厂模式"><span class="toc-number">2.</span> <span class="toc-text">工厂模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-简单工厂方法"><span class="toc-number">2.1.</span> <span class="toc-text">1.简单工厂方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-抽象工厂"><span class="toc-number">2.2.</span> <span class="toc-text">2.抽象工厂</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优点-1"><span class="toc-number">2.3.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缺点-2"><span class="toc-number">2.4.</span> <span class="toc-text">缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用场景"><span class="toc-number">2.5.</span> <span class="toc-text">应用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原型模式"><span class="toc-number">3.</span> <span class="toc-text">原型模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-浅拷贝"><span class="toc-number">3.1.</span> <span class="toc-text">1.浅拷贝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-深拷贝"><span class="toc-number">3.2.</span> <span class="toc-text">2.深拷贝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优点-2"><span class="toc-number">3.3.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用场景"><span class="toc-number">3.4.</span> <span class="toc-text">使用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#建造者模式"><span class="toc-number">4.</span> <span class="toc-text">建造者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模式的结构"><span class="toc-number">4.1.</span> <span class="toc-text">模式的结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用场景-1"><span class="toc-number">4.2.</span> <span class="toc-text">使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优点-3"><span class="toc-number">4.3.</span> <span class="toc-text">优点</span></a></li></ol></li>
         
     </div>
     <style>
@@ -845,7 +517,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"SQL_常用函数　| Long's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"创建型模式之【单例模式】【工厂模式】【原型模式】【建造者模式】　| Long's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -864,8 +536,8 @@
     <div id="disqus_thread"></div>
     <script>
         var disqus_config = function(){
-            this.page.url = 'http://blogs.qiulig.website/2019/03/SQL-常用函数/';
-            this.page.identifier = '2019/03/SQL-常用函数/';
+            this.page.url = 'http://blogs.qiulig.website/2019/07/创建型模式之【单例模式】【工厂模式】【原型模式】【建造者模式】/';
+            this.page.identifier = '2019/07/创建型模式之【单例模式】【工厂模式】【原型模式】【建造者模式】/';
         };
         var loadComment = function(){
             var d = document, s = d.createElement('script');
@@ -887,15 +559,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/03/SQL-存储引擎/" title="上一篇: SQL_存储引擎">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/03/SQL基础/" title="下一篇: SQL_基础">
+            <a href="/2019/07/二叉树的涉及的题/" title="下一篇: 二叉树的涉及的题">
                 <i class="fa fa-angle-right"></i>
             </a>
         

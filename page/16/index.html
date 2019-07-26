@@ -282,6 +282,89 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-JVM-内存分配和回收策略" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/JVM-内存分配和回收策略/" class="article-date">
+      <time datetime="2019-04-22T12:46:35.000Z" itemprop="datePublished">2019-04-22</time>
+</a>
+
+ 
+    <a href="/2019/04/JVM-内存分配和回收策略/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+        
+            <span class="disqus-comment-count" data-disqus-identifier="2019/04/JVM-内存分配和回收策略/"></span>
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+	
+		
+
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/JVM-内存分配和回收策略/">JVM_内存分配和回收策略</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="1-内存分配"><a href="#1-内存分配" class="headerlink" title="1.内存分配"></a>1.内存分配</h2><p>1.对象优先在eden分配</p>
+<pre><code>对象先在新生代Eden区分配，当Eden区没有足够空间进行分配，虚拟机将发起  Minor GC
+</code></pre>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/JAVA虚拟机/">JAVA虚拟机</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/04/JVM-内存分配和回收策略/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-JVM-对象已死" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1034,93 +1117,6 @@ MySQL 中还支持全文本（FULLTEXT）索引，用于全文搜索，默认情
 
 
   
-    <article id="post-SQL-常用函数" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/03/SQL-常用函数/" class="article-date">
-      <time datetime="2019-03-27T01:12:07.000Z" itemprop="datePublished">2019-03-27</time>
-</a>
-
- 
-    <a href="/2019/03/SQL-常用函数/#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
-        
-        
-            <span class="disqus-comment-count" data-disqus-identifier="2019/03/SQL-常用函数/"></span>
-        
-    </a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-	
-		
-
-
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/SQL-常用函数/">SQL_常用函数</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>1.常用函数分为以下几种</p>
-<blockquote>
-<p>(1) 字符串</p>
-<p>(2) 数值函数</p>
-<p>(3) 日期和时间函数</p>
-<p>(4) 流程函数</p>
-<p>(5) 其他</p></blockquote>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/数据库/">数据库</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MYSQL/">MYSQL</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/03/SQL-常用函数/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/15/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/17/">Next &raquo;</a>
@@ -1156,7 +1152,7 @@ MySQL 中还支持全文本（FULLTEXT）索引，用于全文搜索，默认情
                     </span>
 					<span title="本站总字数统计">
                          <span><i class="fa fa-map" aria-hidden="true"></i></span>
-                        <span class="post-count"><b>113.8k</b></span>
+                        <span class="post-count"><b>116.4k</b></span>
                     </span>
              
                 
