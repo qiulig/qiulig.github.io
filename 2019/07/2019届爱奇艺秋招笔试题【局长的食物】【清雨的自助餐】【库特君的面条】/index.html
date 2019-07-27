@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="qiulig">
+
+
+
+<meta name="description" content="局长的食物1.题目描述 &amp;emsp; 每天局长会吃一份食物，或者买一份食物（即每天只能进行吃或买其中的一种动作），这样过了M天现在局长想知道M天后第p种食物的份数排名（从大到小，相同算并列，例如3 3 2，则排名为1 1 3）N,M,P&amp;lt;=100,Ai&amp;lt;=1000。">
+<meta name="keywords" content="动态规划,贪心算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2019届爱奇艺秋招笔试题【局长的食物】【清雨的自助餐】【库特君的面条】">
+<meta property="og:url" content="http://blogs.qiulig.website/2019/07/2019届爱奇艺秋招笔试题【局长的食物】【清雨的自助餐】【库特君的面条】/index.html">
+<meta property="og:site_name" content="Long&#39;s Blog">
+<meta property="og:description" content="局长的食物1.题目描述 &amp;emsp; 每天局长会吃一份食物，或者买一份食物（即每天只能进行吃或买其中的一种动作），这样过了M天现在局长想知道M天后第p种食物的份数排名（从大到小，相同算并列，例如3 3 2，则排名为1 1 3）N,M,P&amp;lt;=100,Ai&amp;lt;=1000。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190725105531311.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190725105625850.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019072510531954.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190725103625192.png">
+<meta property="og:updated_time" content="2019-07-27T09:21:21.124Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2019届爱奇艺秋招笔试题【局长的食物】【清雨的自助餐】【库特君的面条】">
+<meta name="twitter:description" content="局长的食物1.题目描述 &amp;emsp; 每天局长会吃一份食物，或者买一份食物（即每天只能进行吃或买其中的一种动作），这样过了M天现在局长想知道M天后第p种食物的份数排名（从大到小，相同算并列，例如3 3 2，则排名为1 1 3）N,M,P&amp;lt;=100,Ai&amp;lt;=1000。">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190725105531311.png">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Long&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>2019届爱奇艺秋招笔试题【局长的食物】【清雨的自助餐】【库特君的面条】 | Long&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?464240a4c3e7da4512bd33ba1c040abb";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head></html>
+<body>
+
+<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">qiulig</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">菜鸟要更加努力才能追上别人的步伐</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false">
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:qiuling_long@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/qiulig" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAVA基础/">JAVA基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MYSQL/">MYSQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kmp算法/">kmp算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/manacher算法/">manacher算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rabbitMQ/">rabbitMQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中等/">中等</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树题/">二叉树题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/京东笔试/">京东笔试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/创建型模式/">创建型模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/动态规划/">动态规划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回溯法/">回溯法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回溯算法/">回溯算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/困难/">困难</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字符串题/">字符串题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并发/">并发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/广度优先遍历/">广度优先遍历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/底层/">底层</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序算法/">排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数组类型题/">数组类型题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/栈/">栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度优先遍历/">深度优先遍历</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/滑动窗口法/">滑动窗口法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/秒杀/">秒杀</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔试题/">笔试题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/简单/">简单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程/">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/结构型模式/">结构型模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/背包问题/">背包问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/行为型模式/">行为型模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/讯飞科技/">讯飞科技</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/贪心算法/">贪心算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链表题/">链表题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/锁/">锁</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集合类/">集合类</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://qiulig.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://blogs/qiulig.website/">HOME</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">整理一些在项目中用到的小知识或者技术点做一个总结及叙述，希望通过这些记录，能够将自己的学习成果归纳出来，与大家分享交流，同时能够对这些技术进行备忘，以便日后查询</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">qiulig</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">qiulig</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">菜鸟要更加努力才能追上别人的步伐</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:qiuling_long@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/qiulig" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-2019届爱奇艺秋招笔试题【局长的食物】【清雨的自助餐】【库特君的面条】" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/07/2019届爱奇艺秋招笔试题【局长的食物】【清雨的自助餐】【库特君的面条】/" class="article-date">
+      <time datetime="2019-07-27T09:20:15.000Z" itemprop="datePublished">2019-07-27</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+	
+		
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://blogs.qiulig.website/2019/07/2019届爱奇艺秋招笔试题【局长的食物】【清雨的自助餐】【库特君的面条】/';
+            this.page.identifier = '2019/07/2019届爱奇艺秋招笔试题【局长的食物】【清雨的自助餐】【库特君的面条】/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      2019届爱奇艺秋招笔试题【局长的食物】【清雨的自助餐】【库特君的面条】
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/笔试题/">笔试题</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/贪心算法/">贪心算法</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="局长的食物"><a href="#局长的食物" class="headerlink" title="局长的食物"></a><code>局长的食物</code></h2><h3 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h3><blockquote>
+<p>&emsp; 每天局长会吃一份食物，或者买一份食物（即每天只能进行吃或买其中的一种动作），这样过了M天现在局长想知道M天后第p种食物的份数排名（从大到小，相同算并列，例如3 3 2，则排名为1 1 3）N,M,P&lt;=100,Ai&lt;=1000。<a id="more"></a><br><strong>输入描述</strong>：<br>&emsp;第一行N M P<br>&emsp;第二行N个数Ai<br>&emsp;接下来M行，每行Ai或者Bi分别表示买一份食物i，吃一份食物i<br><strong>输出</strong><br>&emsp;一个答案<br><strong>输入样例:</strong><br>&emsp;3 4 2 5 3 1 B 1 A 2 A 2 A 3<br><strong>输出样例</strong>：<br>&emsp;1</p>
+</blockquote>
+<h3 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2.解题思路"></a>2.解题思路</h3><blockquote>
+<p>方法1：<br>&emsp;&emsp;&emsp;模拟吃东西的过程：关键在于吃一份食物还是买一份食物数据的存储方式，本次的数据存储方式为 List&lt;List&lt; String &gt; &gt;,注意后面的Integer.parseInt的转型。更好的方法是用对象存储<br>方法2：<br>&emsp;&emsp;&emsp; 用class存储数据</p>
+</blockquote>
+<h3 id="3-代码"><a href="#3-代码" class="headerlink" title="3.代码"></a>3.代码</h3><p>方法1: 用List&lt;List&lt; String &gt; &gt;存储数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner sr = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> N  = sr.nextInt();</span><br><span class="line">        <span class="keyword">int</span> M  = sr.nextInt();</span><br><span class="line">        <span class="keyword">int</span> P  = sr.nextInt();</span><br><span class="line">        <span class="keyword">int</span> a[] = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">            a[i] = sr.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;List&lt;String&gt;&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;M;i++)&#123;</span><br><span class="line">            List&lt;String&gt; temp= <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            temp.add(sr.next());</span><br><span class="line">            temp.add(sr.next());</span><br><span class="line">            list.add(temp);</span><br><span class="line">        &#125;</span><br><span class="line">         System.out.println(solution(list,P,a));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>  <span class="title">solution</span><span class="params">(List&lt;List&lt;String&gt;&gt; list, <span class="keyword">int</span> p, <span class="keyword">int</span>[] a)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;list.size();i++)&#123;</span><br><span class="line">            <span class="comment">// 买一份食物</span></span><br><span class="line">            <span class="keyword">if</span>(list.get(i).get(<span class="number">0</span>).equals( <span class="string">"A"</span>))&#123;</span><br><span class="line">                <span class="keyword">int</span> index = Integer.parseInt(list.get(i).get(<span class="number">1</span>)) - <span class="number">1</span>;</span><br><span class="line">                a[index] ++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//吃一份食物</span></span><br><span class="line">                <span class="keyword">int</span> index = Integer.parseInt(list.get(i).get(<span class="number">1</span>)) - <span class="number">1</span>;</span><br><span class="line">                a[index] --;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//第p种食物的份数排名</span></span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(a[p-<span class="number">1</span>]&lt;a[i])&#123;</span><br><span class="line">                res++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20190725105531311.png" alt="在这里插入图片描述"><br>方法2：用对象存储</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"> <span class="keyword">import</span> java.util.List;</span><br><span class="line"> <span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner sr = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> N  = sr.nextInt();</span><br><span class="line">        <span class="keyword">int</span> M  = sr.nextInt();</span><br><span class="line">        <span class="keyword">int</span> P  = sr.nextInt();</span><br><span class="line">        <span class="keyword">int</span> a[] = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">            a[i] = sr.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;Category&gt; lists = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;M;i++)&#123;</span><br><span class="line">            lists.add(<span class="keyword">new</span> Category(sr.next(),sr.nextInt()));</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(solution(lists,P,a));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>  <span class="title">solution</span><span class="params">(List&lt;Category&gt; lists, <span class="keyword">int</span> p, <span class="keyword">int</span>[] a)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;lists.size();i++)&#123;</span><br><span class="line">            <span class="comment">//买一份食物</span></span><br><span class="line">            <span class="keyword">if</span>(lists.get(i).x.equals(<span class="string">"A"</span>))&#123;</span><br><span class="line">                a[lists.get(i).getIndex()-<span class="number">1</span>]++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">//吃一份食物</span></span><br><span class="line">                a[lists.get(i).getIndex()-<span class="number">1</span>]--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//第p种食物的份数排名</span></span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(a[p-<span class="number">1</span>]&lt;a[i])&#123;</span><br><span class="line">                res++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> <span class="comment">//存储 [A 2] 等数据</span></span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Category</span></span>&#123;</span><br><span class="line">    String x;</span><br><span class="line">    <span class="keyword">int</span> index;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Category</span><span class="params">(String x, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.x = x;</span><br><span class="line">        <span class="keyword">this</span>.index = index;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getX</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(String x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.x = x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getIndex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setIndex</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.index = index;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20190725105625850.png" alt="在这里插入图片描述"></p>
+<h2 id="清雨的自助餐"><a href="#清雨的自助餐" class="headerlink" title="清雨的自助餐"></a><code>清雨的自助餐</code></h2><h3 id="1-题目描述-1"><a href="#1-题目描述-1" class="headerlink" title="1.题目描述"></a>1.题目描述</h3><blockquote>
+<p>&emsp; 清雨又在吃自助餐了。<br>&emsp;排在清雨面前的有N种食物，排成一排，清雨可以选择其中的若干种食物，但是不能连续选择相邻的食物。因为清雨很挑食，当所有食物都不合口味时，他可以一种都不选，即一个都不选也算为一种方法。<br>请问他有多少种选择食物的方法呢？<br><strong>输入</strong><br>&emsp;一个整数n（1 &lt;= n &lt;= 90）<br><strong>输出</strong><br>&emsp;一个正整数表示答案<br><strong>样例输入</strong><br>&emsp;3<br><strong>样例输出</strong><br>&emsp;5</p>
+</blockquote>
+<h3 id="2-解题思路-1"><a href="#2-解题思路-1" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h3><blockquote>
+<p>动态规划问题：dp[i]表示有(i+1)种食物的时候有多少种选择的方法</p>
+<ul>
+<li>初始化<ul>
+<li>dp[0]  = 2，表示有1种食物，可以选择吃或者不吃2种方法</li>
+<li>dp[1] = 3,表示有两种食物，可以选择不吃，吃第一种，吃第二种 3种方法</li>
+</ul>
+</li>
+<li>动态规划状态转移矩阵<ul>
+<li>如果选这个食物(第i+1种食物)，则选择为dp[i-2]种选法，若不选择这个食物,则方法数为dp[i-1]{因为相邻而不能选}即</li>
+<li>dp[i] = dp[i-2] + dp[i-1]; </li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>注：该题也可以用斐波那契数列的应用，只是初始值变了，具体参看剑指offer_【7】斐波那契数组:<a href="https://blog.csdn.net/qq_17556191/article/details/94436130" target="_blank" rel="noopener">https://blog.csdn.net/qq_17556191/article/details/94436130</a></p>
+<h3 id="3-代码-1"><a href="#3-代码-1" class="headerlink" title="3.代码"></a>3.代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner sr = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> N = sr.nextInt();</span><br><span class="line">        System.out.println(solution(N));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">solution</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (num == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (num == <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">long</span> dp[] = <span class="keyword">new</span> <span class="keyword">long</span>[num];</span><br><span class="line">            dp[<span class="number">0</span>] = <span class="number">2</span>;  <span class="comment">//只有一种食物，可以选择 吃 或者不吃2种方法</span></span><br><span class="line">            dp[<span class="number">1</span>] = <span class="number">3</span>;  <span class="comment">//有2种食物，选择 不吃 ，吃第一种食物，吃第二种食物。</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; num; i++) &#123;</span><br><span class="line">                dp[i] = dp[i - <span class="number">2</span>] + dp[i - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> dp[num - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> <img src="https://img-blog.csdnimg.cn/2019072510531954.png" alt="在这里插入图片描述"></p>
+<h2 id="库特君的面条"><a href="#库特君的面条" class="headerlink" title="库特君的面条"></a><code>库特君的面条</code></h2><h3 id="1-题目描述-2"><a href="#1-题目描述-2" class="headerlink" title="1.题目描述"></a>1.题目描述</h3><blockquote>
+<p>题目描述：<br>库特君在吃面条！<br>&emsp;他将面条放在了数轴上，每根面条对应数轴上的两个点a和b，他想知道在任意两根面条不重叠(端点可以重叠）的情况下最多能选出多少根面条。<br>1 &lt;= n &lt;= 100<br>-999 &lt;= a<br><strong>输入描述：</strong><br>&emsp;&emsp;第一行为一个整数N<br>&emsp;&emsp;接下来，N行每行N个整数a和b<br><strong>输出描述：</strong><br>&emsp;&emsp;一个数的答案<br><strong>输出样例</strong>：<br>&emsp;&emsp;3   6  3  1  3  2  5<br><strong>输出样例：</strong><br>&emsp;&emsp;2</p>
+</blockquote>
+<h3 id="2-解题思路-2"><a href="#2-解题思路-2" class="headerlink" title="2.解题思路"></a>2.解题思路</h3><blockquote>
+<p>贪心算法的区间调度问题</p>
+<ul>
+<li>贪心策略：在不与已选区域重叠的前提下，优先选择右端点最小的区间，所以按照区间右端点排序后，依次检查，不重叠就选择，并更新已选区域的最右端，方便判断重叠。</li>
+</ul>
+<p>算法设计：</p>
+<ul>
+<li>如果被检查的活动i的开始时间小于最近选择的活动j的结束时间，则不选择活动i,否则选择活动i<ul>
+<li>1.选择最早结束的面条，便是最开始要选择的没有重叠的第一根面条</li>
+<li>2.选择第一根面条结束后[右端点值]才开始的第二根面条[该面条的左端点大于等于第一根面条的右端点]，并且此时右端点结束最早的面条，这将是要选择的第二根面条。</li>
+<li>3.更新右端点值，重复以上。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="3-代码-2"><a href="#3-代码-2" class="headerlink" title="3.代码"></a>3.代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="comment">//贪心算法的区间调度问题</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner sr = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> N = sr.nextInt();</span><br><span class="line">        List&lt;Work&gt; lists = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> x1 = sr.nextInt();</span><br><span class="line">            <span class="keyword">int</span> x2 = sr.nextInt();</span><br><span class="line">            <span class="comment">//题目说了x1&lt;x2,但是给出的样例出现了问题，故用个if语句</span></span><br><span class="line">            <span class="keyword">if</span>(x1&lt;x2)</span><br><span class="line">                lists.add(<span class="keyword">new</span> Work(x1,x2));</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                lists.add(<span class="keyword">new</span> Work(x2,x1));</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(solution(lists));</span><br><span class="line">&#125;</span><br><span class="line">    <span class="comment">//解决方法</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">solution</span><span class="params">(List&lt;Work&gt; works)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//works里面已经按end从小到大排序了，这时在将start进行排序，找到第一个要进行的工作</span></span><br><span class="line">        Collections.sort(works);</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//当前工作的结束时间</span></span><br><span class="line">        <span class="keyword">int</span> endTime = works.get(<span class="number">0</span>).getEnd();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;works.size();i++)&#123;</span><br><span class="line">            <span class="comment">// 第二根面条的开始时间大于第一个面条的结束时间</span></span><br><span class="line">            <span class="keyword">if</span>(endTime&lt;=works.get(i).getStart())&#123;</span><br><span class="line">                <span class="comment">//这个面条可选，没有覆盖之前的面条</span></span><br><span class="line">                count++;</span><br><span class="line">                <span class="comment">//更新右端点</span></span><br><span class="line">                endTime = works.get(i).getEnd();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Work</span> <span class="keyword">implements</span> <span class="title">Comparable</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> start;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> end;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Work</span><span class="params">(<span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.start = start;</span><br><span class="line">        <span class="keyword">this</span>.end = end;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//end 从小到大排序</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        Work work = (Work) o;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.end &gt; work.getEnd())&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">this</span>.end == work.getEnd())&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> start;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getEnd</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> end;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20190725103625192.png" alt="在这里插入图片描述"><br>题目整理自牛客技术篇<br>个人想法，如有错误请指出！！</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/07/2019届爱奇艺秋招笔试题【局长的食物】【清雨的自助餐】【库特君的面条】/">2019届爱奇艺秋招笔试题【局长的食物】【清雨的自助餐】【库特君的面条】</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">qiulig</a></p>
+        <p><span>发布时间:</span>2019-07-27, 17:20:15</p>
+        <p><span>最后更新:</span>2019-07-27, 17:21:21</p>
+        <p><span class="post-count">文章字数:</span>2k</p> 
+		<p>
+            <span>原始链接:</span><a class="post-url" href="/2019/07/2019届爱奇艺秋招笔试题【局长的食物】【清雨的自助餐】【库特君的面条】/" title="2019届爱奇艺秋招笔试题【局长的食物】【清雨的自助餐】【库特君的面条】">http://blogs.qiulig.website/2019/07/2019届爱奇艺秋招笔试题【局长的食物】【清雨的自助餐】【库特君的面条】/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blogs.qiulig.website/2019/07/2019届爱奇艺秋招笔试题【局长的食物】【清雨的自助餐】【库特君的面条】/　　作者: qiulig" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/07/2019届百度秋招笔试题【混战世界】【字符串计数】/">
+                    2019届百度秋招笔试题【混战世界】【字符串计数】
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/07/2019届vivo秋招笔试题【字符串排序】【链表奇数位正序偶数位逆序】【最长回文子串】/">
+                    2019届vivo秋招笔试题【字符串排序】【链表奇数位正序偶数位逆序】【最长回文子串】
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#局长的食物"><span class="toc-number">1.</span> <span class="toc-text">局长的食物</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-题目描述"><span class="toc-number">1.1.</span> <span class="toc-text">1.题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-解题思路"><span class="toc-number">1.2.</span> <span class="toc-text">2.解题思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-代码"><span class="toc-number">1.3.</span> <span class="toc-text">3.代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#清雨的自助餐"><span class="toc-number">2.</span> <span class="toc-text">清雨的自助餐</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-题目描述-1"><span class="toc-number">2.1.</span> <span class="toc-text">1.题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-解题思路-1"><span class="toc-number">2.2.</span> <span class="toc-text">2. 解题思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-代码-1"><span class="toc-number">2.3.</span> <span class="toc-text">3.代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#库特君的面条"><span class="toc-number">3.</span> <span class="toc-text">库特君的面条</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-题目描述-2"><span class="toc-number">3.1.</span> <span class="toc-text">1.题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-解题思路-2"><span class="toc-number">3.2.</span> <span class="toc-text">2.解题思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-代码-2"><span class="toc-number">3.3.</span> <span class="toc-text">3.代码</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"2019届爱奇艺秋招笔试题【局长的食物】【清雨的自助餐】【库特君的面条】　| Long's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://blogs.qiulig.website/2019/07/2019届爱奇艺秋招笔试题【局长的食物】【清雨的自助餐】【库特君的面条】/';
+            this.page.identifier = '2019/07/2019届爱奇艺秋招笔试题【局长的食物】【清雨的自助餐】【库特君的面条】/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/07/2019届百度秋招笔试题【混战世界】【字符串计数】/" title="上一篇: 2019届百度秋招笔试题【混战世界】【字符串计数】">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/07/2019届vivo秋招笔试题【字符串排序】【链表奇数位正序偶数位逆序】【最长回文子串】/" title="下一篇: 2019届vivo秋招笔试题【字符串排序】【链表奇数位正序偶数位逆序】【最长回文子串】">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/结构型模式之【代理模式】【享元模式】【桥接模式】【适配器模式】【外观模式】【组合模式】【装饰模式】/">结构型模式之【代理模式】【享元模式】【桥接模式】【适配器模式】【外观模式】【组合模式】【装饰模式】</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/2019届华为秋招笔试题【数字反转相加】【消除重复数字】【仿LISP运算】/">2019届华为秋招笔试题【数字反转相加】【消除重复数字】【仿LISP运算】</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/2019届百度秋招笔试题【混战世界】【字符串计数】/">2019届百度秋招笔试题【混战世界】【字符串计数】</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/2019届爱奇艺秋招笔试题【局长的食物】【清雨的自助餐】【库特君的面条】/">2019届爱奇艺秋招笔试题【局长的食物】【清雨的自助餐】【库特君的面条】</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/2019届vivo秋招笔试题【字符串排序】【链表奇数位正序偶数位逆序】【最长回文子串】/">2019届vivo秋招笔试题【字符串排序】【链表奇数位正序偶数位逆序】【最长回文子串】</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/【动态规划】-leetcode刷题的各种股票问题/">【动态规划】_leetcode刷题的各种股票问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/创建型模式之【单例模式】【工厂模式】【原型模式】【建造者模式】/">创建型模式之【单例模式】【工厂模式】【原型模式】【建造者模式】</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/二叉树的涉及的题/">二叉树的涉及的题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/树的【前序遍历】【中序遍历】【后序遍历】【层遍历】【BFS】【DFS】/">树的【前序遍历】【中序遍历】【后序遍历】【层遍历】【BFS】【DFS】</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/回溯算法-【全排列】【组合总和】【n皇后】【子集】/">回溯算法-【全排列】【组合总和】【n皇后】【子集】</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-102-二叉树的层次遍历/">leetcode_【102】二叉树的层次遍历</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-108-将有序数组转换成二叉搜索树/">leetcode_【108】将有序数组转换成二叉搜索树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-106-从中序与后序遍历序列构造二叉树/">leetcode_【106】从中序与后序遍历序列构造二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-105-从前序与中序遍历序列构造二叉树/">leetcode_【105】从前序与中序遍历序列构造二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-101-对称二叉树/">leetcode_【101】对称二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-100-相同的树/">leetcode_【100】相同的树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-104-二叉树的最大深度/">leetcode_【104】二叉树的最大深度</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/深度优先遍历和广度优先遍历/">深度优先遍历和广度优先遍历</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-623-在二叉树中增加一行/">leetcode_【623】在二叉树中增加一行</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-94-二叉树的中序遍历/">leetcode_【94】二叉树的中序遍历</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-717-1比特和2比特字符/">leetcode_【717】1比特和2比特字符</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/背包问题/">背包问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-55-跳跃游戏/">leetcode_【55】跳跃游戏</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-82-删除排序链表中的重复元素2/">leetcode-82.删除排序链表中的重复元素2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-83-删除排序链表中的重复元素/">leetcode-83.删除排序链表中的重复元素</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-各种模式应用场景/">设计模式-各种模式应用场景</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-观察者模式/">设计模式-观察者模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-策略模式/">设计模式-策略模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-模板方法模式/">设计模式-模板方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-组合模式/">设计模式-组合模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-外观模式/">设计模式-外观模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-装饰模式/">设计模式-装饰模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-桥接模式/">设计模式-桥接模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-适配器模式/">设计模式-适配器模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-代理模式/">设计模式-代理模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-建造者模式/">设计模式-建造者模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/排序算法/">排序算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-237-删除链表的节点/">leetcode_【237】删除链表的节点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-24-两两交换链表中的节点/">leetcode_【24】两两交换链表中的节点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/链表反转/">链表反转</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-203移除链表元素/">leetcode_【203】移除链表元素</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-120-三角形最小路径和/">leetcode_【120】三角形最小路径和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-95-不同的二叉搜索树2/">leetcode_【95】不同的二叉搜索树2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-96-不同二叉搜索树/">leetcode_【96】不同二叉搜索树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-70-爬楼梯/">leetcode_【70】爬楼梯</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-64-最小路径和/">leetcode_【64】最小路径和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-63-不同路径2/">leetcode_【63】不同路径2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-62-不同的路径/">leetcode_【62】不同的路径</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-53-最大子序和/">leetcode_【53】最大子序和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-264-丑数2/">leetcode_【264】丑数2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-263-丑数/">leetcode_【263】丑数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-23合并K个排序链表/">leetcode_【23】合并K个排序链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-21合并两个有序链表/">leetcode_【21】合并两个有序链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-19-删除链表的倒数第N个节点/">leetcode_【19】删除链表的倒数第N个节点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-434-字符串中的单词数/">leetcode_【434】字符串中的单词数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-13-罗马数字转整数/">leetcode_【13】罗马数字转整数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/leetcode-12-整数转罗马数字/">leetcode_【12】整数转罗马数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/死锁/">死锁</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/SQL-优化查询/">SQL-优化查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/设计模式-6大原则/">设计模式-六大原则</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/JAVA中的NIO-BIO/">JAVA中的【IO】、【NIO】、【AIO】</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/设计模式-工厂模式/">设计模式-工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/设计模式-原型模式/">设计模式-原型模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/设计模式-享元模式/">设计模式-享元模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/设计模式-单例模式/">设计模式-单例模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/JAVAVA-java中的快速失败与安全失败/">JAVA_集合中的快速失败与安全失败</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/Hashmap底层/">HashMap底层</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/JVMVM-内存泄漏和内存溢出/">JVM_内存泄漏和内存溢出</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/Java-深拷贝和浅拷贝/">Java_深拷贝和浅拷贝</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-42-接雨水/">leetcode_【42】接雨水</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-11-盛最多水的容器/">leetcode_【11】盛最多水的容器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-10-正则表达式匹配/">leetcode_【10】正则表达式匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-234-回文链表/">leetcode_【234】回文链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-9-回文数/">leetcode_【9】回文数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-8-字符串转换成整数/">leetcode_【8】字符串转换成整数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-7-整数反转/">leetcode_【7】整数反转</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/回文/">得到的最短的回文长度</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-5-最长回文子串/">leetcode_【5】最长回文子串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-4-寻找两个有序数组的中位数/">leetcode_【4】寻找两个有序数组的中位数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-3-无重复字符的最长子串/">leetcode_【3】无重复字符的最长子串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-2-两数相加/">leetcode_【2】两数相加</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-15-三数之和/">leetcode_【15】三数之和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/leetcode-1-两数之和/">leetcode_【1】两数之和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/volatile介绍/">volatile介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/66-机器人的运动范围/">剑指offer_【66】机器人的运动范围</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/65-矩阵中的路径/">剑指offer_【65】矩阵中的路径</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/64-滑动窗口的最大值/">剑指offer_【64】滑动窗口的最大值</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/63-数据流中的中位数/">剑指offer_【63】数据流中的中位数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/62-二叉搜索树的第K个结点/">剑指offer_【62】二叉搜索树的第K个结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/JSR303参数校验/">JSR303参数校验和全局异常处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/通用缓存key/">通用缓存key</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/rabbitMQ消息队列/">rabbitMQ实现消息缓冲</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/Redis缓存java端实现/">Redis缓存java端实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/61-序列化二叉树/">剑指offer_【61】序列化二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/60-把二叉树打印成多行/">剑指offer_【60】把二叉树打印成多行</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/59-按之字形顺序打印二叉树/">剑指offer_【59】按之字形顺序打印二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/58-对称的二叉树/">剑指offer_【58】对称的二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/57-二叉树的下一个结点/">剑指offer_【57】二叉树的下一个结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/56-删除链表中重复的结点/">剑指offer_【56】删除链表中重复的结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/55-链表中环的入口结点/">剑指offer_【55】链表中环的入口结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/54-字符流中第一个不重复的字符/">剑指offer_【54】字符流中第一个不重复的字符</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/53-表示数值的字符串/">剑指offer_【53】表示数值的字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/52-正则表达式匹配/">剑指offer_【52】正则表达式匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/51-构建乘积数组/">剑指offer_【51】构建乘积数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/50-数组中重复的数字/">剑指offer_【50】数组中重复的数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/49-把字符串转换成整数/">剑指offer_【49】把字符串转换成整数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/48-不用加减乘除做加法/">剑指offer_【48】不用加减乘除做加法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/47-求1-2-n/">剑指offer_【47】求1+2+...+n</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/46-孩子们的游戏/">剑指offer_【46】孩子们的游戏(圆圈中最后剩下的数)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/45-扑克牌顺子/">剑指offer_【45】扑克牌顺子</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/44-翻转单词顺序列/">剑指offer_【44】翻转单词顺序列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/43-左旋转字符串/">剑指offer_【43】左旋转字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/42-和为s的两个数字/">剑指offer_【42】和为s的两个数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/41-和为S的连续正数序列/">剑指offer_【41】和为S的连续正数序列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/40-数组中只出现一次的数字/">剑指offer_【40】数组中只出现一次的数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/39-平衡二叉树/">剑指offer_【39】平衡二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/38-二叉树的深度/">剑指offer_【38】二叉树的深度</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/37-数字在排序数组中出现的次数/">剑指offer_【37】数字在排序数组中出现的次数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/36-两个链表的第一个公共结点/">剑指offer_【36】两个链表的第一个公共结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/争吵问题-md/">争吵问题.md</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/34-第一个只出现一次的字符位置/">剑指offer_【34】第一个只出现一次的字符位置</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/35.数组中的逆序对/">剑指offer_【35】数组中的逆序对</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/33-丑数/">剑指offer_【33】丑数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/32-把数组排成最小的数/">剑指offer_【32】把数组排成最小的数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/31-整数中1出现的次数/">剑指offer_【31】整数中1出现的次数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/30-连续子数组的最大和/">剑指offer_【30】连续子数组的最大和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/29-最小的K个数/">剑指offer_【29】最小的K个数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/28-数组中出现次数超过一半的数字/">剑指offer_【28】数组中出现次数超过一半的数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/27-字符串的排列/">剑指offer_【27】字符串的排列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/26-二叉搜索树与双向链表/">剑指offer_【26】二叉搜索树与双向链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/25-复杂链表的复制/">剑指offer_【25】复杂链表的复制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/24-二叉树中和为某值的路径/">剑指offer_【24】二叉树中和为某值的路径</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/23-二叉搜索树的后序遍历序列/">剑指offer_【23】二叉搜索树的后序遍历序列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/22-从上到下打印二叉树/">剑指offer_【22】从上到下打印二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/21-栈的压入、弹出/">剑指offer_【21】栈的压入、弹出</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/20-包含min函数的栈/">剑指offer_【20】包含min函数的栈</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/19-顺时针打印矩阵/">剑指offer_【19】顺时针打印矩阵</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/18-二叉树的镜像/">剑指offer_【18】二叉树的镜像</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/17-树的子结构/">剑指offer_【17】树的子结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/16-合并两个排序的链表/">剑指offer_【16】合并两个排序的链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15-反转链表/">剑指offer_【15】反转链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/14-链表中倒数第K个结点/">剑指offer_【14】链表中倒数第K个结点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/13-调整数值顺序使奇数位于偶数前面/">剑指offer_【13】调整数值顺序使奇数位于偶数前面</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12-数值的整数次方/">剑指offer_【12】数值的整数次方</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11-二进制中1的个数/">剑指offer_【11】二进制中1的个数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10-矩形覆盖/">剑指offer_【10】矩形覆盖</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/9-变态跳台阶/">剑指offer_【9】变态跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/8-跳台阶/">剑指offer_【8】跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/7-斐波那契数组/">剑指offer_【7】斐波那契数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/6-旋转数组的最小数字/">剑指offer_【6】旋转数组的最小数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/5.两个栈实现队列/">剑指offer_【5】两个栈实现队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/4.重建二叉树/">剑指offer_【4】重建二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/3.从尾到头打印链表/">剑指offer_【3】从尾到头打印链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/2.空格替换/">剑指offer_【2】空格替换</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/1.二维数组的查找/">剑指offer_【1】二维数组的查找</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/jvm-线程TLAB局部缓存区域/">JVM_线程TLAB局部缓存区域</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/JVM-内存分配和回收策略/">JVM_内存分配和回收策略</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/JVM-对象已死/">JVM_对象已死</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/JVM-垃圾回收器/">JVM_垃圾收集器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/JVM-回收算法/">JVM_垃圾回收算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-锁问题/">SQL_锁问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-触发器/">SQL_触发器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-存储过程和函数/">SQL_存储过程和函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-视图/">SQL_视图</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-索引/">SQL_索引</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-存储引擎/">SQL_存储引擎</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL-常用函数/">SQL_常用函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/SQL基础/">SQL_基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/sprintboot中的数据库注解/">sprintboot中的数据库注解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/redis数据的持久化/">redis_数据的持久化</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/redis-数据的淘汰机制/">redis.数据的淘汰机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/redis与memcached/">redis与memcached</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/redis-数据类型/">redis数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/redis应用场景/">redis应用场景</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2019 qiulig
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+					<span title="本站总字数统计">
+                         <span><i class="fa fa-map" aria-hidden="true"></i></span>
+                        <span class="post-count"><b>132.4k</b></span>
+                    </span>
+             
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
