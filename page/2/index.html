@@ -282,6 +282,249 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-二叉树的涉及的题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/07/二叉树的涉及的题/" class="article-date">
+      <time datetime="2019-07-26T13:10:00.000Z" itemprop="datePublished">2019-07-26</time>
+</a>
+
+ 
+    <a href="/2019/07/二叉树的涉及的题/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+        
+            <span class="disqus-comment-count" data-disqus-identifier="2019/07/二叉树的涉及的题/"></span>
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+	
+		
+
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/二叉树的涉及的题/">二叉树的涉及的题</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="二叉树的定义"><a href="#二叉树的定义" class="headerlink" title="二叉树的定义"></a>二叉树的定义</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> val;</span><br><span class="line">       TreeNode left;</span><br><span class="line">       TreeNode right;</span><br><span class="line">       TreeNode(<span class="keyword">int</span> x) &#123; </span><br><span class="line">            val = x;</span><br><span class="line">        &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二叉树题/">二叉树题</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/07/二叉树的涉及的题/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-树的【前序遍历】【中序遍历】【后序遍历】【层遍历】【BFS】【DFS】" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/07/树的【前序遍历】【中序遍历】【后序遍历】【层遍历】【BFS】【DFS】/" class="article-date">
+      <time datetime="2019-07-26T13:08:30.000Z" itemprop="datePublished">2019-07-26</time>
+</a>
+
+ 
+    <a href="/2019/07/树的【前序遍历】【中序遍历】【后序遍历】【层遍历】【BFS】【DFS】/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+        
+            <span class="disqus-comment-count" data-disqus-identifier="2019/07/树的【前序遍历】【中序遍历】【后序遍历】【层遍历】【BFS】【DFS】/"></span>
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+	
+		
+
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/树的【前序遍历】【中序遍历】【后序遍历】【层遍历】【BFS】【DFS】/">树的【前序遍历】【中序遍历】【后序遍历】【层遍历】【BFS】【DFS】</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="二叉树的数据结构"><a href="#二叉树的数据结构" class="headerlink" title="二叉树的数据结构"></a>二叉树的数据结构</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> val;</span><br><span class="line">       TreeNode left;</span><br><span class="line">       TreeNode right;</span><br><span class="line">       TreeNode(<span class="keyword">int</span> x) &#123; </span><br><span class="line">            val = x;</span><br><span class="line">        &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二叉树题/">二叉树题</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/07/树的【前序遍历】【中序遍历】【后序遍历】【层遍历】【BFS】【DFS】/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-回溯算法-【全排列】【组合总和】【n皇后】【子集】" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/07/回溯算法-【全排列】【组合总和】【n皇后】【子集】/" class="article-date">
+      <time datetime="2019-07-22T11:32:30.000Z" itemprop="datePublished">2019-07-22</time>
+</a>
+
+ 
+    <a href="/2019/07/回溯算法-【全排列】【组合总和】【n皇后】【子集】/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+        
+            <span class="disqus-comment-count" data-disqus-identifier="2019/07/回溯算法-【全排列】【组合总和】【n皇后】【子集】/"></span>
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+	
+		
+
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/回溯算法-【全排列】【组合总和】【n皇后】【子集】/">回溯算法-【全排列】【组合总和】【n皇后】【子集】</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="回溯算法"><a href="#回溯算法" class="headerlink" title="回溯算法"></a>回溯算法</h2><p>&emsp;回溯算法实际上一个类似枚举的搜索尝试过程，主要是在搜索尝试过程中寻找问题的解，当发现已不满足求解条件时，就“回溯”返回，尝试别的路径。即从一条路往前走，能进则进，不能进则退回来，换一条路再试。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/回溯算法/">回溯算法</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/07/回溯算法-【全排列】【组合总和】【n皇后】【子集】/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-leetcode-102-二叉树的层次遍历" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -857,248 +1100,6 @@
 
 
   
-    <article id="post-深度优先遍历和广度优先遍历" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/06/深度优先遍历和广度优先遍历/" class="article-date">
-      <time datetime="2019-06-29T11:42:26.000Z" itemprop="datePublished">2019-06-29</time>
-</a>
-
- 
-    <a href="/2019/06/深度优先遍历和广度优先遍历/#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
-        
-        
-            <span class="disqus-comment-count" data-disqus-identifier="2019/06/深度优先遍历和广度优先遍历/"></span>
-        
-    </a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-	
-		
-
-
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/深度优先遍历和广度优先遍历/">深度优先遍历和广度优先遍历</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="深度优先遍历-DFS"><a href="#深度优先遍历-DFS" class="headerlink" title="深度优先遍历(DFS)"></a>深度优先遍历(DFS)</h2><blockquote>
-<p> 假设给定图G的初态是所有顶点均未曾访问过。在G中任选一顶点v为初始出发点(源点)，则深度优先遍历可定义如下：</p></blockquote>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/广度优先遍历/">广度优先遍历</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度优先遍历/">深度优先遍历</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/06/深度优先遍历和广度优先遍历/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-leetcode-623-在二叉树中增加一行" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/06/leetcode-623-在二叉树中增加一行/" class="article-date">
-      <time datetime="2019-06-29T09:18:34.000Z" itemprop="datePublished">2019-06-29</time>
-</a>
-
- 
-    <a href="/2019/06/leetcode-623-在二叉树中增加一行/#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
-        
-        
-            <span class="disqus-comment-count" data-disqus-identifier="2019/06/leetcode-623-在二叉树中增加一行/"></span>
-        
-    </a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-	
-		
-
-
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/leetcode-623-在二叉树中增加一行/">leetcode_【623】在二叉树中增加一行</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h3><blockquote>
-<p>给定一个二叉树，根节点为第1层，深度为 1。在其第 d 层追加一行值为 v 的节点。</p></blockquote>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/中等/">中等</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二叉树题/">二叉树题</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/06/leetcode-623-在二叉树中增加一行/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-leetcode-94-二叉树的中序遍历" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/06/leetcode-94-二叉树的中序遍历/" class="article-date">
-      <time datetime="2019-06-28T12:23:52.000Z" itemprop="datePublished">2019-06-28</time>
-</a>
-
- 
-    <a href="/2019/06/leetcode-94-二叉树的中序遍历/#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
-        
-        
-            <span class="disqus-comment-count" data-disqus-identifier="2019/06/leetcode-94-二叉树的中序遍历/"></span>
-        
-    </a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-	
-		
-
-
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/leetcode-94-二叉树的中序遍历/">leetcode_【94】二叉树的中序遍历</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h3><blockquote>
-<p>给定一个二叉树，返回它的中序遍历。</p></blockquote>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/中等/">中等</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二叉树题/">二叉树题</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/06/leetcode-94-二叉树的中序遍历/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1134,7 +1135,7 @@
                     </span>
 					<span title="本站总字数统计">
                          <span><i class="fa fa-map" aria-hidden="true"></i></span>
-                        <span class="post-count"><b>132.4k</b></span>
+                        <span class="post-count"><b>136.5k</b></span>
                     </span>
              
                 
