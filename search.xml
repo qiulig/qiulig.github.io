@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[链表题【翻转链表】【环形链表】【删除重复元素】【两数相加】【相交链表】]]></title>
+    <url>%2F2019%2F08%2F%E9%93%BE%E8%A1%A8%E9%A2%98%E3%80%90%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8%E3%80%91%E3%80%90%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E3%80%91%E3%80%90%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%E3%80%91%E3%80%90%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0%E3%80%91%E3%80%90%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8%E3%80%91%2F</url>
+    <content type="text"><![CDATA[链表的定义12345static class ListNode &#123; int val; ListNode next; ListNode(int x) &#123; val = x; &#125;&#125; 1.翻转链表&emsp;&emsp;https://leetcode-cn.com/problems/reverse-linked-list/递归： 在遍历链表时，将当前节点cur的next指向前一个元素， 由于节点没有引用上一个节点，故初始时设置前一个节点pre = null, 在更改引用之前，还需要另一个指针来存储下一个节点next = cur.next。 12345678910111213// 执行用时 :1 ms, 在所有 Java 提交中击败了85.90%的用户// 内存消耗 :36.1 MB, 在所有 Java 提交中击败了55.82%的用户public static ListNode reverseList(ListNode head) &#123; ListNode pre = null; ListNode cur = head; while (cur != null) &#123; ListNode next = cur.next; //将下一个节点记录 cur.next = pre; //当前节点指向上一个节点 pre = cur; //记录当前节点 cur = next; //将下一个节点变成当前节点 &#125; return pre;&#125; 迭代：假设链表为 n1–&gt;n2–&gt;n3—n&gt;4–&gt;null,若某部分已经被翻转了 n1–&gt;n2–&gt;n3&lt;--n4，我们希望3指向2，所以有n3.next.next = n2,要注意n1的下一个必须指向null,故还有个head.next = null操作。 12345678public static ListNode reverseList(ListNode head) &#123; if(head == null || head.next == null) return head; ListNode res = reverseList(head.next); head.next.next = head; head.next = null; return res;&#125; 2.翻转链表II&emsp;&emsp;https://leetcode-cn.com/problems/reverse-linked-list-ii/ 假设以 head – 1–2–3–4–中的1~4进行反转 先让头指针的next指向2， 再让1的next指向3， 最后将2的next指向1， 完成第一次交换，顺序变成header–2–1–3–4, 然后进行相同的交换将结点3移动到结点2的前面，然后再将结点4移动到结点3的前面就完成了反转。 同 12345678910111213141516171819&gt; class Solution &#123;&gt; public ListNode reverseBetween(ListNode head, int m, int n) &#123;&gt; ListNode res = new ListNode(0);&gt; res.next = head;&gt; ListNode pre = res;&gt; for(int i = 1; i &lt; m; i++)&#123;&gt; pre = pre.next;&gt; &#125;&gt; head = pre.next;&gt; for(int i = m; i &lt; n; i++)&#123;&gt; ListNode nextnode = head.next;&gt; head.next = nextnode.next;&gt; nextnode.next = pre.next;&gt; pre.next = nextnode;&gt; &#125;&gt; return res.next;&gt; &#125;&gt; &#125;&gt; 3.环形链表&emsp;&emsp;https://leetcode-cn.com/problems/linked-list-cycle/方法1：HashSet,如果当前结点存在于哈希表中，说明有环，否则遍历完全，返回false。 123456789101112public static boolean hasCycle(ListNode head) &#123; Set&lt;ListNode&gt; res = new HashSet&lt;&gt;(); while (head !=null)&#123; if(res.contains(head))&#123; return true; &#125;else&#123; res.add(head); &#125; head = head.next; &#125; return false; &#125; 方法2：快慢指针，快指针先于慢指针一步，如果有环，总有一个时刻快指针会追上慢指针。 12345678910111213141516//执行用时 :1 ms, 在所有 Java 提交中击败了92.84%的用户//内存消耗 :39.6 MB, 在所有 Java 提交中击败了47.88%的用户 public static boolean hasCycle(ListNode head) &#123; if (head == null || head.next == null) return false; ListNode fast = head.next; ListNode slow = head; while(fast !=slow)&#123; if(fast==null || fast.next==null)&#123; return false; &#125; fast = fast.next.next; slow = slow.next; &#125; return true; &#125; 4.环形链表II&emsp;&emsp;https://leetcode-cn.com/problems/linked-list-cycle-ii/ 快慢指针：当fast和slow在环中相遇时，设头节点到入环结点的长度为x,入环结点到相遇点长度为y,相遇点到入环结点长度为z,则有(x+y)*2 = x+y+z+y,即x = z,把快指针设为头节点，慢指针还在相遇点，两个指针相遇之时就是入环点所在之处。 12345678910111213141516171819202122232425//执行用时 :1 ms, 在所有 Java 提交中击败了99.71%的用户//内存消耗 :36.3 MB, 在所有 Java 提交中击败了5.03%的用户public ListNode detectCycle(ListNode head) &#123; if(head == null || head.next == null) return null; ListNode fast = head; ListNode slow = head; while(fast.next!=null &amp;&amp; fast.next.next!=null)&#123; fast = fast.next.next; slow = slow.next; //环内相遇 if(fast == slow)&#123; //快指针重头走 fast = head; //快慢指针同时走，相等时即入环结点处 while(fast !=slow)&#123; fast = fast.next; slow = slow.next; &#125; return fast; &#125; &#125; //走到尾巴了，说明没有环 return null; &#125; 5.两数相加 &emsp;&emsp;&emsp;https://leetcode-cn.com/problems/add-two-numbers/ 123456789101112131415161718192021public static ListNode addTwoNumbers(ListNode l1, ListNode l2) &#123; ListNode ress = new ListNode(0); ListNode res = ress; int flag = 0; while(l1!=null ||l2!=null)&#123; int x = l1!=null ?l1.val:0; int y = l2!=null?l2.val:0; int value = x+y+flag; flag = value/10; res.next = new ListNode(value%10); res = res.next; if(l1!=null) l1 = l1.next; if(l2!=null) l2 = l2.next; &#125; if(flag&gt;0) res.next = new ListNode(flag); return ress.next; &#125; 6.两数相加II &emsp;&emsp;&emsp;https://leetcode-cn.com/problems/add-two-numbers-ii/submissions/ 思路1：使用翻转，进行计算，结果再次翻转即可 123456789101112131415161718192021222324252627282930313233343536public static ListNode addTwoNumbers(ListNode l1, ListNode l2) &#123; if(l1 == null &amp;&amp; l2!=null) return l2; if(l2 == null &amp;&amp; l1!=null) return l1; ListNode head1 = reverseList(l1); ListNode head2 = reverseList(l2); ListNode res = new ListNode(-1); ListNode ans = res; int count = 0; while (head1!=null || head2 != null)&#123; int x = head1 == null ? 0 : head1.val; int y = head2 ==null ? 0:head2.val; res.next = new ListNode((x+y+count)%10); count = (x + y +count)/10; res = res.next; if(head1!=null) head1 = head1.next; if(head2!=null) head2 = head2.next; &#125; if(count != 0)&#123; res.next = new ListNode(count); &#125; ListNode root = reverseList(ans.next); return root;&#125;private static ListNode reverseList(ListNode head) &#123; ListNode pre = null; ListNode cur = head; while (cur!=null)&#123; ListNode nextnode = cur.next; cur.next = pre; pre = cur; cur = nextnode; &#125; return pre;&#125; 思路2： 不使用翻转，使用栈进行存储 1234567891011121314151617181920212223242526272829303132333435public ListNode addTwoNumbers(ListNode l1, ListNode l2) &#123; Stack&lt;Integer&gt; stack1=new Stack(); Stack&lt;Integer&gt; stack2=new Stack(); ListNode node1=l1; //将l1的值入栈 while(node1!=null)&#123; stack1.push(node1.val); node1=node1.next; &#125; //将l2的值入栈 ListNode node2=l2; while(node2!=null)&#123; stack2.push(node2.val); node2=node2.next; &#125; ListNode head=null; int flag=0; //依次弹出 while(!stack1.isEmpty()||!stack2.isEmpty()||flag!=0)&#123; int value=0; if(!stack1.isEmpty()) value+=stack1.pop(); if(!stack2.isEmpty()) value+=stack2.pop(); value+=flag; ListNode node=new ListNode(value%10); flag=value/10; //计算的低位依次向后移动 node.next=head; //head存储上一次计算得到的值 head=node; &#125; return head; &#125; 7.删除排序链表中的重复元素https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/ 1234567891011121314public ListNode deleteDuplicates(ListNode head) &#123; if(head == null || head.next == null) return head; ListNode node = head; while(node!=null &amp;&amp; node.next!=null)&#123; //如果相等则跳过这个数 if(node.val == node.next.val)&#123; node.next = node.next.next; &#125;else&#123; node = node.next; &#125; &#125; return head; &#125; 8.删除排序链表中的重复元素II&emsp;&emsp;https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list-ii/ 12345678910111213141516171819public static ListNode deleteDuplicates(ListNode head) &#123; if(head==null || head.next==null) return head; //head的首部也是重复的数 if(head.val==head.next.val)&#123; //node的首部为重复的数，此时head的首部也是重复的数 ListNode node = head.next; //如果node的首部一直跟head的相同，则一直向后移动，直到不是重复的数 while( node != null &amp;&amp; head.val == node.val )&#123; node = node.next; &#125; //递归node结点，此时node结点为删除了前面重复的数 return deleteDuplicates(node); &#125;else&#123; //不相等就向下移动，递归删除后面重复的数 head.next = deleteDuplicates(head.next); return head; &#125;&#125; 9.相交链表https://leetcode-cn.com/problems/intersection-of-two-linked-lists/关键：消除两个链表的长度差 指针 pA 指向 A 链表，指针 pB 指向 B 链表，依次往后遍历 如果 pA 到了末尾，则 pA = headB 继续遍历 如果 pB 到了末尾，则 pB = headA 继续遍历 比较长的链表指针指向较短链表head时，长度差就消除了 如此，只需要将最短链表遍历两次即可找到位置 123456789public ListNode getIntersectionNode(ListNode headA, ListNode headB) &#123;if (headA == null || headB == null) return null;ListNode pA = headA, pB = headB;while (pA != pB) &#123; pA = pA == null ? headB : pA.next; pB = pB == null ? headA : pB.next;&#125;return pA;&#125;]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>链表题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[贪心算法【区间调度】【集合覆盖】【背包问题】【旅行商问题】【哈夫曼构造价值树】]]></title>
     <url>%2F2019%2F07%2F%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%2F</url>
     <content type="text"><![CDATA[贪心算法 &emsp;在对问题求解时，总是做出在当前看来是最好的选择。也就是说，不从整体最优上加以考虑，他所做出的是在某种意义上的局部最优解。&emsp;贪心算法不是对所有问题都能得到整体最优解，关键是贪心策略的选择，选择的贪心策略必须具备无后效性，即某个状态以前的过程不会影响以后的状态，只与当前状态有关。 1.区间调度问题 假设有如下课程，希望尽可能多的将课程安排在一间教室里：|课程|开始时间 |结束时间|–|–|–|| 美术 | 9AM |10AM|英语|9：30AM|10:30AM|数学|10AM|11AM|计算机|10：30AM|11:30AM|音乐|11AM|12AM|算法设计： 1.选择结束最早的课，便是要在这教室上课的第一节课 2.接下来，选择第一堂课结束后才开始的课，并且结束最早的课，这将是第二节在教室上的课。 代码： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455import java.util.*;public class Main&#123; public static void main(String[] args) &#123; String subject[] = &#123;"英语","数学","计算机","音乐","美术"&#125;; Work[] works = &#123; new Work(1,3), new Work(2, 5), new Work(4, 7), new Work(6, 9), new Work(8, 10) &#125;; int result = solution(works); System.out.println(result); &#125; private static int solution(Work[] works) &#123; //works里面已经按end从小到大排序了 Arrays.sort(works); int count = 0; //当前工作的结束时间 int endTime = 0; for(int i = 0;i&lt;works.length;i++)&#123; if(endTime&lt;works[i].getStart())&#123; count++; endTime = works[i].getEnd(); &#125; &#125; return count; &#125; static class Work implements Comparable&#123; private int start; private int end; public Work(int start, int end) &#123; this.start = start; this.end = end; &#125; //end 从小到大排序 @Override public int compareTo(Object o) &#123; Work work = (Work) o; if(this.end &gt; work.getEnd())&#123; return 1; &#125;else if(this.end == work.getEnd())&#123; return 0; &#125;else&#123; return -1; &#125; &#125; public int getStart() &#123; return start; &#125; public int getEnd() &#123; return end; &#125; &#125;&#125; 相同问题：2019届爱奇艺校招笔试题第三题_库特君的面条: &emsp;&emsp;https://blog.csdn.net/qq_17556191/article/details/95003363 2.背包问题见：https://blog.csdn.net/qq_17556191/article/details/94764606 3.集合覆盖问题假设存在如下表的需要付费的广播台，以及广播台信号可以覆盖的地区。 如何选择最少的广播台，让所有的地区都可以接收到信号。|广播台|覆盖地区 ||–|–|| K1 |ID,NV,UT |K2|WA,ID,MT|K3|OR,NV,CA|K4|NV,UT|K5|CA,AZ|…|…|算法设计：(1) 选出一个广播台，即它覆盖了最多未覆盖的地区即便包含一些已覆盖的地区也没关系(2) 重复第一步直到覆盖了全部的地区 1234567891011121314151617181920212223242526272829303132333435363738394041424344import java.util.*;public class Main_tanxin_jihefugai &#123; public static void main(String[] args) &#123; HashMap&lt;String,HashSet&lt;String&gt;&gt; broadcasts = new HashMap&lt;&gt;(); broadcasts.put("K1", new HashSet(Arrays.asList(new String[] &#123;"ID","NV","UT"&#125;))); broadcasts.put("K2", new HashSet(Arrays.asList(new String[] &#123;"WA","ID","MT"&#125;))); broadcasts.put("K3", new HashSet(Arrays.asList(new String[] &#123;"OR","NV","CA"&#125;))); broadcasts.put("K4", new HashSet(Arrays.asList(new String[] &#123;"NV","UT"&#125;))); broadcasts.put("K5", new HashSet(Arrays.asList(new String[] &#123;"CA","AZ"&#125;))); //需要覆盖的全部地区 HashSet&lt;String&gt; allAreas = new HashSet&lt;&gt;(Arrays.asList(new String[] &#123;"ID","NV","UT","WA","MT","OR","CA","AZ"&#125;)); //所选择的广播台列表 List&lt;String&gt; lists = new ArrayList&lt;&gt;(); //(1) 选出一个广播台，即它覆盖了最多未覆盖的地区即便包含一些已覆盖的地区也没关系 // (2) 重复第一步直到可以覆盖了全部的地区 HashSet&lt;String&gt; tempSet = new HashSet&lt;&gt;(); String maxKey = null; while(allAreas.size()!=0)&#123; maxKey = null; //一轮轮选出（之前未覆盖的）数量最多的电台 for(String key:broadcasts.keySet())&#123; tempSet.clear(); HashSet&lt;String&gt; areas = broadcasts.get(key); tempSet.addAll(areas); //求出2个集合的交集，得到的交集的电台存在tempSet里面 tempSet.retainAll(allAreas); //如果该集合包含的地区数量比原本的集合多 if (tempSet.size()&gt;0 &amp;&amp; (maxKey == null || tempSet.size() &gt; broadcasts.get(maxKey).size())) &#123; //得到要存入的电台key maxKey = key; &#125; &#125; //找到未覆盖电台数的最大的那个电台 if (maxKey != null) &#123; lists.add(maxKey); //将覆盖地区移除allAreas allAreas.removeAll(broadcasts.get(maxKey)); &#125; &#125; System.out.print("selects:" + lists); &#125;&#125; 4.旅行商问题&emsp;给定一系列城市和每对城市之间的距离，求解访问每一座城市一次并回到起始城市的最短回路。算法设计：随机选一个城市开始，以寻找离该城市最近点作为下一个城市旅行城市，此后寻找离最后加入路线的城市最近的城市，直到最后。【类似于广度优先遍历】 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667//旅行商问题public class Main &#123; public static void main(String[] args) &#123; String city[] = &#123;"A","B","C","D","E","F","G","H","I","J"&#125;; int x[] = &#123;2066,935,1270,1389,984,2253,949,87,3094,2706&#125;; int y[] = &#123;2333,1304,200,700,2810,478,3025,2483,1883,3130&#125;; double distance[][] = Caldistance(x,y); solve(distance,city); &#125; //计算距离 public static double[][] Caldistance(int x[],int y[])&#123; double [][] distance = new double[x.length][x.length]; for(int i = 0;i&lt;x.length;i++)&#123; for(int j = 0;j&lt;x.length;j++)&#123; //欧式距离 distance[i][j] = Math.sqrt((x[i]-x[j])*(x[i]-x[j])+(y[i]-y[j])*(y[i]-y[j])); &#125; &#125; return distance; &#125; public static void solve(double[][]distance,String []city)&#123; double sum = 0; //记录访问过的城市 int visited[] = new int[distance.length]; //记录依次访问的城市，得到最小的距离 String path[] = new String[distance.length]; //假设从第一个城市A开始 path[0] = "A"; //访问过的点记录为1 visited[0] = 1; //当前正在访问的点 int k = 0; //第一次设下一个城市为Index为1的B城市 int nextCityIndex = 1; //初始化最小的距离 double mindistance = Double.MAX_VALUE; //记录以及访问过多少个城市了 int count = 1; while(count&lt;city.length)&#123; for(int i = 0;i&lt;city.length;i++)&#123; //如果该点没被访问 if(visited[i]==0)&#123; //求出 从正在访问的点k到下一个点的最小距离，即为下一个要被访问的城市 if(distance[k][i]&lt;mindistance)&#123; mindistance = distance[k][i]; //获取下一个要被访问的城市的下标索引 nextCityIndex = i; &#125; &#125; &#125; //依次访问的点的总路程 sum = sum + mindistance; //将得到的下一个要访问的城市加入到path中 path[count++] = city[nextCityIndex]; //该点被访问，置为1 visited[nextCityIndex] = 1; //将访问的城市起点改成求得的下一个城市的点的坐标索引 k = nextCityIndex; //再次初始化 mindistance = Double.MAX_VALUE; &#125; //得出依次访问的结果，输出 for(int i = 0;i&lt;path.length;i++)&#123; System.out.print(path[i]+" "); &#125; &#125;&#125; 5.哈夫曼构造价值树哈夫曼见： https://blog.csdn.net/likunkun__/article/details/80258515相同题型：切金条： https://blog.csdn.net/qq_34115899/article/details/79723970 参考：图解贪婪算法 https://blog.csdn.net/a8082649/article/details/82079779]]></content>
@@ -147,8 +158,8 @@
       </categories>
       <tags>
         <tag>二叉树题</tag>
-        <tag>广度优先遍历</tag>
         <tag>中等</tag>
+        <tag>广度优先遍历</tag>
       </tags>
   </entry>
   <entry>
@@ -175,8 +186,8 @@
       <tags>
         <tag>二叉树题</tag>
         <tag>深度优先遍历</tag>
-        <tag>广度优先遍历</tag>
         <tag>中等</tag>
+        <tag>广度优先遍历</tag>
       </tags>
   </entry>
   <entry>
@@ -188,8 +199,8 @@
       </categories>
       <tags>
         <tag>二叉树题</tag>
-        <tag>广度优先遍历</tag>
         <tag>中等</tag>
+        <tag>广度优先遍历</tag>
       </tags>
   </entry>
   <entry>
@@ -561,8 +572,8 @@
       </categories>
       <tags>
         <tag>数组类型题</tag>
-        <tag>简单</tag>
         <tag>动态规划</tag>
+        <tag>简单</tag>
       </tags>
   </entry>
   <entry>
@@ -613,8 +624,8 @@
       </categories>
       <tags>
         <tag>数组类型题</tag>
-        <tag>简单</tag>
         <tag>动态规划</tag>
+        <tag>简单</tag>
       </tags>
   </entry>
   <entry>
@@ -861,8 +872,8 @@
       </categories>
       <tags>
         <tag>数组类型题</tag>
-        <tag>困难</tag>
         <tag>滑动窗口法</tag>
+        <tag>困难</tag>
       </tags>
   </entry>
   <entry>
@@ -1806,17 +1817,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[剑指offer_【1】二维数组的查找]]></title>
-    <url>%2F2019%2F04%2F1.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
-    <content type="text"><![CDATA[1.题目描述： 在一个二维数组中（每个一维数组的长度相同），如数组 1 2 3 4 5 6 7 8 9 每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 2.解题思路 选择右上角的数字作为开始点 如果array[row][col]&gt;target,则向左查找，col–； 如果array[row][col]&lt;target,则向下查找，row++； 3.代码123456789101112131415161718public class Solution &#123; public boolean Find(int target, int [][] array) &#123; boolean res = false; int row = 0; int col = array[0].length-1; while(row&lt;=array.length-1&amp;&amp;col&gt;=0)&#123; if(array[row][col]&gt;target)&#123; col--; &#125;else if(array[row][col]&lt;target)&#123; row++; &#125;else&#123; res = true; break; &#125; &#125; return res; &#125;&#125;]]></content>
-      <categories>
-        <category>剑指offer</category>
-      </categories>
-      <tags>
-        <tag>数组类型题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[剑指offer_【2】空格替换]]></title>
     <url>%2F2019%2F04%2F2.%E7%A9%BA%E6%A0%BC%E6%9B%BF%E6%8D%A2%2F</url>
     <content type="text"><![CDATA[1. 题目描述 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 2. 解题思路 方法1：利用函数replaceAll完成 方法2： **先计算需要多少的空间 **从后向前依次插入 3.代码方法1： 12345public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; return str.toString().replaceAll(" ", "%20"); &#125;&#125; 方法2： 12345678910111213141516171819202122232425262728public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; int spacenum = 0;//spacenum为计算空格数 for(int i=0;i&lt;str.length();i++)&#123; if(str.charAt(i)==' ') spacenum++; &#125; //indexold为为替换前的str下标 int indexold = str.length()-1; //计算空格转换成%20之后的str长度 int newlength = str.length() + spacenum*2; //indexold为为把空格替换为%20后的str下标 int indexnew = newlength-1; //使str的长度扩大到转换成%20之后的长度,防止下标越界 str.setLength(newlength); for(;indexold&gt;=0 &amp;&amp; indexold&lt;newlength;--indexold)&#123; if(str.charAt(indexold) == ' ')&#123; str.setCharAt(indexnew--, '0'); str.setCharAt(indexnew--, '2'); str.setCharAt(indexnew--, '%'); &#125;else&#123; str.setCharAt(indexnew--, str.charAt(indexold)); &#125; &#125; return str.toString(); &#125;&#125; 补充1：String和StringBuffer的转换String转换成StringBuffer 12String str = "abc";StringBuffer b=new StringBuffer(str); StringBuffer转换成String 12StringBuffer a=new StringBuffer();String b=a.toString(） 补充2：String、StringBuffer、StringBuilder 1）运行速度StringBuilder&gt;StringBuffer&gt;String 2）String是字符串常量，String对象一旦创建就不能更改。StringBuffer为 字符串变量，可更改 3） String适用于少量的字符串操作，StringBuffer适用于多线程下字符缓冲区进行大量操作的情况。 4） StringBuffer 与 StringBuilder 中的方法和功能完全是等价的， 5） 只是StringBuffer 中的方法大都采用了 synchronized 关键字进行修饰，因此是线程安全的，而 StringBuilder 没有这个修饰，可以被认为是线程不安全的。 6） 在单线程程序下，StringBuilder效率更快，因为它不需要加锁，不具备多线程安全，而StringBuffer则每次都需要判断锁，效率相对更低。]]></content>
@@ -1825,6 +1825,17 @@
       </categories>
       <tags>
         <tag>字符串题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【1】二维数组的查找]]></title>
+    <url>%2F2019%2F04%2F1.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
+    <content type="text"><![CDATA[1.题目描述： 在一个二维数组中（每个一维数组的长度相同），如数组 1 2 3 4 5 6 7 8 9 每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 2.解题思路 选择右上角的数字作为开始点 如果array[row][col]&gt;target,则向左查找，col–； 如果array[row][col]&lt;target,则向下查找，row++； 3.代码123456789101112131415161718public class Solution &#123; public boolean Find(int target, int [][] array) &#123; boolean res = false; int row = 0; int col = array[0].length-1; while(row&lt;=array.length-1&amp;&amp;col&gt;=0)&#123; if(array[row][col]&gt;target)&#123; col--; &#125;else if(array[row][col]&lt;target)&#123; row++; &#125;else&#123; res = true; break; &#125; &#125; return res; &#125;&#125;]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>数组类型题</tag>
       </tags>
   </entry>
   <entry>
