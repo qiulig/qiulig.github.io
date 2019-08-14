@@ -289,9 +289,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[背包问题]]></title>
+    <title><![CDATA[背包问题-【01背包】【完全背包】【多重背包】【多限定条件背包】]]></title>
     <url>%2F2019%2F06%2F%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[背包问题给定一组物品，每种物品都有自己的重量和价格，在限定的总重量内，我们如何选择，才能使得物品的总价格最高。 可参考https://www.cnblogs.com/-guz/p/9866118.html 1. 0-1背包问题 我们有n种物品，物品i的重量为weight[i]，价格为value[i]。我们假定所有物品的重量和价格都是非负的。背包所能承受的最大重量为total。如果限定每种物品只能选择0个或1个，求背包里面能放的最大价格。 情况1：第i件不放进去，所得价值f[i-1][v],即不放第i件，转化成前i-1件物品放入容量为v的背包中的情况 情况2：第i件放进去，所得价值f[i-1][v-weight[i]] + c[i]，转化成前i-1件物品放入剩下的容量为v-w[i]的背包中的情况 由此得到状态转移方程：注：f[i][v]表示重量不超过v公斤的最大价值 f[i][v] = Math.max(f[i-1][v],f[i-1][v-w[i]]+c[i]) 时间和空间复杂度都为O(Num*total)=O(N*N),可以将其压缩成空间为O(total) = O(N) 情况1：第i件不放进去，所得价值f[v] 情况2：第i件放进去，所得价值f[v-weight[i]]+c[i] 由此得到状态转移方程： f[v] = Math.max(f[v],f[v-w[i]]+c[i])，f[v]表示重量不超过v公斤的最大价值 123456789//weight表示每件物品的重量，value代表每件物品的价值，total 表示容量，Num表示物品数量，设 f[v]表示重量不超过v公斤的最大价值public static int ZeroOnePackage(int []weight,int []value,int []f,int Num,int total)&#123; for(int i = 0;i&lt;Num;i++)&#123; for(int v = total;v&gt;=weight[i];v--)&#123; //注意是逆序 f[v] = Math.max(f[v-weight[i]]+value[i],f[v]); &#125; &#125; return f[total];&#125; 2. 完全背包问题有Num种物品和一个容量为total的背包，每种物品都有无限件可用。第i种物品的体重量是weight[i]，价值是value[i]。将哪些物品装入背包可使这些物品的体积总和不超过背包容量，且价值总和最大。 情况1：第i件不放进去，所得价值 f[i-1][v] 情况2：第i件放进去，所得价值 f[i-1][v-weight[i]]+c[i] 由此得到状态转移方程：，f[i][v]表示前i个背包装入重量不超过v公斤的最大价值 f[i][v] = Math.max(f[i-1][v],f[i-1][v-n*w[i]]+n*c[i]){0&lt;n*value[i]&lt;total} 时间和空间复杂度都为O(Num*total)=O(N*N),可以将其压缩成空间为O(total) = O(N) 情况1：第i件不放进去，所得价值f[v] 情况2：第i件放进去，所得价值f[v-weight[i]]+c[i] 由此得到状态转移方程：f[v]表示重量不超过v公斤的最大价值 f[v] = Math.max(f[v],f[v-n*w[i]] + n*c[i]) {0&lt;n*value[i]&lt;total} 123456789//weight表示每件物品的重量，value代表每件物品的价值，total 表示容量，Num表示物品数量，设 f[v]表示重量不超过v公斤的最大价值 public static int ZeroMorePackage(int []weight,int []value,int []f,int Num,int total)&#123; for(int i = 0;i&lt;Num;i++)&#123; for(int v = weight[i];v&lt;=total;v++)&#123; //注意是++ f[v] = Math.max(f[v-weight[i]]+value[i],f[v]); &#125; &#125; return f[total]; &#125; 3.多重背包问题有Num种物品和一个容量为total的背包。第i种物品最多有eachNum[i]件可用，每件体积是weight[i]，价值是value[i]。求解将哪些物品装入背包可使这些物品的体积总和不超过背包容量total，且价值总和最大。 情况1：第i件不放进去，所得价值f[v] 情况2：第i件放进去，所得价值f[v-weight[i]] + c[i] 由此得到状态转移方程：f[v]表示装入重量不超过v公斤的最大价值 f[v] = Math.max(f[v] , f[v-n*w[i]] + n*c[i]) {0 &lt; k &lt; eachNum[i]，0&lt;k*value[i]&lt;total}， 123456789101112131415//多重背包问题 public static int MorePackage(int []weight,int []value,int []f,int Num,int total,int eachNum[])&#123; for(int i = 0;i&lt;Num;i++) &#123; for (int v = total; v &gt;= 0; v--) &#123; //注意是逆序 for (int k = 0; k &lt;= eachNum[i]; k++) &#123; if (v - k * weight[i] &lt; 0) &#123; break; &#125;else&#123; f[v] = Math.max(f[v - k * weight[i]] + k * value[i], f[v]); &#125; &#125; &#125; &#125; return f[total]; &#125;]]></content>
+    <content type="text"><![CDATA[背包问题 给定一组物品，每种物品都有自己的重量和价格，在限定的总重量内，我们如何选择，才能使得物品的总价格最高。 可参考https://www.cnblogs.com/-guz/p/9866118.html 1. 0-1背包问题[求最大的价值，不要求恰好装满这个包] 我们有n种物品，物品i的重量为weight[i]，价格为value[i]。我们假定所有物品的重量和价格都是非负的。背包所能承受的最大重量为total。如果限定每种物品只能选择0个或1个，求背包里面能放的最大价格。 dp[i][v]代表“将前i件物品放入容量为v的背包中得到的最大价值。 情况1：第i件不放进去，转化成前i-1件物品放入容量为v的背包中的价值的情况，此时所得价值 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;dp[i-1][v] 情况2：第i件放进去，要是容量只能为v,则可以转化成将前i-1件物品放入v-weight[i]的背包里，此时加入第i件的重量恰好是v重量的背包，所得价值 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;dp[i-1][v-weight[i]] + c[i]， 由此得到状态转移方程：注：dp[i][v]表示重量不超过v公斤的最大价值 &emsp; dp[i][v] = Math.max(dp[i-1][v],dp[i-1][v-w[i]]+c[i]) 时间和空间复杂度都为O(Num*total)=O(N*N),可以将其压缩成空间为O(total) = O(N) 情况1：第i件不放进去，所得价值dp[v] 情况2：第i件放进去，所得价值dp[v-weight[i]]+c[i] 由此得到状态转移方程：dp[v]表示重量不超过v公斤的最大价值 &emsp; &emsp; &emsp;dp[v] = Math.max(dp[v],dp[v-w[i]]+c[i]) 12345678910&gt; //weight表示每件物品的重量，value代表每件物品的价值，total 表示容量，Num表示物品数量，设 dp[v]表示重量不超过v公斤的最大价值&gt; public static int ZeroOnePackage(int []weight,int []value,int []dp,int Num,int total)&#123;&gt; for(int i = 0;i&lt;Num;i++)&#123;&gt; for(int v = total;v&gt;=weight[i];v--)&#123; //注意是逆序&gt; dp[v] = Math.max(dp[v-weight[i]]+value[i],dp[v]);&gt; &#125;&gt; &#125;&gt; return dp[total];&gt; &#125;&gt; 关于为什么是逆序：https://www.jb51.net/article/126072.htm 如果只用一个数组dp[0…V]，要保证每次主循环中我们要以v = V…0的顺序推dp[v],才能保证推dp[v]时dp[v-weight[i]]保存的状态是dp[i-1][v-weight[i]]的值， 因为如果将v的循环顺序从上面的逆序改成顺序的话，那么则成了f[i][v]由f[i][v-weight[i]]推出了而不是f[i-1][v-weight[i]] 2. 0-1背包问题[要求恰好装满这个包，此时的最大价值] 与以上不同初始化时除了f[0]为0其它f[1..V]均设为-∞，可以这样理解，可以这样理解：初始化的dp数组事实上就是在没有任何物品可以放入背包时的合法状态。 如果要求背包恰好装满，那么此时只有容量为0的背包可能被价值为0的nothing“恰好装满”，其它容量的背包均没有合法的解，属于未定义的状态，它们的值就都应该是-∞了。 如果背包并非必须被装满，那么任何容量的背包都有一个合法解“什么都不装”，这个解的价值为0，所以初始时状态的值也就全部为0了。 1234567891011121314&gt; public static int ZeroOnePackage(int []weight,int []value,int Num,int total)&#123;&gt; int dp[] = new int[total+1];&gt; //初始化dp数组&gt; for(int i = 1;i&lt;dp.length;i++)&gt; dp[i] = Integer.MIN_VALUE; &gt; //动态规划背包问题&gt; for(int i = 0;i&lt;Num;i++)&#123;&gt; for(int v = total;v&gt;=weight[i];v--)&#123; //注意是逆序&gt; dp[v] = Math.max(dp[v-weight[i]]+value[i],dp[v]);&gt; &#125;&gt; &#125;&gt; return dp[total];&gt; &#125;&gt; 2. 完全背包问题有Num种物品和一个容量为total的背包，每种物品都有无限件可用。第i种物品的体重量是weight[i]，价值是value[i]。将哪些物品装入背包可使这些物品的体积总和不超过背包容量，且价值总和最大。 情况1：第i件不放进去，所得价值 dp[i-1][v] 情况2：第i件放进去，所得价值 dp[i-1][v-weight[i]]+c[i] 由此得到状态转移方程：，dp[i][v]表示前i个背包装入重量不超过v公斤的最大价值 dp[i][v] = Math.max(dp[i-1][v],dp[i-1][v-n*w[i]]+n*c[i]){0&lt;n*value[i]&lt;total} 时间和空间复杂度都为O(Num*total)=O(N*N),可以将其压缩成空间为O(total) = O(N) 情况1：第i件不放进去，所得价值dp[v] 情况2：第i件放进去，所得价值dp[v-weight[i]]+c[i] 由此得到状态转移方程：f[v]表示重量不超过v公斤的最大价值 dp[v] = Math.max(dp[v],dp[v-n*w[i]] + n*c[i]) {0&lt;n*value[i]&lt;total} 123456789//weight表示每件物品的重量，value代表每件物品的价值，total 表示容量，Num表示物品数量，设 f[v]表示重量不超过v公斤的最大价值 public static int ZeroMorePackage(int []weight,int []value,int []dp,int Num,int total)&#123; for(int i = 0;i&lt;Num;i++)&#123; for(int v = weight[i];v&lt;=total;v++)&#123; //注意是++ dp[v] = Math.max(dp[v-weight[i]]+value[i],dp[v]); &#125; &#125; return dp[total]; &#125; 4.多重背包问题有Num种物品和一个容量为total的背包。第i种物品最多有eachNum[i]件可用，每件体积是weight[i]，价值是value[i]。求解将哪些物品装入背包可使这些物品的体积总和不超过背包容量total，且价值总和最大。 情况1：第i件不放进去，所得价值dp[v] 情况2：第i件放进去，所得价值dp[v-weight[i]] + c[i] 由此得到状态转移方程：dp[v]表示装入重量不超过v公斤的最大价值&emsp;&emsp;dp[v] = Math.max(dp[v] , dp[v-n*w[i]] + n*c[i]) {0 &lt; k &lt; eachNum[i]，0&lt;k*value[i]&lt;total}， 123456789101112131415//多重背包问题 public static int MorePackage(int []weight,int []value,int []dp,int Num,int total,int eachNum[])&#123; for(int i = 0;i&lt;Num;i++) &#123; for (int v = total; v &gt;= 0; v--) &#123; //注意是逆序 for (int k = 0; k &lt;= eachNum[i]; k++) &#123; if (v - k * weight[i] &lt; 0) &#123; break; &#125;else&#123; dp[v] = Math.max(dp[v - k * weight[i]] + k * value[i], dp[v]); &#125; &#125; &#125; &#125; return dp[total]; &#125; 5.多限定条件的背包问题 &emsp;&emsp; 航天飞机的体积有限,当然如果载过重的物品,燃料会浪费很多钱,每件食品都有各自的体积、质量以及所含卡路里,在告诉你体积和质量的最大值的情况下,请输出能达到的食品方案所含卡路里的最大值,当然每个食品只能使用一次. 输入格式 &emsp;&emsp;第一行 两个数 体积最大值(&lt;400)和质量最大值(&lt;400) &emsp;&emsp;第二行 一个数 食品总数N(&lt;50). &emsp;&emsp;第三行－第3+N行,每行三个数 体积(&lt;400) 质量(&lt;400) 所含卡路里(&lt;500) 输出格式 &emsp;&emsp; 一个数,所能达到的最大卡路里(int范围内) 样例输入 &emsp;&emsp; 320&emsp; 350 &emsp;&emsp; 4 &emsp;&emsp;160&emsp; 40 &emsp;120&emsp;&emsp; 80 &emsp;110&emsp; 240 &emsp;&emsp; 220&emsp;70 &emsp; 310 &emsp;&emsp; 40 &emsp;400&emsp; 220 样例输出 &emsp;&emsp; 550 dp[i][j][k]代表“前i件物品，此刻体积为j,质量为k时，可得到的最大卡路里值。 第i件不放进去，转化成前i-1件物品此刻体积为j,质量为k时，可得到的最大卡路里值，此时所得卡路里 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;dp[i-1][j][k] 第i件放进去，要是体积只能为j,质量只能为k,则可以转化成将前i-1件物品放入体积为j-vol[i]，质量为k-qua[i]的背包里，此时加入第i件的体积恰好是j,质量恰好是k的背包，所得卡路里为 &emsp;&emsp; &emsp;&emsp;dp[i-1][j-vol[i]][k-qua[i]]+ calorie[i] 由此得到状态转移方程： dp[i][j][k] = Math.max(dp[i-1][j][k],dp[i-1][j-vol[i]][k-qua[i]]+ calorie[i]); 可以将其压缩成空间为O(total) = O(N*N) 情况1：第i件不放进去，所得价值dp[j][k] 情况2：第i件放进去，所得价值dp[j-vol[i]][k-qua[i]]+ calorie[i] 由此得到状态转移方程： &emsp;&emsp;&emsp; dp[j][k] = Math.max(dp[j][k],dp[j-vol[i]][k-qua[i]]+ calorie[i]); 1234567891011121314151617181920212223242526272829&gt; public class Main &#123;&gt; public static int solution(int Num,int Volume,int Quality,int vol[],int qua[],int calorie[])&#123;&gt; int dp[][] = new int [Volume+1][Quality+1];&gt; for(int i = 0;i&lt;Num;i++)&#123; //食品数量&gt; for(int j = Volume;j&gt;=vol[i];j--)&#123; //体积&gt; for(int k = Quality;k &gt;= qua[i];k--)&#123; //质量&gt; dp[j][k] = Math.max(dp[j][k],dp[j-vol[i]][k-qua[i]]+ calorie[i]);&gt; &#125;&gt; &#125;&gt; &#125;&gt; return dp[Volume][Quality];&gt; &#125;&gt; public static void main(String[] args) &#123;&gt; Scanner sr = new Scanner(System.in);&gt; int Volume = sr.nextInt();&gt; int Quality = sr.nextInt();&gt; int Num = sr.nextInt();&gt; int vol[] = new int[Num];&gt; int qua[] = new int[Num];&gt; int calorie[] = new int[Num];&gt; for(int i = 0;i&lt;Num;i++)&#123;&gt; vol[i] = sr.nextInt();&gt; qua[i] = sr.nextInt();&gt; calorie[i] = sr.nextInt();&gt; &#125;&gt; System.out.println(solution(Num,Volume,Quality,vol,qua,calorie));&gt; &#125;&gt; &#125;&gt; 12]]></content>
       <tags>
         <tag>动态规划</tag>
         <tag>贪心算法</tag>
@@ -307,9 +307,9 @@
       </categories>
       <tags>
         <tag>数组类型题</tag>
+        <tag>中等</tag>
         <tag>动态规划</tag>
         <tag>贪心算法</tag>
-        <tag>中等</tag>
       </tags>
   </entry>
   <entry>
@@ -534,8 +534,8 @@
       </categories>
       <tags>
         <tag>数组类型题</tag>
-        <tag>动态规划</tag>
         <tag>中等</tag>
+        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>
@@ -559,8 +559,8 @@
       </categories>
       <tags>
         <tag>二叉树题</tag>
-        <tag>动态规划</tag>
         <tag>中等</tag>
+        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>
@@ -572,8 +572,8 @@
       </categories>
       <tags>
         <tag>数组类型题</tag>
-        <tag>动态规划</tag>
         <tag>简单</tag>
+        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>
@@ -585,8 +585,8 @@
       </categories>
       <tags>
         <tag>数组类型题</tag>
-        <tag>动态规划</tag>
         <tag>中等</tag>
+        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>
@@ -598,8 +598,8 @@
       </categories>
       <tags>
         <tag>数组类型题</tag>
-        <tag>动态规划</tag>
         <tag>中等</tag>
+        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>
@@ -611,8 +611,8 @@
       </categories>
       <tags>
         <tag>数组类型题</tag>
-        <tag>动态规划</tag>
         <tag>中等</tag>
+        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>
@@ -624,8 +624,8 @@
       </categories>
       <tags>
         <tag>数组类型题</tag>
-        <tag>动态规划</tag>
         <tag>简单</tag>
+        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>
@@ -972,8 +972,8 @@
       </categories>
       <tags>
         <tag>字符串题</tag>
-        <tag>动态规划</tag>
         <tag>中等</tag>
+        <tag>动态规划</tag>
         <tag>manacher算法</tag>
       </tags>
   </entry>
@@ -1047,8 +1047,8 @@
         <category>并发</category>
       </categories>
       <tags>
-        <tag>线程</tag>
         <tag>JVM</tag>
+        <tag>线程</tag>
         <tag>并发</tag>
       </tags>
   </entry>
@@ -1817,17 +1817,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[剑指offer_【2】空格替换]]></title>
-    <url>%2F2019%2F04%2F2.%E7%A9%BA%E6%A0%BC%E6%9B%BF%E6%8D%A2%2F</url>
-    <content type="text"><![CDATA[1. 题目描述 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 2. 解题思路 方法1：利用函数replaceAll完成 方法2： **先计算需要多少的空间 **从后向前依次插入 3.代码方法1： 12345public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; return str.toString().replaceAll(" ", "%20"); &#125;&#125; 方法2： 12345678910111213141516171819202122232425262728public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; int spacenum = 0;//spacenum为计算空格数 for(int i=0;i&lt;str.length();i++)&#123; if(str.charAt(i)==' ') spacenum++; &#125; //indexold为为替换前的str下标 int indexold = str.length()-1; //计算空格转换成%20之后的str长度 int newlength = str.length() + spacenum*2; //indexold为为把空格替换为%20后的str下标 int indexnew = newlength-1; //使str的长度扩大到转换成%20之后的长度,防止下标越界 str.setLength(newlength); for(;indexold&gt;=0 &amp;&amp; indexold&lt;newlength;--indexold)&#123; if(str.charAt(indexold) == ' ')&#123; str.setCharAt(indexnew--, '0'); str.setCharAt(indexnew--, '2'); str.setCharAt(indexnew--, '%'); &#125;else&#123; str.setCharAt(indexnew--, str.charAt(indexold)); &#125; &#125; return str.toString(); &#125;&#125; 补充1：String和StringBuffer的转换String转换成StringBuffer 12String str = "abc";StringBuffer b=new StringBuffer(str); StringBuffer转换成String 12StringBuffer a=new StringBuffer();String b=a.toString(） 补充2：String、StringBuffer、StringBuilder 1）运行速度StringBuilder&gt;StringBuffer&gt;String 2）String是字符串常量，String对象一旦创建就不能更改。StringBuffer为 字符串变量，可更改 3） String适用于少量的字符串操作，StringBuffer适用于多线程下字符缓冲区进行大量操作的情况。 4） StringBuffer 与 StringBuilder 中的方法和功能完全是等价的， 5） 只是StringBuffer 中的方法大都采用了 synchronized 关键字进行修饰，因此是线程安全的，而 StringBuilder 没有这个修饰，可以被认为是线程不安全的。 6） 在单线程程序下，StringBuilder效率更快，因为它不需要加锁，不具备多线程安全，而StringBuffer则每次都需要判断锁，效率相对更低。]]></content>
-      <categories>
-        <category>剑指offer</category>
-      </categories>
-      <tags>
-        <tag>字符串题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[剑指offer_【1】二维数组的查找]]></title>
     <url>%2F2019%2F04%2F1.%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE%2F</url>
     <content type="text"><![CDATA[1.题目描述： 在一个二维数组中（每个一维数组的长度相同），如数组 1 2 3 4 5 6 7 8 9 每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 2.解题思路 选择右上角的数字作为开始点 如果array[row][col]&gt;target,则向左查找，col–； 如果array[row][col]&lt;target,则向下查找，row++； 3.代码123456789101112131415161718public class Solution &#123; public boolean Find(int target, int [][] array) &#123; boolean res = false; int row = 0; int col = array[0].length-1; while(row&lt;=array.length-1&amp;&amp;col&gt;=0)&#123; if(array[row][col]&gt;target)&#123; col--; &#125;else if(array[row][col]&lt;target)&#123; row++; &#125;else&#123; res = true; break; &#125; &#125; return res; &#125;&#125;]]></content>
@@ -1836,6 +1825,17 @@
       </categories>
       <tags>
         <tag>数组类型题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[剑指offer_【2】空格替换]]></title>
+    <url>%2F2019%2F04%2F2.%E7%A9%BA%E6%A0%BC%E6%9B%BF%E6%8D%A2%2F</url>
+    <content type="text"><![CDATA[1. 题目描述 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 2. 解题思路 方法1：利用函数replaceAll完成 方法2： **先计算需要多少的空间 **从后向前依次插入 3.代码方法1： 12345public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; return str.toString().replaceAll(" ", "%20"); &#125;&#125; 方法2： 12345678910111213141516171819202122232425262728public class Solution &#123; public String replaceSpace(StringBuffer str) &#123; int spacenum = 0;//spacenum为计算空格数 for(int i=0;i&lt;str.length();i++)&#123; if(str.charAt(i)==' ') spacenum++; &#125; //indexold为为替换前的str下标 int indexold = str.length()-1; //计算空格转换成%20之后的str长度 int newlength = str.length() + spacenum*2; //indexold为为把空格替换为%20后的str下标 int indexnew = newlength-1; //使str的长度扩大到转换成%20之后的长度,防止下标越界 str.setLength(newlength); for(;indexold&gt;=0 &amp;&amp; indexold&lt;newlength;--indexold)&#123; if(str.charAt(indexold) == ' ')&#123; str.setCharAt(indexnew--, '0'); str.setCharAt(indexnew--, '2'); str.setCharAt(indexnew--, '%'); &#125;else&#123; str.setCharAt(indexnew--, str.charAt(indexold)); &#125; &#125; return str.toString(); &#125;&#125; 补充1：String和StringBuffer的转换String转换成StringBuffer 12String str = "abc";StringBuffer b=new StringBuffer(str); StringBuffer转换成String 12StringBuffer a=new StringBuffer();String b=a.toString(） 补充2：String、StringBuffer、StringBuilder 1）运行速度StringBuilder&gt;StringBuffer&gt;String 2）String是字符串常量，String对象一旦创建就不能更改。StringBuffer为 字符串变量，可更改 3） String适用于少量的字符串操作，StringBuffer适用于多线程下字符缓冲区进行大量操作的情况。 4） StringBuffer 与 StringBuilder 中的方法和功能完全是等价的， 5） 只是StringBuffer 中的方法大都采用了 synchronized 关键字进行修饰，因此是线程安全的，而 StringBuilder 没有这个修饰，可以被认为是线程不安全的。 6） 在单线程程序下，StringBuilder效率更快，因为它不需要加锁，不具备多线程安全，而StringBuffer则每次都需要判断锁，效率相对更低。]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>字符串题</tag>
       </tags>
   </entry>
   <entry>
