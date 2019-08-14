@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Long&#39;s Blog">
 <meta property="og:description" content="背包问题  给定一组物品，每种物品都有自己的重量和价格，在限定的总重量内，我们如何选择，才能使得物品的总价格最高。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-14T08:14:21.464Z">
+<meta property="og:updated_time" content="2019-08-14T08:30:19.674Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="背包问题-【01背包】【完全背包】【多重背包】【多限定条件背包】">
 <meta name="twitter:description" content="背包问题  给定一组物品，每种物品都有自己的重量和价格，在限定的总重量内，我们如何选择，才能使得物品的总价格最高。">
@@ -358,18 +358,12 @@
 </blockquote>
 <p>   dp[i][v]代表“将前i件物品放入容量为v的背包中得到的最大价值。</p>
 <blockquote>
-<ul>
-<li><p>情况1：第i件不放进去，转化成前i-1件物品放入容量为v的背包中的价值的情况，此时所得价值</p>
+<p>情况1：第i件不放进去，转化成前i-1件物品放入容量为v的背包中的价值的情况，此时所得价值</p>
 <p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<code>dp[i-1][v]</code></p>
-<ul>
-<li><p>情况2：第i件放进去，要是容量只能为v,则可以转化成将前<code>i-1</code>件物品放入<code>v-weight[i]</code>的背包里，此时加入第i件的重量恰好是v重量的背包，所得价值</p>
+<p>情况2：第i件放进去，要是容量只能为v,则可以转化成将前<code>i-1</code>件物品放入<code>v-weight[i]</code>的背包里，此时加入第i件的重量恰好是v重量的背包，所得价值</p>
 <p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<code>dp[i-1][v-weight[i]] + c[i]</code>，</p>
 <p>由此得到状态转移方程：注：dp[i][v]表示重量不超过v公斤的最大价值</p>
 <p>&emsp; <code>dp[i][v] = Math.max(dp[i-1][v],dp[i-1][v-w[i]]+c[i])</code></p>
-</li>
-</ul>
-</li>
-</ul>
 </blockquote>
 <blockquote>
 <p>时间和空间复杂度都为<code>O(Num*total)=O(N*N)</code>,可以将其压缩成空间为<code>O(total) = O(N)</code></p>
@@ -390,23 +384,17 @@
 </ul>
 </blockquote>
 <h3 id="2-0-1背包问题-要求恰好装满这个包，此时的最大价值"><a href="#2-0-1背包问题-要求恰好装满这个包，此时的最大价值" class="headerlink" title="2. 0-1背包问题[要求恰好装满这个包，此时的最大价值]"></a>2. 0-1背包问题[要求恰好装满这个包，此时的最大价值]</h3><blockquote>
-<ul>
-<li>与以上不同初始化时除了f[0]为0其它f[1..V]均设为-∞，可以这样理解，可以这样理解：初始化的dp数组事实上就是在没有任何物品可以放入背包时的合法状态。</li>
-<li>如果要求背包恰好装满，那么此时只有容量为0的背包可能被价值为0的nothing“恰好装满”，其它容量的背包均没有合法的解，属于未定义的状态，它们的值就都应该是-∞了。</li>
-<li><p>如果背包并非必须被装满，那么任何容量的背包都有一个合法解“什么都不装”，这个解的价值为0，所以初始时状态的值也就全部为0了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">ZeroOnePackage</span><span class="params">(<span class="keyword">int</span> []weight,<span class="keyword">int</span> []value,<span class="keyword">int</span> Num,<span class="keyword">int</span> total)</span></span>&#123;</span><br><span class="line">&gt;          <span class="keyword">int</span> dp[] = <span class="keyword">new</span> <span class="keyword">int</span>[total+<span class="number">1</span>];</span><br><span class="line">&gt;          <span class="comment">//初始化dp数组</span></span><br><span class="line">&gt;          <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;dp.length;i++)</span><br><span class="line">&gt;              dp[i] = Integer.MIN_VALUE; </span><br><span class="line">&gt;          <span class="comment">//动态规划背包问题</span></span><br><span class="line">&gt;         <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;Num;i++)&#123;</span><br><span class="line">&gt;             <span class="keyword">for</span>(<span class="keyword">int</span> v = total;v&gt;=weight[i];v--)&#123; <span class="comment">//注意是逆序</span></span><br><span class="line">&gt;                 dp[v] = Math.max(dp[v-weight[i]]+value[i],dp[v]);</span><br><span class="line">&gt;             &#125;</span><br><span class="line">&gt;         &#125;</span><br><span class="line">&gt;         <span class="keyword">return</span> dp[total];</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+<p>&emsp;与以上不同初始化时除了f[0]为0其它f[1..V]均设为-∞，可以这样理解，可以这样理解：初始化的dp数组事实上就是在没有任何物品可以放入背包时的合法状态。</p>
+<p>&emsp;如果要求背包恰好装满，那么此时只有容量为0的背包可能被价值为0的nothing“恰好装满”，其它容量的背包均没有合法的解，属于未定义的状态，它们的值就都应该是-∞了。</p>
+<p>&emsp;如果背包并非必须被装满，那么任何容量的背包都有一个合法解“什么都不装”，这个解的价值为0，所以初始时状态的值也就全部为0了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">ZeroOnePackage</span><span class="params">(<span class="keyword">int</span> []weight,<span class="keyword">int</span> []value,<span class="keyword">int</span> Num,<span class="keyword">int</span> total)</span></span>&#123;</span><br><span class="line">&gt;        <span class="keyword">int</span> dp[] = <span class="keyword">new</span> <span class="keyword">int</span>[total+<span class="number">1</span>];</span><br><span class="line">&gt;        <span class="comment">//初始化dp数组</span></span><br><span class="line">&gt;        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;dp.length;i++)</span><br><span class="line">&gt;            dp[i] = Integer.MIN_VALUE; </span><br><span class="line">&gt;        <span class="comment">//动态规划背包问题</span></span><br><span class="line">&gt;       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;Num;i++)&#123;</span><br><span class="line">&gt;           <span class="keyword">for</span>(<span class="keyword">int</span> v = total;v&gt;=weight[i];v--)&#123; <span class="comment">//注意是逆序</span></span><br><span class="line">&gt;               dp[v] = Math.max(dp[v-weight[i]]+value[i],dp[v]);</span><br><span class="line">&gt;           &#125;</span><br><span class="line">&gt;       &#125;</span><br><span class="line">&gt;       <span class="keyword">return</span> dp[total];</span><br><span class="line">&gt;   &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <h3 id="2-完全背包问题"><a href="#2-完全背包问题" class="headerlink" title="2. 完全背包问题"></a>2. 完全背包问题</h3><p>有Num种物品和一个容量为total的背包，每种物品都有无限件可用。第i种物品的体重量是weight[i]，价值是value[i]。将哪些物品装入背包可使这些物品的体积总和不超过背包容量，且价值总和最大。</p>
 <blockquote>
-<ul>
-<li>情况1：第i件不放进去，所得价值  <code>dp[i-1][v]</code></li>
-<li><p>情况2：第i件放进去，所得价值  <code>dp[i-1][v-weight[i]]+c[i]</code></p>
+<p>&emsp;情况1：第i件不放进去，所得价值  <code>dp[i-1][v]</code></p>
+<p>&emsp;情况2：第i件放进去，所得价值  <code>dp[i-1][v-weight[i]]+c[i]</code></p>
 <p>由此得到状态转移方程：，dp[i][v]表示前i个背包装入重量不超过v公斤的最大价值</p>
 <p> <code>dp[i][v] = Math.max(dp[i-1][v],dp[i-1][v-n*w[i]]+n*c[i]){0&lt;n*value[i]&lt;total}</code></p>
-</li>
-</ul>
 </blockquote>
 <blockquote>
 <p>时间和空间复杂度都为<code>O(Num*total)=O(N*N)</code>,可以将其压缩成空间为<code>O(total) = O(N)</code></p>
@@ -433,18 +421,12 @@
 </blockquote>
 <blockquote>
 <p>dp[i][j][k]代表“前i件物品，此刻体积为j,质量为k时，可得到的最大卡路里值。</p>
-<ul>
-<li><p>第i件不放进去，转化成前i-1件物品此刻体积为j,质量为k时，可得到的最大卡路里值，此时所得卡路里</p>
+<p>第i件不放进去，转化成前i-1件物品此刻体积为j,质量为k时，可得到的最大卡路里值，此时所得卡路里</p>
 <p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<code>dp[i-1][j][k]</code></p>
-<ul>
-<li><p>第i件放进去，要是体积只能为j,质量只能为k,则可以转化成将前<code>i-1</code>件物品放入体积为<code>j-vol[i]</code>，质量为<code>k-qua[i]</code>的背包里，此时加入第i件的体积恰好是j,质量恰好是k的背包，所得卡路里为</p>
+<p>第i件放进去，要是体积只能为j,质量只能为k,则可以转化成将前<code>i-1</code>件物品放入体积为<code>j-vol[i]</code>，质量为<code>k-qua[i]</code>的背包里，此时加入第i件的体积恰好是j,质量恰好是k的背包，所得卡路里为</p>
 <p>&emsp;&emsp; &emsp;&emsp;<code>dp[i-1][j-vol[i]][k-qua[i]]+ calorie[i]</code></p>
 <p>由此得到状态转移方程：</p>
-<p><code>dp[i][j][k] = Math.max(dp[i-1][j][k],dp[i-1][j-vol[i]][k-qua[i]]+ calorie[i]);</code></p>
-</li>
-</ul>
-</li>
-</ul>
+<p>&emsp;&emsp;&emsp;<code>dp[i][j][k] = Math.max(dp[i-1][j][k],dp[i-1][j-vol[i]][k-qua[i]]+ calorie[i]);</code></p>
 </blockquote>
 <blockquote>
 <p>可以将其压缩成空间为<code>O(total) = O(N*N)</code></p>
@@ -452,7 +434,7 @@
 <li>情况1：第i件不放进去，所得价值<code>dp[j][k]</code></li>
 <li>情况2：第i件放进去，所得价值<code>dp[j-vol[i]][k-qua[i]]+ calorie[i]</code></li>
 </ul>
-<p>由此得到状态转移方程：<br>    &emsp;&emsp;&emsp;   <code>dp[j][k] = Math.max(dp[j][k],dp[j-vol[i]][k-qua[i]]+ calorie[i]);</code></p>
+<p>由此得到状态转移方程：<br>    &emsp;&emsp;&emsp; &emsp;&emsp;  <code>dp[j][k] = Math.max(dp[j][k],dp[j-vol[i]][k-qua[i]]+ calorie[i]);</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">&gt;     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>  <span class="title">solution</span><span class="params">(<span class="keyword">int</span> Num,<span class="keyword">int</span> Volume,<span class="keyword">int</span> Quality,<span class="keyword">int</span> vol[],<span class="keyword">int</span> qua[],<span class="keyword">int</span> calorie[])</span></span>&#123;</span><br><span class="line">&gt;         <span class="keyword">int</span> dp[][] = <span class="keyword">new</span> <span class="keyword">int</span> [Volume+<span class="number">1</span>][Quality+<span class="number">1</span>];</span><br><span class="line">&gt;         <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;Num;i++)&#123;  <span class="comment">//食品数量</span></span><br><span class="line">&gt;             <span class="keyword">for</span>(<span class="keyword">int</span> j = Volume;j&gt;=vol[i];j--)&#123;  <span class="comment">//体积</span></span><br><span class="line">&gt;                 <span class="keyword">for</span>(<span class="keyword">int</span> k = Quality;k &gt;= qua[i];k--)&#123; <span class="comment">//质量</span></span><br><span class="line">&gt;                     dp[j][k] = Math.max(dp[j][k],dp[j-vol[i]][k-qua[i]]+ calorie[i]);</span><br><span class="line">&gt;                 &#125;</span><br><span class="line">&gt;             &#125;</span><br><span class="line">&gt;         &#125;</span><br><span class="line">&gt;         <span class="keyword">return</span> dp[Volume][Quality];</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt;     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">&gt;         Scanner sr = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">&gt;         <span class="keyword">int</span> Volume  = sr.nextInt();</span><br><span class="line">&gt;         <span class="keyword">int</span> Quality = sr.nextInt();</span><br><span class="line">&gt;         <span class="keyword">int</span> Num = sr.nextInt();</span><br><span class="line">&gt;         <span class="keyword">int</span> vol[] = <span class="keyword">new</span> <span class="keyword">int</span>[Num];</span><br><span class="line">&gt;         <span class="keyword">int</span> qua[] = <span class="keyword">new</span> <span class="keyword">int</span>[Num];</span><br><span class="line">&gt;         <span class="keyword">int</span> calorie[] = <span class="keyword">new</span> <span class="keyword">int</span>[Num];</span><br><span class="line">&gt;         <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;Num;i++)&#123;</span><br><span class="line">&gt;             vol[i] = sr.nextInt();</span><br><span class="line">&gt;             qua[i] = sr.nextInt();</span><br><span class="line">&gt;             calorie[i] = sr.nextInt();</span><br><span class="line">&gt;         &#125;</span><br><span class="line">&gt;         System.out.println(solution(Num,Volume,Quality,vol,qua,calorie));</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -467,7 +449,7 @@
         <p><span>本文标题:</span><a href="/2019/06/背包问题/">背包问题-【01背包】【完全背包】【多重背包】【多限定条件背包】</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">qiulig</a></p>
         <p><span>发布时间:</span>2019-06-20, 18:56:03</p>
-        <p><span>最后更新:</span>2019-08-14, 16:14:21</p>
+        <p><span>最后更新:</span>2019-08-14, 16:30:19</p>
         <p><span class="post-count">文章字数:</span>2.4k</p> 
 		<p>
             <span>原始链接:</span><a class="post-url" href="/2019/06/背包问题/" title="背包问题-【01背包】【完全背包】【多重背包】【多限定条件背包】">http://blogs.qiulig.website/2019/06/背包问题/</a>
